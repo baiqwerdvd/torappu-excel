@@ -1,0 +1,13 @@
+from enum import StrEnum
+
+
+class RoguelikeItemType(StrEnum):
+    NONE = "NONE"
+    HP = "HP"
+    GOLD = "GOLD"
+    POPULATION = "POPULATION"
+    SQUAD_CAPACITY = "SQUAD_CAPACITY"
+    RECRUIT_TICKET = "RECRUIT_TICKET"
+    UPGRADE_TICKET = "UPGRADE_TICKET"
+    RELIC = "RELIC"
+    TOTEM_EFFECT = "TOTEM_EFFECT"

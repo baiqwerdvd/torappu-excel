@@ -1,0 +1,40 @@
+from ..common import BaseStruct
+
+
+class SandboxV2RacingConstData(BaseStruct):
+    attributeNameList: list[str]
+    racerMaxValue: list[int]
+    bagFullHintPercent: float
+    tempBagFullHintPercent: float
+    bagName: str
+    tempBagName: str
+    bagEmptyLeftDesc: str
+    bagEmptyRightDesc: str
+    tempBagEmptyLeftDesc: str
+    tempBagEmptyRightDesc: str
+    bornTalentIconId: str
+    bornTalentTitle: str
+    learnedTalentIconId: str
+    learnedTalentTitle: str
+    talentEmptyDesc: str
+    slugItemId: str
+    racingHpFactor: float
+    racingSpeedFactor: float
+    racingAccelerationFactor: float
+    recoverMoveSpeed: float
+    recoverHpFactor: float
+    bleedingFactor: float
+    maxSteeringFactor: float
+    steeringMassLevelFactor: float
+    steeringMoveSpeedFactor: float
+    safeAngleCos: float
+    safeCollisionForceLevel: float
+    tileCollisionFactor: float
+    collisionForceSector: list[float]
+    collisionForceLevel: list[float]
+    collisionSpeedLoss: list[float]
+    collisionHpLoss: list[float]
+    tileCollisionSpeedLoss: list[float]
+    tileCollisionHpLoss: list[float]
+    autoUseItemTimeRange: list[float]
+    recoverAcceleration: float

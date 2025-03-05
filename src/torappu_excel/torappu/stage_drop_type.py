@@ -1,0 +1,16 @@
+from ..common import CustomIntEnum
+
+
+class StageDropType(CustomIntEnum):
+    NONE = "NONE", 0
+    ONCE = "ONCE", 1
+    NORMAL = "NORMAL", 2
+    SPECIAL = "SPECIAL", 3
+    ADDITIONAL = "ADDITIONAL", 4
+    APRETURN = "APRETURN", 5
+    DIAMOND_MATERIAL = "DIAMOND_MATERIAL", 6
+    FUNITURE_DROP = "FUNITURE_DROP", 7
+    COMPLETE = "COMPLETE", 8
+    CHARM_DROP = "CHARM_DROP", 9
+    OVERRIDE_DROP = "OVERRIDE_DROP", 10
+    ITEM_RETURN = "ITEM_RETURN", 11

@@ -1,0 +1,16 @@
+from enum import StrEnum
+
+
+class SandboxItemType(StrEnum):
+    NONE = "NONE"
+    TACTICAL = "TACTICAL"
+    STAMINA = "STAMINA"
+    STAMINAPOT = "STAMINAPOT"
+    BUILDING = "BUILDING"
+    BUILDINGMAT = "BUILDINGMAT"
+    FOOD = "FOOD"
+    FOODMAT = "FOODMAT"
+    SPECIALMAT = "SPECIALMAT"
+    GOLD = "GOLD"
+    CRAFT = "CRAFT"
+    PLACEHOLDER = "PLACEHOLDER"

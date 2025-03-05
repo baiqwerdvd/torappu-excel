@@ -1,0 +1,15 @@
+from enum import StrEnum
+
+
+class ZoneType(StrEnum):
+    NONE = "NONE"
+    MAINLINE = "MAINLINE"
+    WEEKLY = "WEEKLY"
+    ACTIVITY = "ACTIVITY"
+    GUIDE = "GUIDE"
+    TRAINING = "TRAINING"
+    CAMPAIGN = "CAMPAIGN"
+    SIDESTORY = "SIDESTORY"
+    BRANCHLINE = "BRANCHLINE"
+    ROGUELIKE = "ROGUELIKE"
+    CLIMB_TOWER = "CLIMB_TOWER"

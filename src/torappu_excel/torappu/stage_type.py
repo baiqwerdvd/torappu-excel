@@ -1,0 +1,15 @@
+from enum import StrEnum
+
+
+class StageType(StrEnum):
+    MAIN = "MAIN"
+    DAILY = "DAILY"
+    TRAINING = "TRAINING"
+    ACTIVITY = "ACTIVITY"
+    GUIDE = "GUIDE"
+    SUB = "SUB"
+    CAMPAIGN = "CAMPAIGN"
+    SPECIAL_STORY = "SPECIAL_STORY"
+    HANDBOOK_BATTLE = "HANDBOOK_BATTLE"
+    CLIMB_TOWER = "CLIMB_TOWER"
+    ENUM = "ENUM"

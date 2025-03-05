@@ -1,0 +1,17 @@
+from enum import StrEnum
+
+
+class RoguelikeGameChoiceType(StrEnum):
+    NONE = "NONE"
+    LEAVE = "LEAVE"
+    NEXT = "NEXT"
+    NEXT_PROB = "NEXT_PROB"
+    TRADE = "TRADE"
+    TRADE_PROB = "TRADE_PROB"
+    SACRIFICE = "SACRIFICE"
+    TELEPORT = "TELEPORT"
+    EXPEDITION = "EXPEDITION"
+    WISH = "WISH"
+    WISH_ALL = "WISH_ALL"
+    TRADE_PROB_SHOW = "TRADE_PROB_SHOW"
+    SACRIFICE_TOTEM = "SACRIFICE_TOTEM"

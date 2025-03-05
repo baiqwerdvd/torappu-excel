@@ -1,0 +1,15 @@
+from enum import StrEnum
+
+
+class SandboxV2ConfirmIconType(StrEnum):
+    COMMON = "COMMON"
+    EMERGENCY = "EMERGENCY"
+    QUIT = "QUIT"
+    EVACUATE = "EVACUATE"
+    EVACUATELOSS = "EVACUATELOSS"
+    NORMAL = "NORMAL"
+    COMBAT = "COMBAT"
+    CONSTRUCT = "CONSTRUCT"
+    NEXTDAY = "NEXTDAY"
+    RIFT_EXIT = "RIFT_EXIT"
+    LOAD_ARCHIVE = "LOAD_ARCHIVE"

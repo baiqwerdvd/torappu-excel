@@ -1,0 +1,11 @@
+from ..common import CustomIntEnum
+
+
+class SpType(CustomIntEnum):
+    NONE = "NONE", 0
+    INCREASE_WITH_TIME = "INCREASE_WITH_TIME", 1
+    INCREASE_WHEN_ATTACK = "INCREASE_WHEN_ATTACK", 2
+    INCREASE_WHEN_TAKEN_DAMAGE = "INCREASE_WHEN_TAKEN_DAMAGE", 4
+    ATTACK_OR_DAMAGE = "ATTACK_OR_DAMAGE", 6
+    ALL = "ALL", 7
+    E_NUM = "E_NUM", 8

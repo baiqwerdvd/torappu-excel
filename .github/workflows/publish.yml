@@ -1,0 +1,39 @@
+name: Publish Python 🐍 distributions 📦 to PyPI
+
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+
+jobs:
+  pypi-publish:
+    name: Upload release to PyPI
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install
+
+      - run: uv sync
+        shell: bash
+
+      - name: Build Package
+        run: uv build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifact
+          path: dist/
+
+      - name: pypi-publish
+        uses: pypa/gh-action-pypi-publish@v1.12.4

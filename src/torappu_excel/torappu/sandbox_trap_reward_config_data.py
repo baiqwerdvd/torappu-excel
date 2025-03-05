@@ -1,0 +1,6 @@
+from .sandbox_reward_common_config import SandboxRewardCommonConfig
+from .sandbox_reward_trap_drop_type import SandboxRewardTrapDropType
+
+
+class SandboxTrapRewardConfigData(SandboxRewardCommonConfig):
+    dropType: SandboxRewardTrapDropType

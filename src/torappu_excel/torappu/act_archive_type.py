@@ -1,0 +1,28 @@
+from enum import StrEnum
+
+
+class ActArchiveType(StrEnum):
+    NONE = "NONE"
+    TIMELINE = "TIMELINE"
+    MUSIC = "MUSIC"
+    PIC = "PIC"
+    AVG = "AVG"
+    STORY = "STORY"
+    NEWS = "NEWS"
+    BUFF = "BUFF"
+    RELIC = "RELIC"
+    CAPSULE = "CAPSULE"
+    TRAP = "TRAP"
+    CHAT = "CHAT"
+    LANDMARK = "LANDMARK"
+    LOG = "LOG"
+    ACTIVITY_ENTRY = "ACTIVITY_ENTRY"
+    DYNAMIC_MUSIC = "DYNAMIC_MUSIC"
+    DYNAMIC_PIC = "DYNAMIC_PIC"
+    ENDBOOK = "ENDBOOK"
+    DYNAMIC_STORY = "DYNAMIC_STORY"
+    TOTEM = "TOTEM"
+    CHAOS = "CHAOS"
+    CHALLENGE_BOOK = "CHALLENGE_BOOK"
+    ACHIEVEMENT = "ACHIEVEMENT"
+    QUEST = "QUEST"

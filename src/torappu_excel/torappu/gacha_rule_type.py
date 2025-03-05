@@ -1,0 +1,13 @@
+from enum import StrEnum
+
+
+class GachaRuleType(StrEnum):
+    NORMAL = "NORMAL"
+    LIMITED = "LIMITED"
+    LINKAGE = "LINKAGE"
+    ATTAIN = "ATTAIN"
+    CLASSIC = "CLASSIC"
+    SINGLE = "SINGLE"
+    FESCLASSIC = "FESCLASSIC"
+    CLASSIC_ATTAIN = "CLASSIC_ATTAIN"
+    SPECIAL = "SPECIAL"
