@@ -163,7 +163,7 @@ class ExcelTableManager:
         self.character_table_ = CharacterTable.convert({"chars": read_json("character_table.json")})
 
     @property
-    def CHARATER_TABLE(self) -> CharacterTable:
+    def CHARACTER_TABLE(self) -> CharacterTable:
         if self.character_table_ is None:
             raise ValueError("character_table is not loaded")
         return self.character_table_
