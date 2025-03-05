@@ -2,14 +2,10 @@ from collections.abc import Callable, Iterable, Iterator
 from copy import copy, deepcopy
 from enum import Enum
 import json
-from typing import (
-    Any,
-    Self,
-    dataclass_transform,
-    override,
-)
+from typing import Any, Self, dataclass_transform
 
 from msgspec import Struct, convert, field, json as mscjson, msgpack as mscmsgpack
+from typing_extensions import override
 
 
 class CustomIntEnum(Enum):
