@@ -21,6 +21,10 @@ class FireworkData(BaseStruct):
     class PlateContent(BaseStruct):
         plateContent: list[GridPosition]
 
+    class PlateSlotData(BaseStruct):
+        id: str
+        idx: int
+
     class PlateData(BaseStruct):
         plateId: str
         sortId: int
