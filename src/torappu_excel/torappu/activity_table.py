@@ -21,6 +21,7 @@ from .act_38d1_data import Act38D1Data
 from .act_42d0_data import Act42D0Data
 from .act_arcade_data import ActArcadeData
 from .act_mainline_bp_extra_data import ActMainlineBpExtraData
+from .act_multi_v3_data import ActMultiV3Data
 from .act_sandbox_data import ActSandboxData
 from .act_vec_break_data import ActVecBreakData
 from .activity_auto_chess_verify1_data import ActivityAutoChessVerify1Data
@@ -163,6 +164,7 @@ class ActivityTable(BaseStruct):
         TYPE_ACT38SIDE: dict[str, "Act38SideData"] = field(default_factory=dict)
         AUTOCHESS_VERIFY1: dict[str, "ActivityAutoChessVerify1Data"] = field(default_factory=dict)
         ARCADE: dict[str, "ActArcadeData"] = field(default_factory=dict)
+        MULTIPLAY_V3: dict[str, "ActMultiV3Data"] = field(default_factory=dict)
 
     class ActivityExtraData(BaseStruct):
         MAINLINE_BP: dict[str, "ActMainlineBpExtraData"]

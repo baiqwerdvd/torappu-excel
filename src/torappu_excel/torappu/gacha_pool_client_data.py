@@ -19,6 +19,7 @@ class GachaPoolClientData(BaseStruct):
     gachaRuleType: GachaRuleType
     guarantee5Avail: int
     guarantee5Count: int
+    guaranteeName: str | None
     LMTGSID: str | None
     openTime: int
     limitParam: dict[str, Any] | None

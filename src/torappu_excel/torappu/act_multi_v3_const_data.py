@@ -1,0 +1,84 @@
+from .act_multi_v3_inverse_unlock_cond import ActMultiV3InverseUnlockCond
+from .item_bundle import ItemBundle
+from .player_avatar_group_type import PlayerAvatarGroupType
+from ..common import BaseStruct
+
+
+class ActMultiV3ConstData(BaseStruct):
+    milestoneId: str
+    roomNumCopyDesc: str
+    noMapRoomNumCopyDesc: str
+    randomMapRoomNumCopyDesc: str
+    targetCd: int
+    squadMinNum: int
+    squadMaxNum: int
+    defenseTraMax: int
+    defenseOrdMax: int
+    defenseDifMax: int
+    stageChooseAnimRandomStageIdList: list[str]
+    requireStarsPerBuffKey: int
+    maxUnlockNum: int
+    mapUnlockDesc1: str
+    mapUnlockDesc2: str
+    mapUnlockDesc3: str
+    mapUnlockDesc4: str
+    mapUnlockDesc5: str
+    mapUnlockDesc6: str
+    mapUnlockDesc7: str
+    difUnlockCond: int
+    ordRewardStageId: str
+    difRewardStageId: str
+    maxMatchTime: int
+    tipsSwitchTime: int
+    pingConds: list["ActMultiV3ConstData.PingCond"]
+    chatCd: int
+    chatTime: int
+    markCd: int
+    markCond1: int
+    markCond2: int
+    dailyMissionParam: int
+    dailyMissionName: str
+    dailyMissionDesc: str
+    dailyMissionRule: str
+    missionDesc: str
+    dailyMissionRewardItem: ItemBundle
+    normalGreatVoiceStar: int
+    footballGreatVoiceNum: int
+    defenceGreatVoiceWave: int
+    reportMaxNum: int
+    reportText: str
+    reward1Id: str
+    reward1Text: str
+    reward2Id: str
+    reward2Text: str
+    maxRetryTimeInTeamRoom: int
+    maxRetryTimeInMatchRoom: int
+    maxRetryTimeInBattle: int
+    maxOperatorDelay: float
+    maxPlaySpeed: int
+    delayTimeNeedTip: int
+    settleRetryTime: int
+    playerDisplayTimeMax: float
+    isMatchDefaultInverse: bool
+    inverseUnlockCond: ActMultiV3InverseUnlockCond
+    inverseModeHint: str
+    teamUnlockStageId: str
+    teamUnlockParam: int
+    trainPartnerCharId: str
+    trainPartnerCharSkinId: str
+    trainPartnerPlayerName: str
+    trainPartnerPlayerLevel: int
+    trainPartnerBuffId: str
+    trainPartnerAvatarGroupType: PlayerAvatarGroupType
+    trainPartnerAvatarId: str
+    trainPartnerTitleList: list[str]
+    trainPartnerNameCardSkinId: str
+    maxPhotoPerType: int
+    checkFriendStateTime: int
+    photoCharacterDefaultAct: str
+    trainingStageConfirmDesc: str
+    joinRoomLongTimeThreshold: float
+
+    class PingCond(BaseStruct):
+        cond: int
+        txt: str
