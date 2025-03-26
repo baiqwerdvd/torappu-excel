@@ -58,8 +58,17 @@ async def get_file_list(api_url: str) -> list[ApiFileData]:
 
 async def download_torappu_excel() -> None:
     api_url = "https://torappu.prts.wiki/api/v1/files/gamedata/latest/excel"
+    gamedata_url = "https://torappu.prts.wiki/api/v1/files/gamedata"
     base_download_url = "https://torappu.prts.wiki/gamedata/latest/excel/"
     local_dir = Path().parent / "src" / "torappu_excel" / "json"
+
+    gamedata_list = await get_file_list(gamedata_url)
+    gamedata_list.sort(key=lambda x: x.name)
+    latest_version = gamedata_list[-2].name  # 最后一个是latest, 倒数第二个是最新的
+    logger.info(f"当前版本: {latest_version}")
+
+    async with aiofiles.open("latest_version.txt", "w") as f:
+        _ = await f.write(latest_version)
 
     try:
         files = await get_file_list(api_url)
@@ -69,8 +78,13 @@ async def download_torappu_excel() -> None:
             for file_info in files:
                 filename = file_info.name
                 download_url = base_download_url + filename
+                local_file = local_dir / filename
 
-                task = asyncio.create_task(download_file(session, download_url, local_dir / filename))
+                if local_file.is_file() and local_file.stat().st_size == file_info.size:
+                    logger.info(f"跳过: {filename}")
+                    continue
+
+                task = asyncio.create_task(download_file(session, download_url, local_file))
                 tasks.append(task)
 
             _ = await asyncio.gather(*tasks)
