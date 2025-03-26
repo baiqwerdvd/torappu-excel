@@ -8,4 +8,4 @@ class ActMultiV3SelectStepData(BaseStruct):
     time: int
     hintTime: int
     title: str
-    desc: str
+    desc: str | None

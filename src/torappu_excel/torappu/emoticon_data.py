@@ -4,7 +4,7 @@ from ..common import BaseStruct
 
 class EmoticonData(BaseStruct):
     emojiDataDict: dict[str, "EmoticonData.EmojiData"]
-    emoticonThemeDataDict: dict[str, str]
+    emoticonThemeDataDict: dict[str, list[str]]
 
     class EmojiData(BaseStruct):
         id: str

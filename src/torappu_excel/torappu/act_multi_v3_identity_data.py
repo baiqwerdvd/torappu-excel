@@ -8,4 +8,4 @@ class ActMultiV3IdentityData(BaseStruct):
     picId: str
     type: ActMultiV3IdentityType
     maxNum: int
-    color: str
+    color: str | None

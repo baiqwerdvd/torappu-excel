@@ -7,7 +7,7 @@ class ActMultiV3MatchPosData(BaseStruct):
     matchPos: ActMultiV3MatchPosType
     sortId: int
     name: str
-    desc: str
+    desc: str | None
     posToast: str
     matchDesc: str
-    unlockCond: ActMultiV3MatchPosUnlockCond
+    unlockCond: ActMultiV3MatchPosUnlockCond | None

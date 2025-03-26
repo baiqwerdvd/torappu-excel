@@ -1,0 +1,57 @@
+name: Torappu Excel Auto Update
+
+on:
+  schedule:
+    - cron: "0 0,12,16 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install
+
+      - run: uv sync
+        shell: bash
+
+      - name: Download Torappu Excel Data
+        run: |
+          uv run ./scripts/auto_update.py
+
+      - name: Run Tests
+        run: |
+          uv run pytest
+        continue-on-error: false
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add src/torappu_excel/json/*
+          git commit -m "Auto update Torappu Excel data" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Failure Notification
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Torappu Excel Update Failed',
+              body: 'Automatic update and test workflow failed. Please check the logs.'
+            })

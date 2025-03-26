@@ -9,7 +9,7 @@ class ActMultiV3MapTypeData(BaseStruct):
     difficulty: ActMultiV3MapDiffType
     isDefaultSelectInQuickMatch: bool
     squadMax: int
-    matchUnlockModeId: str
+    matchUnlockModeId: str | None
     matchUnlockParam: int
     stageIdInModeList: list[str]
-    unlockHint: str
+    unlockHint: str | None
