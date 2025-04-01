@@ -7,4 +7,4 @@ class Act6FunAchievementData(BaseStruct):
     sortId: int
     achievementType: Act6FunAchievementType
     description: str
-    coverDesc: str
+    coverDesc: str | None

@@ -7,6 +7,6 @@ from ..common import BaseStruct
 
 class Act6FunData(BaseStruct):
     stageAdditionMap: dict[str, Act6FunStageAdditionData]
-    stageAchievementMap: dict[str, Act6FunAchievementData]
+    stageAchievementMap: dict[str, list[Act6FunAchievementData]]
     achievementRewardList: dict[str, Act6FunAchievementRewardData]
     constData: Act6FunConst
