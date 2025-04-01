@@ -8,7 +8,6 @@ on:
 permissions:
   contents: write
   issues: write
-  pull-requests: write
 
 jobs:
   update-and-test:
@@ -16,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Install uv
         uses: astral-sh/setup-uv@v5
@@ -34,33 +35,32 @@ jobs:
           uv run ./scripts/auto_update.py
           echo "version=$(cat latest_version.txt)" >> $GITHUB_OUTPUT
 
-      - name: Check for changes
-        id: check-changes
+      - name: Create new branch with changes
+        id: create-branch
         run: |
           CLEAN_VERSION=$(echo "${{ steps.download-data.outputs.version }}" | tr '.' '-')
-          echo "clean_version=$CLEAN_VERSION" >> $GITHUB_OUTPUT
+          BRANCH_NAME="auto-update/$CLEAN_VERSION"
+          
+          # Check if branch already exists locally or remotely
+          if git rev-parse --verify --quiet "origin/$BRANCH_NAME" || git rev-parse --verify --quiet "$BRANCH_NAME"; then
+            echo "Branch $BRANCH_NAME already exists. Skipping branch creation."
+            exit 0
+          fi
+
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
           
           git add src/torappu_excel/json/*
           if [ -z "$(git status --porcelain)" ]; then
             echo "No changes to commit."
-            echo "has_changes=false" >> $GITHUB_OUTPUT
+            exit 0
           else
-            echo "Changes detected."
-            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected. Creating new branch..."
+            git checkout -b "$BRANCH_NAME"
+            git commit -m "Auto update Torappu Excel data (Version ${{ steps.download-data.outputs.version }})"
+            git push origin "$BRANCH_NAME"
+            echo "New branch created and pushed: $BRANCH_NAME"
           fi
-
-      - name: Create Pull Request
-        if: steps.check-changes.outputs.has_changes == 'true'
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Auto update Torappu Excel data (Version ${{ steps.download-data.outputs.version }})"
-          title: "Auto Update Torappu Excel Data (Version ${{ steps.download-data.outputs.version }})"
-          body: "Automated PR for updating Torappu Excel data\n**Version**: ${{ steps.download-data.outputs.version }}"
-          branch: "auto-update/${{ steps.check-changes.outputs.clean_version }}"
-          base: main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Failure Notification
         if: failure()
