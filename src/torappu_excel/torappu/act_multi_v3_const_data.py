@@ -73,6 +73,7 @@ class ActMultiV3ConstData(BaseStruct):
     trainPartnerAvatarId: str
     trainPartnerTitleList: list[str]
     trainPartnerNameCardSkinId: str
+    trainPartnerNameCardSkinTmpl: int
     maxPhotoPerType: int
     checkFriendStateTime: int
     photoCharacterDefaultAct: str

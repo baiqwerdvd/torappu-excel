@@ -13,9 +13,9 @@ class RetroActData(BaseStruct):
     trailStartTime: int
     index: int
     name: str
-    detail: str
     haveTrail: bool
     customActId: str | None
     customActType: ActivityType
-    isRecommend: bool
-    recommendTagRemoveStage: str | None
+    detail: str | None = field(default=None)
+    isRecommend: bool | None = field(default=None)
+    recommendTagRemoveStage: str | None = field(default=None)

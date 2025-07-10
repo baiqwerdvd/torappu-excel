@@ -73,6 +73,7 @@ class GameDataConsts(BaseStruct):
     mainlineEasyDesc: str
     mainlineNormalDesc: str
     mainlineToughDesc: str
+    mainGuideActivedStageId: str
     maxLevel: list[list[int]]
     maxPlayerLevel: int
     maxPracticeTicket: int
