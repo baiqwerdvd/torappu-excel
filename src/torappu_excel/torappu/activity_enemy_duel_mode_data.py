@@ -14,14 +14,14 @@ class ActivityEnemyDuelModeData(BaseStruct):
     modeShortName: str
     modeEnName: str
     maxPlayer: int
-    preposedMode: str
+    preposedMode: str | None
     startTs: int
     endTs: int
     entryPicId: str
     titlePics: list[str]
     modeTarget: str
     modeDesc: str
-    modeRecordDesc: str
+    modeRecordDesc: str | None
     extraTag: bool
     modeAvatarPicId: str
     modeAvatarName: str
