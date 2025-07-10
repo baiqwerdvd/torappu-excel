@@ -15,5 +15,9 @@ class ZoneData(BaseStruct):
     zoneNameTitleEx: str | None
     zoneNameThird: str | None
     lockedText: str | None
+    antiSpoilerId: str | None
     canPreview: bool
+    sixStarMilestoneGroupId: str | None
+    bindMainlineZoneId: str | None
+    bindMainlineRetroZoneId: str | None
     hasAdditionalPanel: bool | None = field(default=None)

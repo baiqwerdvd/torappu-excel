@@ -11,4 +11,4 @@ class EmoticonData(BaseStruct):
         type: EmojiSceneType
         sortId: int
         picId: str
-        desc: str
+        desc: str | None

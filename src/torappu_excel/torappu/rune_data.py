@@ -1,6 +1,7 @@
 from .blackboard import Blackboard
 from .buildable_type import BuildableType, BuildableTypeStr
 from .profession_category import ProfessionCategory
+from .side_type import SideType
 from ..common import BaseStruct
 
 from msgspec import field
@@ -14,6 +15,7 @@ class RuneData(BaseStruct):
     class Selector(BaseStruct):
         professionMask: ProfessionCategory | int
         buildableMask: BuildableTypeStr | BuildableType
+        sideType: SideType | None = field(default=None)
         playerSideMask: BuildableTypeStr | BuildableType | None = field(default=None)
         charIdFilter: list[str] | None = field(default=None)
         enemyIdFilter: list[str] | None = field(default=None)

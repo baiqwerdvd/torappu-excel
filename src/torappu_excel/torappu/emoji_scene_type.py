@@ -1,8 +1,9 @@
-from ..common import CustomIntEnum
+from enum import StrEnum
 
 
-class EmojiSceneType(CustomIntEnum):
-    NONE = "NONE", 0
-    ACTMULTIV3_ROOM = "ACTMULTIV3_ROOM", 1
-    ACTMULTIV3_PICK = "ACTMULTIV3_PICK", 2
-    ACTMULTIV3_BATTLE = "ACTMULTIV3_BATTLE", 3
+class EmojiSceneType(StrEnum):
+    NONE = "NONE"
+    ACTMULTIV3_ROOM = "ACTMULTIV3_ROOM"
+    ACTMULTIV3_PICK = "ACTMULTIV3_PICK"
+    ACTMULTIV3_BATTLE = "ACTMULTIV3_BATTLE"
+    ENEMYDUEL_BATTLE = "ENEMYDUEL_BATTLE"

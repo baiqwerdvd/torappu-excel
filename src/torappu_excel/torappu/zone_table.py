@@ -14,4 +14,5 @@ class ZoneTable(BaseStruct):
     mainlineAdditionInfo: dict[str, MainlineZoneData]
     zoneRecordGroupedData: dict[str, ZoneRecordGroupData]
     zoneRecordRewardData: dict[str, list[str]]
+    mainlineZoneIdList: list[str]
     zoneMetaData: ZoneMetaData
