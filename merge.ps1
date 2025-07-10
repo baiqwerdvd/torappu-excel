@@ -1,7 +1,7 @@
 git checkout main
 git pull origin main
 
-$branches = @("auto-update/25-04-25-08-42-16_acb2f8")
+$branches = @("auto-update/25-05-01-05-22-15_988a76")
 
 foreach ($branch in $branches) {
     git checkout $branch

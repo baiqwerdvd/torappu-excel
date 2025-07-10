@@ -44,6 +44,9 @@ class CharacterData(BaseStruct):
     potentialRanks: list["CharacterData.PotentialRank"]
     favorKeyFrames: list["CharacterData.AttributesKeyFrame"] | None
     allSkillLvlup: list["CharacterData.SkillLevelCost"]
+    sortIndex: int | None = field(default=None)
+    mainPower: "PowerData | None" = field(default=None)
+    subPower: list["PowerData"] | None = field(default=None)
     minPowerId: str | None = field(default=None)
     maxPowerId: str | None = field(default=None)
     displayTokenDict: dict[str, bool] | None = field(default=None)
@@ -116,6 +119,11 @@ class CharacterData(BaseStruct):
 
     class EquipTraitDataBundle(BaseStruct):
         candidates: list["CharacterData.EquipTraitData"] | None
+
+    class PowerData(BaseStruct):
+        nationId: str | None
+        groupId: str | None
+        teamId: str | None
 
 
 class TokenCharacterData(CharacterData):

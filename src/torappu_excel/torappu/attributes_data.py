@@ -26,5 +26,6 @@ class AttributesData(BaseStruct):
     sleepImmune: bool
     frozenImmune: bool
     levitateImmune: bool
-    disarmedCombatImmune: bool = False
-    fearedImmune: bool = False
+    palsyImmune: bool | None = field(default=None)
+    disarmedCombatImmune: bool | None = field(default=None)
+    fearedImmune: bool | None = field(default=None)
