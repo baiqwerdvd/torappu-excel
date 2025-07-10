@@ -5,4 +5,4 @@ class ActivityEnemyDuelTipsData(BaseStruct):
     id: str
     txt: str
     weight: int
-    modeIds: list[str]
+    modeIds: list[str] | None
