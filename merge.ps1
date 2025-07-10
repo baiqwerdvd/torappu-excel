@@ -1,7 +1,7 @@
 git checkout main
 git pull origin main
 
-$branches = @("auto-update/25-04-10-16-28-33_72615d")
+$branches = @("auto-update/25-04-25-08-42-16_acb2f8")
 
 foreach ($branch in $branches) {
     git checkout $branch
@@ -14,10 +14,10 @@ foreach ($branch in $branches) {
 
         $conflictFiles = git diff --name-only --diff-filter=U | Where-Object { $_ -like "*.json" }
         foreach ($file in $conflictFiles) {
-            git checkout --ours $file
+            git checkout --theirs $file
             git add $file
         }
-        git commit -m "Auto-merge main into $branch, preferring JSON from main"
+        git commit -m "Auto-merge main into $branch, preferring JSON from current branch ($branch)"
     }
 
     git push origin $branch

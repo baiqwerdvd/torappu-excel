@@ -4,7 +4,7 @@
 class ActivityEnemyDuelConstToastData(BaseStruct):
     createRoomAliveFailed: str
     joinRoomAliveFailed: str
-    roomIdFormatError: str
+    roomIdFormatError: str | None
     emptyRoomId: str
     noRoom: str
     continuousClicks: str
