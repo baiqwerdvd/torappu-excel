@@ -1,4 +1,4 @@
-from .item_rarity import ItemRarity  # noqa: F401 # pyright: ignore[reportUnusedImport]
+from .item_rarity import ItemRarity
 from ..common import BaseStruct
 
 from msgspec import field
@@ -16,4 +16,4 @@ class HomeThemeDisplayData(BaseStruct):
     unlockDesList: list[str]
     isLimitObtain: bool
     hideWhenLimit: bool
-    rarity: int  # FIXME: ItemRarity
+    rarity: ItemRarity

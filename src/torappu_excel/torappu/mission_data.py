@@ -25,3 +25,4 @@ class MissionData(BaseStruct):
     backImagePath: str | None
     foldId: str | None
     haveSubMissionToUnlock: bool
+    countEndTs: int | None

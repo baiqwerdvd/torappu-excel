@@ -36,6 +36,7 @@ class StageData(BaseStruct):
     name: str | None
     description: str | None
     hardStagedId: str | None
+    sixStarStageId: str | None
     dangerLevel: str | None
     dangerPoint: int | float
     loadingPicId: str
@@ -71,6 +72,10 @@ class StageData(BaseStruct):
     isStagePatch: bool
     mainStageId: str | None
     canUseFirework: bool
+    sixStarBaseDesc: str | None
+    sixStarDisplayRewardList: list[ItemBundle] | None
+    advancedRuneIdList1: list[str]
+    advancedRuneIdList2: list[str]
     canUseCharm: bool | None = field(default=None)
     canUseTech: bool | None = field(default=None)
     canUseTrapTool: bool | None = field(default=None)

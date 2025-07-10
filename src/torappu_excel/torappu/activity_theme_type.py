@@ -9,3 +9,4 @@ class ActivityThemeType(StrEnum):
     ROGUELIKE = "ROGUELIKE"
     CRISISV2 = "CRISISV2"
     SANDBOX_PERM = "SANDBOX_PERM"
+    ACTIVITY_COMP = "ACTIVITY_COMP"

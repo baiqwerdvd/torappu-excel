@@ -3,6 +3,8 @@ from enum import StrEnum
 from .stage_diff_group import StageDiffGroup
 from ..common import BaseStruct
 
+from msgspec import field
+
 
 class MainlineZoneData(BaseStruct):
     class ZoneReplayBtnType(StrEnum):
@@ -16,7 +18,7 @@ class MainlineZoneData(BaseStruct):
     zoneIndex: int
     startStageId: str
     endStageId: str
-    mainlneBgName: str
+    gameMusicId: str
     recapId: str
     recapPreStageId: str
     buttonName: str
@@ -24,3 +26,4 @@ class MainlineZoneData(BaseStruct):
     spoilAlert: bool
     zoneOpenTime: int
     diffGroup: list[StageDiffGroup]
+    mainlneBgName: str | None = field(default=None)
