@@ -25,6 +25,7 @@ class ClimbTowerMissionData(BaseStruct):
     backImagePath: str | None
     foldId: str | None
     haveSubMissionToUnlock: bool
+    countEndTs: int
 
     bindGodCardId: str | None
     bindTowerId: str | None

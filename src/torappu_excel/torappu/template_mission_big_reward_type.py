@@ -1,8 +1,9 @@
-from ..common import CustomIntEnum
+from enum import StrEnum
 
 
-class TemplateMissionBigRewardType(CustomIntEnum):
-    NONE = "NONE", 0
-    ILLUST_CHAR_REWARD = "ILLUST_CHAR_REWARD", 1
-    CUSTOM = "CUSTOM", 2
-    PIC_REWARD = "PIC_REWARD", 3
+class TemplateMissionBigRewardType(StrEnum):
+    NONE = "NONE"
+    ILLUST_CHAR_REWARD = "ILLUST_CHAR_REWARD"
+    CUSTOM = "CUSTOM"
+    PIC_REWARD = "PIC_REWARD"
+    SKIN_REWARD = "SKIN_REWARD"
