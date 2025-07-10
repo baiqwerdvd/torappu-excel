@@ -14,7 +14,7 @@ foreach ($branch in $branches) {
 
         $conflictFiles = git diff --name-only --diff-filter=U | Where-Object { $_ -like "*.json" }
         foreach ($file in $conflictFiles) {
-            git checkout --theirs $file
+            git checkout --ours $file
             git add $file
         }
         git commit -m "Auto-merge main into $branch, preferring JSON from current branch ($branch)"
