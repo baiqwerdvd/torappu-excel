@@ -10,14 +10,14 @@ foreach ($branch in $branches) {
     Write-Host "Merging main into $branch..."
     git merge main
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "Merge conflict detected. Resolving JSON files from main (ours)..."
+        Write-Host "Merge conflict detected. Resolving JSON files by KEEPING current branch ($branch)..."
 
         $conflictFiles = git diff --name-only --diff-filter=U | Where-Object { $_ -like "*.json" }
         foreach ($file in $conflictFiles) {
             git checkout --ours $file
             git add $file
         }
-        git commit -m "Auto-merge main into $branch, preferring JSON from main"
+        git commit -m "Auto-merge main into $branch, keeping JSON from $branch"
     }
 
     git push origin $branch
