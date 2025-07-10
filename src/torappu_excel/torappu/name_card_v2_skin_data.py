@@ -1,4 +1,4 @@
-from .item_rarity import ItemRarity  # noqa: F401 # pyright: ignore[reportUnusedImport]
+from .item_rarity import ItemRarity
 from .name_card_v2_skin_type import NameCardV2SkinType
 from .name_card_v2_time_limit_info import NameCardV2TimeLimitInfo
 from ..common import BaseStruct
@@ -18,7 +18,9 @@ class NameCardV2SkinData(BaseStruct):
     unlockConditionCnt: int
     unlockDescList: list[str]
     fixedModuleList: list[str]
-    rarity: int  # FIXME: ItemRarity
+    rarity: ItemRarity
+    skinTmplCnt: int
+    canChangeTmpl: bool
     isTimeLimit: bool
     timeLimitInfoList: list[NameCardV2TimeLimitInfo]
     isSpTheme: bool | None = field(default=None)

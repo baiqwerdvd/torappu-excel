@@ -1,5 +1,6 @@
 from typing import Any
 
+from .act42_side_data import Act42SideData
 from .act_3d0_data import Act3D0Data
 from .act_4d0_data import Act4D0Data
 from .act_5d0_data import Act5D0Data
@@ -20,6 +21,7 @@ from .act_38_side_data import Act38SideData
 from .act_38d1_data import Act38D1Data
 from .act_42d0_data import Act42D0Data
 from .act_arcade_data import ActArcadeData
+from .act_main_ssdata import ActMainSSData
 from .act_mainline_bp_extra_data import ActMainlineBpExtraData
 from .act_multi_v3_data import ActMultiV3Data
 from .act_sandbox_data import ActSandboxData
@@ -30,6 +32,7 @@ from .activity_collection_data import ActivityCollectionData
 from .activity_complete_type import ActivityCompleteType
 from .activity_display_type import ActivityDisplayType
 from .activity_dyn_entry_switch_data import ActivityDynEntrySwitchData
+from .activity_enemy_duel_data import ActivityEnemyDuelData
 from .activity_float_parade_data import ActivityFloatParadeData
 from .activity_interlock_data import ActivityInterlockData
 from .activity_kv_switch_data import ActivityKVSwitchData
@@ -58,6 +61,7 @@ from .mission_data import MissionData
 from .mission_display_rewards import MissionDisplayRewards
 from .mission_group import MissionGroup
 from .mission_type import MissionType
+from .pic_group import PicGroup
 from .rune_table import RuneTable
 from .siracusa_data import SiracusaData
 from .versus_checkin_data import VersusCheckInData
@@ -70,6 +74,7 @@ class ActivityTable(BaseStruct):
     basicInfo: dict[str, "ActivityTable.BasicData"]
     homeActConfig: dict[str, "ActivityTable.HomeActivityConfig"]
     zoneToActivity: dict[str, str]
+    actTimeTrackPoint: dict[str, int]
     missionData: list[MissionData]
     missionGroup: list[MissionGroup]
     replicateMissions: dict[str, str] | None
@@ -112,6 +117,8 @@ class ActivityTable(BaseStruct):
         isReplicate: bool
         needFixedSync: bool
         isMagnify: bool
+        picGroup: list[PicGroup]
+        usePicGroup: bool
         trapDomainId: str | None = field(default=None)
         displayType: ActivityDisplayType | None = field(default=None)
         recType: ActivityCompleteType | None = field(default=None)
@@ -165,6 +172,9 @@ class ActivityTable(BaseStruct):
         AUTOCHESS_VERIFY1: dict[str, "ActivityAutoChessVerify1Data"] = field(default_factory=dict)
         ARCADE: dict[str, "ActArcadeData"] = field(default_factory=dict)
         MULTIPLAY_V3: dict[str, "ActMultiV3Data"] = field(default_factory=dict)
+        TYPE_MAINSS: dict[str, "ActMainSSData"] = field(default_factory=dict)
+        ENEMY_DUEL: dict[str, "ActivityEnemyDuelData"] = field(default_factory=dict)
+        TYPE_ACT42SIDE: dict[str, "Act42SideData"] = field(default_factory=dict)
 
     class ActivityExtraData(BaseStruct):
         MAINLINE_BP: dict[str, "ActMainlineBpExtraData"]
