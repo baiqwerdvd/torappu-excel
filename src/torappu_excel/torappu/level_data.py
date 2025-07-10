@@ -9,4 +9,5 @@ class LevelData(BaseStruct):
         NORMAL = "NORMAL"
         FOUR_STAR = "FOUR_STAR"
         EASY = "EASY"
+        SIX_STAR = "SIX_STAR"
         ALL = "ALL"

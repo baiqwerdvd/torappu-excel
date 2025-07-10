@@ -19,9 +19,10 @@ class RetroStageTable(BaseStruct):
     ruleData: RetroTrailRuleData
     customData: ActivityCustomData
     initRetroCoin: int
-    retroCoinMax: int
     retroCoinPerWeek: int
+    retroCoinMaxOfLevels: dict[str, int]
     retroDetail: str
     retroPreShowTime: int
     retroUnlockCost: int
     stages: dict[str, RetroStageOverrideInfo] | None = field(default=None)
+    retroCoinMax: int | None = field(default=None)

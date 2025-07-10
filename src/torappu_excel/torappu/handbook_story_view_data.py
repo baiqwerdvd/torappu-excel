@@ -11,5 +11,7 @@ class HandBookStoryViewData(BaseStruct):
         storyText: str
         unLockType: DataUnlockType
         unLockParam: str
+        showType: DataUnlockType
+        showParam: str
         unLockString: str
         patchIdList: list[str] | None

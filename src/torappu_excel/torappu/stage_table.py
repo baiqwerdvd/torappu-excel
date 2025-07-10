@@ -4,6 +4,9 @@ from .override_drop_info import OverrideDropInfo
 from .override_unlock_info import OverrideUnlockInfo
 from .record_reward_server_data import RecordRewardServerData
 from .rune_stage_group_data import RuneStageGroupData
+from .six_star_linked_stage_compatible_info import SixStarLinkedStageCompatibleInfo
+from .six_star_milestone_group_data import SixStarMilestoneGroupData
+from .six_star_rune_data import SixStarRuneData
 from .special_battle_finish_stage_data import SpecialBattleFinishStageData
 from .stage_data import StageData
 from .stage_diff_group import StageDiffGroup
@@ -12,6 +15,10 @@ from .stage_fog_info import StageFogInfo
 from .stage_start_cond import StageStartCond
 from .stage_valid_info import StageValidInfo
 from .story_stage_show_group import StoryStageShowGroup
+from .storyline_const_data import StorylineConstData
+from .storyline_data import StorylineData
+from .storyline_story_set_data import StorylineStorySetData
+from .storyline_tag_data import StorylineTagData
 from .tile_append_info import TileAppendInfo
 from .timely_drop_info import TimelyDropInfo
 from .timely_drop_time_info import TimelyDropTimeInfo
@@ -40,5 +47,12 @@ class StageTable(BaseStruct):
     apProtectZoneInfo: dict[str, ApProtectZoneInfo]
     actCustomStageDatas: dict[str, dict[str, str]]
     spNormalStageIdFor4StarList: list[str]
-    antiSpoilerDict: dict[str, str]
+    antiSpoilerDict: dict[str, list[str]]
+    storylines: dict[str, StorylineData]
+    storylineStorySets: dict[str, StorylineStorySetData]
+    storylineTags: dict[str, StorylineTagData]
+    storylineConst: StorylineConstData
+    sixStarRuneData: dict[str, SixStarRuneData]
+    sixStarMilestoneInfo: dict[str, SixStarMilestoneGroupData]
+    sixStarCompatibleInfo: dict[str, SixStarLinkedStageCompatibleInfo]
     overrideUnlockInfo: dict[str, OverrideUnlockInfo] = field(default_factory=dict)
