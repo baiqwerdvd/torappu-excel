@@ -57,7 +57,7 @@ async def get_file_list(api_url: str) -> list[ApiFileStruct]:
 
 
 async def download_torappu_excel() -> None:
-    api_url = "https://torappu.prts.wiki/api/v1/files/gamedata/latest/excel"
+    api_url = "https://torappu.prts.wiki/api/v1/files/gamedata%2Flatest%2Fexcel"
     gamedata_url = "https://torappu.prts.wiki/api/v1/files/gamedata"
     base_download_url = "https://torappu.prts.wiki/gamedata/latest/excel/"
     local_dir = Path().parent / "src" / "torappu_excel" / "json"
