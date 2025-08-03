@@ -52,7 +52,7 @@ async def get_file_list(api_url: str) -> list[ApiFileStruct]:
     async with aiohttp.ClientSession() as session:
         async with session.get(api_url) as response:
             response.raise_for_status()
-            data = convert(await response.json(), ApiResponse)
+            data = convert(await response.json(), ApiFileStruct)
             return data.children
 
 
