@@ -48,12 +48,12 @@ async def download_file(session: aiohttp.ClientSession, url: str, local_path: Pa
         logger.error(f"下载 {url} 时出错: {e}")
 
 
-async def get_file_list(api_url: str) -> list[ApiFileData]:
+async def get_file_list(api_url: str) -> list[ApiFileStruct]:
     async with aiohttp.ClientSession() as session:
         async with session.get(api_url) as response:
             response.raise_for_status()
             data = convert(await response.json(), ApiResponse)
-            return data.data.children
+            return data.children
 
 
 async def download_torappu_excel() -> None:
