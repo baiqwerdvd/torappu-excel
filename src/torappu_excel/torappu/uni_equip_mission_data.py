@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class UniEquipMissionData(BaseStruct):
+class UniEquipMissionData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     template: str | None
     desc: str | None
     paramList: list[str]
@@ -11,7 +13,9 @@ class UniEquipMissionData(BaseStruct):
     jumpStageId: str | None
 
 
-class UniEquipMissionDataOld(BaseStruct):
+class UniEquipMissionDataOld(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     template: str | None
     desc: str | None
     paramList: list[str]

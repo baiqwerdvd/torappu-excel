@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .act_multi_v3_photo_slot_data import ActMultiV3PhotoSlotData
-from ..common import BaseStruct
 
 
-class ActMultiV3PhotoTypeData(BaseStruct):
+class ActMultiV3PhotoTypeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     photoTypeName: str
     sortId: int
     background: str

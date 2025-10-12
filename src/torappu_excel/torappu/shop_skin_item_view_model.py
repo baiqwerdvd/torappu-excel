@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SkinShopItemViewModel(BaseStruct):
+class SkinShopItemViewModel(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     goodId: str
     skinName: str
     skinId: str

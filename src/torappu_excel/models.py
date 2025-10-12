@@ -1,4 +1,5 @@
-from .common import BaseStruct
+from pydantic import BaseModel
+
 from .torappu.activity_table import ActivityTable as ActivityTable_
 from .torappu.audio_data import AudioData as AudioData
 from .torappu.battle_equip_pack import BattleEquipPack
@@ -7,7 +8,7 @@ from .torappu.campaign_table import CampaignTable as CampaignTable_
 from .torappu.chapter_data import ChapterData
 from .torappu.char_meta_table import CharMetaTable as CharMetaTable_
 from .torappu.char_patch_table import CharPatchData
-from .torappu.character_data import CharacterData, TokenCharacterData
+from .torappu.character_data import CharacterData, MasterDataBundle, TokenCharacterData
 from .torappu.charm_data import CharmData
 from .torappu.charword_table import CharwordTable as CharwordTable_
 from .torappu.checkin_table import CheckinTable as CheckinTable_
@@ -39,6 +40,7 @@ from .torappu.server_item_table import ServerItemTable
 from .torappu.shop_client_data import ShopClientData
 from .torappu.skill_data_bundle import SkillDataBundle
 from .torappu.skin_table import SkinTable as SkinTable_
+from .torappu.special_operator_table import SpecialOperatorTable as SpecialOperatorTable_
 from .torappu.stage_table import StageTable as StageTable_
 from .torappu.story_data import StoryData
 from .torappu.story_review_group_client_data import StoryReviewGroupClientData
@@ -46,8 +48,6 @@ from .torappu.story_review_meta_table import StoryReviewMetaTable as StoryReview
 from .torappu.tip_table import TipTable as TipTable_
 from .torappu.uni_equip_table import UniEquipTable as UniEquipTable_, UniEquipTableOld
 from .torappu.zone_table import ZoneTable as ZoneTable_
-
-from msgspec import field
 
 
 class ActivityTable(ActivityTable_):
@@ -58,7 +58,7 @@ class AudioTable(AudioData):
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class BattleEquipTable(BaseStruct):
+class BattleEquipTable(BaseModel):
     equips: dict[str, BattleEquipPack]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
@@ -72,14 +72,20 @@ class CampaignTable(CampaignTable_):
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class ChapterTable(BaseStruct):
+class ChapterTable(BaseModel):
     chapters: dict[str, ChapterData]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class CharacterTable(BaseStruct):
+class CharacterTable(BaseModel):
     chars: dict[str, CharacterData]
+
+    __version__: str = "25-02-19-09-21-28-ba1f4e"
+
+
+class CharMasterTable(BaseModel):
+    masters: dict[str, MasterDataBundle]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
@@ -148,7 +154,7 @@ class HandbookTable(HandbookTable_):
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class HandbookTeamTable(BaseStruct):
+class HandbookTeamTable(BaseModel):
     team: dict[str, HandbookTeamData]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
@@ -174,13 +180,13 @@ class PlayerAvatarTable(PlayerAvatarData):
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class RangeTable(BaseStruct):
-    range_: dict[str, RangeData] = field(name="range")
+class RangeTable(BaseModel):
+    range: dict[str, RangeData]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class ReplicateTable(BaseStruct):
+class ReplicateTable(BaseModel):
     replicate: dict[str, ReplicateTable_]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
@@ -210,13 +216,17 @@ class ShopClientTable(ShopClientData):
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class SkillTable(BaseStruct):
+class SkillTable(BaseModel):
     skills: dict[str, SkillDataBundle]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
 class SkinTable(SkinTable_):
+    __version__: str = "25-02-19-09-21-28-ba1f4e"
+
+
+class SpecialOperatorTable(SpecialOperatorTable_):
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
@@ -228,19 +238,19 @@ class StoryReviewMetaTable(StoryReviewMetaTable_):
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class StoryReviewTable(BaseStruct):
+class StoryReviewTable(BaseModel):
     storyreview: dict[str, StoryReviewGroupClientData]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class StoryTable(BaseStruct):
+class StoryTable(BaseModel):
     stories: dict[str, StoryData]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class TechBuffTable(BaseStruct):
+class TechBuffTable(BaseModel):
     runes: list[RuneTable.PackedRuneData]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"
@@ -250,7 +260,7 @@ class TipTable(TipTable_):
     __version__: str = "25-02-19-09-21-28-ba1f4e"
 
 
-class TokenTable(BaseStruct):
+class TokenTable(BaseModel):
     tokens: dict[str, TokenCharacterData]
 
     __version__: str = "25-02-19-09-21-28-ba1f4e"

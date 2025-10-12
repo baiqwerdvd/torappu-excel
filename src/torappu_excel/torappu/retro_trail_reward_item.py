@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class RetroTrailRewardItem(BaseStruct):
+class RetroTrailRewardItem(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     trailRewardId: str
     starCount: int
     rewardItem: ItemBundle

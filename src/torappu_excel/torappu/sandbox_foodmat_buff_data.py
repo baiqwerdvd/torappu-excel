@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_food_mat_type import SandboxFoodMatType
-from ..common import BaseStruct
 
 
-class SandboxFoodmatBuffData(BaseStruct):
+class SandboxFoodmatBuffData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     itemId: str
     buffId: str | None
     buffDesc: str | None

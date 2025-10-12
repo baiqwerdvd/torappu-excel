@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class DefaultShopData(BaseStruct):
+class DefaultShopData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     goodId: str
     slotId: int
     price: int

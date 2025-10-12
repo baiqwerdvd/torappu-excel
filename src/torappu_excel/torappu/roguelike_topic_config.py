@@ -1,12 +1,13 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .roguelike_month_chat_trig_type import RoguelikeMonthChatTrigTypeStr
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeTopicConfig(BaseStruct):
+class RoguelikeTopicConfig(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     webBusType: str
     monthChatTrigType: RoguelikeMonthChatTrigTypeStr
     loadRewardHpDecoPlugin: bool
     loadRewardExtraInfoPlugin: bool
-    loadCharCardPlugin: bool | None = field(default=None)
+    loadCharCardPlugin: bool | None = Field(default=None)

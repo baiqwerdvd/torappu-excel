@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .monthly_signin_data import MonthlySignInData
-from ..common import BaseStruct
 
 
-class MonthlySignInGroupData(BaseStruct):
+class MonthlySignInGroupData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     groupId: str
     title: str
     description: str

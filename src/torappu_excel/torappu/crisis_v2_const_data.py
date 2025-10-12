@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class CrisisV2ConstData(BaseStruct):
+class CrisisV2ConstData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     sysStartTime: int
     blackScoreThreshold: int
     redScoreThreshold: int

@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .level_data import LevelData
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeGameStageData(BaseStruct):
-    id_: str = field(name="id")
+class RoguelikeGameStageData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     linkedStageId: str
     levelId: str
     levelReplaceIds: list[str]
@@ -21,4 +22,7 @@ class RoguelikeGameStageData(BaseStruct):
     capsuleProb: float | int
     vutresProb: list[float]
     boxProb: list[float]
-    specialNodeId: str | None = field(default=None)
+    specialNodeId: str
+    redCapsulePool: str | None
+    redCapsuleProb: float
+    specialNodeId: str | None = Field(default=None)

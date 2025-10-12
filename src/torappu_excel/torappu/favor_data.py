@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class FavorData(BaseStruct):
+class FavorData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     favorPoint: int
     percent: int
     battlePhase: int

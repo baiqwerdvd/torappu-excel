@@ -1,12 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
 from .roguelike_topic_month_squad_team_char import RoguelikeTopicMonthSquadTeamChar
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeTopicMonthSquad(BaseStruct):
-    id_: str = field(name="id")
+class RoguelikeTopicMonthSquad(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     teamName: str
     teamSubName: str | None
     teamFlavorDesc: str | None

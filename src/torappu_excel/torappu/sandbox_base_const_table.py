@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SandboxBaseConstTable(BaseStruct):
+class SandboxBaseConstTable(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     cookRegularCostItemId: str
     cookRegularCostItemIdCnt: int
     squadTabNameList: list[str]

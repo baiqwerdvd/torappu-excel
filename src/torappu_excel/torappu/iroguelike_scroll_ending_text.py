@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class IRoguelikeScrollEndingText(BaseStruct):
+class IRoguelikeScrollEndingText(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     summaryActor: str
     summaryTop: str
     summaryZone: str

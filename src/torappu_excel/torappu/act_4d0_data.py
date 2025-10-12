@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class Act4D0Data(BaseStruct):
+class Act4D0Data(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     mileStoneItemList: list["Act4D0Data.MileStoneItemInfo"]
     mileStoneStoryList: list["Act4D0Data.MileStoneStoryInfo"]
     storyInfoList: list["Act4D0Data.StoryInfo"]
@@ -12,20 +15,26 @@ class Act4D0Data(BaseStruct):
     apSupplyOutOfDateDict: dict[str, int]
     extraDropZones: list[str]
 
-    class MileStoneItemInfo(BaseStruct):
+    class MileStoneItemInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         mileStoneId: str
         orderId: int
         tokenNum: int
         item: ItemBundle
 
-    class MileStoneStoryInfo(BaseStruct):
+    class MileStoneStoryInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         mileStoneId: str
         orderId: int
         tokenNum: int
         storyKey: str
         desc: str
 
-    class StoryInfo(BaseStruct):
+    class StoryInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         storyKey: str
         storyId: str
         storySort: str
@@ -33,7 +42,9 @@ class Act4D0Data(BaseStruct):
         lockDesc: str
         storyDesc: str
 
-    class StageJumpInfo(BaseStruct):
+    class StageJumpInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageKey: str
         zoneId: str
         stageId: str

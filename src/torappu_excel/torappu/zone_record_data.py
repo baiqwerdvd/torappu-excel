@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .record_reward_info import RecordRewardInfo
-from ..common import BaseStruct
 
 
-class ZoneRecordData(BaseStruct):
+class ZoneRecordData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     recordId: str
     zoneId: str
     recordTitleName: str

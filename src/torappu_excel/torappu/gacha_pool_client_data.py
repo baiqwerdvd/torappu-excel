@@ -1,12 +1,13 @@
 from typing import Any
 
+from pydantic import BaseModel, ConfigDict, Field
+
 from .gacha_rule_type import GachaRuleType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class GachaPoolClientData(BaseStruct):
+class GachaPoolClientData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     CDPrimColor: str | None
     CDSecColor: str | None
     freeBackColor: str | None
@@ -23,6 +24,6 @@ class GachaPoolClientData(BaseStruct):
     LMTGSID: str | None
     openTime: int
     limitParam: dict[str, Any] | None
-    dynMeta: dict[str, Any] | None = field(default=None)
-    linkageParam: dict[str, Any] | None = field(default=None)
-    linkageRuleId: str | None = field(default=None)
+    dynMeta: dict[str, Any] | None = Field(default=None)
+    linkageParam: dict[str, Any] | None = Field(default=None)
+    linkageRuleId: str | None = Field(default=None)

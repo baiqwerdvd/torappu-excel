@@ -1,6 +1,8 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeEndingRelicDetailText(BaseStruct):
+class RoguelikeEndingRelicDetailText(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     relicId: str
     summaryEventText: str

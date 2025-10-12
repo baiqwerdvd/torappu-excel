@@ -1,11 +1,14 @@
+from pydantic import BaseModel, ConfigDict
+
+from torappu_excel.common import CustomIntEnum
+
 from .item_bundle import ItemBundle
 from .rune_table import RuneTable
-from ..common import BaseStruct, CustomIntEnum
-
-from msgspec import field
 
 
-class Act25SideData(BaseStruct):
+class Act25SideData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class Act25SideArchiveItemType(CustomIntEnum):
         PIC = "PIC", 0
         STORY = "STORY", 1
@@ -37,7 +40,9 @@ class Act25SideData(BaseStruct):
     fogUnlockData: dict[str, "Act25SideData.FogUnlockData"]
     farmList: list["Act25SideData.DailyFarmData"]
 
-    class ConstData(BaseStruct):
+    class ConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         getDailyCount: int
         costName: str
         costDesc: str
@@ -50,12 +55,16 @@ class Act25SideData(BaseStruct):
         basicProgress: int
         harvestDesc: str
 
-    class ZoneDescInfo(BaseStruct):
+    class ZoneDescInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         zoneId: str
         unlockText: str
         displayStartTime: int
 
-    class ArchiveItemData(BaseStruct):
+    class ArchiveItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemId: str
         itemType: "Act25SideData.Act25SideArchiveItemType"
         itemUnlockType: "Act25SideData.Act25SideArchiveItemUnlockType"
@@ -64,16 +73,20 @@ class Act25SideData(BaseStruct):
         iconId: str | None
         itemName: str
 
-    class ArchiveMapInfoData(BaseStruct):
+    class ArchiveMapInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         objectId: str
-        type_: "Act25SideData.Act25SideArchiveItemType" = field(name="type")
+        type: "Act25SideData.Act25SideArchiveItemType"
         numberId: str
         areaId: str
         sortId: int
         position: int
         hasDot: bool
 
-    class AreaInfoData(BaseStruct):
+    class AreaInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         areaId: str
         sortId: int
         areaIcon: str
@@ -87,8 +100,10 @@ class Act25SideData(BaseStruct):
         finalId: str
         areaNewIcon: bool
 
-    class AreaMissionData(BaseStruct):
-        id_: str = field(name="id")
+    class AreaMissionData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         areaId: str
         preposedMissionId: str | None
         sortId: int
@@ -105,7 +120,9 @@ class Act25SideData(BaseStruct):
         rewards: list[ItemBundle]
         archiveItems: list[str]
 
-    class BattlePerformanceData(BaseStruct):
+    class BattlePerformanceData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemId: str
         sortId: int
         itemName: str
@@ -114,17 +131,23 @@ class Act25SideData(BaseStruct):
         itemTechType: "Act25SideData.Act25sideTechType"
         runeData: RuneTable.PackedRuneData
 
-    class KeyData(BaseStruct):
+    class KeyData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         keyId: str
         keyName: str
         keyIcon: str
         toastText: str
 
-    class FogUnlockData(BaseStruct):
+    class FogUnlockData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         lockId: str
         lockedCollectionIconId: str
         unlockedCollectionIconId: str
 
-    class DailyFarmData(BaseStruct):
+    class DailyFarmData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         transform: int
         unitTime: int

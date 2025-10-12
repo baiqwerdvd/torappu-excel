@@ -1,6 +1,8 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class Act42SideZoneAdditionData(BaseStruct):
+class Act42SideZoneAdditionData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     zoneId: str
     unlockText: str

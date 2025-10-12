@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SandboxV2DiffModeData(BaseStruct):
+class SandboxV2DiffModeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     title: str
     desc: str
     buffList: list[str]

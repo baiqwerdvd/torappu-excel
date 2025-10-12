@@ -1,9 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_v2_quest_line_type import SandboxV2QuestLineType
 from .sandbox_v2_quest_route_type import SandboxV2QuestRouteType
-from ..common import BaseStruct
 
 
-class SandboxV2QuestData(BaseStruct):
+class SandboxV2QuestData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     questId: str
     questLine: str
     questTitle: str | None

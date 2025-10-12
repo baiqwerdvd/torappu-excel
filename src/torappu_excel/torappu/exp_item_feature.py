@@ -1,8 +1,8 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class ExpItemFeature(BaseStruct):
-    id_: str = field(name="id")
+class ExpItemFeature(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     gainExp: int

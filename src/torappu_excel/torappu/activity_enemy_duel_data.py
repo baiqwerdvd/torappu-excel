@@ -1,4 +1,6 @@
-﻿from .activity_enemy_duel_announce_data import ActivityEnemyDuelAnnounceData
+from pydantic import BaseModel, ConfigDict
+
+from .activity_enemy_duel_announce_data import ActivityEnemyDuelAnnounceData
 from .activity_enemy_duel_const_data import ActivityEnemyDuelConstData
 from .activity_enemy_duel_const_toast_data import ActivityEnemyDuelConstToastData
 from .activity_enemy_duel_enemy_data import ActivityEnemyDuelEnemyData
@@ -11,10 +13,11 @@ from .activity_enemy_duel_pool_data import ActivityEnemyDuelPoolData
 from .activity_enemy_duel_round_data import ActivityEnemyDuelRoundData
 from .activity_enemy_duel_single_comment_data import ActivityEnemyDuelSingleCommentData
 from .activity_enemy_duel_tips_data import ActivityEnemyDuelTipsData
-from ..common import BaseStruct
 
 
-class ActivityEnemyDuelData(BaseStruct):
+class ActivityEnemyDuelData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     milestoneList: list[ActivityEnemyDuelMilestoneItemData]
     modeData: dict[str, ActivityEnemyDuelModeData]
     roundData: dict[str, ActivityEnemyDuelRoundData]

@@ -1,11 +1,14 @@
 from enum import StrEnum
 
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
 from .rune_table import RuneTable
-from ..common import BaseStruct
 
 
-class Act42D0Data(BaseStruct):
+class Act42D0Data(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class Act42D0AreaDifficulty(StrEnum):
         NONE = "NONE"
         NORMAL = "NORMAL"
@@ -21,7 +24,9 @@ class Act42D0Data(BaseStruct):
     constData: "Act42D0Data.Act42D0ConstData"
     trackPointPeriodData: list[int]
 
-    class Act42D0AreaInfoData(BaseStruct):
+    class Act42D0AreaInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         areaId: str
         sortId: int
         areaCode: str
@@ -33,7 +38,9 @@ class Act42D0Data(BaseStruct):
         bossId: str | None
         nextAreaStage: str | None
 
-    class Act42D0StageInfoData(BaseStruct):
+    class Act42D0StageInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageId: str
         areaId: str
         stageCode: str
@@ -44,12 +51,16 @@ class Act42D0Data(BaseStruct):
         name: str
         loadingPicId: str
 
-    class Act42D0EffectGroupInfoData(BaseStruct):
+    class Act42D0EffectGroupInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         effectGroupId: str
         sortId: int
         effectGroupName: str
 
-    class Act42D0EffectInfoData(BaseStruct):
+    class Act42D0EffectInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         effectId: str
         effectGroupId: str
         row: int
@@ -61,14 +72,18 @@ class Act42D0Data(BaseStruct):
         unlockTime: int
         runeData: "RuneTable.PackedRuneData"
 
-    class Act42D0ChallengeMissionData(BaseStruct):
+    class Act42D0ChallengeMissionData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         missionId: str
         sortId: int
         stageId: str
         missionDesc: str
         milestoneCount: int
 
-    class Act42D0ChallengeInfoData(BaseStruct):
+    class Act42D0ChallengeInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageId: str
         stageDesc: str
         startTs: int
@@ -79,25 +94,33 @@ class Act42D0Data(BaseStruct):
         loadingPicId: str
         challengeMissionData: list["Act42D0Data.Act42D0ChallengeMissionData"]
 
-    class Act42D0StageRatingInfoData(BaseStruct):
+    class Act42D0StageRatingInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageId: str
         areaId: str
         milestoneData: list["Act42D0Data.Act42D0RatingInfoData"]
 
-    class Act42D0RatingInfoData(BaseStruct):
+    class Act42D0RatingInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         ratingLevel: int
         costUpLimit: int
         achivement: str
         icon: str
         milestoneCount: int
 
-    class Act42D0MilestoneData(BaseStruct):
+    class Act42D0MilestoneData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         milestoneId: str
         orderId: int
         tokenNum: int
         item: ItemBundle
 
-    class Act42D0ConstData(BaseStruct):
+    class Act42D0ConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         milestoneId: str
         strifeName: str
         strifeDesc: str

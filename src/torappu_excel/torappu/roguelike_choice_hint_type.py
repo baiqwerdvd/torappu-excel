@@ -1,12 +1,20 @@
-from ..common import CustomIntEnum
+from enum import StrEnum
 
 
-class RoguelikeChoiceHintType(CustomIntEnum):
-    NONE = "NONE", 0
-    ITEM = "ITEM", 1
-    SACRIFICE = "SACRIFICE", 2
-    SACRIFICE_TOTEM = "SACRIFICE_TOTEM", 3
-    EXPEDITION = "EXPEDITION", 4
-    VISION = "VISION", 5
-    CHAOS = "CHAOS", 6
-    FRAGMENT = "FRAGMENT", 7
+class RoguelikeChoiceHintType(StrEnum):
+    NONE = "NONE"
+    ITEM = "ITEM"
+    CANDLED_CHAR = "CANDLED_CHAR"
+    GUIDED_CHAR = "GUIDED_CHAR"
+    SACRIFICE = "SACRIFICE"
+    SACRIFICE_TOTEM = "SACRIFICE_TOTEM"
+    EXPEDITION = "EXPEDITION"
+    CANDLE = "CANDLE"
+    GUIDED = "GUIDED"
+    HP = "HP"
+    VISION = "VISION"
+    STASHED_RECRUIT = "STASHED_RECRUIT"
+    CHAOS = "CHAOS"
+    FRAGMENT = "FRAGMENT"
+    SP_ZONE_AP = "SP_ZONE_AP"
+    COPPER_LUCK = "COPPER_LUCK"

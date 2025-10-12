@@ -1,6 +1,8 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ActArchiveMusicItemData(BaseStruct):
+class ActArchiveMusicItemData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     musicId: str
     musicSortId: int

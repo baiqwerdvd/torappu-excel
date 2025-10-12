@@ -1,13 +1,13 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class Act5FunRoundData(BaseStruct):
+class Act5FunRoundData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     roundId: str
     stageId: str
     enemyPredefined: bool
-    round_: int = field(name="round")
+    round: int
     enemyPoint: float | int
     enemyScoreRandom: float | int
     minType: int

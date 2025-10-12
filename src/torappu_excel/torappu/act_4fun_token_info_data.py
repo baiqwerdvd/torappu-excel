@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class Act4funTokenInfoData(BaseStruct):
+class Act4funTokenInfoData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     tokenLevelId: str
     levelDesc: str | None
     skillDesc: str

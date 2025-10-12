@@ -12,3 +12,5 @@ class VoiceLangType(StrEnum):
     ITA = "ITA"
     GER = "GER"
     RUS = "RUS"
+    FRE = "FRE"
+    SPA = "SPA"

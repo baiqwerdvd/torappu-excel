@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_perm_template_type import SandboxPermTemplateType
-from ..common import BaseStruct
 
 
-class SandboxPermBasicData(BaseStruct):
+class SandboxPermBasicData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     topicId: str
     topicTemplate: SandboxPermTemplateType
     topicName: str
@@ -15,7 +18,9 @@ class SandboxPermBasicData(BaseStruct):
     webBusType: str
     medalGroupId: str
 
-    class HomeEntryDisplayData(BaseStruct):
+    class HomeEntryDisplayData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         displayId: str
         topicId: str
         startTs: int

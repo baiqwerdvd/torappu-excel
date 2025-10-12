@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class CrisisClientData(BaseStruct):
+class CrisisClientData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     seasonId: str
     startTs: int
     endTs: int

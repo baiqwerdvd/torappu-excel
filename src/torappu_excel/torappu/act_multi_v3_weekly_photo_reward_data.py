@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class ActMultiV3WeeklyPhotoRewardData(BaseStruct):
+class ActMultiV3WeeklyPhotoRewardData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     order: int
     titleDesc: str
     unlockTime: int

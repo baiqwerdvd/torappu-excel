@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .item_bundle import ItemBundle
 from .shop_qc_good_type import ShopQCGoodType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class QCObject(BaseStruct):
+class QCObject(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     goodId: str
     item: ItemBundle | None
     progressGoodId: str | None
@@ -19,4 +20,4 @@ class QCObject(BaseStruct):
     goodStartTime: int
     goodEndTime: int
     goodType: ShopQCGoodType
-    slotId: int | None = field(default=None)
+    slotId: int | None = Field(default=None)

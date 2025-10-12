@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class TrainingCampConsts(BaseStruct):
+class TrainingCampConsts(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     unlockStageId: str
     updateDesc: str
     rewardItem: ItemBundle

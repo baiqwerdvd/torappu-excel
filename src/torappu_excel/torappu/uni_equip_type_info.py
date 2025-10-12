@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class UniEquipTypeInfo(BaseStruct):
+class UniEquipTypeInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     uniEquipTypeName: str
     sortId: int
     isSpecial: bool

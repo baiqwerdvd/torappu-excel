@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeDiceData(BaseStruct):
+class RoguelikeDiceData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     diceId: str
     description: str
     isUpgradeDice: int

@@ -1,6 +1,8 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeDiceRuleGroupData(BaseStruct):
+class RoguelikeDiceRuleGroupData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     ruleGroupId: str
     minGoodNum: int

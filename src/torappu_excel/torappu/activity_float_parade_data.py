@@ -1,24 +1,29 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ActivityFloatParadeData(BaseStruct):
+class ActivityFloatParadeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     constData: "ActivityFloatParadeData.ConstData"
     dailyDataDic: list["ActivityFloatParadeData.DailyData"]
     rewardPools: dict[str, dict[str, "ActivityFloatParadeData.RewardPool"]]
     tacticList: list["ActivityFloatParadeData.Tactic"]
     groupInfos: dict[str, "ActivityFloatParadeData.GroupData"]
 
-    class ConstData(BaseStruct):
+    class ConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         cityName: str
         lowStandard: float
         variationTitle: str
         ruleDesc: str
         cityNamePic: str
 
-    class DailyData(BaseStruct):
+    class DailyData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         dayIndex: int
         dateName: str
         placeName: str
@@ -27,22 +32,28 @@ class ActivityFloatParadeData(BaseStruct):
         eventGroupId: str
         extReward: ItemBundle | None
 
-    class RewardPool(BaseStruct):
+    class RewardPool(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         grpId: str
-        id_: str = field(name="id")
-        type_: str = field(name="type")
+        id: str
+        type: str
         name: str
         desc: str | None
         reward: ItemBundle
 
-    class Tactic(BaseStruct):
-        id_: int = field(name="id")
+    class Tactic(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: int
         name: str
         packName: str
         briefName: str
         rewardVar: dict[str, float]
 
-    class GroupData(BaseStruct):
+    class GroupData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         groupId: str
         name: str
         startDay: int

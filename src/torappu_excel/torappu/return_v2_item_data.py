@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_type import ItemType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ReturnV2ItemData(BaseStruct):
-    type_: ItemType = field(name="type")
-    id_: str = field(name="id")
+class ReturnV2ItemData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    type: ItemType
+    id: str
     count: int
     sortId: int

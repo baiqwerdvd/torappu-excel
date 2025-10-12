@@ -1,8 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
+from torappu_excel.common import CustomIntEnum
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct, CustomIntEnum
 
 
-class Act35SideData(BaseStruct):
+class Act35SideData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class Act35SideDialogueType(CustomIntEnum):
         NONE = "NONE", 0
         ENTRY = "ENTRY", 1
@@ -25,7 +30,9 @@ class Act35SideData(BaseStruct):
     mileStoneList: list["Act35SideData.Act35SideMileStoneData"]
     zoneAdditionDataMap: dict[str, "Act35SideData.Act35SideZoneAdditionData"]
 
-    class Act35SideChallengeData(BaseStruct):
+    class Act35SideChallengeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         challengeId: str
         challengeName: str
         challengeDesc: str
@@ -38,7 +45,9 @@ class Act35SideData(BaseStruct):
         passRoundScore: int
         roundIdList: list[str]
 
-    class Act35SideRoundData(BaseStruct):
+    class Act35SideRoundData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         roundId: str
         challengeId: str
         round: int
@@ -47,14 +56,18 @@ class Act35SideData(BaseStruct):
         fixedMaterialList: dict[str, int] | None
         passRoundCoin: int
 
-    class Act35SideChallengeTaskData(BaseStruct):
+    class Act35SideChallengeTaskData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         taskId: str
         taskDesc: str
         materialId: str
         materialNum: int
         passTaskCoin: int
 
-    class Act35SideCardData(BaseStruct):
+    class Act35SideCardData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         cardId: str
         sortId: int
         rank: int
@@ -62,36 +75,48 @@ class Act35SideData(BaseStruct):
         cardPic: str
         levelDataList: list["Act35SideData.Act35SideCardLevelData"]
 
-    class Act35SideCardLevelData(BaseStruct):
+    class Act35SideCardLevelData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         cardLevel: int
         cardName: str
         cardDesc: str
         inputMaterialList: list["Act35SideData.Act35SideCardMaterialData"]
         outputMaterialList: list["Act35SideData.Act35SideCardMaterialData"]
 
-    class Act35SideCardMaterialData(BaseStruct):
+    class Act35SideCardMaterialData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         materialId: str
         count: int
 
-    class Act35SideMaterialData(BaseStruct):
+    class Act35SideMaterialData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         materialId: str
         sortId: int
         materialIcon: str
         materialName: str
         materialRating: int
 
-    class Act35SideDialogueGroupData(BaseStruct):
+    class Act35SideDialogueGroupData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         type: "Act35SideData.Act35SideDialogueType"
         dialogDataList: list["Act35SideData.Act35SideDialogueData"]
 
-    class Act35SideDialogueData(BaseStruct):
+    class Act35SideDialogueData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         sortId: int
         iconId: str
         name: str
         content: str
         bgType: "Act35SideData.Act35SideDialogueNameBgType"
 
-    class Act35SideConstData(BaseStruct):
+    class Act35SideConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         campaignStageId: str
         campaignEnemyCnt: int
         milestoneGrandRewardInfoList: list["Act35SideData.Act35SideMileStoneGrandRewardInfo"]
@@ -109,16 +134,22 @@ class Act35SideData(BaseStruct):
         estimateRatio: int
         carvingUnlockToastText: str
 
-    class Act35SideMileStoneGrandRewardInfo(BaseStruct):
+    class Act35SideMileStoneGrandRewardInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemName: str
         level: int
 
-    class Act35SideMileStoneData(BaseStruct):
+    class Act35SideMileStoneData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         mileStoneId: str
         mileStoneLvl: int
         needPointCnt: int
         rewardItem: ItemBundle
 
-    class Act35SideZoneAdditionData(BaseStruct):
+    class Act35SideZoneAdditionData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         zoneId: str
         unlockText: str

@@ -1,10 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .template_mission_big_reward_type import TemplateMissionBigRewardType
 from .template_mission_coin_info_type import TemplateMissionCoinInfoType
 from .template_mission_title_type import TemplateMissionTitleType
-from ..common import BaseStruct
 
 
-class ActivityTemplateMissionStyles(BaseStruct):
+class ActivityTemplateMissionStyles(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     bigRewardType: TemplateMissionBigRewardType
     bigRewardParamList: list[str]
     isMissionListCommonType: bool

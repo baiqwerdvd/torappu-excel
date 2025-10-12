@@ -1,6 +1,8 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class CharWordUnlockParam(BaseStruct):
+class CharWordUnlockParam(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     valueStr: str | None
     valueInt: int

@@ -1,13 +1,13 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeChoiceData(BaseStruct):
-    id_: str = field(name="id")
+class RoguelikeChoiceData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     title: str
     description: str | None
-    type_: str = field(name="type")
+    type: str
     nextSceneId: str | None
     icon: str | None
     param: dict[str, object]

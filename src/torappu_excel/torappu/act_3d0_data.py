@@ -1,13 +1,14 @@
 from enum import StrEnum
 
+from pydantic import BaseModel, ConfigDict
+
 from .common_favor_up_info import CommonFavorUpInfo
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class Act3D0Data(BaseStruct):
+class Act3D0Data(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class GoodType(StrEnum):
         NORMAL = "NORMAL"
         SPECIAL = "SPECIAL"
@@ -31,53 +32,71 @@ class Act3D0Data(BaseStruct):
     zoneDesc: dict[str, "Act3D0Data.ZoneDescInfo"]
     favorUpList: dict[str, CommonFavorUpInfo] | None
 
-    class CampBasicInfo(BaseStruct):
+    class CampBasicInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         campId: str
         campName: str
         campDesc: str
         rewardDesc: str | None
 
-    class LimitedPoolDetailInfo(BaseStruct):
+    class LimitedPoolDetailInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         poolId: str
         poolItemInfo: list["Act3D0Data.LimitedPoolDetailInfo.PoolItemInfo"]
 
-        class PoolItemInfo(BaseStruct):
+        class PoolItemInfo(BaseModel):
+            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
             goodId: str
             itemInfo: ItemBundle | None
             goodType: "Act3D0Data.GoodType"
             perCount: int
             totalCount: int
             weight: int
-            type_: str = field(name="type")
+            type: str
             orderId: int
 
-    class InfinitePoolDetailInfo(BaseStruct):
+    class InfinitePoolDetailInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         poolId: str
         poolItemInfo: list["Act3D0Data.InfinitePoolDetailInfo.PoolItemInfo"]
 
-        class PoolItemInfo(BaseStruct):
+        class PoolItemInfo(BaseModel):
+            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
             goodId: str
             itemInfo: ItemBundle
             goodType: "Act3D0Data.GoodType"
             perCount: int
             weight: int
-            type_: str = field(name="type")
+            type: str
             orderId: int
 
-    class InfinitePoolPercent(BaseStruct):
+    class InfinitePoolPercent(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         percentDict: dict[str, int]
 
-    class CampItemMapInfo(BaseStruct):
+    class CampItemMapInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         goodId: str
         itemDict: dict[str, ItemBundle]
 
-    class ClueInfo(BaseStruct):
+    class ClueInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemId: str
         campId: str
         orderId: int
         imageId: str
 
-    class MileStoneInfo(BaseStruct):
+    class MileStoneInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         mileStoneId: str
         orderId: int
         mileStoneType: "Act3D0Data.GoodType"
@@ -85,7 +104,9 @@ class Act3D0Data(BaseStruct):
         specialItemDict: dict[str, ItemBundle]
         tokenNum: int
 
-    class GachaBoxInfo(BaseStruct):
+    class GachaBoxInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         gachaBoxId: str
         boxType: "Act3D0Data.GachaBoxType"
         keyGoodId: str | None
@@ -94,10 +115,14 @@ class Act3D0Data(BaseStruct):
         unlockImg: str | None
         nextGachaBoxInfoId: str | None
 
-    class CampInfo(BaseStruct):
+    class CampInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         campId: str
         campChineseName: str
 
-    class ZoneDescInfo(BaseStruct):
+    class ZoneDescInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         zoneId: str
         lockedText: str | None

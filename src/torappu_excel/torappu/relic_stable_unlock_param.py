@@ -1,6 +1,8 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class RelicStableUnlockParam(BaseStruct):
+class RelicStableUnlockParam(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     unlockCondDetail: str
     unlockCnt: int

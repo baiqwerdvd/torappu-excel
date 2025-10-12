@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeTopicChallengeTask(BaseStruct):
+class RoguelikeTopicChallengeTask(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     taskId: str
     taskDes: str
     completionClass: str

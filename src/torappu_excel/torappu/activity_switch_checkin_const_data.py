@@ -1,6 +1,8 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ActivitySwitchCheckinConstData(BaseStruct):
+class ActivitySwitchCheckinConstData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     activityTime: str
     activityRule: str

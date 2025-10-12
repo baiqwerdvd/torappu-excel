@@ -1,7 +1,9 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SixStarRuneData(BaseStruct):
+class SixStarRuneData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     runeId: str
     runeDesc: str
     runeKey: str

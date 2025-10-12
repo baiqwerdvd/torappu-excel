@@ -1,14 +1,17 @@
+from pydantic import BaseModel, ConfigDict, Field
+
+from torappu_excel.common import CustomIntEnum
+
 from .item_bundle import ItemBundle
 from .item_type import ItemType
 from .quest_stage_data import QuestStageData
 from .rune_table import RuneTable
 from .stage_data import StageData
-from ..common import BaseStruct, CustomIntEnum
-
-from msgspec import field
 
 
-class Act24SideData(BaseStruct):
+class Act24SideData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class MeldingGoodDisplayType(CustomIntEnum):
         NONE = "NONE", 0
         RARE_1 = "RARE_1", 1
@@ -48,7 +51,9 @@ class Act24SideData(BaseStruct):
     stageMapPreviewDict: dict[str, list[str]]
     constData: "Act24SideData.ConstData"
 
-    class ToolData(BaseStruct):
+    class ToolData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         toolId: str
         sortId: int
         toolName: str
@@ -58,9 +63,11 @@ class Act24SideData(BaseStruct):
         toolUnlockDesc: str
         toolBuffId: str
         runeData: "RuneTable.PackedRuneData"
-        toolStageId: str | None = field(default=None)
+        toolStageId: str | None = Field(default=None)
 
-    class MealData(BaseStruct):
+    class MealData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         mealId: str
         sortId: int
         mealName: str
@@ -71,13 +78,17 @@ class Act24SideData(BaseStruct):
         mealRewardAP: int
         mealRewardItemInfo: ItemBundle
 
-    class MeldingItemData(BaseStruct):
+    class MeldingItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         meldingId: str
         sortId: int
         meldingPrice: int
         rarity: "Act24SideData.MeldingItemRarityType"
 
-    class MeldingGachaBoxData(BaseStruct):
+    class MeldingGachaBoxData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         gachaBoxId: str
         gachaSortId: int
         gachaIcon: str
@@ -87,7 +98,9 @@ class Act24SideData(BaseStruct):
         themeColor: str
         remainItemBgColor: str
 
-    class MeldingGachaBoxGoodData(BaseStruct):
+    class MeldingGachaBoxGoodData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         goodId: str
         gachaBoxId: str
         orderId: int
@@ -101,13 +114,17 @@ class Act24SideData(BaseStruct):
         gachaOrderId: int
         gachaNum: int
 
-    class ZoneAdditionData(BaseStruct):
+    class ZoneAdditionData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         zoneId: str
         zoneIcon: str
         unlockText: str
         displayTime: str
 
-    class MissionExtraData(BaseStruct):
+    class MissionExtraData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         taskTypeName: str
         taskTypeIcon: str
         taskType: "Act24SideData.MissionType"
@@ -115,7 +132,9 @@ class Act24SideData(BaseStruct):
         taskClient: str
         taskClientDesc: str
 
-    class ConstData(BaseStruct):
+    class ConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageUnlockToolDesc: str
         mealLackMoney: str
         mealDayTimesLimit: int

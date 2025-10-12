@@ -1,7 +1,11 @@
-from ..common import BaseStruct, CustomIntEnum
+from pydantic import BaseModel, ConfigDict
+
+from torappu_excel.common import CustomIntEnum
 
 
-class Act9D0Data(BaseStruct):
+class Act9D0Data(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class ActivityNewsLineType(CustomIntEnum):
         TextContent = "TextContent", 0
         ImageContent = "ImageContent", 1
@@ -17,33 +21,45 @@ class Act9D0Data(BaseStruct):
     miscHub: dict[str, str]
     constData: "Act9D0Data.Act9D0ConstData"
 
-    class ZoneDescInfo(BaseStruct):
+    class ZoneDescInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         zoneId: str
         unlockText: str
         displayStartTime: int
 
-    class FavorUpInfo(BaseStruct):
+    class FavorUpInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         charId: str
         displayStartTime: int
         displayEndTime: int
 
-    class SubMissionInfo(BaseStruct):
+    class SubMissionInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         missionId: str
         missionTitle: str
         sortId: int
         missionIndex: str
 
-    class ActivityNewsStyleInfo(BaseStruct):
+    class ActivityNewsStyleInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         typeId: str
         typeName: str
         typeLogo: str
         typeMainLogo: str
 
-    class ActivityNewsLine(BaseStruct):
+    class ActivityNewsLine(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         lineType: "Act9D0Data.ActivityNewsLineType"
         content: str
 
-    class ActivityNewsInfo(BaseStruct):
+    class ActivityNewsInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         newsId: str
         newsSortId: int
         styleInfo: "Act9D0Data.ActivityNewsStyleInfo"
@@ -58,10 +74,14 @@ class Act9D0Data(BaseStruct):
         newsParam3: float
         newsLines: list["Act9D0Data.ActivityNewsLine"]
 
-    class ActivityNewsServerInfo(BaseStruct):
+    class ActivityNewsServerInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         newsId: str
         preposedStage: str
 
-    class Act9D0ConstData(BaseStruct):
+    class Act9D0ConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         campaignEnemyCnt: int
         campaignStageId: str | None

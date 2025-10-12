@@ -1,18 +1,21 @@
-import enum
+from enum import StrEnum
+
+from pydantic import BaseModel, ConfigDict
 
 from .item_type import ItemType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ActivityCollectionData(BaseStruct):
+class ActivityCollectionData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     collections: list["ActivityCollectionData.CollectionInfo"]
     apSupplyOutOfDateDict: dict[str, int]
     consts: "ActivityCollectionData.Consts"
 
-    class CollectionInfo(BaseStruct):
-        id_: int = field(name="id")
+    class CollectionInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: int
         itemType: ItemType
         itemId: str
         itemCnt: int
@@ -26,13 +29,18 @@ class ActivityCollectionData(BaseStruct):
         showIconBG: bool
         isBonusShow: bool
 
-    class JumpType(enum.StrEnum):
+    class JumpType(StrEnum):
         NONE = "NONE"
         ROGUE = "ROGUE"
+        CHAR_REPO = "CHAR_REPO"
 
-    class Consts(BaseStruct):
+    class Consts(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         showJumpBtn: bool
         jumpBtnType: "ActivityCollectionData.JumpType"
         jumpBtnParam1: str | None
         jumpBtnParam2: str | None
+        dailyTaskDisabled: bool
         dailyTaskStartTime: int
+        isSimpleMode: bool

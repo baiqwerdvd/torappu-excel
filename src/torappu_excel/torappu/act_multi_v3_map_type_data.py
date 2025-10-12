@@ -1,9 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .act_multi_v3_map_diff_type import ActMultiV3MapDiffType
 from .act_multi_v3_map_mode_type import ActMultiV3MapModeType
-from ..common import BaseStruct
 
 
-class ActMultiV3MapTypeData(BaseStruct):
+class ActMultiV3MapTypeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     modeId: str
     mode: ActMultiV3MapModeType
     difficulty: ActMultiV3MapDiffType

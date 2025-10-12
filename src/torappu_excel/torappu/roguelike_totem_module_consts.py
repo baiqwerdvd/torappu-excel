@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .roguelike_totem_color_type import RoguelikeTotemColorType
-from ..common import BaseStruct
 
 
-class RoguelikeTotemModuleConsts(BaseStruct):
+class RoguelikeTotemModuleConsts(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     totemPredictDescription: str
     colorCombineDesc: dict[RoguelikeTotemColorType, str]
     bossCombineDesc: str

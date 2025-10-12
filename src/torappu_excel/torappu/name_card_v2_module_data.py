@@ -1,9 +1,10 @@
+from pydantic import BaseModel, ConfigDict
+
 from .name_card_v2_module_type import NameCardV2ModuleType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class NameCardV2ModuleData(BaseStruct):
-    id_: str = field(name="id")
-    type_: NameCardV2ModuleType = field(name="type")
+class NameCardV2ModuleData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
+    type: NameCardV2ModuleType

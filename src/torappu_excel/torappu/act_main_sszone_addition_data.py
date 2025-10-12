@@ -1,5 +1,8 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ActMainSSZoneAdditionData(BaseStruct):
+class ActMainSSZoneAdditionData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     unlockTip: str
+    unlockTipAfterRetro: str

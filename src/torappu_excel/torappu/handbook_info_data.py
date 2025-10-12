@@ -1,13 +1,14 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .handbook_avg_group_data import HandbookAvgGroupData
 from .handbook_story_view_data import HandBookStoryViewData
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class HandbookInfoData(BaseStruct):
+class HandbookInfoData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     charID: str
     infoName: str
     storyTextAudio: list[HandBookStoryViewData]
     handbookAvgList: list[HandbookAvgGroupData]
-    isLimited: bool | None = field(default=None)
+    isLimited: bool | None = Field(default=None)

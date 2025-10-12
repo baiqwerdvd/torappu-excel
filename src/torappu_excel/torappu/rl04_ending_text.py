@@ -23,5 +23,10 @@ class RL04EndingText(IRoguelikeScrollEndingText):
     summaryMeetTrade: str
     summaryMeetSecretpath: str
     summaryExchangeRelic: str
-    summaryFightWin: str
-    summaryFightFail: str
+    summaryMeetSpZone: str | None
+    summaryBuyWithPriceId: str | None
+    summaryStockRecruitTicket: str | None
+    summaryExpeditionGo: str | None
+    summaryExpeditionBack: str | None
+    summaryFightWin: str | None = None
+    summaryFightFail: str | None = None

@@ -1,10 +1,10 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeGameChoiceSceneData(BaseStruct):
-    id_: str = field(name="id")
+class RoguelikeGameChoiceSceneData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     title: str
     description: str
     background: str | None

@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .roguelike_char_state import RoguelikeCharState
-from ..common import BaseStruct
 
 
-class RoguelikeTopicConst(BaseStruct):
+class RoguelikeTopicConst(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     milestoneTokenRatio: int
     outerBuffTokenRatio: float | int
     relicTokenRatio: int
@@ -15,7 +18,9 @@ class RoguelikeTopicConst(BaseStruct):
     bpPurchaseSystemUnlockTime: int
     predefinedChars: dict[str, "RoguelikeTopicConst.PredefinedChar"]
 
-    class PredefinedChar(BaseStruct):
+    class PredefinedChar(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         charId: str
         canBeFree: bool
         uniEquipId: str | None

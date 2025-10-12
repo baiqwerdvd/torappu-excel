@@ -1,10 +1,10 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class OpenServerScheduleItem(BaseStruct):
-    id_: str = field(name="id")
+class OpenServerScheduleItem(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     versionId: str
     startTs: int
     endTs: int

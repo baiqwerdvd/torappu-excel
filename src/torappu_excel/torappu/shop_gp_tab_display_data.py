@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ShopGPTabDisplayData(BaseStruct):
+class ShopGPTabDisplayData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     tabId: str
     tabName: str
     tabType: str

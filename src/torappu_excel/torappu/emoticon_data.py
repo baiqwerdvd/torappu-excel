@@ -1,12 +1,17 @@
+from pydantic import BaseModel, ConfigDict
+
 from .emoji_scene_type import EmojiSceneType
-from ..common import BaseStruct
 
 
-class EmoticonData(BaseStruct):
+class EmoticonData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     emojiDataDict: dict[str, "EmoticonData.EmojiData"]
     emoticonThemeDataDict: dict[str, list[str]]
 
-    class EmojiData(BaseStruct):
+    class EmojiData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         id: str
         type: EmojiSceneType
         sortId: int

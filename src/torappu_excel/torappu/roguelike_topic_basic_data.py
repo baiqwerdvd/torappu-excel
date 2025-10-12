@@ -1,12 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .roguelike_module_type import RoguelikeModuleType
 from .roguelike_topic_config import RoguelikeTopicConfig
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeTopicBasicData(BaseStruct):
-    id_: str = field(name="id")
+class RoguelikeTopicBasicData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     name: str
     startTime: int
     disappearTimeOnMainScreen: int
@@ -19,7 +20,9 @@ class RoguelikeTopicBasicData(BaseStruct):
     moduleTypes: list[RoguelikeModuleType]
     config: RoguelikeTopicConfig
 
-    class HomeEntryDisplayData(BaseStruct):
+    class HomeEntryDisplayData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         topicId: str
         displayId: str
         startTs: int

@@ -1,12 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_v2_event_type import SandboxV2EventType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class SandboxV2EventData(BaseStruct):
+class SandboxV2EventData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     eventId: str
-    type_: SandboxV2EventType = field(name="type")
+    type: SandboxV2EventType
     iconId: str
     iconName: str | None
     enterSceneId: str

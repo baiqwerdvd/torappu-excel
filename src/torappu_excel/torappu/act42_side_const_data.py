@@ -1,7 +1,9 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class Act42SideConstData(BaseStruct):
+class Act42SideConstData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     coffeeName: str
     dailyCoffee: int
     coffeeLimit: int

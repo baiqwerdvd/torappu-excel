@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .act_multi_v3_identity_type import ActMultiV3IdentityType
-from ..common import BaseStruct
 
 
-class ActMultiV3IdentityData(BaseStruct):
+class ActMultiV3IdentityData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     id: str
     sortId: int
     picId: str

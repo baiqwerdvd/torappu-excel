@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class TimelyDropTimeInfo(BaseStruct):
+class TimelyDropTimeInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     startTs: int
     endTs: int
     stagePic: str | None

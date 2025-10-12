@@ -1,9 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .battle_uni_equip_data import BattleUniEquipData
 from .blackboard import Blackboard
-from ..common import BaseStruct
 
 
-class BattleEquipPerLevelPack(BaseStruct):
+class BattleEquipPerLevelPack(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     equipLevel: int
     parts: list[BattleUniEquipData]
     attributeBlackboard: list[Blackboard]

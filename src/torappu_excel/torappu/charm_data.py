@@ -1,6 +1,9 @@
+from pydantic import BaseModel, ConfigDict
+
 from .charm_item_data import CharmItemData
-from ..common import BaseStruct
 
 
-class CharmData(BaseStruct):
+class CharmData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     charmList: list[CharmItemData]

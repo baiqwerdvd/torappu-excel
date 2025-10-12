@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .blackboard import Blackboard
 from .shared_models import CharacterData as SharedCharacterData
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class TalentData(BaseStruct):
+class TalentData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     unlockCondition: "SharedCharacterData.UnlockCondition"
     requiredPotentialRank: int
     prefabKey: str
@@ -14,5 +15,5 @@ class TalentData(BaseStruct):
     rangeId: str | None
     blackboard: list[Blackboard]
     displayRange: bool = False
-    tokenKey: str | None = field(default=None)
+    tokenKey: str | None = Field(default=None)
     isHideTalent: bool = False

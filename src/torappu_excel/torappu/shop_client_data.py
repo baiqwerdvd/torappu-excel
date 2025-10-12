@@ -1,3 +1,5 @@
+from pydantic import BaseModel, ConfigDict
+
 from .choose_shop_relation import ChooseShopRelation
 from .lmtgs_shop_overlay_schedule import LMTGSShopOverlaySchedule
 from .lmtgs_shop_schedule import LMTGSShopSchedule
@@ -8,10 +10,11 @@ from .shop_gp_tab_display_data import ShopGPTabDisplayData
 from .shop_keeper_word import ShopKeeperWord
 from .shop_recommend_item import ShopRecommendItem
 from .shop_unlock_type import ShopUnlockType
-from ..common import BaseStruct
 
 
-class ShopClientData(BaseStruct):
+class ShopClientData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     recommendList: list[ShopRecommendItem]
     creditUnlockGroup: dict[str, ShopCreditUnlockGroup]
     shopKeeperData: "ShopClientData.ShopKeeperData"
@@ -26,6 +29,8 @@ class ShopClientData(BaseStruct):
     ls: list[LMTGSShopSchedule]
     os: list[LMTGSShopOverlaySchedule]
 
-    class ShopKeeperData(BaseStruct):
+    class ShopKeeperData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         welcomeWords: list[ShopKeeperWord]
         clickWords: list[ShopKeeperWord]

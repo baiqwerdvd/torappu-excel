@@ -1,5 +1,7 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class CrisisV2AppraiseWrap(BaseStruct):
+class CrisisV2AppraiseWrap(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     appraiseType: str

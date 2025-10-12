@@ -1,14 +1,19 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class DefaultCheckInData(BaseStruct):
+class DefaultCheckInData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     checkInList: dict[str, "DefaultCheckInData.CheckInDailyInfo"]
     apSupplyOutOfDateDict: dict[str, int]
     extraCheckinList: list["DefaultCheckInData.ExtraCheckinDailyInfo"] | None
     dynCheckInData: "DefaultCheckInData.DynamicCheckInData | None" = None
 
-    class CheckInDailyInfo(BaseStruct):
+    class CheckInDailyInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemList: list[ItemBundle]
         order: int
         color: int
@@ -16,7 +21,9 @@ class DefaultCheckInData(BaseStruct):
         showItemOrder: int
         isDynItem: bool
 
-    class ExtraCheckinDailyInfo(BaseStruct):
+    class ExtraCheckinDailyInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         order: int
         blessing: str
         absolutData: int
@@ -24,20 +31,26 @@ class DefaultCheckInData(BaseStruct):
         relativeData: int
         itemList: list[ItemBundle]
 
-    class OptionInfo(BaseStruct):
+    class OptionInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         optionDesc: str | None
         showImageId1: str | None
         showImageId2: str | None
         optionCompleteDesc: str | None
         isStart: bool
 
-    class DynamicCheckInConsts(BaseStruct):
+    class DynamicCheckInConsts(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         firstQuestionDesc: str
         firstQuestionTipsDesc: str
         expirationDesc: str
         firstQuestionConfirmDesc: str
 
-    class DynCheckInDailyInfo(BaseStruct):
+    class DynCheckInDailyInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         questionDesc: str
         preOption: str
         optionList: list[str]
@@ -46,7 +59,9 @@ class DefaultCheckInData(BaseStruct):
         spOrderDesc: str
         spOrderCompleteDesc: str
 
-    class DynamicCheckInData(BaseStruct):
+    class DynamicCheckInData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         dynCheckInDict: dict[str, "DefaultCheckInData.DynCheckInDailyInfo"]
         dynOptionDict: dict[str, "DefaultCheckInData.OptionInfo"]
         dynItemDict: dict[str, list[ItemBundle]]

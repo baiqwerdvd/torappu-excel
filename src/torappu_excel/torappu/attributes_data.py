@@ -1,12 +1,12 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class AttributesData(BaseStruct):
+class AttributesData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     maxHp: int
     atk: int
-    def_: int = field(name="def")
+    def_: int = Field(alias="def")
     magicResistance: float
     cost: int
     blockCnt: int
@@ -26,6 +26,7 @@ class AttributesData(BaseStruct):
     sleepImmune: bool
     frozenImmune: bool
     levitateImmune: bool
-    palsyImmune: bool | None = field(default=None)
-    disarmedCombatImmune: bool | None = field(default=None)
-    fearedImmune: bool | None = field(default=None)
+    attractImmune: bool
+    palsyImmune: bool | None = Field(default=None)
+    disarmedCombatImmune: bool | None = Field(default=None)
+    fearedImmune: bool | None = Field(default=None)

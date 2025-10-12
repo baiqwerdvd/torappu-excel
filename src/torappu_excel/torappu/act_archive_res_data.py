@@ -1,10 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
+from torappu_excel.common import CustomIntEnum
+
 from .act_archive_pic_type import ActArchivePicType
-from ..common import BaseStruct, CustomIntEnum
-
-from msgspec import field
 
 
-class ActArchiveResData(BaseStruct):
+class ActArchiveResData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class ArchiveNewsLineType(CustomIntEnum):
         TextContent = "TextContent", 0
         ImageContent = "ImageContent", 1
@@ -18,22 +21,28 @@ class ActArchiveResData(BaseStruct):
     logs: dict[str, "ActArchiveResData.LogArchiveResItemData"]
     challengeBooks: dict[str, "ActArchiveResData.ChallengeBookArchiveResItemData"]
 
-    class PicArchiveResItemData(BaseStruct):
-        id_: str = field(name="id")
+    class PicArchiveResItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         desc: str
         assetPath: str
-        type_: ActArchivePicType = field(name="type")
+        type: ActArchivePicType
         subType: str | None
         picDescription: str
         kvId: str | None
 
-    class AudioArchiveResItemData(BaseStruct):
-        id_: str = field(name="id")
+    class AudioArchiveResItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         desc: str
         name: str
 
-    class AvgArchiveResItemData(BaseStruct):
-        id_: str = field(name="id")
+    class AvgArchiveResItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         desc: str
         breifPath: str | None
         contentPath: str
@@ -41,16 +50,20 @@ class ActArchiveResData(BaseStruct):
         rawBrief: str | None
         titleIconPath: str | None
 
-    class StoryArchiveResItemData(BaseStruct):
-        id_: str = field(name="id")
+    class StoryArchiveResItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         desc: str
         date: str | None
         pic: str
         text: str
         titlePic: str | None
 
-    class NewsArchiveResItemData(BaseStruct):
-        id_: str = field(name="id")
+    class NewsArchiveResItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         desc: str
         newsType: str
         newsFormat: "ActArchiveResData.NewsFormatData"
@@ -61,29 +74,39 @@ class ActArchiveResData(BaseStruct):
         paramR: float
         newsLines: list["ActArchiveResData.ActivityNewsLine"]
 
-    class NewsFormatData(BaseStruct):
+    class NewsFormatData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         typeId: str
         typeName: str
         typeLogo: str
         typeMainLogo: str
         typeMainSealing: str
 
-    class ActivityNewsLine(BaseStruct):
+    class ActivityNewsLine(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         lineType: "ActArchiveResData.ArchiveNewsLineType"
         content: str
 
-    class LandmarkArchiveResItemData(BaseStruct):
+    class LandmarkArchiveResItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         landmarkId: str
         landmarkName: str
         landmarkPic: str
         landmarkDesc: str
         landmarkEngName: str
 
-    class LogArchiveResItemData(BaseStruct):
+    class LogArchiveResItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         logId: str
         logDesc: str
 
-    class ChallengeBookArchiveResItemData(BaseStruct):
+    class ChallengeBookArchiveResItemData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         storyId: str
         titleName: str
         storyName: str

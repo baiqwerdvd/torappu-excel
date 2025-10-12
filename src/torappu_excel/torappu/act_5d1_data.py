@@ -1,13 +1,16 @@
 from enum import StrEnum
 
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
 from .mission_data import MissionData
 from .mission_group import MissionGroup
 from .rune_table import RuneTable
-from ..common import BaseStruct
 
 
-class Act5D1Data(BaseStruct):
+class Act5D1Data(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class GoodType(StrEnum):
         NORMAL = "NORMAL"
         PROGRESS = "PROGRESS"
@@ -25,7 +28,9 @@ class Act5D1Data(BaseStruct):
     stageRune: list[RuneTable.RuneStageExtraData]
     showRuneMissionList: list[str]
 
-    class RuneStageData(BaseStruct):
+    class RuneStageData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageId: str
         levelId: str
         code: str
@@ -34,7 +39,9 @@ class Act5D1Data(BaseStruct):
         description: str
         picId: str
 
-    class RuneRecurrentStateData(BaseStruct):
+    class RuneRecurrentStateData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         runeReId: str
         stageId: str
         slotId: int
@@ -44,7 +51,9 @@ class Act5D1Data(BaseStruct):
         isAvail: bool
         warningPoint: int
 
-    class RuneUnlockData(BaseStruct):
+    class RuneUnlockData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         runeId: str
         priceItem: ItemBundle
         runeName: str
@@ -53,12 +62,16 @@ class Act5D1Data(BaseStruct):
         sortId: int
         iconId: str
 
-    class RuneReleaseData(BaseStruct):
+    class RuneReleaseData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         runeId: str
         stageId: str
         releaseTime: int
 
-    class ShopGood(BaseStruct):
+    class ShopGood(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         goodId: str
         slotId: int
         price: int
@@ -67,12 +80,16 @@ class Act5D1Data(BaseStruct):
         progressGoodId: str
         goodType: "Act5D1Data.GoodType"
 
-    class ProgessGoodItem(BaseStruct):
+    class ProgessGoodItem(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         order: int
         price: int
         displayName: str
         item: ItemBundle
 
-    class ShopData(BaseStruct):
+    class ShopData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         shopGoods: dict[str, "Act5D1Data.ShopGood"]
         progressGoods: dict[str, list["Act5D1Data.ProgessGoodItem"]]

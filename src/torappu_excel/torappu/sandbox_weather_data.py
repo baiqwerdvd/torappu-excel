@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_weather_type import SandboxWeatherType
-from ..common import BaseStruct
 
 
-class SandboxWeatherData(BaseStruct):
+class SandboxWeatherData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     weatherId: str
     weatherType: SandboxWeatherType
     weatherLevel: int

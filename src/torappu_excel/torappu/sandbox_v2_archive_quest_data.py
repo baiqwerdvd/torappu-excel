@@ -1,14 +1,15 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_v2_archive_quest_avg_data import SandboxV2ArchiveQuestAvgData
 from .sandbox_v2_archive_quest_cg_data import SandboxV2ArchiveQuestCgData
 from .sandbox_v2_archive_quest_type import SandboxV2ArchiveQuestType
 from .sandbox_v2_archive_quest_zone_data import SandboxV2ArchiveQuestZoneData
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class SandboxV2ArchiveQuestData(BaseStruct):
-    id_: str = field(name="id")
+class SandboxV2ArchiveQuestData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     sortId: int
     questType: SandboxV2ArchiveQuestType
     name: str

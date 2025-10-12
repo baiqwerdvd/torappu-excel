@@ -1,7 +1,10 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class ReplicateData(BaseStruct):
+class ReplicateData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     item: ItemBundle
     replicateTokenItem: ItemBundle

@@ -1,10 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .roguelike_event_type import RoguelikeEventType
-from ..common import BaseStruct
 
 
-class RoguelikeNodeUpgradeModuleData(BaseStruct):
-    class RoguelikeNodeUpgradeData(BaseStruct):
-        class RoguelikePermNodeUpgradeItemData(BaseStruct):
+class RoguelikeNodeUpgradeModuleData(BaseModel):
+    class RoguelikeNodeUpgradeData(BaseModel):
+        class RoguelikePermNodeUpgradeItemData(BaseModel):
+            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
             upgradeId: str
             nodeType: RoguelikeEventType
             nodeLevel: int
@@ -13,7 +16,9 @@ class RoguelikeNodeUpgradeModuleData(BaseStruct):
             desc: str
             nodeName: str
 
-        class RoguelikeTempNodeUpgradeItemData(BaseStruct):
+        class RoguelikeTempNodeUpgradeItemData(BaseModel):
+            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
             upgradeId: str
             nodeType: RoguelikeEventType
             sortId: int

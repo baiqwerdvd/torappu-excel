@@ -1,6 +1,8 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class CharSkinKvImgInfo(BaseStruct):
+class CharSkinKvImgInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     kvImgId: str
     linkedSkinGroupId: str

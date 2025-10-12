@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .roguelike_game_month_task_class import RoguelikeGameMonthTaskClass
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeTopicMonthMission(BaseStruct):
-    id_: str = field(name="id")
+class RoguelikeTopicMonthMission(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     taskName: str
     taskClass: RoguelikeGameMonthTaskClass
     innerClassWeight: int

@@ -1,13 +1,14 @@
+from pydantic import BaseModel, ConfigDict
+
 from .climb_tower_card_type import ClimbTowerCardType
 from .rune_table import RuneTable
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ClimbTowerMainCardData(BaseStruct):
-    id_: str = field(name="id")
-    type_: ClimbTowerCardType = field(name="type")
+class ClimbTowerMainCardData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
+    type: ClimbTowerCardType
     linkedTowerId: str | None
     sortId: int
     name: str

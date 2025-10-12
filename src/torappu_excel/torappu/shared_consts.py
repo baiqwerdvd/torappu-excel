@@ -1,10 +1,12 @@
 from enum import IntEnum, StrEnum
 
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SharedConsts(BaseStruct):
+class SharedConsts(BaseModel):
     # TODO
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class Direction(IntEnum):
         UP = 0
         RIGHT = 1

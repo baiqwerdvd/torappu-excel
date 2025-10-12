@@ -1,11 +1,11 @@
 from enum import StrEnum
 
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class CartComponents(BaseStruct):
+class CartComponents(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class CartAccessoryType(StrEnum):
         NONE = "NONE"
         ROOF = "ROOF"
@@ -24,7 +24,7 @@ class CartComponents(BaseStruct):
 
     compId: str
     sortId: int
-    type_: "CartComponents.CartAccessoryType" = field(name="type")
+    type: "CartComponents.CartAccessoryType"
     posList: list["CartComponents.CartAccessoryPos"]
     posIdDict: dict["CartComponents.CartAccessoryPos", list[str]]
     name: str

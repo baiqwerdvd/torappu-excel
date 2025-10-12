@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .rune_table import RuneTable
-from ..common import BaseStruct
 
 
-class ActMultiV3SquadEffectData(BaseStruct):
+class ActMultiV3SquadEffectData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     id: str
     iconId: str
     sortId: int
@@ -11,10 +14,12 @@ class ActMultiV3SquadEffectData(BaseStruct):
     buffDesc: str
     debuffDesc: str
     token: "ActMultiV3SquadEffectData.Token"
-    unlockKeyNum: int
     runeData: "RuneTable.PackedRuneData"
+    isInitial: bool
 
-    class Token(BaseStruct):
+    class Token(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         name: str
         desc: str
         iconId: str

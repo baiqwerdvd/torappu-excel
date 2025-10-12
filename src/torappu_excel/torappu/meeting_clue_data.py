@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class MeetingClueData(BaseStruct):
+class MeetingClueData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     clues: list["MeetingClueData.ClueData"]
     clueTypes: list["MeetingClueData.ClueTypeData"]
     receiveTimeBonus: list["MeetingClueData.ReceiveTimeBonus"]
@@ -19,21 +21,29 @@ class MeetingClueData(BaseStruct):
     participantsBonus: int
     commuFoldDuration: float
 
-    class ClueData(BaseStruct):
+    class ClueData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         clueId: str
         clueName: str
         clueType: str
         number: int
 
-    class ClueTypeData(BaseStruct):
+    class ClueTypeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         clueType: str
         clueNumber: int
 
-    class ReceiveTimeBonus(BaseStruct):
+    class ReceiveTimeBonus(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         receiveTimes: int
         receiveBonus: int
 
-    class MessageLeaveBoardConstData(BaseStruct):
+    class MessageLeaveBoardConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         visitorBonus: int
         visitorBonusLimit: int
         visitorToWeek: int

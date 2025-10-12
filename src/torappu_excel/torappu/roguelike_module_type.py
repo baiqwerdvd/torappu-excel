@@ -11,3 +11,7 @@ class RoguelikeModuleType(StrEnum):
     FRAGMENT = "FRAGMENT"
     DISASTER = "DISASTER"
     NODE_UPGRADE = "NODE_UPGRADE"
+    COPPER = "COPPER"
+    WRATH = "WRATH"
+    CANDLE = "CANDLE"
+    SKY = "SKY"

@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class Act6FunConst(BaseStruct):
+class Act6FunConst(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     defaultStage: str | None
     achievementMaxNumber: int
     specialNumber: int

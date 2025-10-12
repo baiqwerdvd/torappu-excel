@@ -1,9 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .evolve_phase import EvolvePhase  # noqa: F401 # pyright: ignore[reportUnusedImport]
 from .roguelike_event_type import RoguelikeEventType
-from ..common import BaseStruct
 
 
-class RoguelikeConstTable(BaseStruct):
+class RoguelikeConstTable(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     playerLevelTable: dict[str, "RoguelikeConstTable.PlayerLevelData"]
     recruitPopulationTable: dict[str, "RoguelikeConstTable.RecruitData"]
     charUpgradeTable: dict[str, "RoguelikeConstTable.CharUpgradeData"]
@@ -23,21 +26,29 @@ class RoguelikeConstTable(BaseStruct):
     squadCapacityMax: int
     bossIds: list[str]
 
-    class PlayerLevelData(BaseStruct):
+    class PlayerLevelData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         exp: int
         populationUp: int
         squadCapacityUp: int
         battleCharLimitUp: int
 
-    class RecruitData(BaseStruct):
+    class RecruitData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         recruitPopulation: int
         upgradePopulation: int
 
-    class CharUpgradeData(BaseStruct):
+    class CharUpgradeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         evolvePhase: int  # FIXME: EvolvePhase
         skillLevel: int
         skillSpecializeLevel: int
 
-    class EventTypeData(BaseStruct):
+    class EventTypeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         name: str
         description: str

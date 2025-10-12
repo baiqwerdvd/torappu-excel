@@ -1,7 +1,11 @@
-from ..common import BaseStruct, CustomIntEnum
+from pydantic import BaseModel, ConfigDict
+
+from torappu_excel.common import CustomIntEnum
 
 
-class BattleVoiceOption(BaseStruct):
+class BattleVoiceOption(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class BattleVoiceType(CustomIntEnum):
         BATTLE_START = "BATTLE_START", 0
         ENCOUNTER_ENEMY = "ENCOUNTER_ENEMY", 1

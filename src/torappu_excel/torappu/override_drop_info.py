@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .stage_data import StageData
-from ..common import BaseStruct
 
 
-class OverrideDropInfo(BaseStruct):
+class OverrideDropInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     itemId: str
     startTs: int
     endTs: int

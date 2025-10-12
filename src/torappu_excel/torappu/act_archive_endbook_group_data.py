@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .act_archive_endbook_item_data import ActArchiveEndbookItemData
-from ..common import BaseStruct
 
 
-class ActArchiveEndbookGroupData(BaseStruct):
+class ActArchiveEndbookGroupData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     endId: str
     endingId: str
     sortId: int

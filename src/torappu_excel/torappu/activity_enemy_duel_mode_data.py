@@ -1,8 +1,11 @@
-﻿from .enemy_duel_mode_type import EnemyDuelModeType
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
+
+from .enemy_duel_mode_type import EnemyDuelModeType
 
 
-class ActivityEnemyDuelModeData(BaseStruct):
+class ActivityEnemyDuelModeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     modeId: str
     isMultiPlayer: bool
     isRoom: bool

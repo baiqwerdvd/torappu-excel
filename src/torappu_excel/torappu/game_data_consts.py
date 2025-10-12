@@ -1,18 +1,18 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .item_bundle import ItemBundle
 from .sub_profession_attack_type import SubProfessionAttackType
 from .term_description_data import TermDescriptionData
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class GameDataConsts(BaseStruct):
+class GameDataConsts(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     addedRewardDisplayZone: str
     advancedGachaCrystalCost: int
     announceWebBusType: str
     charRotationPresetMaxCnt: int
     charRotationSkinListMaxCnt: int
-    continuousActionOpen: bool
     defaultCRPresetCharId: str
     defaultCRPresetCharSkinId: str
     defaultCRPresetBGId: str
@@ -20,13 +20,14 @@ class GameDataConsts(BaseStruct):
     defaultCRPresetName: str
     charRotationPresetTrackTs: int
     uniequipArchiveSysTrackTs: int
-    defaultMinContinuousBattleTimes: int
-    defaultMaxContinuousBattleTimes: int
     apBuyCost: int
     apBuyThreshold: int
     assistBeUsedSocialPt: dict[str, int]
     attackMax: float
     baseMaxFriendNum: int
+    maxStarFriendNum: int
+    maxSquadAssistDisplayNum: int
+    friendStarEditTrackTs: int
     buyApTimeNoLimitFlag: bool
     characterExpMap: list[list[int]]
     characterUpgradeCostMap: list[list[int]]
@@ -114,6 +115,9 @@ class GameDataConsts(BaseStruct):
     manufactPromptTime: int
     videoPlayerWebBusType: str
     gachaLogBusType: str
+    defaultMinMultipleBattleTimes: int
+    defaultMaxMultipleBattleTimes: int
+    multipleActionOpen: bool
     birthdaySettingDesc: str
     birthdaySettingConfirmDesc: str
     birthdaySettingLeapConfirmDesc: str
@@ -121,13 +125,27 @@ class GameDataConsts(BaseStruct):
     leapBirthdayRewardDay: int
     birthdaySettingShowStageId: str
     isBirthdayFuncEnabled: bool
+    isRecalRuneFuncEnabled: bool
+    feverGameData: "GameDataConsts.FeverGameData"
+    isSoCharEnabled: bool
     isVoucherClassicItemDistinguishable: bool = False
     operatorRecordsStartTime: int = -1
-    subProfessionDamageTypePairs: dict[str, SubProfessionAttackType] = field(default_factory=dict)
+    subProfessionDamageTypePairs: dict[str, SubProfessionAttackType] = Field(default_factory=dict)
     crisisUnlockStage: str = ""
     isSandboxPermFuncEnabled: bool = False
-    classicProtectChar: list[str] = field(default_factory=list)
+    classicProtectChar: list[str] = Field(default_factory=list)
+    continuousActionOpen: bool = False
+    defaultMinContinuousBattleTimes: int = -1
+    defaultMaxContinuousBattleTimes: int = -1
 
-    class CharAssistRefreshTimeState(BaseStruct):
+    class CharAssistRefreshTimeState(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         Hour: int
         Minute: int
+
+    class FeverGameData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        feverDuration: float
+        feverNeed: float

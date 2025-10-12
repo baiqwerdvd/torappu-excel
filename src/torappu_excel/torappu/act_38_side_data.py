@@ -1,7 +1,11 @@
-from ..common import BaseStruct, CustomIntEnum
+from pydantic import BaseModel, ConfigDict
+
+from torappu_excel.common import CustomIntEnum
 
 
-class Act38SideData(BaseStruct):
+class Act38SideData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class NpcDialogType(CustomIntEnum):
         NONE = "NONE", 0
         ENTER_PUZZLE = "ENTER_PUZZLE", 1
@@ -22,25 +26,35 @@ class Act38SideData(BaseStruct):
     constData: "Act38SideData.ConstData"
     puzzleGroupFocusDataMap: dict[str, "Act38SideData.Act38SidePuzzleGroupFocusData"]
 
-    class Act38SideZoneAdditionData(BaseStruct):
+    class Act38SideZoneAdditionData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         zoneId: str
         unlockText: str
 
-    class Act38SidePuzzleInfo(BaseStruct):
+    class Act38SidePuzzleInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         puzzleId: str
         startTime: int
         puzzleGroupId: str
 
-    class Act38SideNpcDialogData(BaseStruct):
+    class Act38SideNpcDialogData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         desc: str
         dialogType: "Act38SideData.NpcDialogType"
         emoSpineName: str
 
-    class Act38SidePuzzleGroupFocusData(BaseStruct):
+    class Act38SidePuzzleGroupFocusData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         puzzleGroupId: str
         xAxisFocusPos: float
 
-    class ConstData(BaseStruct):
+    class ConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         npcIdleSpineName: str
         puzzleMapAnimGroupId: str
         puzzleCrossDayTrackId: str

@@ -1,3 +1,5 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .roguelike_activity_data import RoguelikeActivityData
 from .roguelike_archive_component_data import RoguelikeArchiveComponentData
 from .roguelike_archive_unlock_cond_data import RoguelikeArchiveUnlockCondData
@@ -15,6 +17,7 @@ from .roguelike_game_custom_ticket_data import RoguelikeGameCustomTicketData
 from .roguelike_game_ending_data import RoguelikeGameEndingData
 from .roguelike_game_explore_tool_data import RoguelikeGameExploreToolData
 from .roguelike_game_fail_ending_data import RoguelikeGameFailEndingData
+from .roguelike_game_fusion_data import RoguelikeGameFusionData
 from .roguelike_game_init_data import RoguelikeGameInitData
 from .roguelike_game_item_data import RoguelikeGameItemData
 from .roguelike_game_node_sub_type_data import RoguelikeGameNodeSubTypeData
@@ -27,6 +30,7 @@ from .roguelike_game_shop_dialog_data import RoguelikeGameShopDialogData
 from .roguelike_game_shop_dialog_type import RoguelikeGameShopDialogType
 from .roguelike_game_squad_buff_data import RoguelikeGameSquadBuffData
 from .roguelike_game_stage_data import RoguelikeGameStageData
+from .roguelike_game_stashable_ticket_data import RoguelikeGameStashableTicketData
 from .roguelike_game_trap_data import RoguelikeGameTrapData
 from .roguelike_game_treasure_data import RoguelikeGameTreasureData
 from .roguelike_game_upgrade_ticket_data import RoguelikeGameUpgradeTicketData
@@ -51,12 +55,11 @@ from .roguelike_topic_month_squad import RoguelikeTopicMonthSquad
 from .roguelike_topic_update import RoguelikeTopicUpdate
 from .roguelike_zone_variation_data import RoguelikeZoneVariationData
 from .tip_data import TipData
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeTopicDetail(BaseStruct):
+class RoguelikeTopicDetail(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     updates: list[RoguelikeTopicUpdate]
     enrolls: dict[str, RoguelikeTopicEnroll]
     milestones: list[RoguelikeTopicBP]
@@ -78,6 +81,7 @@ class RoguelikeTopicDetail(BaseStruct):
     recruitTickets: dict[str, RoguelikeGameRecruitTicketData]
     upgradeTickets: dict[str, RoguelikeGameUpgradeTicketData]
     customTickets: dict[str, RoguelikeGameCustomTicketData]
+    stashableTickets: dict[str, RoguelikeGameStashableTicketData]
     relics: dict[str, RoguelikeGameRelicData]
     relicParams: dict[str, RoguelikeGameRelicParamData]
     recruitGrps: dict[str, RoguelikeGameRecruitGrpData]
@@ -86,6 +90,7 @@ class RoguelikeTopicDetail(BaseStruct):
     nodeTypeData: dict[RoguelikeEventType, RoguelikeGameNodeTypeData]
     subTypeData: list[RoguelikeGameNodeSubTypeData]
     variationData: dict[str, RoguelikeGameVariationData]
+    fusionData: dict[str, RoguelikeGameFusionData]
     charBuffData: dict[str, RoguelikeGameCharBuffData]
     squadBuffData: dict[str, RoguelikeGameSquadBuffData]
     taskData: dict[str, RoguelikeTaskData]
@@ -102,9 +107,9 @@ class RoguelikeTopicDetail(BaseStruct):
     difficultyUpgradeRelicGroups: dict[str, RoguelikeDifficultyUpgradeRelicGroupData]
     styleConfig: RoguelikePredefinedConstStyleData
     activity: RoguelikeActivityData
-    endingRelicDetailList: list[RoguelikeEndingRelicDetailText] | None = field(default=None)
-    shopDialogData: RoguelikeGameShopDialogData | None = field(default=None)
-    shopDialogs: dict[RoguelikeGameShopDialogType, list[str]] | None = field(default=None)
-    styles: dict[str, RoguelikePredefinedStyleData] | None = field(default=None)
-    exploreTools: dict[str, RoguelikeGameExploreToolData] | None = field(default=None)
-    rollNodeData: dict[str, RoguelikeRollNodeData] | None = field(default=None)
+    endingRelicDetailList: list[RoguelikeEndingRelicDetailText] | None = Field(default=None)
+    shopDialogData: RoguelikeGameShopDialogData | None = Field(default=None)
+    shopDialogs: dict[RoguelikeGameShopDialogType, list[str]] | None = Field(default=None)
+    styles: dict[str, RoguelikePredefinedStyleData] | None = Field(default=None)
+    exploreTools: dict[str, RoguelikeGameExploreToolData] | None = Field(default=None)
+    rollNodeData: dict[str, RoguelikeRollNodeData] | None = Field(default=None)

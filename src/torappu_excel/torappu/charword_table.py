@@ -1,3 +1,5 @@
+from pydantic import BaseModel, ConfigDict
+
 from .char_extra_word_data import CharExtraWordData
 from .char_word_data import CharWordData
 from .char_word_show_type import CharWordShowType
@@ -10,10 +12,11 @@ from .voice_lang_group_data import VoiceLangGroupData
 from .voice_lang_group_type import VoiceLangGroupType
 from .voice_lang_type import VoiceLangType
 from .voice_lang_type_data import VoiceLangTypeData
-from ..common import BaseStruct
 
 
-class CharwordTable(BaseStruct):
+class CharwordTable(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     charWords: dict[str, CharWordData]
     charExtraWords: dict[str, CharExtraWordData]
     voiceLangDict: dict[str, VoiceLangData]

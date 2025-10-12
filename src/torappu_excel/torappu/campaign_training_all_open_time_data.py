@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class CampaignTrainingAllOpenTimeData(BaseStruct):
+class CampaignTrainingAllOpenTimeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     groupId: str
     startTs: int
     endTs: int

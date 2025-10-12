@@ -1,3 +1,5 @@
+from pydantic import BaseModel, ConfigDict
+
 from .legacy_in_level_rune_data import LegacyInLevelRuneData
 from .rune_table import RuneTable
 from .sandbox_v2_alchemy_recipe_data import SandboxV2AlchemyRecipeData
@@ -62,10 +64,11 @@ from .sandbox_v2_tutorial_data import SandboxV2TutorialData
 from .sandbox_v2_weather_data import SandboxV2WeatherData
 from .sandbox_v2_zone_data import SandboxV2ZoneData
 from .tip_data import TipData
-from ..common import BaseStruct
 
 
-class SandboxV2Data(BaseStruct):
+class SandboxV2Data(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     mapData: dict[str, SandboxV2MapData]
     itemTrapData: dict[str, SandboxV2ItemTrapData]
     itemTrapTagData: dict[str, SandboxV2ItemTrapTagData]

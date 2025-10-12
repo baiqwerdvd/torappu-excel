@@ -1,6 +1,8 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ActivityEnemyDuelNpcSelectorData(BaseStruct):
+class ActivityEnemyDuelNpcSelectorData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     enemyId: str
     score: float

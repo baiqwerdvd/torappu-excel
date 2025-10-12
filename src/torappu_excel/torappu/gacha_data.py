@@ -1,16 +1,17 @@
 # pyright: reportMissingTypeArgument=false
+from pydantic import BaseModel, ConfigDict, Field
+
 from .gacha_pool_client_data import GachaPoolClientData
 from .gacha_tag import GachaTag
 from .newbee_gacha_pool_client_data import NewbeeGachaPoolClientData
 from .potential_material_converter_config import PotentialMaterialConverterConfig
 from .recruit_pool import RecruitPool
 from .special_recruit_pool import SpecialRecruitPool
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class GachaData(BaseStruct):
+class GachaData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     gachaPoolClient: list[GachaPoolClientData]
     newbeeGachaPoolClient: list[NewbeeGachaPoolClientData]
     specialRecruitPool: list[SpecialRecruitPool]
@@ -30,42 +31,56 @@ class GachaData(BaseStruct):
     fesGachaPoolRelateItem: dict[str, "GachaData.FesGachaPoolRelateItem"] | None
     dicRecruit6StarHint: dict[str, str] | None
     specialGachaPercentDict: dict[str, float]
-    gachaTagMaxValid: int | None = field(default=None)
-    potentialMats: dict | None = field(default=None)
-    classicPotentialMats: dict | None = field(default=None)
+    gachaTagMaxValid: int | None = Field(default=None)
+    potentialMats: dict | None = Field(default=None)
+    classicPotentialMats: dict | None = Field(default=None)
 
-    class RecruitRange(BaseStruct):
+    class RecruitRange(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         rarityStart: int
         rarityEnd: int
 
-    class CarouselData(BaseStruct):
+    class CarouselData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         poolId: str
         index: int
         startTime: int
         endTime: int
         spriteId: str
 
-    class FreeLimitGachaData(BaseStruct):
+    class FreeLimitGachaData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         poolId: str
         openTime: int
         endTime: int
         freeCount: int
 
-    class LimitTenGachaTkt(BaseStruct):
+    class LimitTenGachaTkt(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemId: str
         endTime: int
 
-    class LinkageTenGachaTkt(BaseStruct):
+    class LinkageTenGachaTkt(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemId: str
         endTime: int
         gachaPoolId: str
 
-    class NormalGachaTkt(BaseStruct):
+    class NormalGachaTkt(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemId: str
         endTime: int
         gachaPoolId: str
         isTen: bool
 
-    class FesGachaPoolRelateItem(BaseStruct):
+    class FesGachaPoolRelateItem(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         rarityRank5ItemId: str
         rarityRank6ItemId: str

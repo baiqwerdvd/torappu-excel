@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .cross_day_track_data import CrossDayTrackData
-from ..common import BaseStruct
 
 
-class CrossDayTrackTypeData(BaseStruct):
+class CrossDayTrackTypeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     type: str
     startTs: int
     expireTs: int

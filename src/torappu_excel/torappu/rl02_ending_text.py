@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class RL02EndingText(BaseStruct):
+class RL02EndingText(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     summaryMutation: str
     summaryDice: str
     summaryDiceResultGood: str

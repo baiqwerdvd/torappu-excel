@@ -1,14 +1,15 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
 from .story_review_entry_type import StoryReviewEntryType
 from .story_review_info_client_data import StoryReviewInfoClientData
 from .story_review_type import StoryReviewType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class StoryReviewGroupClientData(BaseStruct):
-    id_: str = field(name="id")
+class StoryReviewGroupClientData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     name: str
     entryType: StoryReviewEntryType
     actType: StoryReviewType

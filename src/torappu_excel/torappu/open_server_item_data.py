@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_type import ItemType
-from ..common import BaseStruct
 
 
-class OpenServerItemData(BaseStruct):
+class OpenServerItemData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     itemId: str
     itemType: ItemType
     count: int

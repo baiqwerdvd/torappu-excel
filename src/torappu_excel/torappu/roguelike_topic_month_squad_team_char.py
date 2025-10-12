@@ -1,6 +1,8 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeTopicMonthSquadTeamChar(BaseStruct):
+class RoguelikeTopicMonthSquadTeamChar(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     teamCharId: str
     teamTmplId: str | None

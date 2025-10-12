@@ -1,10 +1,13 @@
 from enum import StrEnum
 
+from pydantic import BaseModel, ConfigDict
+
 from .shared_models import ActivityTable
-from ..common import BaseStruct
 
 
-class ActivityMultiplayData(BaseStruct):
+class ActivityMultiplayData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class StageDifficulty(StrEnum):
         NONE = "NONE"
         EASY = "EASY"
@@ -18,7 +21,9 @@ class ActivityMultiplayData(BaseStruct):
     constData: "ActivityMultiplayData.ConstData"
     unlockConds: list[ActivityTable.CustomUnlockCond]
 
-    class StageData(BaseStruct):
+    class StageData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageId: str
         levelId: str
         groupId: str
@@ -27,22 +32,30 @@ class ActivityMultiplayData(BaseStruct):
         dangerLevel: str
         unlockConds: list[str]
 
-    class StageGroupData(BaseStruct):
+    class StageGroupData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         groupId: str
         sortId: int
         code: str
         name: str
         description: str
 
-    class MissionExtraData(BaseStruct):
+    class MissionExtraData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         missionId: str
         isHard: bool
 
-    class RoomMessageData(BaseStruct):
+    class RoomMessageData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         sortId: int
         picId: str
 
-    class ConstData(BaseStruct):
+    class ConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         linkActId: str
         maxRetryTimeInTeamRoom: int
         maxRetryTimeInMatchRoom: int

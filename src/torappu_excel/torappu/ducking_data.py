@@ -1,11 +1,11 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class DuckingData(BaseStruct):
+class DuckingData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     bank: str
     volume: float
     fadeTime: float
     delay: float
-    fadeStyleId: str | None = field(default=None)
+    fadeStyleId: str | None = Field(default=None)

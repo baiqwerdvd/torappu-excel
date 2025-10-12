@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ActArchiveChatItemData(BaseStruct):
+class ActArchiveChatItemData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     floor: int
     chatZoneId: str
     chatDesc: str | None

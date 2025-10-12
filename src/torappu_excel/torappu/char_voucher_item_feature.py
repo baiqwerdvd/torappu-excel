@@ -1,9 +1,10 @@
+from pydantic import BaseModel, ConfigDict
+
 from .voucher_display_type import VoucherDisplayType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class CharVoucherItemFeature(BaseStruct):
+class CharVoucherItemFeature(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     displayType: VoucherDisplayType
-    id_: str = field(name="id")
+    id: str

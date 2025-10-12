@@ -1,11 +1,14 @@
+from pydantic import BaseModel, ConfigDict
+
 from .appearance_style import AppearanceStyle
 from .item_bundle import ItemBundle
 from .level_data import LevelData
 from .stage_data import StageData
-from ..common import BaseStruct
 
 
-class AprilFoolStageData(BaseStruct):
+class AprilFoolStageData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     stageId: str
     levelId: str
     code: str

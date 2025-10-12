@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SandboxMapConstTable(BaseStruct):
+class SandboxMapConstTable(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     directionNames: list[str]
     homeNodeStageId: str
     homeRushStageCode: str

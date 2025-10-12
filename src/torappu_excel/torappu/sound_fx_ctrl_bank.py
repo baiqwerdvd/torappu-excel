@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SoundFXCtrlBank(BaseStruct):
+class SoundFXCtrlBank(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     name: str
     targetBank: str
     ctrlStop: bool

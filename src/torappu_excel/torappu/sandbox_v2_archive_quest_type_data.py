@@ -1,10 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_v2_archive_quest_type import SandboxV2ArchiveQuestType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class SandboxV2ArchiveQuestTypeData(BaseStruct):
-    type_: SandboxV2ArchiveQuestType = field(name="type")
+class SandboxV2ArchiveQuestTypeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    type: SandboxV2ArchiveQuestType
     name: str
     iconId: str

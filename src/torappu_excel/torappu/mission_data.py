@@ -1,16 +1,17 @@
+from pydantic import BaseModel, ConfigDict
+
 from .mission_display_rewards import MissionDisplayRewards
 from .mission_item_bg_type import MissionItemBgType
 from .mission_type import MissionType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class MissionData(BaseStruct):
-    id_: str = field(name="id")
+class MissionData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     sortId: int
     description: str
-    type_: MissionType = field(name="type")
+    type: MissionType
     itemBgType: MissionItemBgType
     preMissionIds: list[str] | None
     template: str

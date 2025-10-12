@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SandboxDevelopmentLineSegmentData(BaseStruct):
+class SandboxDevelopmentLineSegmentData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     fromNodeId: str
     passingNodeIds: list[str]
     fromAxisPosX: int

@@ -1,7 +1,9 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class StorylineCollectData(BaseStruct):
+class StorylineCollectData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     name: str
     desc: str
     backgroundId: str

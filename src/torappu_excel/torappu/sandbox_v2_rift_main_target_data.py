@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_v2_rift_main_target_type import SandboxV2RiftMainTargetType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class SandboxV2RiftMainTargetData(BaseStruct):
-    id_: str = field(name="id")
+class SandboxV2RiftMainTargetData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     title: str
     desc: str
     storyDesc: str

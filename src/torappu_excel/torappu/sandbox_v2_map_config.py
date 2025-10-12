@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .vector2 import Vector2
-from ..common import BaseStruct
 
 
-class SandboxV2MapConfig(BaseStruct):
+class SandboxV2MapConfig(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     isRift: bool
     isGuide: bool
     cameraBoundMin: Vector2

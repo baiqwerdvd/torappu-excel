@@ -1,23 +1,24 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .evolve_phase import EvolvePhase
 from .roguelike_topic_mode import RoguelikeTopicMode
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeTopicDetailConst(BaseStruct):
+class RoguelikeTopicDetailConst(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     playerLevelTable: dict[str, "RoguelikeTopicDetailConst.PlayerLevelData"]
     charUpgradeTable: dict[str, "RoguelikeTopicDetailConst.CharUpgradeData"]
     difficultyUpgradeRelicDescTable: dict[str, str]
     tokenBpId: str
     tokenOuterBuffId: str
+    spOperatorLockedMessage: str | None
     previewedRewardsAccordingUpdateId: str
     tipButtonName: str
     collectButtonName: str
     bpSystemName: str
     autoSetKV: str
     bpPurchaseActiveEnroll: str | None
-    defaultSacrificeDesc: str | None
     defaultExpeditionSelectDesc: str | None
     gotCharMutationBuffToast: str | None
     gotCharEvolutionBuffToast: str | None
@@ -42,22 +43,29 @@ class RoguelikeTopicDetailConst(BaseStruct):
     outerBuffTokenSum: int
     needAllFrontNode: bool
     showBlurBack: bool
-    gotCharBuffToast: str | None = field(default=None)
-    predefinedLevelTable: dict[str, "RoguelikeTopicDetailConst.PredefinedPlayerLevelData"] | None = field(default=None)
-    endingIconBorderDifficulty: int = field(default=0)
-    endingIconBorderCount: int = field(default=0)
+    defaultSacrificeDesc: str | None = Field(default=None)
+    gotCharBuffToast: str | None = Field(default=None)
+    predefinedLevelTable: dict[str, "RoguelikeTopicDetailConst.PredefinedPlayerLevelData"] | None = Field(default=None)
+    endingIconBorderDifficulty: int = Field(default=0)
+    endingIconBorderCount: int = Field(default=0)
 
-    class PlayerLevelData(BaseStruct):
+    class PlayerLevelData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         exp: int
         populationUp: int
         squadCapacityUp: int
         battleCharLimitUp: int
         maxHpUp: int
 
-    class CharUpgradeData(BaseStruct):
+    class CharUpgradeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         evolvePhase: EvolvePhase
         skillLevel: int
         skillSpecializeLevel: int
 
-    class PredefinedPlayerLevelData(BaseStruct):
+    class PredefinedPlayerLevelData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         levels: dict[str, "RoguelikeTopicDetailConst.PlayerLevelData"]

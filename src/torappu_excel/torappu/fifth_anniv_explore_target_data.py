@@ -1,10 +1,10 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class FifthAnnivExploreTargetData(BaseStruct):
-    id_: str = field(name="id")
+class FifthAnnivExploreTargetData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     linkStageId: str
     targetValues: dict[str, int]
     lockedLevelId: str

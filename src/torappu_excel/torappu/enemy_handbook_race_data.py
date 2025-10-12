@@ -1,9 +1,9 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class EnemyHandbookRaceData(BaseStruct):
-    id_: str = field(name="id")
+class EnemyHandbookRaceData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     raceName: str
     sortId: int

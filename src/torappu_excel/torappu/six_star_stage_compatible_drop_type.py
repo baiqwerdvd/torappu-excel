@@ -1,4 +1,4 @@
-﻿from enum import StrEnum
+from enum import StrEnum
 
 
 class SixStarStageCompatibleDropType(StrEnum):

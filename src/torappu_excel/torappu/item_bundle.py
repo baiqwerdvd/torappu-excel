@@ -1,10 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_type import ItemType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ItemBundle(BaseStruct):
-    id_: str = field(name="id")
+class ItemBundle(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     count: int
-    type_: ItemType = field(name="type")
+    type: ItemType

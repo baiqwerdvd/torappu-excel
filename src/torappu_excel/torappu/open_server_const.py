@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class OpenServerConst(BaseStruct):
+class OpenServerConst(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     firstDiamondShardMailCount: int
     initApMailEndTs: int
     resFullOpenUnlockStageId: str

@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ZoneRecordUnlockData(BaseStruct):
+class ZoneRecordUnlockData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     noteId: str
     zoneId: str
     initialName: str

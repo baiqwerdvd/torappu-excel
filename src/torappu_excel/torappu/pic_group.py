@@ -1,8 +1,11 @@
-﻿from .common_avail_check import CommonAvailCheck
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
+
+from .common_avail_check import CommonAvailCheck
 
 
-class PicGroup(BaseStruct):
+class PicGroup(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     sortIndex: int
     picId: str
     availCheck: CommonAvailCheck

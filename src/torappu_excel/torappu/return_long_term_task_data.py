@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .mission_display_rewards import MissionDisplayRewards
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ReturnLongTermTaskData(BaseStruct):
-    id_: str = field(name="id")
+class ReturnLongTermTaskData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     sortId: int
     template: str
     param: list[str]

@@ -1,9 +1,11 @@
 from enum import StrEnum
 
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SoundFXBank(BaseStruct):
+class SoundFXBank(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     name: str
     sounds: list["SoundFXBank.SoundFX"] | None
     maxSoundAllowed: int
@@ -12,7 +14,9 @@ class SoundFXBank(BaseStruct):
     loop: bool
     mixerDesc: "MixerDesc | None"
 
-    class SoundFX(BaseStruct):
+    class SoundFX(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         asset: str
         weight: float
         important: bool
@@ -24,7 +28,9 @@ class SoundFXBank(BaseStruct):
         maxVolume: float
         ignoreTimeScale: bool
 
-    class MixerDesc(BaseStruct):
+    class MixerDesc(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         category: "Category"
         customGroup: str
         important: bool
@@ -37,4 +43,3 @@ class SoundFXBank(BaseStruct):
             GACHA = "GACHA"
             MISC = "MISC"
             ALL = "ALL"
-

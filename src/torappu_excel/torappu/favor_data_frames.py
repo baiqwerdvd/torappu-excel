@@ -1,7 +1,10 @@
+from pydantic import BaseModel, ConfigDict
+
 from .favor_data import FavorData
-from ..common import BaseStruct
 
 
-class FavorDataFrames(BaseStruct):
+class FavorDataFrames(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     level: int
     data: FavorData

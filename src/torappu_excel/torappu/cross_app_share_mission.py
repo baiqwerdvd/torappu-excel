@@ -1,9 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .cross_app_share_mission_type import CrossAppShareMissionType
 from .mission_display_rewards import MissionDisplayRewards
-from ..common import BaseStruct
 
 
-class CrossAppShareMission(BaseStruct):
+class CrossAppShareMission(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     shareMissionId: str
     missionType: CrossAppShareMissionType
     relateActivityId: str | None

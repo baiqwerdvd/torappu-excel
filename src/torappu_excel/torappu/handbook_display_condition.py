@@ -1,15 +1,15 @@
 from enum import StrEnum
 
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class HandbookDisplayCondition(BaseStruct):
+class HandbookDisplayCondition(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class DisplayType(StrEnum):
         DISPLAY_IF_CHAREXIST = "DISPLAY_IF_CHAREXIST"
         INVISIBLE_IF_CHAREXIST = "INVISIBLE_IF_CHAREXIST"
 
     charId: str
     conditionCharId: str
-    type_: "HandbookDisplayCondition.DisplayType" = field(name="type")
+    type: "HandbookDisplayCondition.DisplayType"

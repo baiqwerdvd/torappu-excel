@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class FifthAnnivExploreConst(BaseStruct):
+class FifthAnnivExploreConst(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     prevRecordNum: int
     maxBoard: int
     valueMin: int

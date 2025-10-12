@@ -1,12 +1,12 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class EnemyHandbookLevelInfoData(BaseStruct):
+class EnemyHandbookLevelInfoData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     classLevel: str
     attack: "EnemyHandbookLevelInfoData.RangePair"
-    def_: "EnemyHandbookLevelInfoData.RangePair" = field(name="def")
+    def_: "EnemyHandbookLevelInfoData.RangePair" = Field(alias="def")
     magicRes: "EnemyHandbookLevelInfoData.RangePair"
     maxHP: "EnemyHandbookLevelInfoData.RangePair"
     moveSpeed: "EnemyHandbookLevelInfoData.RangePair"
@@ -14,6 +14,8 @@ class EnemyHandbookLevelInfoData(BaseStruct):
     enemyDamageRes: "EnemyHandbookLevelInfoData.RangePair"
     enemyRes: "EnemyHandbookLevelInfoData.RangePair"
 
-    class RangePair(BaseStruct):
-        min_: float = field(name="min")
-        max_: float = field(name="max")
+    class RangePair(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        min: float
+        max: float

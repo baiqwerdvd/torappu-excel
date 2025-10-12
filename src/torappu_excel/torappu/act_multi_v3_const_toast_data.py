@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ActMultiV3ConstToastData(BaseStruct):
+class ActMultiV3ConstToastData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     noRoom: str
     fullRoom: str
     roomIdFormatError: str

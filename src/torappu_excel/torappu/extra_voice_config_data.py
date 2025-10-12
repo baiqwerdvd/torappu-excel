@@ -1,7 +1,10 @@
+from pydantic import BaseModel, ConfigDict
+
 from .voice_lang_type import VoiceLangType
-from ..common import BaseStruct
 
 
-class ExtraVoiceConfigData(BaseStruct):
+class ExtraVoiceConfigData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     voiceId: str
     validVoiceLang: list[VoiceLangType]

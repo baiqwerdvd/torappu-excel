@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .act_archive_totem_type import ActArchiveTotemType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ActArchiveTotemItemData(BaseStruct):
-    id_: str = field(name="id")
-    type_: ActArchiveTotemType = field(name="type")
+class ActArchiveTotemItemData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
+    type: ActArchiveTotemType
     enrollConditionId: str | None
     sortId: int

@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .stage_diff_group import StageDiffGroup
-from ..common import BaseStruct
 
 
-class StoryStageShowGroup(BaseStruct):
+class StoryStageShowGroup(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     displayRecordId: str
     stageId: str
     accordingStageId: str | None

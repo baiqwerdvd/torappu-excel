@@ -1,10 +1,10 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class ClimbTowerCurseCardData(BaseStruct):
-    id_: str = field(name="id")
+class ClimbTowerCurseCardData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     towerIdList: list[str]
     name: str
     desc: str

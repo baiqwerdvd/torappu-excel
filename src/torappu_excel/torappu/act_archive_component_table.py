@@ -1,6 +1,9 @@
+from pydantic import BaseModel, ConfigDict
+
 from .act_archive_component_data import ActArchiveComponentData
-from ..common import BaseStruct
 
 
-class ActArchiveComponentTable(BaseStruct):
+class ActArchiveComponentTable(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     components: dict[str, ActArchiveComponentData]

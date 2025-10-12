@@ -1,12 +1,13 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .evolve_phase import EvolvePhase
 from .item_bundle import ItemBundle
 from .uni_equip_type import UniEquipType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class UniEquipData(BaseStruct):
+class UniEquipData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     uniEquipId: str
     uniEquipName: str
     uniEquipIcon: str
@@ -24,7 +25,7 @@ class UniEquipData(BaseStruct):
     missionList: list[str]
     unlockFavors: dict[str, int] | None
     itemCost: dict[str, list[ItemBundle]] | None
-    type_: str = field(name="type")
+    type: str
     uniEquipGetTime: int
     uniEquipShowEnd: int
     charEquipOrder: int
@@ -33,10 +34,12 @@ class UniEquipData(BaseStruct):
     specialEquipDesc: str | None
     specialEquipColor: str | None
     charColor: str | None
-    unlockFavorPoint: int | None = field(default=None)
+    unlockFavorPoint: int | None = Field(default=None)
 
 
-class UniEquipDataOld(BaseStruct):
+class UniEquipDataOld(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     uniEquipId: str
     uniEquipName: str
     uniEquipIcon: str
@@ -52,15 +55,19 @@ class UniEquipDataOld(BaseStruct):
     unlockFavorPercent: int
     missionList: list[str]
     itemCost: list[ItemBundle] | None
-    type_: UniEquipType = field(name="type")
+    type: UniEquipType
     traitDescBundle: list["UniEquipDataOld.TraitDescBundle"]
 
-    class TraitDescBundle(BaseStruct):
+    class TraitDescBundle(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         unlockCondition: "UniEquipDataOld.UnlockCondition"
         requiredPotentialRank: int
         overrideDescription: str | None
         additiveDescription: str
 
-    class UnlockCondition(BaseStruct):
+    class UnlockCondition(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         phase: int
         level: int

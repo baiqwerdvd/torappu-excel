@@ -1,16 +1,17 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .mission_display_rewards import MissionDisplayRewards
 from .mission_item_bg_type import MissionItemBgType
 from .mission_type import MissionType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ClimbTowerMissionData(BaseStruct):
-    id_: str = field(name="id")
+class ClimbTowerMissionData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     sortId: int
     description: str
-    type_: MissionType = field(name="type")
+    type: MissionType
     itemBgType: MissionItemBgType
     preMissionIds: list[str] | None
     template: str
@@ -29,4 +30,4 @@ class ClimbTowerMissionData(BaseStruct):
 
     bindGodCardId: str | None
     bindTowerId: str | None
-    missionBkg: str | None = field(default=None)
+    missionBkg: str | None = Field(default=None)

@@ -6,13 +6,13 @@ from pathlib import Path
 
 import aiofiles
 import aiohttp
-from msgspec import Struct, convert
+from pydantic import BaseModel
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-class ApiFileData(Struct):
+class ApiFileData(BaseModel):
     name: str
     path: str
     size: int
@@ -21,12 +21,12 @@ class ApiFileData(Struct):
     is_dir: bool
 
 
-class ApiFileStruct(Struct):
+class ApiFileStruct(BaseModel):
     dir: ApiFileData
     children: list[ApiFileData]
 
 
-class ApiResponse(Struct):
+class ApiResponse(BaseModel):
     code: int
     msg: str | None
     data: ApiFileStruct
@@ -48,11 +48,11 @@ async def download_file(session: aiohttp.ClientSession, url: str, local_path: Pa
         logger.error(f"下载 {url} 时出错: {e}")
 
 
-async def get_file_list(api_url: str) -> list[ApiFileStruct]:
+async def get_file_list(api_url: str) -> list[ApiFileData]:
     async with aiohttp.ClientSession() as session:
         async with session.get(api_url) as response:
             response.raise_for_status()
-            data = convert(await response.json(), ApiFileStruct)
+            data = ApiFileStruct.model_validate(await response.json())
             return data.children
 
 

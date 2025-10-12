@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .stage_data import StageData
-from ..common import BaseStruct
 
 
-class RetroStageOverrideInfo(BaseStruct):
+class RetroStageOverrideInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     dropInfo: StageData.StageDropInfo
     zoneId: str
     apCost: int

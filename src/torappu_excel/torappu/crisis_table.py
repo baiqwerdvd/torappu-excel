@@ -1,15 +1,20 @@
+from dataclasses import field
+
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class StringKeyFrames(BaseStruct):
+class StringKeyFrames(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     level: int
     data: str
 
 
-class CrisisClientDataSeasonInfo(BaseStruct):
+class CrisisClientDataSeasonInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     seasonId: str
     startTs: int
     endTs: int
@@ -21,12 +26,16 @@ class CrisisClientDataSeasonInfo(BaseStruct):
     permBgmHard: str | None
 
 
-class CrisisMapRankInfo(BaseStruct):
+class CrisisMapRankInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     rewards: list[ItemBundle]
     unlockPoint: int
 
 
-class CrisisTable(BaseStruct):
+class CrisisTable(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     seasonInfo: list[CrisisClientDataSeasonInfo]
     meta: str
     unlockCoinLv3: int
@@ -35,6 +44,6 @@ class CrisisTable(BaseStruct):
     voiceGrade: int
     crisisRuneCoinUnlockItemTitle: str
     crisisRuneCoinUnlockItemDesc: str
-    tempAppraise: list[StringKeyFrames] = field(default_factory=list)
-    permAppraise: list[StringKeyFrames] = field(default_factory=list)
-    mapRankInfo: dict[str, CrisisMapRankInfo] = field(default_factory=dict)
+    tempAppraise: list[StringKeyFrames] = field(default_factory=list[StringKeyFrames])
+    permAppraise: list[StringKeyFrames] = field(default_factory=list[StringKeyFrames])
+    mapRankInfo: dict[str, CrisisMapRankInfo] = field(default_factory=dict[str, CrisisMapRankInfo])

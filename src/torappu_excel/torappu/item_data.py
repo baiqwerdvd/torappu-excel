@@ -1,14 +1,16 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .building_data import BuildingData
 from .item_classify_type import ItemClassifyType
+from .item_drop_shop_type import ItemDropShopType
 from .item_rarity import ItemRarity
 from .item_type import ItemType
 from .occ_per import OccPer
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ItemData(BaseStruct):
+class ItemData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     itemId: str
     name: str
     description: str | None
@@ -23,17 +25,33 @@ class ItemData(BaseStruct):
     itemType: ItemType
     stageDropList: list["ItemData.StageDropInfo"]
     buildingProductList: list["ItemData.BuildingProductInfo"]
-    voucherRelateList: list["ItemData.VoucherRelateInfo"] | None = field(default=None)
-    hideInItemGet: bool | None = field(default=None)
+    voucherRelateList: list["ItemData.VoucherRelateInfo"]
+    shopRelateInfoList: list["ItemData.ShopRelateInfo"] | None
+    voucherRelateList: list["ItemData.VoucherRelateInfo"] | None = Field(default=None)
+    hideInItemGet: bool | None = Field(default=None)
 
-    class StageDropInfo(BaseStruct):
+    class StageDropInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageId: str
         occPer: OccPer
+        sortId: int
 
-    class BuildingProductInfo(BaseStruct):
+    class BuildingProductInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         roomType: "BuildingData.RoomType"
         formulaId: str
 
-    class VoucherRelateInfo(BaseStruct):
+    class VoucherRelateInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         voucherId: str
         voucherItemType: ItemType
+
+    class ShopRelateInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        shopType: ItemDropShopType
+        shopGroup: int
+        startTs: int

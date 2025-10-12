@@ -1,3 +1,5 @@
+from pydantic import BaseModel, ConfigDict
+
 from .act1_v_auto_chess_comment_report_count_type import (
     Act1VAutoChessCommentReportCountType,
 )
@@ -15,12 +17,11 @@ from .evolve_phase import EvolvePhase
 from .item_bundle import ItemBundle
 from .profession_category import ProfessionCategory
 from .rarity_rank import RarityRank
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ActivityAutoChessVerify1Data(BaseStruct):
+class ActivityAutoChessVerify1Data(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     modeDataList: list["ActivityAutoChessVerify1Data.Act1VAutoChessModeData"]
     baseRewardDataDict: dict[str, list["ActivityAutoChessVerify1Data.Act1VAutoChessBaseRewardData"]]
     mileStoneList: list["ActivityAutoChessVerify1Data.Act1VAutoChessMilestoneData"]
@@ -48,7 +49,9 @@ class ActivityAutoChessVerify1Data(BaseStruct):
     factionDatas: dict[str, "ActivityAutoChessVerify1Data.Act1VAutoChessFactionData"]
     effectCounterTypeDataDict: dict[str, "ActivityAutoChessVerify1Data.Act1VAutoChessEffectCounterTypeData"]
 
-    class Act1VAutoChessModeData(BaseStruct):
+    class Act1VAutoChessModeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         modeId: str
         sortId: int
         name: str
@@ -60,7 +63,9 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         code: str
         modeType: Act1VAutoChessModeType
 
-    class Act1VAutoChessBandData(BaseStruct):
+    class Act1VAutoChessBandData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         bandId: str
         sortId: int
         bandName: str
@@ -72,11 +77,15 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         charName: str
         unlockDesc: str | None
 
-    class Act1VAutoChessModeBossHpData(BaseStruct):
+    class Act1VAutoChessModeBossHpData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         modeId: str
         hp: int
 
-    class Act1VAutoChessForceData(BaseStruct):
+    class Act1VAutoChessForceData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         forceId: str
         sortId: int
         forceName: str
@@ -86,19 +95,25 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         leaderName: str
         modeHpDatas: list["ActivityAutoChessVerify1Data.Act1VAutoChessModeBossHpData"]
 
-    class Act1VAutoChessBaseRewardData(BaseStruct):
+    class Act1VAutoChessBaseRewardData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         damageMin: int
         damageMax: int
         item: ItemBundle
         dailyMissionPoint: int
 
-    class Act1VAutoChessMilestoneData(BaseStruct):
+    class Act1VAutoChessMilestoneData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         milestoneId: str
         orderId: int
         tokenNum: int
         item: ItemBundle
 
-    class Act1VAutoChessEffectInfoData(BaseStruct):
+    class Act1VAutoChessEffectInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         effectId: str
         effectType: Act1VAutoChessEffectType
         effectCounterType: Act1VAutoChessEffectCounterType
@@ -108,7 +123,9 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         effectDecoIconId: str | None
         isMainEnemyEffect: bool
 
-    class Act1VAutoChessCultivateRelationData(BaseStruct):
+    class Act1VAutoChessCultivateRelationData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         cultivateNum: int
         effectId: str
         evolvePhase: EvolvePhase
@@ -117,21 +134,27 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         defPer: int
         hpPer: int
 
-    class Act1VAutoChessShopLevelData(BaseStruct):
+    class Act1VAutoChessShopLevelData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         shopLevel: int
         initialUpgradePrice: int
         chessCount: int
         itemCount: int
         baseShieldValue: int
 
-    class Act1VAutoChessShopLevelDisplayData(BaseStruct):
+    class Act1VAutoChessShopLevelDisplayData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         shopLevel: int
         levelTagBgColor: str
         isLevelCharChessEmpty: bool
         isLevelTrapChessEmpty: bool
         charChessDiySlotIdList: list[str] | None
 
-    class Act1VAutoChessCharShopChessData(BaseStruct):
+    class Act1VAutoChessCharShopChessData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         chessId: str
         goldenChessId: str
         isDiyChessSlot: bool
@@ -148,7 +171,9 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         backupCharUniEquipId: str | None
         backupCharPotRank: int
 
-    class Act1VAutoChessCharChessStatusData(BaseStruct):
+    class Act1VAutoChessCharChessStatusData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         evolvePhase: EvolvePhase
         charLevel: int
         skillLevel: int
@@ -156,7 +181,9 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         equipLevel: int
         maxItemEquipCnt: int
 
-    class Act1VAutoChessCharChessData(BaseStruct):
+    class Act1VAutoChessCharChessData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         chessId: str
         isGolden: bool
         purchasePrice: int
@@ -165,13 +192,17 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         upgradeNum: int
         damage: int
 
-    class Act1VAutoChessTrapChessStatusData(BaseStruct):
+    class Act1VAutoChessTrapChessStatusData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         evolvePhase: EvolvePhase
         trapLevel: int
         skillIndex: int
         skillLevel: int
 
-    class Act1VAutoChessTrapChessData(BaseStruct):
+    class Act1VAutoChessTrapChessData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         chessId: str
         isGolden: bool
         purchasePrice: int
@@ -183,22 +214,30 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         giveGroupId: str | None
         itemType: Act1VAutoChessTrapChessType
 
-    class Act1VAutoChessForceLevelRoundData(BaseStruct):
+    class Act1VAutoChessForceLevelRoundData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         round: int
         roundData: dict[str, "ActivityAutoChessVerify1Data.Act1VAutoChessForceLevelDetailedData"]
 
-    class Act1VAutoChessForceLevelDetailedData(BaseStruct):
+    class Act1VAutoChessForceLevelDetailedData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         forceId: str
         levelId: str
         roundDetailId: str
         round: int
 
-    class Act1VAutoChessStageData(BaseStruct):
+    class Act1VAutoChessStageData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageId: str
         mode: list[str]
         weight: int
 
-    class Act1VAutoChessTrapShopChessData(BaseStruct):
+    class Act1VAutoChessTrapShopChessData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemId: str
         goldenItemId: str | None
         hideInChessShop: bool
@@ -208,30 +247,42 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         itemType: Act1VAutoChessTrapChessType
         trapId: str
 
-    class Act1VAutoChessDiyChessSlotData(BaseStruct):
+    class Act1VAutoChessDiyChessSlotData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         charRarity: RarityRank
 
-    class Act1VAutoChessTurnInfoData(BaseStruct):
+    class Act1VAutoChessTurnInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         round: int
         rewardEnemyPreview: bool
 
-    class Act1VAutoChessBuffInfoData(BaseStruct):
+    class Act1VAutoChessBuffInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         key: str
         blackboard: list[Blackboard]
         countType: Act1VAutoChessCountType
 
-    class Act1VAutoChessFactionData(BaseStruct):
+    class Act1VAutoChessFactionData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         factionId: str
         factionName: str
         sortId: int
 
-    class Act1VAutoChessBattleCommentData(BaseStruct):
+    class Act1VAutoChessBattleCommentData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         template: str
         description: str
         reportType: Act1VAutoChessCommentReportCountType
         blackboard: list[Blackboard]
 
-    class Act1VAutoChessConstData(BaseStruct):
+    class Act1VAutoChessConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         chessSoldPrice: int
         shopRefreshPrice: int
         bonusRound: int
@@ -277,17 +328,23 @@ class ActivityAutoChessVerify1Data(BaseStruct):
         tutorialPhase1ShopLevel: int
         tutorialPhase2ShopLevel: int
 
-    class Act1VAutoChessSkillTriggerData(BaseStruct):
+    class Act1VAutoChessSkillTriggerData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         profession: ProfessionCategory
         subProfessionId: str | None
         charId: str | None
         skillIndex: int
         skillTriggerType: AutoChessSkillTriggerType
 
-    class Act1VAutoChessShopStateTokenData(BaseStruct):
+    class Act1VAutoChessShopStateTokenData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         tokenId: str
         tokenDisplayType: Act1VAutoChessShopTokenDisplayType
 
-    class Act1VAutoChessEffectCounterTypeData(BaseStruct):
-        type_: Act1VAutoChessEffectCounterType = field(name="type")
-        format_: str = field(name="format")
+    class Act1VAutoChessEffectCounterTypeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        type: Act1VAutoChessEffectCounterType
+        format: str

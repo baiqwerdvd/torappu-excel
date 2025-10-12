@@ -1,10 +1,10 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class ClimbTowerSeasonInfoData(BaseStruct):
-    id_: str = field(name="id")
+class ClimbTowerSeasonInfoData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     name: str
     seasonNum: int
     startTs: int
@@ -12,4 +12,4 @@ class ClimbTowerSeasonInfoData(BaseStruct):
     towers: list[str]
     seasonCards: list[str]
     replicatedTowers: list[str]
-    seasonColor: str | None = field(default=None)
+    seasonColor: str | None = Field(default=None)

@@ -1,3 +1,5 @@
+from pydantic import BaseModel, ConfigDict
+
 from .act_multi_v3_const_data import ActMultiV3ConstData
 from .act_multi_v3_const_toast_data import ActMultiV3ConstToastData
 from .act_multi_v3_diff_star_reward_data import ActMultiV3DiffStarRewardData
@@ -10,6 +12,9 @@ from .act_multi_v3_match_pos_data import ActMultiV3MatchPosData
 from .act_multi_v3_milestone_data import ActMultiV3MilestoneData
 from .act_multi_v3_photo_type_data import ActMultiV3PhotoTypeData
 from .act_multi_v3_report_data import ActMultiV3ReportData
+from .act_multi_v3_sail_boat_block_info_data import ActMultiV3SailBoatBlockInfoData
+from .act_multi_v3_sail_boat_block_pool_data import ActMultiV3SailBoatBlockPoolData
+from .act_multi_v3_sail_boat_level_pool_data import ActMultiV3SailBoatLevelPoolData
 from .act_multi_v3_select_step_data import ActMultiV3SelectStepData
 from .act_multi_v3_squad_effect_data import ActMultiV3SquadEffectData
 from .act_multi_v3_squad_info_data import ActMultiV3SquadInfoData
@@ -18,10 +23,11 @@ from .act_multi_v3_temp_char_data import ActMultiV3TempCharData
 from .act_multi_v3_tips_data import ActMultiV3TipsData
 from .act_multi_v3_title_data import ActMultiV3TitleData
 from .act_multi_v3_weekly_photo_reward_data import ActMultiV3WeeklyPhotoRewardData
-from ..common import BaseStruct
 
 
-class ActMultiV3Data(BaseStruct):
+class ActMultiV3Data(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     selectStepDataList: list[ActMultiV3SelectStepData]
     squadInfoList: list[ActMultiV3SquadInfoData]
     identityDataList: list[ActMultiV3IdentityData]
@@ -44,3 +50,6 @@ class ActMultiV3Data(BaseStruct):
     tempCharDataList: list[ActMultiV3TempCharData]
     constToastData: ActMultiV3ConstToastData
     constData: ActMultiV3ConstData
+    sailBoatLevelPoolDict: dict[str, ActMultiV3SailBoatLevelPoolData]
+    sailBoatBlockPoolDict: dict[str, list[ActMultiV3SailBoatBlockPoolData]]
+    sailBoatBlockInfoList: dict[str, ActMultiV3SailBoatBlockInfoData]

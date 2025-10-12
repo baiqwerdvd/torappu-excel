@@ -1,10 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
 from .item_type import ItemType
 from .shared_models import ActivityTable
-from ..common import BaseStruct
 
 
-class ActivityRoguelikeData(BaseStruct):
+class ActivityRoguelikeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     outBuffInfos: dict[str, "ActivityRoguelikeData.OuterBuffUnlockInfoData"]
     apSupplyOutOfDateDict: dict[str, int]
     outerBuffToken: str
@@ -20,7 +23,9 @@ class ActivityRoguelikeData(BaseStruct):
     milestone: list["ActivityRoguelikeData.MileStoneItemInfo"]
     unlockConds: list[ActivityTable.CustomUnlockCond]
 
-    class OuterBuffUnlockInfo(BaseStruct):
+    class OuterBuffUnlockInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         buffLevel: int
         name: str
         iconId: str
@@ -30,11 +35,15 @@ class ActivityRoguelikeData(BaseStruct):
         itemType: ItemType
         cost: int
 
-    class OuterBuffUnlockInfoData(BaseStruct):
+    class OuterBuffUnlockInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         buffId: str
         buffUnlockInfos: dict[str, "ActivityRoguelikeData.OuterBuffUnlockInfo"]
 
-    class MileStoneItemInfo(BaseStruct):
+    class MileStoneItemInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         mileStoneId: str
         orderId: int
         tokenNum: int

@@ -1,12 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .roguelike_buff import RoguelikeBuff
 from .roguelike_game_char_buff_type import RoguelikeGameCharBuffType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeGameCharBuffData(BaseStruct):
-    id_: str = field(name="id")
+class RoguelikeGameCharBuffData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     buffType: RoguelikeGameCharBuffType
     iconId: str
     outerName: str

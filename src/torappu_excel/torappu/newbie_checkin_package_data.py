@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .newbie_checkin_package_reward_data import NewbieCheckInPackageRewardData
-from ..common import BaseStruct
 
 
-class NewbieCheckInPackageData(BaseStruct):
+class NewbieCheckInPackageData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     groupId: str
     startTime: int
     endTime: int

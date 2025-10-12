@@ -1,9 +1,9 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class MusicData(BaseStruct):
-    id_: str = field(name="id")
+class MusicData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     name: str
     bank: str

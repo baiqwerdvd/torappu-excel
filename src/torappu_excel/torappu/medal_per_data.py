@@ -1,12 +1,13 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .medal_expire_time import MedalExpireTime
 from .medal_rarity import MedalRarity
 from .medal_reward_group_data import MedalRewardGroupData
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class MedalPerData(BaseStruct):
+class MedalPerData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     medalId: str | None
     medalName: str | None
     medalType: str | None
@@ -22,4 +23,4 @@ class MedalPerData(BaseStruct):
     displayTime: int
     expireTimes: list[MedalExpireTime]
     medalRewardGroup: list[MedalRewardGroupData]
-    isHidden: bool | None = field(default=None)
+    isHidden: bool | None = Field(default=None)

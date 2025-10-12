@@ -1,6 +1,9 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class PotentialMaterialConverterConfig(BaseStruct):
+class PotentialMaterialConverterConfig(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     items: dict[str, ItemBundle]

@@ -19,3 +19,11 @@ class RL03EndingText(IRoguelikeScrollEndingText):
     summaryMeetSecretpath: str
     summaryUseTotem: str
     summaryVisionGrade: str
+    summaryMeetSpZone: str | None
+    summaryBuyWithPriceId: str | None
+    summaryStockRecruitTicket: str | None
+    summaryDuelWin: str | None
+    summaryDuelTie: str | None
+    summaryDuelLose: str | None
+    summaryExpeditionGo: str | None
+    summaryExpeditionBack: str | None

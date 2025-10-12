@@ -1,12 +1,13 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .char_word_show_type import CharWordShowType
 from .festival_time_data import FestivalTimeData
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class FestivalVoiceData(BaseStruct):
+class FestivalVoiceData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     showType: CharWordShowType
     timeData: list[FestivalTimeData]
-    startTs: int | None = field(default=None)
-    endTs: int | None = field(default=None)
+    startTs: int | None = Field(default=None)
+    endTs: int | None = Field(default=None)

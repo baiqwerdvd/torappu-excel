@@ -1,17 +1,17 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeDisasterModuleData(BaseStruct):
-    class RoguelikeDisasterData(BaseStruct):
-        id_: str = field(name="id")
+class RoguelikeDisasterModuleData(BaseModel):
+    class RoguelikeDisasterData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         iconId: str
         toastIconId: str
         level: int
         name: str
         levelName: str
-        type_: str = field(name="type")
+        type: str
         functionDesc: str
         desc: str
         sound: str | None

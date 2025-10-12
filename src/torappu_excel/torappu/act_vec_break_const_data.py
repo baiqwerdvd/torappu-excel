@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ActVecBreakConstData(BaseStruct):
+class ActVecBreakConstData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     defenceDesc: str
     milestoneName: str
     milestoneItemId: str

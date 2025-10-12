@@ -1,13 +1,14 @@
 from enum import StrEnum
 
+from pydantic import BaseModel, ConfigDict, Field
+
 from .enemy_handbook_damage_type import EnemyHandBookDamageType
 from .enemy_level_type import EnemyLevelType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class EnemyHandBookData(BaseStruct):
+class EnemyHandBookData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class TextFormat(StrEnum):
         NORMAL = "NORMAL"
         TITLE = "TITLE"
@@ -29,8 +30,10 @@ class EnemyHandBookData(BaseStruct):
     linkEnemies: list[str] | None
     damageType: list[EnemyHandBookDamageType] | None
     invisibleDetail: bool
-    hideInStage: bool | None = field(default=None)
+    hideInStage: bool | None = Field(default=None)
 
-    class Abilty(BaseStruct):
+    class Abilty(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         text: str
         textFormat: "EnemyHandBookData.TextFormat"

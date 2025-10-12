@@ -1,9 +1,9 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class SpecialItemInfo(BaseStruct):
+class SpecialItemInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     showPreview: bool
     specialDesc: str
-    specialBtnText: str | None = field(default=None)
+    specialBtnText: str | None = Field(default=None)

@@ -1,13 +1,14 @@
+from pydantic import BaseModel, ConfigDict
+
 from .activity_theme_type import ActivityThemeType
 from .common_avail_check import CommonAvailCheck
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ActivityThemeData(BaseStruct):
-    id_: str = field(name="id")
-    type_: ActivityThemeType = field(name="type")
+class ActivityThemeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
+    type: ActivityThemeType
     funcId: str
     endTs: int
     sortId: int
@@ -16,11 +17,15 @@ class ActivityThemeData(BaseStruct):
     picGroups: list["PicGroup"]
     startTs: int
 
-    class TimeNode(BaseStruct):
+    class TimeNode(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         title: str
         ts: int
 
-    class PicGroup(BaseStruct):
+    class PicGroup(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         sortIndex: int
         picId: str
         availCheck: CommonAvailCheck

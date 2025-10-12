@@ -1,10 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
+from torappu_excel.common import CustomIntEnum
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct, CustomIntEnum
-
-from msgspec import field
 
 
-class Act29SideData(BaseStruct):
+class Act29SideData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class Act29SideInvestType(CustomIntEnum):
         MAJOR = "MAJOR", 0
         RARE = "RARE", 1
@@ -37,22 +40,28 @@ class Act29SideData(BaseStruct):
     zoneAdditionDataMap: dict[str, "Act29SideData.Act29SideZoneAdditionData"]
     musicDataMap: list["Act29SideData.Act29SideMusicData"]
 
-    class Act29SideFragData(BaseStruct):
+    class Act29SideFragData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         fragId: str
         sortId: int
         fragName: str
         fragIcon: str
         fragStoreIcon: str
 
-    class Act29SideOrcheData(BaseStruct):
-        id_: str = field(name="id")
+    class Act29SideOrcheData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         name: str
         desc: str
         icon: str
         sortId: int
         orcheType: "Act29SideData.Act29SideOrcheType"
 
-    class Act29SideProductGroupData(BaseStruct):
+    class Act29SideProductGroupData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         groupId: str
         groupName: str
         groupIcon: str
@@ -77,14 +86,18 @@ class Act29SideData(BaseStruct):
         confirmDescColor: str
         bagThemeColor: str
 
-    class Act29SideProductData(BaseStruct):
-        id_: str = field(name="id")
+    class Act29SideProductData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         orcheId: str | None
         groupId: str
         formId: str | None
         musicId: str
 
-    class Act29SideFormData(BaseStruct):
+    class Act29SideFormData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         formId: str
         fragIdList: list[str]
         formDesc: str
@@ -93,13 +106,17 @@ class Act29SideData(BaseStruct):
         groupId: str
         formSortId: int
 
-    class Act29SideInvestResultData(BaseStruct):
+    class Act29SideInvestResultData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         resultId: str
         resultTitle: str
         resultDesc1: str
         resultDesc2: str
 
-    class Act29SideInvestData(BaseStruct):
+    class Act29SideInvestData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         investId: str
         investType: "Act29SideData.Act29SideInvestType"
         investNpcName: str
@@ -113,7 +130,9 @@ class Act29SideData(BaseStruct):
         investFailResultId: str
         investRareResultId: str | None
 
-    class Act29SideConstData(BaseStruct):
+    class Act29SideConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         majorInvestUnlockItemName: str
         wrongTipsTriggerTime: int
         majorInvestCompleteImgId: str
@@ -131,11 +150,15 @@ class Act29SideData(BaseStruct):
         noOrcheDesc: str
         investTrackId: str | None
 
-    class Act29SideZoneAdditionData(BaseStruct):
+    class Act29SideZoneAdditionData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         zoneId: str
         unlockText: str
 
-    class Act29SideMusicData(BaseStruct):
+    class Act29SideMusicData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         groupId: str
         orcheId: str | None
         musicId: str

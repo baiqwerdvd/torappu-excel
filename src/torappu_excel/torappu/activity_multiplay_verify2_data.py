@@ -1,14 +1,15 @@
 from enum import StrEnum
 
+from pydantic import BaseModel, ConfigDict
+
 from .evolve_phase import EvolvePhase
 from .item_bundle import ItemBundle
 from .player_avatar_group_type import PlayerAvatarGroupType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class ActivityMultiplayVerify2Data(BaseStruct):
+class ActivityMultiplayVerify2Data(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class Act2VMultiRoomStepType(StrEnum):
         NONE = "NONE"
         STAGE_CHOOSE = "STAGE_CHOOSE"
@@ -57,7 +58,9 @@ class ActivityMultiplayVerify2Data(BaseStruct):
     difficultyNameDataList: list["ActivityMultiplayVerify2Data.Act2VMultiMapDifficultyNameData"]
     buffIconDatas: dict[str, "ActivityMultiplayVerify2Data.Act2VMultiBuffIconData"]
 
-    class Act2VMultiSelectStepData(BaseStruct):
+    class Act2VMultiSelectStepData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stepType: "ActivityMultiplayVerify2Data.Act2VMultiRoomStepType"
         sortId: int
         time: int
@@ -65,16 +68,20 @@ class ActivityMultiplayVerify2Data(BaseStruct):
         title: str
         desc: str | None
 
-    class Act2VMultiIdentityData(BaseStruct):
-        id_: str = field(name="id")
+    class Act2VMultiIdentityData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         sortId: int
         picId: str
-        type_: "ActivityMultiplayVerify2Data.Act2VMultiIdentityType" = field(name="type")
+        type: "ActivityMultiplayVerify2Data.Act2VMultiIdentityType"
         maxNum: int
         color: str | None
 
-    class Act2VMultiMapTypeData(BaseStruct):
-        type_: "ActivityMultiplayVerify2Data.Act2VMultiMapType" = field(name="type")
+    class Act2VMultiMapTypeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        type: "ActivityMultiplayVerify2Data.Act2VMultiMapType"
         difficulty: "ActivityMultiplayVerify2Data.Act2VMultiMapDifficultyType"
         squadMax: int
         matchUnlockModeId: str | None
@@ -82,7 +89,9 @@ class ActivityMultiplayVerify2Data(BaseStruct):
         stageIdInModeList: list[str]
         modeIconId: str
 
-    class Act2VMultiMapData(BaseStruct):
+    class Act2VMultiMapData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageId: str
         modeId: str
         sortId: int
@@ -91,56 +100,74 @@ class ActivityMultiplayVerify2Data(BaseStruct):
         stageBigPreviewId: str
         displayEnemyIdList: list[str]
 
-    class Act2VMultiTargetMissionData(BaseStruct):
-        id_: str = field(name="id")
+    class Act2VMultiTargetMissionData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         sortId: int
         title: str
         battleDesc: str
         description: str
         starNum: int
 
-    class Act2VMultiMilestoneData(BaseStruct):
+    class Act2VMultiMilestoneData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         mileStoneId: str
         mileStoneLvl: int
         needPointCnt: int
         rewardItem: ItemBundle
 
-    class Act2VMultiStarRewardData(BaseStruct):
+    class Act2VMultiStarRewardData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         starNum: int
         rewards: list[ItemBundle]
         dailyMissionPoint: int
 
-    class Act2VMultiStageStarRewardData(BaseStruct):
+    class Act2VMultiStageStarRewardData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         starRewardDatas: list["ActivityMultiplayVerify2Data.Act2VMultiStarRewardData"]
 
-    class Act2VMultiEmojiChatData(BaseStruct):
-        id_: str = field(name="id")
-        type_: "ActivityMultiplayVerify2Data.Act2VMultiEmojiChatSceneType" = field(name="type")
+    class Act2VMultiEmojiChatData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
+        type: "ActivityMultiplayVerify2Data.Act2VMultiEmojiChatSceneType"
         sortId: int
         picId: str
         desc: str
 
-    class Act2VMultiCommentData(BaseStruct):
-        id_: str = field(name="id")
-        type_: "ActivityMultiplayVerify2Data.Act2VMultiMapType" = field(name="type")
+    class Act2VMultiCommentData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
+        type: "ActivityMultiplayVerify2Data.Act2VMultiMapType"
         priorityId: int
         picId: str
         txt: str
         template: str
         paramList: list[str]
 
-    class Act2VMultiTipsData(BaseStruct):
-        id_: str = field(name="id")
+    class Act2VMultiTipsData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         txt: str
         weight: int
 
-    class Act2VMultiReportData(BaseStruct):
-        id_: str = field(name="id")
+    class Act2VMultiReportData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
         sortId: int
         txt: str
         desc: str
 
-    class Act2VMultiTempCharData(BaseStruct):
+    class Act2VMultiTempCharData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         charId: str
         level: int
         evolvePhase: EvolvePhase
@@ -150,11 +177,15 @@ class ActivityMultiplayVerify2Data(BaseStruct):
         favorPoint: int
         skinId: str
 
-    class Act2VMultiConstDataPingCond(BaseStruct):
+    class Act2VMultiConstDataPingCond(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         cond: int
         txt: str
 
-    class Act2VMultiConstData(BaseStruct):
+    class Act2VMultiConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         milestoneId: str
         maxUnlockNum: int
         roomNumCopyDesc: str
@@ -225,7 +256,9 @@ class ActivityMultiplayVerify2Data(BaseStruct):
         trainPartnerAvatarGroupType: PlayerAvatarGroupType
         trainPartnerAvatarId: str
 
-    class Act2VMultiConstToastData(BaseStruct):
+    class Act2VMultiConstToastData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         noRoom: str
         fullRoom: str
         roomIdFormatError: str
@@ -254,14 +287,20 @@ class ActivityMultiplayVerify2Data(BaseStruct):
         teamFullHigh: str
         difficultUnlock: str
 
-    class Act2VMultiMapTypeNameData(BaseStruct):
+    class Act2VMultiMapTypeNameData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         mapType: "ActivityMultiplayVerify2Data.Act2VMultiMapType"
         typeName: str
 
-    class Act2VMultiMapDifficultyNameData(BaseStruct):
+    class Act2VMultiMapDifficultyNameData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         difficulty: "ActivityMultiplayVerify2Data.Act2VMultiMapDifficultyType"
         difficultyName: str
 
-    class Act2VMultiBuffIconData(BaseStruct):
+    class Act2VMultiBuffIconData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         buffId: str
         iconId: str

@@ -1,12 +1,13 @@
 from enum import StrEnum
 
+from pydantic import BaseModel, ConfigDict, Field
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class SiracusaData(BaseStruct):
+class SiracusaData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class ZoneUnlockType(StrEnum):
         NONE = "NONE"
         STAGE_UNLOCK = "STAGE_UNLOCK"
@@ -51,7 +52,9 @@ class SiracusaData(BaseStruct):
     operaCommentInfoMap: dict[str, "SiracusaData.OperaCommentInfoData"]
     constData: "SiracusaData.ConstData"
 
-    class AreaData(BaseStruct):
+    class AreaData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         areaId: str
         areaName: str
         areaSubName: str
@@ -60,7 +63,9 @@ class SiracusaData(BaseStruct):
         areaIconId: str
         pointList: list[str]
 
-    class PointData(BaseStruct):
+    class PointData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         pointId: str
         areaId: str
         pointName: str
@@ -68,7 +73,9 @@ class SiracusaData(BaseStruct):
         pointIconId: str
         pointItaName: str
 
-    class CharCardData(BaseStruct):
+    class CharCardData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         charCardId: str
         sortIndex: int
         avgChar: str
@@ -83,9 +90,11 @@ class SiracusaData(BaseStruct):
         taskRingList: list[str]
         operaItemId: str
         gainParamList: list[str] | None
-        gainType: "SiracusaData.CardGainType | None" = field(default=None)
+        gainType: "SiracusaData.CardGainType | None" = Field(default=None)
 
-    class TaskRingData(BaseStruct):
+    class TaskRingData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         taskRingId: str
         sortIndex: int
         charCardId: str
@@ -95,7 +104,9 @@ class SiracusaData(BaseStruct):
         isPrecious: bool
         taskIdList: list[str]
 
-    class TaskBasicInfoData(BaseStruct):
+    class TaskBasicInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         taskId: str
         taskRingId: str
         sortIndex: int
@@ -103,39 +114,51 @@ class SiracusaData(BaseStruct):
         npcId: str | None
         taskType: "SiracusaData.TaskType"
 
-    class BattleTaskData(BaseStruct):
+    class BattleTaskData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         taskId: str
         stageId: str
         battleTaskDesc: str
-        targetType: str | None = field(default=None)
-        targetTemplate: str | None = field(default=None)
-        targetParamList: list[str] | None = field(default=None)
+        targetType: str | None = Field(default=None)
+        targetTemplate: str | None = Field(default=None)
+        targetParamList: list[str] | None = Field(default=None)
 
-    class AVGTaskData(BaseStruct):
+    class AVGTaskData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         taskId: str
         taskAvg: str
 
-    class ItemInfoData(BaseStruct):
+    class ItemInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemId: str
         itemName: str
         itemItalyName: str
         itemDesc: str
         itemIcon: str
 
-    class ItemCardInfoData(BaseStruct):
+    class ItemCardInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         cardId: str
         cardName: str
         cardDesc: str
         optionScript: str
 
-    class NavigationInfoData(BaseStruct):
+    class NavigationInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         entryId: str
         navigationType: "SiracusaData.NavigationType"
         entryIcon: str
         entryName: str | None
         entrySubName: str | None
 
-    class OptionInfoData(BaseStruct):
+    class OptionInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         optionId: str
         optionDesc: str
         optionScript: str
@@ -144,18 +167,24 @@ class SiracusaData(BaseStruct):
         needCommentLike: bool
         requireCardId: str | None
 
-    class StagePointInfoData(BaseStruct):
+    class StagePointInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         stageId: str
         pointId: str
         sortId: int
         isTaskStage: bool
 
-    class StoryBriefInfoData(BaseStruct):
+    class StoryBriefInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         storyId: str
         stageId: str
         storyInfo: str
 
-    class OperaInfoData(BaseStruct):
+    class OperaInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         operaId: str
         sortId: int
         operaName: str
@@ -163,7 +192,9 @@ class SiracusaData(BaseStruct):
         operaScore: str
         unlockTime: int
 
-    class OperaCommentInfoData(BaseStruct):
+    class OperaCommentInfoData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         commentId: str
         referenceOperaId: str
         columnIndex: int
@@ -173,7 +204,9 @@ class SiracusaData(BaseStruct):
         commentContent: str
         commentCharId: str
 
-    class ConstData(BaseStruct):
+    class ConstData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         operaDailyNum: int
         operaAllUnlockTime: int
         defaultFocusArea: str

@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class SpecialRecruitPool(BaseStruct):
+class SpecialRecruitPool(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     endDateTime: int
     order: int
     recruitId: str
@@ -15,7 +18,9 @@ class SpecialRecruitPool(BaseStruct):
     LMTGSID: str | None
     gachaRuleType: str
 
-    class SpecialRecruitCostData(BaseStruct):
+    class SpecialRecruitCostData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemCosts: ItemBundle
         recruitPrice: int
         timeLength: int

@@ -8,6 +8,7 @@ from src.torappu_excel.models import (
     BuildingTable,
     CampaignTable,
     ChapterTable,
+    CharMasterTable,
     CharMetaTable,
     CharPatchTable,
     CharacterTable,
@@ -40,6 +41,7 @@ from src.torappu_excel.models import (
     ShopClientTable,
     SkillTable,
     SkinTable,
+    SpecialOperatorTable,
     StageTable,
     StoryReviewMetaTable,
     StoryReviewTable,
@@ -62,6 +64,7 @@ async def test_client_table():
     building_table(base_path)
     campaign_table(base_path)
     chapter_table(base_path)
+    char_master_table(base_path)
     char_meta_table(base_path)
     char_patch_table(base_path)
     character_table(base_path)
@@ -94,6 +97,7 @@ async def test_client_table():
     shop_client_table(base_path)
     skill_table(base_path)
     skin_table(base_path)
+    special_operator_table(base_path)
     stage_table(base_path)
     story_review_meta_table(base_path)
     story_review_table(base_path)
@@ -109,286 +113,298 @@ async def test_client_table():
 def activity_table(path: Path):
     with open(path / "activity_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = ActivityTable.convert(data)
+    _ = ActivityTable.model_validate(data)
 
 
 def audio_table(path: Path):
     with open(path / "audio_data.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = AudioTable.convert(data)
+    _ = AudioTable.model_validate(data)
 
 
 def battle_equip_table(path: Path):
     with open(path / "battle_equip_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = BattleEquipTable.convert({"equips": data})
+    _ = BattleEquipTable.model_validate({"equips": data})
 
 
 def building_table(path: Path):
     with open(path / "building_data.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = BuildingTable.convert(data)
+    _ = BuildingTable.model_validate(data)
 
 
 def campaign_table(path: Path):
     with open(path / "campaign_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = CampaignTable.convert(data)
+    _ = CampaignTable.model_validate(data)
 
 
 def chapter_table(path: Path):
     with open(path / "chapter_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = ChapterTable.convert({"chapters": data})
+    _ = ChapterTable.model_validate({"chapters": data})
+
+
+def char_master_table(path: Path):
+    with open(path / "char_master_table.json", encoding="utf8") as f:
+        data = json.load(f)
+    _ = CharMasterTable.model_validate({"masters": data})
 
 
 def char_meta_table(path: Path):
     with open(path / "char_meta_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = CharMetaTable.convert(data)
+    _ = CharMetaTable.model_validate(data)
 
 
 def char_patch_table(path: Path):
     with open(path / "char_patch_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = CharPatchTable.convert(data)
+    _ = CharPatchTable.model_validate(data)
 
 
 def character_table(path: Path):
     with open(path / "character_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = CharacterTable.convert({"chars": data})
+    _ = CharacterTable.model_validate({"chars": data})
 
 
 def charm_table(path: Path):
     with open(path / "charm_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = CharmTable.convert(data)
+    _ = CharmTable.model_validate(data)
 
 
 def charword_table(path: Path):
     with open(path / "charword_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = CharwordTable.convert(data)
+    _ = CharwordTable.model_validate(data)
 
 
 def checkin_table(path: Path):
     with open(path / "checkin_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = CheckinTable.convert(data)
+    _ = CheckinTable.model_validate(data)
 
 
 def climb_tower_table(path: Path):
     with open(path / "climb_tower_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = ClimbTowerTable.convert(data)
+    _ = ClimbTowerTable.model_validate(data)
 
 
 def clue_table(path: Path):
     with open(path / "clue_data.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = ClueTable.convert(data)
+    _ = ClueTable.model_validate(data)
 
 
 def crisis_table(path: Path):
     with open(path / "crisis_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = CrisisTable.convert(data)
+    _ = CrisisTable.model_validate(data)
 
 
 def crisis_v2_table(path: Path):
     with open(path / "crisis_v2_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = CrisisV2Table.convert(data)
+    _ = CrisisV2Table.model_validate(data)
 
 
 def display_meta_table(path: Path):
     with open(path / "display_meta_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = DisplayMetaTable.convert(data)
+    _ = DisplayMetaTable.model_validate(data)
 
 
 def enemy_handbook_table(path: Path):
     with open(path / "enemy_handbook_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = EnemyHandbookTable.convert(data)
+    _ = EnemyHandbookTable.model_validate(data)
 
 
 def favor_table(path: Path):
     with open(path / "favor_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = FavorTable.convert(data)
+    _ = FavorTable.model_validate(data)
 
 
 def gacha_table(path: Path):
     with open(path / "gacha_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = GachaTable.convert(data)
+    _ = GachaTable.model_validate(data)
 
 
 def game_data_const(path: Path):
     with open(path / "gamedata_const.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = GameDataConst.convert(data)
+    _ = GameDataConst.model_validate(data)
 
 
 def handbook_info_table(path: Path):
     with open(path / "handbook_info_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = HandbookInfoTable.convert(data)
+    _ = HandbookInfoTable.model_validate(data)
 
 
 def handbook_table(path: Path):
     with open(path / "handbook_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = HandbookTable.convert(data)
+    _ = HandbookTable.model_validate(data)
 
 
 def handbook_team_table(path: Path):
     with open(path / "handbook_team_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = HandbookTeamTable.convert({"team": data})
+    _ = HandbookTeamTable.model_validate({"team": data})
 
 
 def item_table(path: Path):
     with open(path / "item_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = ItemTable.convert(data)
+    _ = ItemTable.model_validate(data)
 
 
 def medal_table(path: Path):
     with open(path / "medal_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = MedalTable.convert(data)
+    _ = MedalTable.model_validate(data)
 
 
 def mission_table(path: Path):
     with open(path / "mission_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = MissionTable.convert(data)
+    _ = MissionTable.model_validate(data)
 
 
 def open_server_table(path: Path):
     with open(path / "open_server_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = OpenServerTable.convert(data)
+    _ = OpenServerTable.model_validate(data)
 
 
 def player_avatar_table(path: Path):
     with open(path / "player_avatar_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = PlayerAvatarTable.convert(data)
+    _ = PlayerAvatarTable.model_validate(data)
 
 
 def range_table(path: Path):
     with open(path / "range_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = RangeTable.convert({"range": data})
+    _ = RangeTable.model_validate({"range": data})
 
 
 def replicate_table(path: Path):
     with open(path / "replicate_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = ReplicateTable.convert({"replicate": data})
+    _ = ReplicateTable.model_validate({"replicate": data})
 
 
 def retro_table(path: Path):
     with open(path / "retro_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = RetroTable.convert(data)
+    _ = RetroTable.model_validate(data)
 
 
 def roguelike_table(path: Path):
     with open(path / "roguelike_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = RoguelikeTable.convert(data)
+    _ = RoguelikeTable.model_validate(data)
 
 
 def roguelike_topic_table(path: Path):
     with open(path / "roguelike_topic_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = RoguelikeTopicTable.convert(data)
+    _ = RoguelikeTopicTable.model_validate(data)
 
 
 def sandbox_perm_table(path: Path):
     with open(path / "sandbox_perm_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = SandboxPermTable.convert(data)
+    _ = SandboxPermTable.model_validate(data)
 
 
 def shop_client_table(path: Path):
     with open(path / "shop_client_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = ShopClientTable.convert(data)
+    _ = ShopClientTable.model_validate(data)
 
 
 def skill_table(path: Path):
     with open(path / "skill_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = SkillTable.convert({"skills": data})
+    _ = SkillTable.model_validate({"skills": data})
 
 
 def skin_table(path: Path):
     with open(path / "skin_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = SkinTable.convert(data)
+    _ = SkinTable.model_validate(data)
+
+
+def special_operator_table(path: Path):
+    with open(path / "special_operator_table.json", encoding="utf8") as f:
+        data = json.load(f)
+    _ = SpecialOperatorTable.model_validate(data)
 
 
 def stage_table(path: Path):
     with open(path / "stage_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = StageTable.convert(data)
+    _ = StageTable.model_validate(data)
 
 
 def story_review_meta_table(path: Path):
     with open(path / "story_review_meta_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = StoryReviewMetaTable.convert(data)
+    _ = StoryReviewMetaTable.model_validate(data)
 
 
 def story_review_table(path: Path):
     with open(path / "story_review_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = StoryReviewTable.convert({"storyreview": data})
+    _ = StoryReviewTable.model_validate({"storyreview": data})
 
 
 def story_table(path: Path):
     with open(path / "story_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = StoryTable.convert({"stories": data})
+    _ = StoryTable.model_validate({"stories": data})
 
 
 def tech_buff_table(path: Path):
     with open(path / "tech_buff_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = TechBuffTable.convert(data)
+    _ = TechBuffTable.model_validate(data)
 
 
 def tip_table(path: Path):
     with open(path / "tip_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = TipTable.convert(data)
+    _ = TipTable.model_validate(data)
 
 
 def token_table(path: Path):
     with open(path / "token_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = TokenTable.convert({"tokens": data})
+    _ = TokenTable.model_validate({"tokens": data})
 
 
 def uniequip_data(path: Path):
     with open(path / "uniequip_data.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = UniequipData.convert(data)
+    _ = UniequipData.model_validate(data)
 
 
 def uniequip_table(path: Path):
     with open(path / "uniequip_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = UniequipTable.convert(data)
+    _ = UniequipTable.model_validate(data)
 
 
 def zone_table(path: Path):
     with open(path / "zone_table.json", encoding="utf8") as f:
         data = json.load(f)
-    _ = ZoneTable.convert(data)
+    _ = ZoneTable.model_validate(data)

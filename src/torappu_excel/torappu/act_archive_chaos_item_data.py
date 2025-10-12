@@ -1,10 +1,10 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class ActArchiveChaosItemData(BaseStruct):
-    id_: str = field(name="id")
+class ActArchiveChaosItemData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     isHidden: bool
     enrollId: str | None
     sortId: int

@@ -1,10 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .act_multi_v3_inverse_unlock_cond import ActMultiV3InverseUnlockCond
 from .item_bundle import ItemBundle
 from .player_avatar_group_type import PlayerAvatarGroupType
-from ..common import BaseStruct
 
 
-class ActMultiV3ConstData(BaseStruct):
+class ActMultiV3ConstData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     milestoneId: str
     roomNumCopyDesc: str
     noMapRoomNumCopyDesc: str
@@ -79,7 +82,23 @@ class ActMultiV3ConstData(BaseStruct):
     photoCharacterDefaultAct: str
     trainingStageConfirmDesc: str
     joinRoomLongTimeThreshold: float
+    invitationSendCd: int
+    boatMapReachableSize: int
+    boatMapSizeMax: int
+    boatExitMapOffset: int
+    boatEnterTranOffset: int
+    boatCollisionLossSpeedFactor: float
+    boatAirFactor: float
+    boatFrictionFactor: float
+    boatForceInterval: float
+    boatExchangeDamageMax: int
+    boatExchangeDamageMin: int
+    boatExchangeForceMax: int
+    boatExchangeForceMin: int
+    waterSpeedFactor: float
 
-    class PingCond(BaseStruct):
+    class PingCond(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         cond: int
         txt: str

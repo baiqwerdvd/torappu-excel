@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_type import ItemType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeTopicBP(BaseStruct):
-    id_: str = field(name="id")
+class RoguelikeTopicBP(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     level: int
     tokenNum: int
     nextTokenNum: int

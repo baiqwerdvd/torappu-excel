@@ -1,10 +1,10 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeGameRecruitGrpData(BaseStruct):
-    id_: str = field(name="id")
+class RoguelikeGameRecruitGrpData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     iconId: str
     name: str
     desc: str

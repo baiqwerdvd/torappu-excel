@@ -1,9 +1,13 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class Act20SideData(BaseStruct):
+class Act20SideData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     zoneAdditionDataMap: dict[str, str]
     residentCartDatas: dict[str, "Act20SideData.ResidentCartData"]
 
-    class ResidentCartData(BaseStruct):
+    class ResidentCartData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         residentPic: str

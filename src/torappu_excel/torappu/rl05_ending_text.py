@@ -1,0 +1,70 @@
+from pydantic import BaseModel, ConfigDict
+
+
+class RL05EndingText(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    summaryGetCopper: str
+    summaryLostCopper: str
+    summaryDrawCopper: str
+    summaryCopperResultGood: str
+    summaryCopperResultBad: str
+    summaryCopperResultNormal: str
+    summaryCopperCheckSuccess: str
+    summaryCopperCheckFail: str
+    summaryCopperCheckNormal: str
+    summaryMeetWrath: str
+    summaryExpeditionGoEndingFour: str
+    summaryExpeditionBackEndingFour: str
+    summaryExpeditionBackCandle: str
+    summaryExpeditionGoEnding: str
+    summaryExpeditionBackEnding: str
+    summaryHoldCandle: str
+    summaryHoldCandleRecruit: str
+    summaryHoldCandleUpgrade: str
+    summaryExchangeSpZoneGet: str
+    summaryMeetShopSpZone: str
+    summaryBattleFailSpZone: str
+    summaryMeetEventLock: str
+    summaryTreasureSpZone: str
+    summaryMeetExchangeSpZone: str
+    summaryMeetTradeSpZone: str
+    summaryActor: str
+    summaryTop: str
+    summaryZone: str
+    summaryEnding: str
+    summaryDifficultyZone: str
+    summaryDifficultyEnding: str
+    summaryMode: str
+    summarySupport: str
+    summaryGroup: str
+    summaryNormalRecruit: str
+    summaryDirectRecruit: str
+    summaryFriendRecruit: str
+    summaryFreeRecruit: str
+    summaryMonthRecruit: str
+    summaryUpgrade: str
+    summaryCompleteEnding: str
+    summaryEachZone: str
+    summaryMeetSpZone: str
+    summaryPerfectBattle: str
+    summaryMeetBattle: str
+    summaryMeetEvent: str
+    summaryMeetShop: str
+    summaryMeetTreasure: str
+    summaryMeetSecretpath: str
+    summaryExchangeRelic: str
+    summaryMeetTrade: str
+    summaryBuy: str
+    summaryBuyWithPriceId: str
+    summaryInvest: str
+    summaryGet: str
+    summaryRelic: str
+    summarySafeHouse: str
+    summaryFailEnd: str
+    summaryStockRecruitTicket: str
+    summaryDuelWin: str
+    summaryDuelTie: str
+    summaryDuelLose: str
+    summaryExpeditionGo: str
+    summaryExpeditionBack: str

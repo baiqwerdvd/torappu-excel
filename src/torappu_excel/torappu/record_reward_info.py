@@ -1,10 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
 from .record_reward_stage_diff import RecordRewardStageDiff
 from .stage_diff_group import StageDiffGroup
-from ..common import BaseStruct
 
 
-class RecordRewardInfo(BaseStruct):
+class RecordRewardInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     bindStageId: str
     stageDiff1: RecordRewardStageDiff
     stageDiff: StageDiffGroup

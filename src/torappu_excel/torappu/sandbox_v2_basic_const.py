@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .item_bundle import ItemBundle
 from .sandbox_v2_diff_mode_data import SandboxV2DiffModeData
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class SandboxV2BasicConst(BaseStruct):
+class SandboxV2BasicConst(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     staminaItemId: str
     goldItemId: str
     dimensioncoinItemId: str
@@ -62,5 +63,5 @@ class SandboxV2BasicConst(BaseStruct):
     diffList: list[SandboxV2DiffModeData]
     battlePreloadEnemies: list[str]
     battleExcludedTrapsInRush: list[str]
-    enhancedSubFoodmat: str | None = field(default=None)
-    enhancedDuration: int | None = field(default=None)
+    enhancedSubFoodmat: str | None = Field(default=None)
+    enhancedDuration: int | None = Field(default=None)

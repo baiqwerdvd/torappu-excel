@@ -1,11 +1,14 @@
+from pydantic import BaseModel, ConfigDict
+
 from .chain_login_data import ChainLoginData
 from .mission_data import MissionData
 from .mission_group import MissionGroup
 from .total_checkin_data import TotalCheckinData
-from ..common import BaseStruct
 
 
-class OpenServerData(BaseStruct):
+class OpenServerData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     openServerMissionGroup: MissionGroup
     openServerMissionData: list[MissionData]
     checkInData: list[TotalCheckinData]

@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SandboxV2ArchiveAchievementTypeData(BaseStruct):
+class SandboxV2ArchiveAchievementTypeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     achievementType: str
     name: str
     sortId: int

@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .roguelike_enroll_type import RoguelikeEnrollType
-from ..common import BaseStruct
 
 
-class RoguelikeTopicEnroll(BaseStruct):
+class RoguelikeTopicEnroll(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     enrollId: str
     enrollTime: int
     enrollType: RoguelikeEnrollType

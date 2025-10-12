@@ -1,10 +1,10 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class FifthAnnivExploreEventChoiceData(BaseStruct):
-    id_: str = field(name="id")
+class FifthAnnivExploreEventChoiceData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     eventId: str
     name: str
     desc: str

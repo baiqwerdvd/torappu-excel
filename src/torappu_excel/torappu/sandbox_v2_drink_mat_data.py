@@ -1,10 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_perm_item_type import SandboxPermItemType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class SandboxV2DrinkMatData(BaseStruct):
-    id_: str = field(name="id")
-    type_: SandboxPermItemType = field(name="type")
+class SandboxV2DrinkMatData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
+    type: SandboxPermItemType
     count: int

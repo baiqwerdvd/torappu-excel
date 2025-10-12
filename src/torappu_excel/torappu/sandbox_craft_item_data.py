@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_craft_item_type import SandboxCraftItemType
-from ..common import BaseStruct
 
 
-class SandboxCraftItemData(BaseStruct):
+class SandboxCraftItemData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     itemId: str
     sortId: int
     getFrom: str

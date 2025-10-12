@@ -1,5 +1,8 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class StorylineMainlineSplitData(BaseStruct):
+class StorylineMainlineSplitData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     iconId: str
+    subName: str

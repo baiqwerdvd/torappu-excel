@@ -1,10 +1,13 @@
 from enum import StrEnum
 
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class MiniActTrialData(BaseStruct):
+class MiniActTrialData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class RuleType(StrEnum):
         NONE = "NONE"
         TITLE = "TITLE"
@@ -14,17 +17,23 @@ class MiniActTrialData(BaseStruct):
     ruleDataList: list["MiniActTrialData.RuleData"]
     miniActTrialDataMap: dict[str, "MiniActTrialData.MiniActTrialSingleData"]
 
-    class RuleData(BaseStruct):
+    class RuleData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         ruleType: "MiniActTrialData.RuleType"
         ruleText: str
 
-    class MiniActTrialSingleData(BaseStruct):
+    class MiniActTrialSingleData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         actId: str
         rewardStartTime: int
         themeColor: str
         rewardList: list["MiniActTrialData.MiniActTrialRewardData"]
 
-    class MiniActTrialRewardData(BaseStruct):
+    class MiniActTrialRewardData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         trialRewardId: str
         orderId: int
         actId: str

@@ -1,7 +1,9 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class StoryVariantData(BaseStruct):
+class StoryVariantData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     plotTaskId: str
     spStoryId: str
     storyId: str

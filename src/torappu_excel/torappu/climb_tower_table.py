@@ -1,3 +1,5 @@
+from pydantic import BaseModel, ConfigDict
+
 from .climb_tower_curse_card_data import ClimbTowerCurseCardData
 from .climb_tower_detail_const import ClimbTowerDetailConst
 from .climb_tower_main_card_data import ClimbTowerMainCardData
@@ -9,10 +11,11 @@ from .climb_tower_single_tower_data import ClimbTowerSingleTowerData
 from .climb_tower_sub_card_data import ClimbTowerSubCardData
 from .climb_tower_tactical_buff_data import ClimbTowerTacticalBuffData
 from .mission_group import MissionGroup
-from ..common import BaseStruct
 
 
-class ClimbTowerTable(BaseStruct):
+class ClimbTowerTable(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     towers: dict[str, ClimbTowerSingleTowerData]
     levels: dict[str, ClimbTowerSingleLevelData]
     tacticalBuffs: dict[str, ClimbTowerTacticalBuffData]

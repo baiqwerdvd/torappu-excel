@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .evolve_phase import EvolvePhase
-from ..common import BaseStruct
 
 
-class SandboxV2TutorialRepoCharData(BaseStruct):
+class SandboxV2TutorialRepoCharData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     instId: int
     charId: str
     evolvePhase: EvolvePhase

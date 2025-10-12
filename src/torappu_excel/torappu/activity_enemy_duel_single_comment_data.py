@@ -1,7 +1,9 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ActivityEnemyDuelSingleCommentData(BaseStruct):
+class ActivityEnemyDuelSingleCommentData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     commentId: str
     priority: int
     template: str

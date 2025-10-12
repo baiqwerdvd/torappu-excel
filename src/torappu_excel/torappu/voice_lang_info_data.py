@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .voice_lang_type import VoiceLangType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class VoiceLangInfoData(BaseStruct):
+class VoiceLangInfoData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     wordkey: str
     voiceLangType: VoiceLangType
     cvName: list[str]
-    voicePath: str | None = field(default=None)
+    voicePath: str | None = Field(default=None)

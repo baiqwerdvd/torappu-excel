@@ -1,9 +1,9 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict
 
 
-class FurniShopGroup(BaseStruct):
+class FurniShopGroup(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     packageId: str
     icon: str
     name: str
@@ -16,19 +16,25 @@ class FurniShopGroup(BaseStruct):
     eventGoodList: list["FurniShopGroup.EventGoodData"]
     imageList: list["FurniShopGroup.ImageDisplayData"]
 
-    class GoodData(BaseStruct):
+    class GoodData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         goodId: str
         count: int
-        set_: str = field(name="set")
+        set: str
         sequence: int
 
-    class EventGoodData(BaseStruct):
+    class EventGoodData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         name: str
         count: int
         furniId: str
-        set_: str = field(name="set")
+        set: str
         sequence: int
 
-    class ImageDisplayData(BaseStruct):
+    class ImageDisplayData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         picId: str
         index: int

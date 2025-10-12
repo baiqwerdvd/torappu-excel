@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .data_unlock_type import DataUnlockTypeInt
-from ..common import BaseStruct
 
 
-class HandBookInfoTextViewData(BaseStruct):
+class HandBookInfoTextViewData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     infoList: list["HandBookInfoTextViewData.InfoTextAudio"]
     unLockorNot: bool
     unLockType: DataUnlockTypeInt
@@ -11,6 +14,8 @@ class HandBookInfoTextViewData(BaseStruct):
     unLockLevelAdditive: int
     unLockString: str
 
-    class InfoTextAudio(BaseStruct):
+    class InfoTextAudio(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         infoText: str
         audioName: str

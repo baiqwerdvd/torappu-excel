@@ -1,7 +1,9 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class SubProfessionData(BaseStruct):
+class SubProfessionData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     subProfessionId: str
     subProfessionName: str
     subProfessionCatagory: int

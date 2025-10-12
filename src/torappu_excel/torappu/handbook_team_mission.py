@@ -1,11 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class HandbookTeamMission(BaseStruct):
-    id_: str = field(name="id")
+class HandbookTeamMission(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
     sort: int
     powerId: str
     powerName: str

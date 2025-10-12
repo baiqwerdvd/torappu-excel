@@ -1,9 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .extra_shop_group_type import ExtraShopGroupType
 from .item_bundle import ItemBundle
-from ..common import BaseStruct
 
 
-class ExtraQCObject(BaseStruct):
+class ExtraQCObject(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     goodId: str
     item: ItemBundle
     displayName: str

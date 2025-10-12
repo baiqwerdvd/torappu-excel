@@ -1,7 +1,7 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class CrossAppShareMissionConst(BaseStruct):
-    nameCardShareMissionId: str = field(default="")
+class CrossAppShareMissionConst(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    nameCardShareMissionId: str = Field(default="")

@@ -1,16 +1,19 @@
+from pydantic import BaseModel, ConfigDict, Field
+
 from .based_recruit_pool import RecruitConstants
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RecruitPool(BaseStruct):
+class RecruitPool(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     recruitTimeTable: list["RecruitPool.RecruitTime"]
     recruitConstants: "RecruitConstants"
-    recruitCharacterList: None = field(default=None)
-    maskTypeWeightTable: None = field(default=None)
+    recruitCharacterList: None = Field(default=None)
+    maskTypeWeightTable: None = Field(default=None)
 
-    class RecruitTime(BaseStruct):
+    class RecruitTime(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         timeLength: int
         recruitPrice: int
-        accumRate: float | None = field(default=None)
+        accumRate: float | None = Field(default=None)

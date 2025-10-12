@@ -1,11 +1,11 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class RoguelikeBandRefData(BaseStruct):
+class RoguelikeBandRefData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     itemId: str
     bandLevel: int
     normalBandId: str
-    iconId: str | None = field(default=None)
-    description: str | None = field(default=None)
+    iconId: str | None = Field(default=None)
+    description: str | None = Field(default=None)

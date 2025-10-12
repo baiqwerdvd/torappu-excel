@@ -1,8 +1,11 @@
-﻿from .six_star_stage_compatible_drop_type import SixStarStageCompatibleDropType
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
+
+from .six_star_stage_compatible_drop_type import SixStarStageCompatibleDropType
 
 
-class SixStarLinkedStageCompatibleInfo(BaseStruct):
+class SixStarLinkedStageCompatibleInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     stageId: str
     apCost: int
     apFailReturn: int

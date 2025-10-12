@@ -1,10 +1,6 @@
-from collections.abc import Callable, Iterable, Iterator
-from copy import copy, deepcopy
 from enum import Enum
-import json
-from typing import Any, Self, dataclass_transform
+from typing import Self
 
-from msgspec import Struct, convert, field, json as mscjson, msgpack as mscmsgpack
 from typing_extensions import override
 
 
@@ -84,63 +80,3 @@ class CustomIntEnum(Enum):
             if member.value == value or member._int_value_ == value:
                 return member
         return super()._missing_(value)
-
-
-@dataclass_transform(field_specifiers=(field,))
-class BaseStruct(Struct, forbid_unknown_fields=True, omit_defaults=True, gc=False):
-    class Config:
-        encoder: mscjson.Encoder = mscjson.Encoder()
-
-    @classmethod
-    def convert(
-        cls,
-        obj: Any,
-        *,
-        strict: bool = True,
-        from_attributes: bool = False,
-        dec_hook: Callable[[type, Any], Any] | None = None,
-        builtin_types: Iterable[type] | None = None,
-        str_keys: bool = False,
-    ) -> Self:
-        if obj is None:
-            return None  # pyright: ignore[reportReturnType]
-        if isinstance(obj, BaseStruct):
-            if idCheck := getattr(obj, "id_", None):
-                if isinstance(idCheck, object):
-                    setattr(obj, "id_", str(idCheck))
-            obj = obj.model_dump()
-        return convert(
-            obj=obj,
-            type=cls,
-            strict=strict,
-            from_attributes=from_attributes,
-            dec_hook=dec_hook,
-            builtin_types=builtin_types,
-            str_keys=str_keys,
-        )
-
-    def __iter__(self) -> Iterator[tuple[str, Any]]:
-        for field_name in self.__struct_fields__:
-            yield field_name, getattr(self, field_name)
-
-    def keys(self) -> Iterator[str]:
-        yield from self.__struct_fields__
-
-    def values(self) -> Iterator[Any]:
-        for field_name in self.__struct_fields__:
-            yield getattr(self, field_name)
-
-    def model_dump(self) -> dict[str, Any]:
-        return mscjson.decode(mscjson.encode(self))
-
-    def encode(self) -> bytes:
-        return mscmsgpack.encode(self)
-
-    def to_string(self) -> str:
-        return json.dumps(self.model_dump(), ensure_ascii=False, separators=(",", ":"))
-
-    def dump_child(self, target: str) -> Any:
-        return self.model_dump()[target]
-
-    def model_copy(self, *, deep: bool = False) -> Self:
-        return deepcopy(self) if deep else copy(self)

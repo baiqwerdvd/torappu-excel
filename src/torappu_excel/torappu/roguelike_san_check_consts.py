@@ -1,5 +1,7 @@
-from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class RoguelikeSanCheckConsts(BaseStruct):
+class RoguelikeSanCheckConsts(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     sanDecreaseToast: str

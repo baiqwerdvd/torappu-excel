@@ -1,3 +1,5 @@
+from pydantic import BaseModel, ConfigDict
+
 from .roguelike_choice_data import RoguelikeChoiceData
 from .roguelike_choice_scene_data import RoguelikeChoiceSceneData
 from .roguelike_const_table import RoguelikeConstTable
@@ -7,10 +9,11 @@ from .roguelike_mode_data import RoguelikeModeData
 from .roguelike_out_buff_data import RoguelikeOutBuffData
 from .roguelike_stage_data import RoguelikeStageData
 from .roguelike_zone_data import RoguelikeZoneData
-from ..common import BaseStruct
 
 
-class RoguelikeTable(BaseStruct):
+class RoguelikeTable(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     constTable: RoguelikeConstTable
     itemTable: RoguelikeItemTable
     stages: dict[str, RoguelikeStageData]

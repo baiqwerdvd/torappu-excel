@@ -1,9 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .profession_category import ProfessionCategory
 from .profession_id import ProfessionID
-from ..common import BaseStruct
 
 
-class SandboxV2ExpeditionData(BaseStruct):
+class SandboxV2ExpeditionData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     expeditionId: str
     desc: str
     effectDesc: str

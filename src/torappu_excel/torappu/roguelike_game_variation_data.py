@@ -1,12 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
 from .roguelike_game_variation_type import RoguelikeGameVariationType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeGameVariationData(BaseStruct):
-    id_: str = field(name="id")
-    type_: RoguelikeGameVariationType = field(name="type")
+class RoguelikeGameVariationData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    id: str
+    type: RoguelikeGameVariationType
     outerName: str
     innerName: str
     functionDesc: str

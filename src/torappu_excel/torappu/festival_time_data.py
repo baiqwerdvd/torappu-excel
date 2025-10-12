@@ -1,9 +1,12 @@
+from pydantic import BaseModel, ConfigDict
+
 from .festival_voice_time_type import FestivalVoiceTimeType
-from ..common import BaseStruct
 
 
-class FestivalTimeData(BaseStruct):
-    class FestivalTimeInterval(BaseStruct):
+class FestivalTimeData(BaseModel):
+    class FestivalTimeInterval(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         startTs: int
         endTs: int
 

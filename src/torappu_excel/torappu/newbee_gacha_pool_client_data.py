@@ -1,17 +1,17 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class NewbeeGachaPoolClientData(BaseStruct):
+class NewbeeGachaPoolClientData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     gachaPoolId: str
     gachaIndex: int
     gachaPoolName: str
     gachaPoolDetail: str
     gachaPrice: int
     gachaTimes: int
-    gachaOffset: str | None = field(default=None)
-    firstOpenDay: int | None = field(default=None)
-    reOpenDay: int | None = field(default=None)
-    gachaPoolItems: None = field(default=None)
-    signUpEarliestTime: int | None = field(default=None)
+    gachaOffset: str | None = Field(default=None)
+    firstOpenDay: int | None = Field(default=None)
+    reOpenDay: int | None = Field(default=None)
+    gachaPoolItems: None = Field(default=None)
+    signUpEarliestTime: int | None = Field(default=None)

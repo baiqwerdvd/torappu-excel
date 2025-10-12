@@ -1,7 +1,9 @@
-﻿from ..common import BaseStruct
+from pydantic import BaseModel, ConfigDict
 
 
-class ActivityEnemyDuelRoundData(BaseStruct):
+class ActivityEnemyDuelRoundData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     roundId: str
     modeId: str
     round: int

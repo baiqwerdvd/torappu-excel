@@ -1,13 +1,18 @@
+from pydantic import BaseModel, ConfigDict
+
 from .skin_voice_type import SkinVoiceType
-from ..common import BaseStruct
 
 
-class CharSkinData(BaseStruct):
+class CharSkinData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     skinId: str
     charId: str
     tokenSkinMap: list["CharSkinData.TokenSkinInfo"] | None
     illustId: str | None
+    spIllustId: str | None
     dynIllustId: str | None
+    spDynIllustId: str | None
     avatarId: str
     portraitId: str | None
     dynPortraitId: str | None
@@ -20,15 +25,21 @@ class CharSkinData(BaseStruct):
     voiceType: SkinVoiceType
     displaySkin: "CharSkinData.DisplaySkin"
 
-    class TokenSkinInfo(BaseStruct):
+    class TokenSkinInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         tokenId: str
         tokenSkinId: str
 
-    class BattleSkin(BaseStruct):
+    class BattleSkin(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         overwritePrefab: bool
         skinOrPrefabId: str | None
 
-    class DisplaySkin(BaseStruct):
+    class DisplaySkin(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         skinName: str | None
         colorList: list[str] | None
         titleList: list[str] | None

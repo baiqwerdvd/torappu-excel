@@ -1,10 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_v2_food_variant_type import SandboxV2FoodVariantType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class SandboxV2FoodVariantData(BaseStruct):
-    type_: SandboxV2FoodVariantType = field(name="type")
+class SandboxV2FoodVariantData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    type: SandboxV2FoodVariantType
     name: str
     usage: str

@@ -1,26 +1,31 @@
+from pydantic import BaseModel, ConfigDict
+
 from .alchemy_pool_rarity_type import AlchemyPoolRarityType
 from .roguelike_event_type import RoguelikeEventType
 from .roguelike_fragment_type import RoguelikeFragmentType
 from .roguelike_game_item_type import RoguelikeGameItemType
-from ..common import BaseStruct
-
-from msgspec import field
 
 
-class RoguelikeFragmentModuleData(BaseStruct):
-    class RoguelikeFragmentData(BaseStruct):
-        id_: str = field(name="id")
-        type_: RoguelikeFragmentType = field(name="type")
+class RoguelikeFragmentModuleData(BaseModel):
+    class RoguelikeFragmentData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
+        type: RoguelikeFragmentType
         value: int
         weight: int
 
-    class RoguelikeFragmentTypeData(BaseStruct):
-        type_: RoguelikeFragmentType = field(name="type")
+    class RoguelikeFragmentTypeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        type: RoguelikeFragmentType
         typeName: str
         typeDesc: str
         typeIconId: str
 
-    class RoguelikeFragmentModuleConsts(BaseStruct):
+    class RoguelikeFragmentModuleConsts(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         weightStatusSafeDesc: str
         weightStatusLimitDesc: str
         weightStatusOverweightDesc: str
@@ -33,12 +38,16 @@ class RoguelikeFragmentModuleData(BaseStruct):
         fragmentBagWeightOverWeightTips: str
         weightUpgradeToastFormat: str
 
-    class RoguelikeFragmentBuffData(BaseStruct):
+    class RoguelikeFragmentBuffData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         itemId: str
         maskType: RoguelikeEventType
         desc: str | None
 
-    class RoguelikeAlchemyData(BaseStruct):
+    class RoguelikeAlchemyData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         fragmentTypeList: list[RoguelikeFragmentType]
         fragmentSquareSum: int
         poolRarity: AlchemyPoolRarityType
@@ -48,13 +57,17 @@ class RoguelikeFragmentModuleData(BaseStruct):
         overrideConditionBandIds: list[str] | None
         overrideRecipeId: str | None
 
-    class RoguelikeAlchemyFormulationData(BaseStruct):
+    class RoguelikeAlchemyFormulationData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         fragmentIds: list[str]
         rewardId: str
         rewardCount: int
         rewardItemType: RoguelikeGameItemType
 
-    class RoguelikeFragmentLevelRelatedData(BaseStruct):
+    class RoguelikeFragmentLevelRelatedData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
         weightUp: int
 
     fragmentData: dict[str, "RoguelikeFragmentModuleData.RoguelikeFragmentData"]

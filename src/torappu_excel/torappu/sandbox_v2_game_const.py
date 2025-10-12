@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_v2_season_type import SandboxV2SeasonType
-from ..common import BaseStruct
 
 
-class SandboxV2GameConst(BaseStruct):
+class SandboxV2GameConst(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     mainMapId: str
     baseTrapId: str
     portableTrapId: str

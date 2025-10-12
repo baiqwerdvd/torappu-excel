@@ -1,9 +1,9 @@
-from ..common import BaseStruct
-
-from msgspec import field
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class CrisisV2SeasonInfo(BaseStruct):
+class CrisisV2SeasonInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     seasonId: str
     name: str
     startTs: int
@@ -16,5 +16,5 @@ class CrisisV2SeasonInfo(BaseStruct):
     seasonBgm: str
     seasonBgmChallenge: str
     crisisV2SeasonCode: str
-    textColor: str | None = field(default=None)
-    backColor: str | None = field(default=None)
+    textColor: str | None = Field(default=None)
+    backColor: str | None = Field(default=None)

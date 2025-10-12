@@ -1,8 +1,11 @@
+from pydantic import BaseModel, ConfigDict
+
 from .sandbox_v2_alchemy_material_data import SandboxV2AlchemyMaterialData
-from ..common import BaseStruct
 
 
-class SandboxV2AlchemyRecipeData(BaseStruct):
+class SandboxV2AlchemyRecipeData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     recipeId: str
     materials: list[SandboxV2AlchemyMaterialData]
     itemId: str

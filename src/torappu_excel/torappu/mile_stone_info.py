@@ -1,8 +1,13 @@
+from pydantic import BaseModel, ConfigDict
+
+from torappu_excel.common import CustomIntEnum
+
 from .item_bundle import ItemBundle
-from ..common import BaseStruct, CustomIntEnum
 
 
-class MileStoneInfo(BaseStruct):
+class MileStoneInfo(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class GoodType(CustomIntEnum):
         NORMAL = "NORMAL", 0
         SPECIAL = "SPECIAL", 1
