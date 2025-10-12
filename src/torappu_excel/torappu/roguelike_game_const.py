@@ -57,13 +57,6 @@ class RoguelikeGameConst(BaseModel):
     expeditionReturnDesc: str | None
     expeditionReturnDescItem: str | None
     expeditionReturnRewardBlackList: list[str]
-    travelLeaveToastFormat: str
-    charSelectTravelConflictToast: str
-    travelReturnDescUpgrade: str
-    travelReturnDesc: str
-    travelReturnDescItem: str
-    traderReturnTitle: str
-    traderReturnDesc: str
     candleReturnDescCandleUpgrade: str | None
     candleReturnDescCandle: str | None
     charSelectCandleConflictToast: str | None
@@ -76,7 +69,6 @@ class RoguelikeGameConst(BaseModel):
     copperGildDesc: str | None
     relicDesc: str | None
     buffDesc: str | None
-    refreshNodeItemId: str
     storingRecruitDesc: str | None
     storingRecruitSucceedToast: str | None
     specialRecruitReductionDesc: str | None

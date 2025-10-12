@@ -25,7 +25,6 @@ class ItemData(BaseModel):
     itemType: ItemType
     stageDropList: list["ItemData.StageDropInfo"]
     buildingProductList: list["ItemData.BuildingProductInfo"]
-    voucherRelateList: list["ItemData.VoucherRelateInfo"]
     shopRelateInfoList: list["ItemData.ShopRelateInfo"] | None
     voucherRelateList: list["ItemData.VoucherRelateInfo"] | None = Field(default=None)
     hideInItemGet: bool | None = Field(default=None)

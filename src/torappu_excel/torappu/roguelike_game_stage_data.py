@@ -22,7 +22,6 @@ class RoguelikeGameStageData(BaseModel):
     capsuleProb: float | int
     vutresProb: list[float]
     boxProb: list[float]
-    specialNodeId: str
     redCapsulePool: str | None
     redCapsuleProb: float
     specialNodeId: str | None = Field(default=None)

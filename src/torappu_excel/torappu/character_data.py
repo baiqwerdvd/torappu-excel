@@ -20,7 +20,6 @@ class CharacterData(BaseModel):
 
     name: str
     description: str | None
-    sortIndex: int
     spTargetType: SpecialOperatorTargetType
     spTargetId: str | None
     canUseGeneralPotentialItem: bool
