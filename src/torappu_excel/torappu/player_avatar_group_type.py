@@ -1,10 +1,10 @@
-from ..common import CustomIntEnum
+﻿from enum import StrEnum
 
 
-class PlayerAvatarGroupType(CustomIntEnum):
-    NONE = "NONE", 0
-    ASSISTANT = "ASSISTANT", 1
-    DEFAULT = "DEFAULT", 2
-    SPECIAL = "SPECIAL", 3
-    ACTIVITY = "ACTIVITY", 4
-    DYNAMIC = "DYNAMIC", 5
+class PlayerAvatarGroupType(StrEnum):
+    NONE = "NONE"
+    ASSISTANT = "ASSISTANT"
+    DEFAULT = "DEFAULT"
+    SPECIAL = "SPECIAL"
+    ACTIVITY = "ACTIVITY"
+    DYNAMIC = "DYNAMIC"

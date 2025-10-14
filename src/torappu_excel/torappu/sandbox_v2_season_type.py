@@ -1,8 +1,8 @@
-from enum import StrEnum
+from enum import IntEnum
 
 
-class SandboxV2SeasonType(StrEnum):
-    NONE = "NONE"
-    DRY = "DRY"
-    RAINY = "RAINY"
-    CHALLENGE = "CHALLENGE"
+class SandboxV2SeasonType(IntEnum):
+    NONE = 0
+    DRY = 1
+    RAINY = 2
+    CHALLENGE = 3

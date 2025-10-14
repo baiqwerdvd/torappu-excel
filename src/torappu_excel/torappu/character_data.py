@@ -6,6 +6,7 @@ from .attributes_data import AttributesData
 from .blackboard import Blackboard
 from .buildable_type import BuildableTypeStr
 from .equip_talent_data import EquipTalentData
+from .evolve_phase import EvolvePhase
 from .external_buff import ExternalBuff
 from .item_bundle import ItemBundle
 from .profession_category import ProfessionCategory
@@ -75,6 +76,17 @@ class CharacterData(BaseModel):
         description: str
         buff: ExternalBuff | None
         equivalentCost: list[ItemBundle] | None
+
+    class AttributesDeltaKeyFrame(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        pass
+
+    class UnlockCondition(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        phase: EvolvePhase
+        level: int
 
     class TalentDataBundle(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]

@@ -4,7 +4,18 @@ from .roguelike_event_type import RoguelikeEventType
 
 
 class RoguelikeNodeUpgradeModuleData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    nodeUpgradeDataMap: dict[str, "RoguelikeNodeUpgradeModuleData.RoguelikeNodeUpgradeData"]
+
     class RoguelikeNodeUpgradeData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        nodeType: RoguelikeEventType
+        sortId: int
+        permItemList: list["RoguelikeNodeUpgradeModuleData.RoguelikeNodeUpgradeData.RoguelikePermNodeUpgradeItemData"]
+        tempItemList: list["RoguelikeNodeUpgradeModuleData.RoguelikeNodeUpgradeData.RoguelikeTempNodeUpgradeItemData"]
+
         class RoguelikePermNodeUpgradeItemData(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
@@ -25,10 +36,3 @@ class RoguelikeNodeUpgradeModuleData(BaseModel):
             costItemId: str
             costItemCount: int
             desc: str
-
-        nodeType: RoguelikeEventType
-        sortId: int
-        permItemList: list["RoguelikeNodeUpgradeModuleData.RoguelikeNodeUpgradeData.RoguelikePermNodeUpgradeItemData"]
-        tempItemList: list["RoguelikeNodeUpgradeModuleData.RoguelikeNodeUpgradeData.RoguelikeTempNodeUpgradeItemData"]
-
-    nodeUpgradeDataMap: dict[str, "RoguelikeNodeUpgradeModuleData.RoguelikeNodeUpgradeData"]

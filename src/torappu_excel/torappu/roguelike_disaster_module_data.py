@@ -2,6 +2,10 @@ from pydantic import BaseModel, ConfigDict
 
 
 class RoguelikeDisasterModuleData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    disasterData: dict[str, "RoguelikeDisasterModuleData.RoguelikeDisasterData"]
+
     class RoguelikeDisasterData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
@@ -15,5 +19,3 @@ class RoguelikeDisasterModuleData(BaseModel):
         functionDesc: str
         desc: str
         sound: str | None
-
-    disasterData: dict[str, "RoguelikeDisasterModuleData.RoguelikeDisasterData"]

@@ -5,6 +5,8 @@ from .player_battle_rank import PlayerBattleRank
 
 
 class ActivityTable(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class ActHiddenAreaPreposeStageData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
@@ -27,6 +29,8 @@ class ActivityTable(BaseModel):
 
 
 class CharacterData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
     class UnlockCondition(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 

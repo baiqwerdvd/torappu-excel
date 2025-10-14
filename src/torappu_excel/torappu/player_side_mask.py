@@ -1,8 +1,8 @@
-from enum import IntEnum
+﻿from enum import StrEnum
 
 
-class PlayerSideMask(IntEnum):
-    ALL = 0
-    SIDE_A = 2
-    SIDE_B = 4
-    NONE = 255
+class PlayerSideMask(StrEnum):
+    ALL = "ALL"
+    SIDE_A = "SIDE_A"
+    SIDE_B = "SIDE_B"
+    NONE = "NONE"

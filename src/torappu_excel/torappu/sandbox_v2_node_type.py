@@ -1,22 +1,22 @@
-from enum import StrEnum
+from enum import IntEnum
 
 
-class SandboxV2NodeType(StrEnum):
-    NONE = "NONE"
-    HOME = "HOME"
-    HOME_OUTPOST = "HOME_OUTPOST"
-    BATTLE = "BATTLE"
-    NEST = "NEST"
-    COLLECT = "COLLECT"
-    HUNT = "HUNT"
-    CAVE = "CAVE"
-    MINE = "MINE"
-    ENCOUNTER = "ENCOUNTER"
-    EXPEDITION = "EXPEDITION"
-    SHOP = "SHOP"
-    GATE = "GATE"
-    MARKET = "MARKET"
-    HOME_PORTABLE = "HOME_PORTABLE"
-    HOME_PORTABLE_RIFT = "HOME_PORTABLE_RIFT"
-    SELECTION = "SELECTION"
-    RACING = "RACING"
+class SandboxV2NodeType(IntEnum):
+    NONE = 0
+    HOME = 1
+    HOME_OUTPOST = 2
+    BATTLE = 3
+    NEST = 4
+    COLLECT = 5
+    HUNT = 6
+    CAVE = 7
+    MINE = 8
+    ENCOUNTER = 9
+    EXPEDITION = 10
+    SHOP = 11
+    GATE = 12
+    MARKET = 13
+    HOME_PORTABLE = 14
+    HOME_PORTABLE_RIFT = 15
+    SELECTION = 16
+    RACING = 17

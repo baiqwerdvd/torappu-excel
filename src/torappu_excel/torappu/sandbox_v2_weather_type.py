@@ -1,8 +1,8 @@
-from enum import StrEnum
+from enum import IntEnum
 
 
-class SandboxV2WeatherType(StrEnum):
-    NORMAL = "NORMAL"
-    RAINFOREST = "RAINFOREST"
-    VOLCANO = "VOLCANO"
-    DESERT = "DESERT"
+class SandboxV2WeatherType(IntEnum):
+    NORMAL = 0
+    RAINFOREST = 1
+    VOLCANO = 2
+    DESERT = 3

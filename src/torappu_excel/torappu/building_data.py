@@ -1,176 +1,15 @@
-# pyright: reportMissingTypeArgument=false
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 
-from torappu_excel.common import CustomIntEnum
-
+from .character_data import CharacterData
 from .grid_position import GridPosition
 from .item_bundle import ItemBundle
 from .item_rarity import ItemRarity
-from .shared_models import CharacterData as ShareCharacterData
 
 
 class BuildingData(BaseModel):
     model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    class RoomType(CustomIntEnum):
-        NONE = "NONE", 0
-        CONTROL = "CONTROL", 1
-        POWER = "POWER", 2
-        MANUFACTURE = "MANUFACTURE", 4
-        SHOP = "SHOP", 8
-        DORMITORY = "DORMITORY", 16
-        MEETING = "MEETING", 32
-        HIRE = "HIRE", 64
-        ELEVATOR = "ELEVATOR", 128
-        CORRIDOR = "CORRIDOR", 256
-        TRADING = "TRADING", 512
-        WORKSHOP = "WORKSHOP", 1024
-        TRAINING = "TRAINING", 2048
-        FUNCTIONAL = "FUNCTIONAL", 3710
-        PRIVATE = "PRIVATE", 4096
-        ALL = "ALL", 8191
-
-    class RoomCategory(CustomIntEnum):
-        NONE = "NONE", 0
-        FUNCTION = "FUNCTION", 1
-        OUTPUT = "OUTPUT", 2
-        CUSTOM = "CUSTOM", 4
-        ELEVATOR = "ELEVATOR", 8
-        CORRIDOR = "CORRIDOR", 16
-        SPECIAL = "SPECIAL", 32
-        CUSTOM_P = "CUSTOM_P", 64
-        ELEVATOR_P = "ELEVATOR_P", 128
-        CORRIDOR_P = "CORRIDOR_P", 256
-        ALL = "ALL", 511
-
-    class BuffCategory(StrEnum):
-        NONE = "NONE"
-        FUNCTION = "FUNCTION"
-        OUTPUT = "OUTPUT"
-        RECOVERY = "RECOVERY"
-
-    class FurnitureInteract(CustomIntEnum):
-        NONE = "NONE", 0
-        ANIMATOR = "ANIMATOR", 1
-        MUSIC = "MUSIC", 2
-        FUNCTION = "FUNCTION", 3
-
-    class FurnitureType(CustomIntEnum):
-        FLOOR = "FLOOR", 0
-        CARPET = "CARPET", 1
-        SEATING = "SEATING", 2
-        BEDDING = "BEDDING", 3
-        TABLE = "TABLE", 4
-        CABINET = "CABINET", 5
-        DECORATION = "DECORATION", 6
-        WALLPAPER = "WALLPAPER", 7
-        WALLDECO = "WALLDECO", 8
-        WALLLAMP = "WALLLAMP", 9
-        CEILING = "CEILING", 10
-        CEILINGLAMP = "CEILINGLAMP", 11
-        FUNCTION = "FUNCTION", 12
-        INTERACT = "INTERACT", 13
-
-    class FurnitureSubType(CustomIntEnum):
-        NONE = "NONE", 0
-        CHAIR = "CHAIR", 1
-        SOFA = "SOFA", 2
-        BARSTOOL = "BARSTOOL", 3
-        STOOL = "STOOL", 4
-        BENCH = "BENCH", 5
-        ORTHER_S = "ORTHER_S", 6
-        POSTER = "POSTER", 7
-        CURTAIN = "CURTAIN", 8
-        BOARD_WD = "BOARD_WD", 9
-        SHELF = "SHELF", 10
-        INSTRUMENT_WD = "INSTRUMENT_WD", 11
-        ART_WD = "ART_WD", 12
-        PLAQUE = "PLAQUE", 13
-        CONTRACT = "CONTRACT", 14
-        ANNIHILATION = "ANNIHILATION", 15
-        ORTHER_WD = "ORTHER_WD", 16
-        FLOORLAMP = "FLOORLAMP", 17
-        PLANT = "PLANT", 18
-        PARTITION = "PARTITION", 19
-        COOKING = "COOKING", 20
-        CATERING = "CATERING", 21
-        DEVICE = "DEVICE", 22
-        INSTRUMENT_D = "INSTRUMENT_D", 23
-        ART_D = "ART_D", 24
-        BOARD_D = "BOARD_D", 25
-        ENTERTAINMENT = "ENTERTAINMENT", 26
-        STORAGE = "STORAGE", 27
-        DRESSING = "DRESSING", 28
-        WARM = "WARM", 29
-        WASH = "WASH", 30
-        ORTHER_D = "ORTHER_D", 31
-        COLUMN = "COLUMN", 32
-        DECORATION_C = "DECORATION_C", 33
-        CURTAIN_C = "CURTAIN_C", 34
-        DEVICE_C = "DEVICE_C", 35
-        CONTRACT_2 = "CONTRACT_2", 36
-        LIGHT = "LIGHT", 37
-        ORTHER_C = "ORTHER_C", 38
-        VISITOR = "VISITOR", 39
-        MUSIC = "MUSIC", 40
-
-    class FurnitureLocation(CustomIntEnum):
-        NONE = "NONE", 0
-        WALL = "WALL", 1
-        FLOOR = "FLOOR", 2
-        CARPET = "CARPET", 3
-        CEILING = "CEILING", 4
-        POSTER = "POSTER", 5
-        CEILINGDECAL = "CEILINGDECAL", 6
-
-    class FurnitureCategory(StrEnum):
-        FURNITURE = "FURNITURE"
-        WALL = "WALL"
-        FLOOR = "FLOOR"
-
-    class DiyUIType(StrEnum):
-        MENU = "MENU"
-        THEME = "THEME"
-        FURNITURE = "FURNITURE"
-        FURNITURE_IN_THEME = "FURNITURE_IN_THEME"
-        RECENT_THEME = "RECENT_THEME"
-        RECENT_FURNITURE = "RECENT_FURNITURE"
-        PRESET = "PRESET"
-
-    class DiySortType(CustomIntEnum):
-        NONE = "NONE", 0
-        THEME = "THEME", 1
-        FURNITURE = "FURNITURE", 2
-        FURNITURE_IN_THEME = "FURNITURE_IN_THEME", 3
-        RECENT_THEME = "RECENT_THEME", 4
-        RECENT_FURNITURE = "RECENT_FURNITURE", 5
-        MEETING_THEME = "MEETING_THEME", 6
-        MEETING_FURNITURE = "MEETING_FURNITURE", 7
-        MEETING_FURNITURE_IN_THEME = "MEETING_FURNITURE_IN_THEME", 8
-        MEETING_RECENT_THEME = "MEETING_RECENT_THEME", 9
-        MEETING_RECENT_FURNITURE = "MEETING_RECENT_FURNITURE", 10
-
-    class DiyUISortOrder(StrEnum):
-        DESC = "DESC"
-        ASC = "ASC"
-
-    class FormulaItemType(StrEnum):
-        NONE = "NONE"
-        F_EVOLVE = "F_EVOLVE"
-        F_BUILDING = "F_BUILDING"
-        F_GOLD = "F_GOLD"
-        F_DIAMOND = "F_DIAMOND"
-        F_FURNITURE = "F_FURNITURE"
-        F_EXP = "F_EXP"
-        F_ASC = "F_ASC"
-        F_SKILL = "F_SKILL"
-
-    class CharStationFilterType(CustomIntEnum):
-        All = "All", 0
-        DormLock = "DormLock", 1
-        NotStationed = "NotStationed", 2
 
     controlSlotId: str
     meetingSlotId: str
@@ -189,8 +28,8 @@ class BuildingData(BaseModel):
     manufactStationBuff: float
     comfortManpowerRecoverFactor: int
     manpowerDisplayFactor: int
-    shopOutputRatio: dict[str, int] | None
-    shopStackRatio: dict[str, int] | None
+    shopOutputRatio: dict[str, int]
+    shopStackRatio: dict[str, int]
     basicFavorPerDay: int
     humanResourceLimit: int
     tiredApThreshold: int
@@ -222,13 +61,13 @@ class BuildingData(BaseModel):
     prefabs: dict[str, "BuildingData.PrefabInfo"]
     controlData: "BuildingData.ControlRoomBean"
     manufactData: "BuildingData.ManufactRoomBean"
-    shopData: "BuildingData.ShopRoomBean"
+    shopData: "BuildingData.RoomBean_1"
     hireData: "BuildingData.HireRoomBean"
-    dormData: "BuildingData.DormRoomBean"
-    privateRoomData: "BuildingData.PrivateRoomBean"
+    dormData: "BuildingData.RoomBean_1"
+    privateRoomData: "BuildingData.RoomBean_1"
     meetingData: "BuildingData.MeetingRoomBean"
     tradingData: "BuildingData.TradingRoomBean"
-    workshopData: "BuildingData.WorkShopRoomBean"
+    workshopData: "BuildingData.RoomBean_1"
     trainingData: "BuildingData.TrainingBean"
     powerData: "BuildingData.PowerRoomBean"
     chars: dict[str, "BuildingData.BuildingCharacter"]
@@ -241,24 +80,253 @@ class BuildingData(BaseModel):
     creditFormula: "BuildingData.CreditFormula"
     goldItems: dict[str, int]
     assistantUnlock: list[int]
-    workshopRarities: list["BuildingData.WorkshopRarityInfo"]
+    workshopRarities: "list[BuildingData.WorkshopRarityInfo]"
     todoItemSortPriorityDict: dict[str, int]
     slotPrequeDatas: dict[str, "BuildingData.SlotPrequeData"]
     dormitoryPrequeDatas: dict[str, "BuildingData.DormitoryPrequeData"]
     workshopTargetDesDict: dict[str, str]
     tradingOrderDesDict: dict[str, str]
     stationManageConstData: "BuildingData.StationManageConstData"
-    stationManageFilterInfos: dict[str, "BuildingData.StationManageFilterInfo"]
+    stationManageFilterInfos: dict[int, "BuildingData.StationManageFilterInfo"]
     musicData: "BuildingData.MusicData"
     emojis: list[str]
     categoryNames: dict[str, str]
     buffSortData: dict[str, "BuildingData.BuildingRoomTypeBuffSortData"]
 
+    class RoomCategory(StrEnum):
+        NONE = "NONE"
+        FUNCTION = "FUNCTION"
+        OUTPUT = "OUTPUT"
+        CUSTOM = "CUSTOM"
+        ELEVATOR = "ELEVATOR"
+        CORRIDOR = "CORRIDOR"
+        SPECIAL = "SPECIAL"
+        CUSTOM_P = "CUSTOM_P"
+        ELEVATOR_P = "ELEVATOR_P"
+        CORRIDOR_P = "CORRIDOR_P"
+        ALL = "ALL"
+
+    class RoomTypeString(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        pass
+
+    class RoomType(StrEnum):
+        NONE = "NONE"
+        CONTROL = "CONTROL"
+        POWER = "POWER"
+        MANUFACTURE = "MANUFACTURE"
+        SHOP = "SHOP"
+        DORMITORY = "DORMITORY"
+        MEETING = "MEETING"
+        HIRE = "HIRE"
+        ELEVATOR = "ELEVATOR"
+        CORRIDOR = "CORRIDOR"
+        TRADING = "TRADING"
+        WORKSHOP = "WORKSHOP"
+        TRAINING = "TRAINING"
+        PRIVATE = "PRIVATE"
+        FUNCTIONAL = "FUNCTIONAL"
+        ALL = "ALL"
+
+    class OrderType(StrEnum):
+        O_COMPOUND = "O_COMPOUND"
+        O_GOLD = "O_GOLD"
+        O_DIAMOND = "O_DIAMOND"
+
+    class FurnitureCategory(StrEnum):
+        FURNITURE = "FURNITURE"
+        WALL = "WALL"
+        FLOOR = "FLOOR"
+
+    class BuildingToDoType(StrEnum):
+        NONE = "NONE"
+        MANUF_STOP = "MANUF_STOP"
+        TRADE_STOP = "TRADE_STOP"
+        HIRE_EMPTY = "HIRE_EMPTY"
+        MEETING_EMPTY = "MEETING_EMPTY"
+        NEW_PRODUCTS = "NEW_PRODUCTS"
+        HAS_ORDERS = "HAS_ORDERS"
+        CHAR_TIRED = "CHAR_TIRED"
+        TRAIN_FINISH = "TRAIN_FINISH"
+        HIRE_REFRESHED = "HIRE_REFRESHED"
+        NEW_CLUES = "NEW_CLUES"
+        NEW_FAVOR = "NEW_FAVOR"
+        NEW_FAVOR_MAX = "NEW_FAVOR_MAX"
+        BATCH_WORK = "BATCH_WORK"
+        BATCH_REST = "BATCH_REST"
+        MESSAGE_BOARD = "MESSAGE_BOARD"
+
+    class FurnitureType(StrEnum):
+        FLOOR = "FLOOR"
+        CARPET = "CARPET"
+        SEATING = "SEATING"
+        BEDDING = "BEDDING"
+        TABLE = "TABLE"
+        CABINET = "CABINET"
+        DECORATION = "DECORATION"
+        WALLPAPER = "WALLPAPER"
+        WALLDECO = "WALLDECO"
+        WALLLAMP = "WALLLAMP"
+        CEILING = "CEILING"
+        CEILINGLAMP = "CEILINGLAMP"
+        FUNCTION = "FUNCTION"
+        INTERACT = "INTERACT"
+
+    class FurnitureSubType(StrEnum):
+        NONE = "NONE"
+        CHAIR = "CHAIR"
+        SOFA = "SOFA"
+        BARSTOOL = "BARSTOOL"
+        STOOL = "STOOL"
+        BENCH = "BENCH"
+        ORTHER_S = "ORTHER_S"
+        POSTER = "POSTER"
+        CURTAIN = "CURTAIN"
+        BOARD_WD = "BOARD_WD"
+        SHELF = "SHELF"
+        INSTRUMENT_WD = "INSTRUMENT_WD"
+        ART_WD = "ART_WD"
+        PLAQUE = "PLAQUE"
+        CONTRACT = "CONTRACT"
+        ANNIHILATION = "ANNIHILATION"
+        ORTHER_WD = "ORTHER_WD"
+        FLOORLAMP = "FLOORLAMP"
+        PLANT = "PLANT"
+        PARTITION = "PARTITION"
+        COOKING = "COOKING"
+        CATERING = "CATERING"
+        DEVICE = "DEVICE"
+        INSTRUMENT_D = "INSTRUMENT_D"
+        ART_D = "ART_D"
+        BOARD_D = "BOARD_D"
+        ENTERTAINMENT = "ENTERTAINMENT"
+        STORAGE = "STORAGE"
+        DRESSING = "DRESSING"
+        WARM = "WARM"
+        WASH = "WASH"
+        ORTHER_D = "ORTHER_D"
+        COLUMN = "COLUMN"
+        DECORATION_C = "DECORATION_C"
+        CURTAIN_C = "CURTAIN_C"
+        DEVICE_C = "DEVICE_C"
+        CONTRACT_2 = "CONTRACT_2"
+        LIGHT = "LIGHT"
+        ORTHER_C = "ORTHER_C"
+        VISITOR = "VISITOR"
+        MUSIC = "MUSIC"
+
+    class IRoomBean(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        pass
+
+    class FurnitureLocation(StrEnum):
+        NONE = "NONE"
+        WALL = "WALL"
+        FLOOR = "FLOOR"
+        CARPET = "CARPET"
+        CEILING = "CEILING"
+        POSTER = "POSTER"
+        CEILINGDECAL = "CEILINGDECAL"
+
+    class FurnitureInteract(StrEnum):
+        NONE = "NONE"
+        ANIMATOR = "ANIMATOR"
+        MUSIC = "MUSIC"
+        FUNCTION = "FUNCTION"
+
+    class ObstaclePoint(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        offset: GridPosition
+        edgeWalkableMask: int
+
+    class ObstacleRect(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        pos: GridPosition
+        size: GridPosition
+        edgeWalkableMask: int
+
+    class ObstacleData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        floorObstacles: "list[BuildingData.ObstaclePoint]"
+        backwallObstacles: "list[BuildingData.ObstaclePoint]"
+
+    class BuildingLocalData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        furnitureObstacleData: dict[str, "BuildingData.ObstacleData"]
+        roomObstacleData: dict[str, "BuildingData.ObstacleData"]
+        furnitureLODConfig: dict[str, "BuildingData.FurnitureLODConfig"]
+
+    class FurnitureLODConfig(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        showedObjNames: dict["BuildingData.LODLEVEL", list[str]]
+        isOverWrite: bool
+
+    class LODLEVEL(StrEnum):
+        HIGHEST = "HIGHEST"
+        HIGH = "HIGH"
+        LOW = "LOW"
+        LOWEST = "LOWEST"
+        COUNT = "COUNT"
+
+    class FormulaItemType(StrEnum):
+        NONE = "NONE"
+        F_EVOLVE = "F_EVOLVE"
+        F_BUILDING = "F_BUILDING"
+        F_GOLD = "F_GOLD"
+        F_DIAMOND = "F_DIAMOND"
+        F_FURNITURE = "F_FURNITURE"
+        F_EXP = "F_EXP"
+        F_ASC = "F_ASC"
+        F_SKILL = "F_SKILL"
+
+    class DiySortType(StrEnum):
+        NONE = "NONE"
+        THEME = "THEME"
+        FURNITURE = "FURNITURE"
+        FURNITURE_IN_THEME = "FURNITURE_IN_THEME"
+        RECENT_THEME = "RECENT_THEME"
+        RECENT_FURNITURE = "RECENT_FURNITURE"
+        MEETING_THEME = "MEETING_THEME"
+        MEETING_FURNITURE = "MEETING_FURNITURE"
+        MEETING_FURNITURE_IN_THEME = "MEETING_FURNITURE_IN_THEME"
+        MEETING_RECENT_THEME = "MEETING_RECENT_THEME"
+        MEETING_RECENT_FURNITURE = "MEETING_RECENT_FURNITURE"
+
+    class DiyUIType(StrEnum):
+        MENU = "MENU"
+        THEME = "THEME"
+        FURNITURE = "FURNITURE"
+        FURNITURE_IN_THEME = "FURNITURE_IN_THEME"
+        RECENT_THEME = "RECENT_THEME"
+        RECENT_FURNITURE = "RECENT_FURNITURE"
+        PRESET = "PRESET"
+
+    class DiyUISortOrder(StrEnum):
+        DESC = "DESC"
+        ASC = "ASC"
+
+    class PrefabInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        id: str
+        blueprintRoomOverrideId: str
+        size: GridPosition
+        floorGridSize: GridPosition
+        backWallGridSize: GridPosition
+        obstacleId: str
+
     class RoomUnlockCond(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
         id: str
-        number: dict[str, "BuildingData.RoomUnlockCond.CondItem"]
+        number: dict[int, "BuildingData.RoomUnlockCond.CondItem"]
 
         class CondItem(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -272,13 +340,13 @@ class BuildingData(BaseModel):
 
         id: "BuildingData.RoomType"
         name: str
-        description: str | None
+        description: str
         defaultPrefabId: str
         canLevelDown: bool
         maxCount: int
         category: "BuildingData.RoomCategory"
         size: GridPosition
-        phases: list["BuildingData.RoomData.PhaseData"]
+        phases: "list[BuildingData.RoomData.PhaseData]"
 
         class BuildCost(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -290,8 +358,8 @@ class BuildingData(BaseModel):
         class PhaseData(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
-            overrideName: str | None
-            overridePrefabId: str | None
+            overrideName: str
+            overridePrefabId: str
             unlockCondId: str
             buildCost: "BuildingData.RoomData.BuildCost"
             electricity: int
@@ -322,7 +390,7 @@ class BuildingData(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
             id: str
-            number: dict[str, "BuildingData.LayoutData.SlotCleanCost.CountCost"]
+            number: dict[int, "BuildingData.LayoutData.SlotCleanCost.CountCost"]
 
             class CountCost(BaseModel):
                 model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -341,143 +409,29 @@ class BuildingData(BaseModel):
                 UPGROUND = "UPGROUND"
                 DOWNGROUND = "DOWNGROUND"
 
-    class PrefabInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        id: str
-        blueprintRoomOverrideId: str | None
-        size: GridPosition
-        floorGridSize: GridPosition
-        backWallGridSize: GridPosition
-        obstacleId: str | None
-
-    class ControlRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        basicCostBuff: int
-        phases: list | None = Field(default=None)
-
-    class ManufactPhase(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        speed: float | int
-        outputCapacity: int
-
-    class ManufactRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        basicSpeedBuff: float
-        phases: list["BuildingData.ManufactPhase"]
-
-    class ShopRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        phases: list | None = Field(default=None)
-
-    class HirePhase(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        economizeRate: float
-        resSpeed: int
-        refreshTimes: int
-
-    class HireRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        basicSpeedBuff: float
-        phases: list["BuildingData.HirePhase"]
-
-    class DormPhase(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        manpowerRecover: int
-        decorationLimit: int
-
-    class DormRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        phases: list["BuildingData.DormPhase"]
-
-    class PrivatePhase(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        decorationLimit: int
-
-    class PrivateRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        phases: list["BuildingData.PrivatePhase"]
-
-    class MeetingPhase(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        friendSlotInc: int
-        maxVisitorNum: int
-        gatheringSpeed: int
-
-    class MeetingRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        basicSpeedBuff: float
-        phases: list["BuildingData.MeetingPhase"]
-
-    class TradingPhase(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        orderSpeed: float | int
-        orderLimit: int
-        orderRarity: int
-
-    class TradingRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        basicSpeedBuff: float
-        phases: list["BuildingData.TradingPhase"]
-
-    class WorkshopPhase(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        manpowerFactor: float | int
-
-    class WorkShopRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        phases: list["BuildingData.WorkshopPhase"]
-
-    class TrainingPhase(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        specSkillLvlLimit: int
-
-    class TrainingBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        basicSpeedBuff: float
-        phases: list["BuildingData.TrainingPhase"]
-
-    class PowerRoomBean(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        basicSpeedBuff: float
-        phases: list | None = Field(default=None)
-
-    class BuildingBuffCharSlot(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        buffData: list["BuildingData.BuildingBuffCharSlot.SlotItem"]
-
-        class SlotItem(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-            buffId: str
-            cond: "ShareCharacterData.UnlockCondition"
+    class BuffCategory(StrEnum):
+        NONE = "NONE"
+        FUNCTION = "FUNCTION"
+        OUTPUT = "OUTPUT"
+        RECOVERY = "RECOVERY"
 
     class BuildingCharacter(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
         charId: str
         maxManpower: int
-        buffChar: list["BuildingData.BuildingBuffCharSlot"]
+        buffChar: "list[BuildingData.BuildingBuffCharSlot]"
+
+    class BuildingBuffCharSlot(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        buffData: "list[BuildingData.BuildingBuffCharSlot.SlotItem]"
+
+        class SlotItem(BaseModel):
+            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+            buffId: str
+            cond: "CharacterData.UnlockCondition"
 
     class BuildingBuff(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -496,12 +450,135 @@ class BuildingData(BaseModel):
         targetGroupSortId: int
         targets: list[str]
 
-    class WorkshopExtraWeightItem(BaseModel):
+    class BuildingRoomTypeBuffSortData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
-        itemId: str
-        weight: int
-        itemCount: int
+        hasEfficiencySort: bool
+        defaultGroupSortId: int
+        efficiencyTargetDict: dict[str, "BuildingData.BuildingRoomTypeBuffSortData.buffGroupInfo"]
+
+        class buffGroupInfo(BaseModel):
+            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+            targets: list[str]
+            sortId: int
+
+    class RoomBeanParam(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        pass
+
+    class RoomBean_1(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        phases: list[object]
+
+    class ControlRoomBean(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        basicCostBuff: int
+        phases: "list[BuildingData.ControlRoomPhase]"
+
+    class ControlRoomPhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        pass
+
+    class ManufactRoomBean(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        basicSpeedBuff: float
+        phases: "list[BuildingData.ManufactPhase]"
+
+    class ManufactPhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        speed: float
+        outputCapacity: int
+
+    class ShopPhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        counterNum: int
+        speed: float
+        moneyCapacity: int
+
+    class HireRoomBean(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        basicSpeedBuff: float
+        phases: "list[BuildingData.HirePhase]"
+
+    class HirePhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        economizeRate: float
+        resSpeed: int
+        refreshTimes: int
+
+    class DormPhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        manpowerRecover: int
+        decorationLimit: int
+
+    class PrivatePhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        decorationLimit: int
+
+    class MeetingRoomBean(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        basicSpeedBuff: float
+        phases: "list[BuildingData.MeetingPhase]"
+
+    class MeetingPhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        friendSlotInc: int
+        maxVisitorNum: int
+        gatheringSpeed: int
+
+    class TradingRoomBean(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        basicSpeedBuff: float
+        phases: "list[BuildingData.TradingPhase]"
+
+    class TradingPhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        orderSpeed: float
+        orderLimit: int
+        orderRarity: int
+
+    class WorkshopPhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        manpowerFactor: float
+
+    class TrainingBean(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        basicSpeedBuff: float
+        phases: "list[BuildingData.TrainingPhase]"
+
+    class TrainingPhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        specSkillLvlLimit: int
+
+    class PowerRoomBean(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        basicSpeedBuff: float
+        phases: "list[BuildingData.PowerPhase]"
+
+    class PowerPhase(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        pass
 
     class CustomData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -509,11 +586,13 @@ class BuildingData(BaseModel):
         furnitures: dict[str, "BuildingData.CustomData.FurnitureData"]
         themes: dict[str, "BuildingData.CustomData.ThemeData"]
         groups: dict[str, "BuildingData.CustomData.GroupData"]
-        types: dict[str, "BuildingData.CustomData.FurnitureTypeData"]
-        subTypes: dict[str, "BuildingData.CustomData.FurnitureSubTypeData"]
-        defaultFurnitures: dict[str, list["BuildingData.CustomData.DormitoryDefaultFurnitureItem"]]
-        interactGroups: dict[str, list["BuildingData.CustomData.InteractItem"]]
-        diyUISortTemplates: dict[str, dict[str, "BuildingData.CustomData.DiyUISortTemplateListData"]]
+        types: dict["BuildingData.FurnitureType", "BuildingData.CustomData.FurnitureTypeData"]
+        subTypes: dict["BuildingData.FurnitureSubType", "BuildingData.CustomData.FurnitureSubTypeData"]
+        defaultFurnitures: dict[str, "list[BuildingData.CustomData.DormitoryDefaultFurnitureItem]"]
+        interactGroups: dict[str, "list[BuildingData.CustomData.InteractItem]"]
+        diyUISortTemplates: dict[
+            "BuildingData.DiySortType", dict[str, "BuildingData.CustomData.DiyUISortTemplateListData"]
+        ]
 
         class FurnitureData(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -522,6 +601,8 @@ class BuildingData(BaseModel):
             sortId: int
             name: str
             iconId: str
+            interactType: "BuildingData.FurnitureInteract"
+            musicId: str
             type: "BuildingData.FurnitureType"
             subType: "BuildingData.FurnitureSubType"
             location: "BuildingData.FurnitureLocation"
@@ -541,21 +622,11 @@ class BuildingData(BaseModel):
             processedProductId: str
             processedProductCount: int
             processedByProductPercentage: int
-            processedByProductGroup: list["BuildingData.WorkshopExtraWeightItem"]
+            processedByProductGroup: "list[BuildingData.WorkshopExtraWeightItem]"
             canBeDestroy: bool
             isOnly: int
-            quantity: int
-            musicId: str
             enableRoomType: int
-            interactType: "BuildingData.FurnitureInteract | None" = None
-
-        class ThemeQuickSetupItem(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-            furnitureId: str
-            pos0: int
-            pos1: int
-            dir: int
+            quantity: int
 
         class ThemeData(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -566,7 +637,7 @@ class BuildingData(BaseModel):
             name: str
             themeType: str
             desc: str
-            quickSetup: list["BuildingData.CustomData.ThemeQuickSetupItem"]
+            quickSetup: "list[BuildingData.CustomData.ThemeQuickSetupItem]"
             groups: list[str]
             furnitures: list[str]
 
@@ -580,6 +651,14 @@ class BuildingData(BaseModel):
             comfort: int
             count: int
             furniture: list[str]
+
+        class ThemeQuickSetupItem(BaseModel):
+            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+            furnitureId: str
+            pos0: int
+            pos1: int
+            dir: int
 
         class FurnitureTypeData(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -618,8 +697,7 @@ class BuildingData(BaseModel):
             expandState: str
             defaultTemplateIndex: int
             defaultTemplateOrder: "BuildingData.DiyUISortOrder"
-            templates: list["BuildingData.CustomData.DiyUISortTemplateListData.DiyUISortTemplateData"]
-            diyUIType: "BuildingData.DiyUIType | None" = None
+            templates: "list[BuildingData.CustomData.DiyUISortTemplateListData.DiyUISortTemplateData]"
 
             class DiyUISortTemplateData(BaseModel):
                 model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -627,7 +705,7 @@ class BuildingData(BaseModel):
                 name: str
                 sequences: list[str]
                 stableSequence: str
-                stableSequenceOrder: str
+                stableSequenceOrder: "BuildingData.DiyUISortOrder"
 
     class ManufactFormula(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -640,35 +718,8 @@ class BuildingData(BaseModel):
         formulaType: "BuildingData.FormulaItemType"
         buffType: str
         costs: list[ItemBundle]
-        requireRooms: list["BuildingData.ManufactFormula.UnlockRoom"]
-        requireStages: list["BuildingData.ManufactFormula.UnlockStage"]
-
-        class UnlockRoom(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-            roomId: str
-            roomLevel: int
-            roomCount: int
-
-        class UnlockStage(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-            stageId: str
-            rank: int
-
-    class ShopFormula(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        formulaId: str
-        itemId: str
-        count: int
-        weight: int
-        costPoint: int
-        formulaType: "BuildingData.FormulaItemType"
-        buffType: str
-        costs: list[ItemBundle]
-        requireRooms: list["BuildingData.ShopFormula.UnlockRoom"]
-        requireStages: list["BuildingData.ShopFormula.UnlockStage"]
+        requireRooms: "list[BuildingData.ManufactFormula.UnlockRoom]"
+        requireStages: "list[BuildingData.ManufactFormula.UnlockStage]"
 
         class UnlockRoom(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -683,6 +734,13 @@ class BuildingData(BaseModel):
             stageId: str
             rank: int
 
+    class WorkshopExtraWeightItem(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        weight: int
+        itemId: str
+        itemCount: int
+
     class WorkshopFormula(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
@@ -696,15 +754,15 @@ class BuildingData(BaseModel):
         formulaType: "BuildingData.FormulaItemType"
         buffType: str
         extraOutcomeRate: float
-        extraOutcomeGroup: list["BuildingData.WorkshopExtraWeightItem"]
+        extraOutcomeGroup: "list[BuildingData.WorkshopExtraWeightItem]"
         costs: list[ItemBundle]
-        requireRooms: list["BuildingData.WorkshopFormula.UnlockRoom"]
-        requireStages: list["BuildingData.WorkshopFormula.UnlockStage"]
+        requireRooms: "list[BuildingData.WorkshopFormula.UnlockRoom]"
+        requireStages: "list[BuildingData.WorkshopFormula.UnlockStage]"
 
         class UnlockRoom(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
-            roomId: str
+            roomId: "BuildingData.RoomType"
             roomLevel: int
             roomCount: int
 
@@ -714,25 +772,33 @@ class BuildingData(BaseModel):
             stageId: str
             rank: int
 
+    class ShopFormula(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        formulaId: str
+        itemId: str
+        formulaType: "BuildingData.FormulaItemType"
+        costPoint: int
+        gainItem: ItemBundle
+        requireRooms: "list[BuildingData.ShopFormula.UnlockRoom]"
+
+        class UnlockRoom(BaseModel):
+            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+            roomId: "BuildingData.RoomType"
+            roomLevel: int
+
     class CreditFormula(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
-        initiative: dict
-        passive: dict
+        initiative: dict[int, "BuildingData.CreditFormula.ValueModel"]
+        passive: dict[int, "BuildingData.CreditFormula.ValueModel"]
 
         class ValueModel(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
             basic: int
             addition: int
-
-    class WorkshopRarityInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        name: str
-        order: int
-        rarityList: list[ItemRarity]
-        color: str
 
     class SlotPrequeData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -766,11 +832,30 @@ class BuildingData(BaseModel):
         updateTime: int
         dormLockUpdateTime: int
 
+    class WorkshopRarityInfo(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        name: str
+        order: int
+        rarityList: list[ItemRarity]
+        color: str
+
     class StationManageFilterInfo(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
         charStationFilterType: "BuildingData.CharStationFilterType"
         name: str
+
+    class CharStationFilterType(StrEnum):
+        All = "All"
+        DormLock = "DormLock"
+        NotStationed = "NotStationed"
+
+    class MusicData(BaseModel):
+        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+        defaultMusic: str
+        musicDatas: dict[str, "BuildingData.MusicSingleData"]
 
     class MusicSingleData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -784,22 +869,3 @@ class BuildingData(BaseModel):
         bgmDescUnlocked: str
         unlockType: str
         unlockParams: list[str]
-
-    class MusicData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        defaultMusic: str
-        musicDatas: dict[str, "BuildingData.MusicSingleData"]
-
-    class BuildingRoomTypeBuffSortData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        hasEfficiencySort: bool
-        defaultGroupSortId: int
-        efficiencyTargetDict: dict[str, "BuildingData.BuildingRoomTypeBuffSortData.buffGroupInfo"]
-
-        class buffGroupInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-            targets: list[str]
-            sortId: int

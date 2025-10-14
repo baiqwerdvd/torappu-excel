@@ -1,7 +1,7 @@
-from ..common import CustomIntEnum
+﻿from enum import StrEnum
 
 
-class PlayerBattleRank(CustomIntEnum):
-    FAIL = "FAIL", 1
-    PASS = "PASS", 2
-    COMPLETE = "COMPLETE", 3
+class PlayerBattleRank(StrEnum):
+    FAIL = "FAIL"
+    PASS = "PASS"
+    COMPLETE = "COMPLETE"

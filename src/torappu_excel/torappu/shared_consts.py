@@ -4,7 +4,6 @@ from pydantic import BaseModel, ConfigDict
 
 
 class SharedConsts(BaseModel):
-    # TODO
     model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
     class Direction(IntEnum):

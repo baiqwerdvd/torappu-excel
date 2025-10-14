@@ -1,8 +1,8 @@
-from ..common import CustomIntEnum
+﻿from enum import IntEnum
 
 
-class PlayerStageState(CustomIntEnum):
-    UNLOCKED = "UNLOCKED", 0
-    PLAYED = "PLAYED", 1
-    PASS = "PASS", 2
-    COMPLETE = "COMPLETE", 3
+class PlayerStageState(IntEnum):
+    UNLOCKED = 0
+    PLAYED = 1
+    PASS = 2
+    COMPLETE = 3

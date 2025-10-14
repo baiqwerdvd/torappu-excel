@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict
+﻿from pydantic import BaseModel, ConfigDict
 
 from .player_avatar_group_type import PlayerAvatarGroupType
 
@@ -14,4 +14,4 @@ class PlayerAvatarPerData(BaseModel):
     avatarItemDesc: str
     avatarItemUsage: str
     obtainApproach: str
-    dynAvatarId: str | None = None
+    dynAvatarId: str

@@ -7,6 +7,16 @@ from .roguelike_game_item_type import RoguelikeGameItemType
 
 
 class RoguelikeFragmentModuleData(BaseModel):
+    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+
+    fragmentData: dict[str, "RoguelikeFragmentModuleData.RoguelikeFragmentData"]
+    fragmentTypeData: dict[str, "RoguelikeFragmentModuleData.RoguelikeFragmentTypeData"]
+    moduleConsts: "RoguelikeFragmentModuleData.RoguelikeFragmentModuleConsts"
+    fragmentBuffData: dict[str, "RoguelikeFragmentModuleData.RoguelikeFragmentBuffData"]
+    alchemyData: dict[str, "RoguelikeFragmentModuleData.RoguelikeAlchemyData"]
+    alchemyFormulaData: dict[str, "RoguelikeFragmentModuleData.RoguelikeAlchemyFormulationData"]
+    fragmentLevelData: dict[str, "RoguelikeFragmentModuleData.RoguelikeFragmentLevelRelatedData"]
+
     class RoguelikeFragmentData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
@@ -69,11 +79,3 @@ class RoguelikeFragmentModuleData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
         weightUp: int
-
-    fragmentData: dict[str, "RoguelikeFragmentModuleData.RoguelikeFragmentData"]
-    fragmentTypeData: dict[str, "RoguelikeFragmentModuleData.RoguelikeFragmentTypeData"]
-    moduleConsts: "RoguelikeFragmentModuleData.RoguelikeFragmentModuleConsts"
-    fragmentBuffData: dict[str, "RoguelikeFragmentModuleData.RoguelikeFragmentBuffData"]
-    alchemyData: dict[str, "RoguelikeFragmentModuleData.RoguelikeAlchemyData"]
-    alchemyFormulaData: dict[str, "RoguelikeFragmentModuleData.RoguelikeAlchemyFormulationData"]
-    fragmentLevelData: dict[str, "RoguelikeFragmentModuleData.RoguelikeFragmentLevelRelatedData"]

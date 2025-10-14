@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict
+﻿from pydantic import BaseModel, ConfigDict
 
 from .player_avatar_group_type import PlayerAvatarGroupType
 
@@ -8,5 +8,5 @@ class PlayerAvatarGroupData(BaseModel):
 
     avatarType: PlayerAvatarGroupType
     typeName: str
+    sortId: int
     avatarIdList: list[str]
-    sortId: int | None = None
