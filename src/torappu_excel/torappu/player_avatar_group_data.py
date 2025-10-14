@@ -8,5 +8,5 @@ class PlayerAvatarGroupData(BaseModel):
 
     avatarType: PlayerAvatarGroupType
     typeName: str
-    sortId: int
+    sortId: int | None = None
     avatarIdList: list[str]

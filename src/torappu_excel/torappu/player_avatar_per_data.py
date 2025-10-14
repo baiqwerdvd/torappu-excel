@@ -14,4 +14,4 @@ class PlayerAvatarPerData(BaseModel):
     avatarItemDesc: str
     avatarItemUsage: str
     obtainApproach: str
-    dynAvatarId: str
+    dynAvatarId: str | None = None

@@ -28,8 +28,8 @@ class BuildingData(BaseModel):
     manufactStationBuff: float
     comfortManpowerRecoverFactor: int
     manpowerDisplayFactor: int
-    shopOutputRatio: dict[str, int]
-    shopStackRatio: dict[str, int]
+    shopOutputRatio: dict[str, int] | None
+    shopStackRatio: dict[str, int] | None
     basicFavorPerDay: int
     humanResourceLimit: int
     tiredApThreshold: int
@@ -316,11 +316,11 @@ class BuildingData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
         id: str
-        blueprintRoomOverrideId: str
+        blueprintRoomOverrideId: str | None
         size: GridPosition
         floorGridSize: GridPosition
         backWallGridSize: GridPosition
-        obstacleId: str
+        obstacleId: str | None
 
     class RoomUnlockCond(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -340,7 +340,7 @@ class BuildingData(BaseModel):
 
         id: "BuildingData.RoomType"
         name: str
-        description: str
+        description: str | None
         defaultPrefabId: str
         canLevelDown: bool
         maxCount: int
@@ -358,8 +358,8 @@ class BuildingData(BaseModel):
         class PhaseData(BaseModel):
             model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
-            overrideName: str
-            overridePrefabId: str
+            overrideName: str | None
+            overridePrefabId: str | None
             unlockCondId: str
             buildCost: "BuildingData.RoomData.BuildCost"
             electricity: int
@@ -471,13 +471,13 @@ class BuildingData(BaseModel):
     class RoomBean_1(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
-        phases: list[object]
+        phases: list[object] | None
 
     class ControlRoomBean(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
         basicCostBuff: int
-        phases: "list[BuildingData.ControlRoomPhase]"
+        phases: "list[BuildingData.ControlRoomPhase] | None"
 
     class ControlRoomPhase(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
@@ -573,7 +573,7 @@ class BuildingData(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
 
         basicSpeedBuff: float
-        phases: "list[BuildingData.PowerPhase]"
+        phases: "list[BuildingData.PowerPhase] | None"
 
     class PowerPhase(BaseModel):
         model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]

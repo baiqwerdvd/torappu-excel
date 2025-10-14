@@ -22,7 +22,7 @@ class CartComponents(BaseModel):
     price: int
     specialObtain: str
     obtainInRandom: bool
-    additiveColor: str
+    additiveColor: str | None
 
     class CartAccessoryType(StrEnum):
         NONE = "NONE"
