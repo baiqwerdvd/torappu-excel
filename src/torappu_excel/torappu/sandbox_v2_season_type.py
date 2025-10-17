@@ -9,6 +9,7 @@ class SandboxV2SeasonType(CustomIntEnum):
     RAINY = "RAINY", 2
     CHALLENGE = "CHALLENGE", 3
 
+
 class SandboxV2SeasonTypeEnum(IntEnum):
     NONE = 0
     DRY = 1

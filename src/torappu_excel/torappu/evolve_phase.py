@@ -1,4 +1,4 @@
-from enum import StrEnum, IntEnum
+from enum import IntEnum, StrEnum
 
 
 class EvolvePhase(StrEnum):
@@ -7,6 +7,7 @@ class EvolvePhase(StrEnum):
     PHASE_2 = "PHASE_2"
     PHASE_3 = "PHASE_3"
     E_NUM = "E_NUM"
+
 
 class EvolvePhaseEnum(IntEnum):
     PHASE_0 = 0

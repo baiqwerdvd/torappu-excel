@@ -7,6 +7,7 @@ class PlayerStageState(IntEnum):
     PASS = 2
     COMPLETE = 3
 
+
 class PlayerStageStateStrEnum(StrEnum):
     UNLOCKED = "UNLOCKED"
     PLAYED = "PLAYED"

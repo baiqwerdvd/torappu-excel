@@ -1,5 +1,7 @@
 from enum import StrEnum
 
+from msgspec import field
+
 from .PlayerRoguelikeV2_CurrentData_Char import Char
 from .avatar_info import AvatarInfo
 from .char_star_mark_state import CharStarMarkState
@@ -171,12 +173,12 @@ class PlayerRoguelikeV2(BaseStruct):
             index: str
             id: str
             state: "PlayerRoguelikeV2.CurrentData.Recruit.State"
-            list: list["PlayerRoguelikeV2.CurrentData.RecruitChar"]
             result: "PlayerRoguelikeV2.CurrentData.RecruitChar"
             ts: int
             needAssist: bool
-            assistList: dict[str, list["PlayerRoguelikeV2.CurrentData.Recruit.FriendAssistData"]]  # pyright: ignore[reportInvalidTypeForm]
-            starFriendAssistList: dict[str, list["PlayerRoguelikeV2.CurrentData.Recruit.FriendAssistData"]]  # pyright: ignore[reportInvalidTypeForm]
+            assistList: dict[str, list["PlayerRoguelikeV2.CurrentData.Recruit.FriendAssistData"]]
+            starFriendAssistList: dict[str, list["PlayerRoguelikeV2.CurrentData.Recruit.FriendAssistData"]]
+            list_: list["PlayerRoguelikeV2.CurrentData.RecruitChar"] = field(name="list")
 
             class State(StrEnum):
                 CREATE = "CREATE"
@@ -427,7 +429,7 @@ class PlayerRoguelikeV2(BaseStruct):
         class Mission(BaseStruct):
             updateId: str
             refresh: int
-            list: list["PlayerRoguelikeV2.OuterData.Mission.MissionSlot"]
+            list_: list["PlayerRoguelikeV2.OuterData.Mission.MissionSlot"] = field(name="list")
 
             class MissionSlot(BaseStruct):
                 type: RoguelikeGameMonthTaskClass

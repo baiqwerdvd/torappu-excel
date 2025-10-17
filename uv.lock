@@ -434,7 +434,7 @@ wheels = [
 
 [[package]]
 name = "torappu-excel"
-version = "2.6.64"
+version = "2.6.66"
 source = { editable = "." }
 dependencies = [
     { name = "aiofiles" },
