@@ -1,9 +1,9 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class RoguelikeGameZoneData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeGameZoneData(BaseStruct):
     id: str
     name: str
     clockPerformance: str | None
@@ -15,4 +15,4 @@ class RoguelikeGameZoneData(BaseModel):
     isHiddenZone: bool
     bgmSignal: str
     bgmSignalWithLowSan: str | None
-    buffDescription: str | None = Field(default=None)
+    buffDescription: str | None = field(default=None)

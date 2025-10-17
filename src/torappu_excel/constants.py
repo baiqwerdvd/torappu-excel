@@ -108,7 +108,7 @@ class ExcelTableManager:
     zone_table_: ZoneTable | None = None
 
     async def activity_table(self) -> None:
-        self.activity_table_ = ActivityTable.model_validate(read_json("activity_table.json"))
+        self.activity_table_ = ActivityTable.convert(read_json("activity_table.json"))
 
     @property
     def ACTIVITY_TABLE(self) -> ActivityTable:
@@ -117,7 +117,7 @@ class ExcelTableManager:
         return self.activity_table_
 
     async def audio_data(self) -> None:
-        self.audio_data_ = AudioData.model_validate(read_json("audio_data.json"))
+        self.audio_data_ = AudioData.convert(read_json("audio_data.json"))
 
     @property
     def AUDIO_DATA(self) -> AudioData:
@@ -126,7 +126,7 @@ class ExcelTableManager:
         return self.audio_data_
 
     async def battle_equip_table(self) -> None:
-        self.battle_equip_table_ = BattleEquipTable.model_validate({"equips": read_json("battle_equip_table.json")})
+        self.battle_equip_table_ = BattleEquipTable.convert({"equips": read_json("battle_equip_table.json")})
 
     @property
     def BATTLE_EQUIP_TABLE(self) -> BattleEquipTable:
@@ -135,7 +135,7 @@ class ExcelTableManager:
         return self.battle_equip_table_
 
     async def building_data(self) -> None:
-        self.building_data_ = BuildingData.model_validate(read_json("building_data.json"))
+        self.building_data_ = BuildingData.convert(read_json("building_data.json"))
 
     @property
     def BUILDING_DATA(self) -> BuildingData:
@@ -144,7 +144,7 @@ class ExcelTableManager:
         return self.building_data_
 
     async def campaign_table(self) -> None:
-        self.campaign_table_ = CampaignTable.model_validate(read_json("campaign_table.json"))
+        self.campaign_table_ = CampaignTable.convert(read_json("campaign_table.json"))
 
     @property
     def CAMPAIGN_TABLE(self) -> CampaignTable:
@@ -153,7 +153,7 @@ class ExcelTableManager:
         return self.campaign_table_
 
     async def chapter_table(self) -> None:
-        self.chapter_table_ = ChapterTable.model_validate({"chapters": read_json("chapter_table.json")})
+        self.chapter_table_ = ChapterTable.convert({"chapters": read_json("chapter_table.json")})
 
     @property
     def CHAPTER_TABLE(self) -> ChapterTable:
@@ -162,7 +162,7 @@ class ExcelTableManager:
         return self.chapter_table_
 
     async def character_table(self) -> None:
-        self.character_table_ = CharacterTable.model_validate({"chars": read_json("character_table.json")})
+        self.character_table_ = CharacterTable.convert({"chars": read_json("character_table.json")})
 
     @property
     def CHAR_MASTER_TABLE(self) -> CharMasterTable:
@@ -171,7 +171,7 @@ class ExcelTableManager:
         return self.char_master_table_
 
     async def char_master_table(self) -> None:
-        self.char_master_table_ = CharMasterTable.model_validate({"masters": read_json("char_master_table.json")})
+        self.char_master_table_ = CharMasterTable.convert({"masters": read_json("char_master_table.json")})
 
     @property
     def CHARACTER_TABLE(self) -> CharacterTable:
@@ -180,7 +180,7 @@ class ExcelTableManager:
         return self.character_table_
 
     async def char_meta_table(self) -> None:
-        self.char_meta_table_ = CharMetaTable.model_validate(read_json("char_meta_table.json"))
+        self.char_meta_table_ = CharMetaTable.convert(read_json("char_meta_table.json"))
 
     @property
     def CHAR_META_TABLE(self) -> CharMetaTable:
@@ -189,7 +189,7 @@ class ExcelTableManager:
         return self.char_meta_table_
 
     async def charm_table(self) -> None:
-        self.charm_table_ = CharmTable.model_validate(read_json("charm_table.json"))
+        self.charm_table_ = CharmTable.convert(read_json("charm_table.json"))
 
     @property
     def CHARM_TABLE(self) -> CharmTable:
@@ -198,7 +198,7 @@ class ExcelTableManager:
         return self.charm_table_
 
     async def char_patch_table(self) -> None:
-        self.char_patch_table_ = CharPatchTable.model_validate(read_json("char_patch_table.json"))
+        self.char_patch_table_ = CharPatchTable.convert(read_json("char_patch_table.json"))
 
     @property
     def CHAR_PATCH_TABLE(self) -> CharPatchTable:
@@ -207,7 +207,7 @@ class ExcelTableManager:
         return self.char_patch_table_
 
     async def charword_table(self) -> None:
-        self.charword_table_ = CharwordTable.model_validate(read_json("charword_table.json"))
+        self.charword_table_ = CharwordTable.convert(read_json("charword_table.json"))
 
     @property
     def CHARWORD_TABLE(self) -> CharwordTable:
@@ -216,7 +216,7 @@ class ExcelTableManager:
         return self.charword_table_
 
     async def checkin_table(self) -> None:
-        self.checkin_table_ = CheckinTable.model_validate(read_json("checkin_table.json"))
+        self.checkin_table_ = CheckinTable.convert(read_json("checkin_table.json"))
 
     @property
     def CHECKIN_TABLE(self) -> CheckinTable:
@@ -225,7 +225,7 @@ class ExcelTableManager:
         return self.checkin_table_
 
     async def climb_tower_table(self) -> None:
-        self.climb_tower_table_ = ClimbTowerTable.model_validate(read_json("climb_tower_table.json"))
+        self.climb_tower_table_ = ClimbTowerTable.convert(read_json("climb_tower_table.json"))
 
     @property
     def CLIMB_TOWER_TABLE(self) -> ClimbTowerTable:
@@ -234,7 +234,7 @@ class ExcelTableManager:
         return self.climb_tower_table_
 
     async def clue_data(self) -> None:
-        self.clue_data_ = MeetingClueData.model_validate(read_json("clue_data.json"))
+        self.clue_data_ = MeetingClueData.convert(read_json("clue_data.json"))
 
     @property
     def CLUE_DATA(self) -> MeetingClueData:
@@ -243,7 +243,7 @@ class ExcelTableManager:
         return self.clue_data_
 
     async def crisis_table(self) -> None:
-        self.crisis_table_ = CrisisTable.model_validate(read_json("crisis_table.json"))
+        self.crisis_table_ = CrisisTable.convert(read_json("crisis_table.json"))
 
     @property
     def CRISIS_TABLE(self) -> CrisisTable:
@@ -252,7 +252,7 @@ class ExcelTableManager:
         return self.crisis_table_
 
     async def crisis_v2_table(self) -> None:
-        self.crisis_v2_table_ = CrisisV2Table.model_validate(read_json("crisis_v2_table.json"))
+        self.crisis_v2_table_ = CrisisV2Table.convert(read_json("crisis_v2_table.json"))
 
     @property
     def CRISIS_V2_TABLE(self) -> CrisisV2Table:
@@ -261,7 +261,7 @@ class ExcelTableManager:
         return self.crisis_v2_table_
 
     async def display_meta_table(self) -> None:
-        self.display_meta_table_ = DisplayMetaTable.model_validate(read_json("display_meta_table.json"))
+        self.display_meta_table_ = DisplayMetaTable.convert(read_json("display_meta_table.json"))
 
     @property
     def DISPLAY_META_TABLE(self) -> DisplayMetaTable:
@@ -270,7 +270,7 @@ class ExcelTableManager:
         return self.display_meta_table_
 
     async def enemy_handbook_table(self) -> None:
-        self.enemy_handbook_table_ = EnemyHandbookTable.model_validate(read_json("enemy_handbook_table.json"))
+        self.enemy_handbook_table_ = EnemyHandbookTable.convert(read_json("enemy_handbook_table.json"))
 
     @property
     def ENEMY_HANDBOOK_TABLE(self) -> EnemyHandbookTable:
@@ -279,7 +279,7 @@ class ExcelTableManager:
         return self.enemy_handbook_table_
 
     async def favor_table(self) -> None:
-        self.favor_table_ = FavorTable.model_validate(read_json("favor_table.json"))
+        self.favor_table_ = FavorTable.convert(read_json("favor_table.json"))
 
     @property
     def FAVOR_TABLE(self) -> FavorTable:
@@ -288,7 +288,7 @@ class ExcelTableManager:
         return self.favor_table_
 
     async def gacha_table(self) -> None:
-        self.gacha_table_ = GachaTable.model_validate(read_json("gacha_table.json"))
+        self.gacha_table_ = GachaTable.convert(read_json("gacha_table.json"))
 
     @property
     def GACHA_TABLE(self) -> GachaTable:
@@ -297,7 +297,7 @@ class ExcelTableManager:
         return self.gacha_table_
 
     async def gamedata_const(self) -> None:
-        self.gamedata_const_ = GameDataConst.model_validate(read_json("gamedata_const.json"))
+        self.gamedata_const_ = GameDataConst.convert(read_json("gamedata_const.json"))
 
     @property
     def GAMEDATA_CONST(self) -> GameDataConst:
@@ -306,7 +306,7 @@ class ExcelTableManager:
         return self.gamedata_const_
 
     async def handbook_info_table(self) -> None:
-        self.handbook_info_table_ = HandbookInfoTable.model_validate(read_json("handbook_info_table.json"))
+        self.handbook_info_table_ = HandbookInfoTable.convert(read_json("handbook_info_table.json"))
 
     @property
     def HANDBOOK_INFO_TABLE(self) -> HandbookInfoTable:
@@ -315,7 +315,7 @@ class ExcelTableManager:
         return self.handbook_info_table_
 
     async def handbook_table(self) -> None:
-        self.handbook_table_ = HandbookTable.model_validate(read_json("handbook_table.json"))
+        self.handbook_table_ = HandbookTable.convert(read_json("handbook_table.json"))
 
     @property
     def HANDBOOK_TABLE(self) -> HandbookTable:
@@ -324,7 +324,7 @@ class ExcelTableManager:
         return self.handbook_table_
 
     async def handbook_team_table(self) -> None:
-        self.handbook_team_table_ = HandbookTeamTable.model_validate({"team": read_json("handbook_team_table.json")})
+        self.handbook_team_table_ = HandbookTeamTable.convert({"team": read_json("handbook_team_table.json")})
 
     @property
     def HANDBOOK_TEAM_TABLE(self) -> HandbookTeamTable:
@@ -333,7 +333,7 @@ class ExcelTableManager:
         return self.handbook_team_table_
 
     async def item_table(self) -> None:
-        self.item_table_ = ItemTable.model_validate(read_json("item_table.json"))
+        self.item_table_ = ItemTable.convert(read_json("item_table.json"))
 
     @property
     def ITEM_TABLE(self) -> ItemTable:
@@ -342,7 +342,7 @@ class ExcelTableManager:
         return self.item_table_
 
     async def medal_table(self) -> None:
-        self.medal_table_ = MedalTable.model_validate(read_json("medal_table.json"))
+        self.medal_table_ = MedalTable.convert(read_json("medal_table.json"))
 
     @property
     def MEDAL_TABLE(self) -> MedalTable:
@@ -351,7 +351,7 @@ class ExcelTableManager:
         return self.medal_table_
 
     async def mission_table(self) -> None:
-        self.mission_table_ = MissionTable.model_validate(read_json("mission_table.json"))
+        self.mission_table_ = MissionTable.convert(read_json("mission_table.json"))
 
     @property
     def MISSION_TABLE(self) -> MissionTable:
@@ -360,7 +360,7 @@ class ExcelTableManager:
         return self.mission_table_
 
     async def open_server_table(self) -> None:
-        self.open_server_table_ = OpenServerTable.model_validate(read_json("open_server_table.json"))
+        self.open_server_table_ = OpenServerTable.convert(read_json("open_server_table.json"))
 
     @property
     def OPEN_SERVER_TABLE(self) -> OpenServerTable:
@@ -369,7 +369,7 @@ class ExcelTableManager:
         return self.open_server_table_
 
     async def player_avatar_table(self) -> None:
-        self.player_avatar_table_ = PlayerAvatarTable.model_validate(read_json("player_avatar_table.json"))
+        self.player_avatar_table_ = PlayerAvatarTable.convert(read_json("player_avatar_table.json"))
 
     @property
     def PLAYER_AVATAR_TABLE(self) -> PlayerAvatarTable:
@@ -378,7 +378,7 @@ class ExcelTableManager:
         return self.player_avatar_table_
 
     async def range_table(self) -> None:
-        self.range_table_ = RangeTable.model_validate({"range": read_json("range_table.json")})
+        self.range_table_ = RangeTable.convert({"range": read_json("range_table.json")})
 
     @property
     def RANGE_TABLE(self) -> RangeTable:
@@ -387,7 +387,7 @@ class ExcelTableManager:
         return self.range_table_
 
     async def replicate_table(self) -> None:
-        self.replicate_table_ = ReplicateTable.model_validate({"replicate": read_json("replicate_table.json")})
+        self.replicate_table_ = ReplicateTable.convert({"replicate": read_json("replicate_table.json")})
 
     @property
     def REPLICATE_TABLE(self) -> ReplicateTable:
@@ -396,7 +396,7 @@ class ExcelTableManager:
         return self.replicate_table_
 
     async def retro_table(self) -> None:
-        self.retro_table_ = RetroTable.model_validate(read_json("retro_table.json"))
+        self.retro_table_ = RetroTable.convert(read_json("retro_table.json"))
 
     @property
     def RETRO_TABLE(self) -> RetroTable:
@@ -405,7 +405,7 @@ class ExcelTableManager:
         return self.retro_table_
 
     async def roguelike_table(self) -> None:
-        self.roguelike_table_ = RoguelikeTable.model_validate(read_json("roguelike_table.json"))
+        self.roguelike_table_ = RoguelikeTable.convert(read_json("roguelike_table.json"))
 
     @property
     def ROGUELIKE_TABLE(self) -> RoguelikeTable:
@@ -414,7 +414,7 @@ class ExcelTableManager:
         return self.roguelike_table_
 
     async def roguelike_topic_table(self) -> None:
-        self.roguelike_topic_table_ = RoguelikeTopicTable.model_validate(read_json("roguelike_topic_table.json"))
+        self.roguelike_topic_table_ = RoguelikeTopicTable.convert(read_json("roguelike_topic_table.json"))
 
     @property
     def ROGUELIKE_TOPIC_TABLE(self) -> RoguelikeTopicTable:
@@ -424,7 +424,7 @@ class ExcelTableManager:
 
     async def sandbox_table(self) -> None:
         try:
-            self.sandbox_table_ = SandboxTable.model_validate(read_json("sandbox_table.json"))
+            self.sandbox_table_ = SandboxTable.convert(read_json("sandbox_table.json"))
         except FileNotFoundError as _:
             self.sandbox_table_ = None
 
@@ -435,7 +435,7 @@ class ExcelTableManager:
         return self.sandbox_table_
 
     async def sandbox_perm_table(self) -> None:
-        self.sandbox_perm_table_ = SandboxPermTable.model_validate(read_json("sandbox_perm_table.json"))
+        self.sandbox_perm_table_ = SandboxPermTable.convert(read_json("sandbox_perm_table.json"))
 
     @property
     def SANDBOX_PERM_TABLE(self) -> SandboxPermTable:
@@ -444,7 +444,7 @@ class ExcelTableManager:
         return self.sandbox_perm_table_
 
     async def shop_client_table(self) -> None:
-        self.shop_client_table_ = ShopClientTable.model_validate(read_json("shop_client_table.json"))
+        self.shop_client_table_ = ShopClientTable.convert(read_json("shop_client_table.json"))
 
     @property
     def SHOP_CLIENT_TABLE(self) -> ShopClientTable:
@@ -453,7 +453,7 @@ class ExcelTableManager:
         return self.shop_client_table_
 
     async def skill_table(self) -> None:
-        self.skill_table_ = SkillTable.model_validate({"skills": read_json("skill_table.json")})
+        self.skill_table_ = SkillTable.convert({"skills": read_json("skill_table.json")})
 
     @property
     def SKILL_TABLE(self) -> SkillTable:
@@ -462,7 +462,7 @@ class ExcelTableManager:
         return self.skill_table_
 
     async def skin_table(self) -> None:
-        self.skin_table_ = SkinTable.model_validate(read_json("skin_table.json"))
+        self.skin_table_ = SkinTable.convert(read_json("skin_table.json"))
 
     @property
     def SKIN_TABLE(self) -> SkinTable:
@@ -471,7 +471,7 @@ class ExcelTableManager:
         return self.skin_table_
 
     async def stage_table(self) -> None:
-        self.stage_table_ = StageTable.model_validate(read_json("stage_table.json"))
+        self.stage_table_ = StageTable.convert(read_json("stage_table.json"))
 
     @property
     def STAGE_TABLE(self) -> StageTable:
@@ -480,7 +480,7 @@ class ExcelTableManager:
         return self.stage_table_
 
     async def story_review_meta_table(self) -> None:
-        self.story_review_meta_table_ = StoryReviewMetaTable.model_validate(read_json("story_review_meta_table.json"))
+        self.story_review_meta_table_ = StoryReviewMetaTable.convert(read_json("story_review_meta_table.json"))
 
     @property
     def STORY_REVIEW_META_TABLE(self) -> StoryReviewMetaTable:
@@ -489,9 +489,7 @@ class ExcelTableManager:
         return self.story_review_meta_table_
 
     async def story_review_table(self) -> None:
-        self.story_review_table_ = StoryReviewTable.model_validate(
-            {"storyreview": read_json("story_review_table.json")}
-        )
+        self.story_review_table_ = StoryReviewTable.convert({"storyreview": read_json("story_review_table.json")})
 
     @property
     def STORY_REVIEW_TABLE(self) -> StoryReviewTable:
@@ -500,7 +498,7 @@ class ExcelTableManager:
         return self.story_review_table_
 
     async def story_table(self) -> None:
-        self.story_table_ = StoryTable.model_validate({"stories": read_json("story_table.json")})
+        self.story_table_ = StoryTable.convert({"stories": read_json("story_table.json")})
 
     @property
     def STORY_TABLE(self) -> StoryTable:
@@ -509,7 +507,7 @@ class ExcelTableManager:
         return self.story_table_
 
     async def tech_buff_table(self) -> None:
-        self.tech_buff_table_ = TechBuffTable.model_validate(read_json("tech_buff_table.json"))
+        self.tech_buff_table_ = TechBuffTable.convert(read_json("tech_buff_table.json"))
 
     @property
     def TECH_BUFF_TABLE(self) -> TechBuffTable:
@@ -518,7 +516,7 @@ class ExcelTableManager:
         return self.tech_buff_table_
 
     async def tip_table(self) -> None:
-        self.tip_table_ = TipTable.model_validate(read_json("tip_table.json"))
+        self.tip_table_ = TipTable.convert(read_json("tip_table.json"))
 
     @property
     def TIP_TABLE(self) -> TipTable:
@@ -527,7 +525,7 @@ class ExcelTableManager:
         return self.tip_table_
 
     async def token_table(self) -> None:
-        self.token_table_ = TokenTable.model_validate({"tokens": read_json("token_table.json")})
+        self.token_table_ = TokenTable.convert({"tokens": read_json("token_table.json")})
 
     @property
     def TOKEN_TABLE(self) -> TokenTable:
@@ -536,7 +534,7 @@ class ExcelTableManager:
         return self.token_table_
 
     async def uniequip_data(self) -> None:
-        self.uniequip_data_ = UniequipData.model_validate(read_json("uniequip_data.json"))
+        self.uniequip_data_ = UniequipData.convert(read_json("uniequip_data.json"))
 
     @property
     def UNIEQUIP_DATA(self) -> UniequipData:
@@ -545,7 +543,7 @@ class ExcelTableManager:
         return self.uniequip_data_
 
     async def uniequip_table(self) -> None:
-        self.uniequip_table_ = UniequipTable.model_validate(read_json("uniequip_table.json"))
+        self.uniequip_table_ = UniequipTable.convert(read_json("uniequip_table.json"))
 
     @property
     def UNIEQUIP_TABLE(self) -> UniequipTable:
@@ -554,7 +552,7 @@ class ExcelTableManager:
         return self.uniequip_table_
 
     async def zone_table(self) -> None:
-        self.zone_table_ = ZoneTable.model_validate(read_json("zone_table.json"))
+        self.zone_table_ = ZoneTable.convert(read_json("zone_table.json"))
 
     @property
     def ZONE_TABLE(self) -> ZoneTable:

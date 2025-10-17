@@ -1,9 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class MissionDailyRewards(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MissionDailyRewards(BaseStruct):
     dailyPoint: int
     weeklyPoint: int
     rewards: dict[str, dict[str, int]]

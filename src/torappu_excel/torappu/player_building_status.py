@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_labor import PlayerBuildingLabor
 from .player_building_workshop_status import PlayerBuildingWorkshopStatus
+from ..common import BaseStruct
 
 
-class PlayerBuildingStatus(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingStatus(BaseStruct):
     labor: PlayerBuildingLabor
     workshop: PlayerBuildingWorkshopStatus

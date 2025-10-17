@@ -1,12 +1,9 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_roguelike_state import PlayerRoguelikeState
 from .roguelike_node_position import RoguelikeNodePosition
+from ..common import BaseStruct
 
 
-class PlayerRoguelikeCursor(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRoguelikeCursor(BaseStruct):
     zoneIndex: int
     position: RoguelikeNodePosition
     state: PlayerRoguelikeState

@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_grid_position import PlayerBuildingGridPosition
+from ..common import BaseStruct
 
 
-class PlayerBuildingFurniturePositionInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingFurniturePositionInfo(BaseStruct):
     id: str
     coordinate: PlayerBuildingGridPosition

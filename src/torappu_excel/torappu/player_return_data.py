@@ -1,11 +1,9 @@
-﻿from enum import StrEnum
+from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerReturnData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerReturnData(BaseStruct):
     open: bool
     current: "PlayerReturnData.CurrentData | None"
     currentV2: "PlayerReturnData.CurrentV2Data | None" = None
@@ -15,9 +13,7 @@ class PlayerReturnData(BaseModel):
         OLD = "OLD"
         NEW = "NEW"
 
-    class CurrentData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CurrentData(BaseStruct):
         start: int
         lastOnlineTs: int
         mission: "PlayerReturnData.Mission"
@@ -25,9 +21,7 @@ class PlayerReturnData(BaseModel):
         fullOpen: "PlayerReturnData.FullOpen"
         reward: bool
 
-    class CurrentV2Data(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CurrentV2Data(BaseStruct):
         start: int
         finishTs: int
         lastOnlineTs: int
@@ -38,20 +32,14 @@ class PlayerReturnData(BaseModel):
         backGiftPack: "PlayerReturnData.GiftPackData"
         cumulativeLoginPack: "PlayerReturnData.LoginPackData"
 
-    class GiftPackData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class GiftPackData(BaseStruct):
         packs: dict[str, "PlayerReturnData.GiftPackItemData"]
 
-    class GiftPackItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class GiftPackItemData(BaseStruct):
         boughtCount: int
         saleEndAt: int
 
-    class LoginPackData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LoginPackData(BaseStruct):
         hasBought: bool
         groupId: str
         loginRecord: int
@@ -59,61 +47,45 @@ class PlayerReturnData(BaseModel):
         checkinFinTs: int
         gpSaleEndAt: int
 
-    class MissionV2(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MissionV2(BaseStruct):
         point: int
         stageAwardSt: list[int]
         dailySupplySt: list[int]
         long: dict[str, "list[PlayerReturnData.MissionV2Data]"]
 
-    class MissionV2Data(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MissionV2Data(BaseStruct):
         missionId: str
         current: int
         target: int
         status: int
 
-    class MissionLongData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MissionLongData(BaseStruct):
         missionId: str
         current: float
         target: float
         status: int
 
-    class MissionDailyData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MissionDailyData(BaseStruct):
         missionId: str
         missionGroupId: str
         current: float
         target: float
         status: int
 
-    class Mission(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Mission(BaseStruct):
         point: int
         long: "list[PlayerReturnData.MissionLongData]"
         daily: "list[PlayerReturnData.MissionDailyData]"
         reward: bool
 
-    class CheckIn(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CheckIn(BaseStruct):
         history: list[int]
 
-    class CheckInV2(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CheckInV2(BaseStruct):
         groupId: str
         history: list[int]
 
-    class FullOpen(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class FullOpen(BaseStruct):
         last: int
         today: bool
         remain: int

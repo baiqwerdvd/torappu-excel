@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RushEnemyConfig(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RushEnemyConfig(BaseStruct):
     enemyKey: str
     branchId: str
     count: int

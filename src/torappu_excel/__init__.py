@@ -1,4 +1,4 @@
-__version__ = "2.6.64"
+__version__ = "2.6.65"
 
 client_version = "2.6.61"
 data_version = "25-10-13-16-21-56_229ee9"

@@ -1,8 +1,6 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RoguelikeCommonDevDifficultyNodePairInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeCommonDevDifficultyNodePairInfo(BaseStruct):
     frontNodes: list[str]
     nextNode: str

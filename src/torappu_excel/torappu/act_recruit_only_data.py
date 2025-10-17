@@ -1,15 +1,11 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ActRecruitOnlyData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActRecruitOnlyData(BaseStruct):
     recruitData: "ActRecruitOnlyData.RecruitOnlyItemData"
     previewData: "ActRecruitOnlyData.RecruitOnlyItemData"
 
-    class RecruitOnlyItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RecruitOnlyItemData(BaseStruct):
         id: str
         phaseNum: int
         tagId: int

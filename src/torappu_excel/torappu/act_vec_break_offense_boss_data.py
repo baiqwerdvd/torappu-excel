@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ActVecBreakOffenseBossData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActVecBreakOffenseBossData(BaseStruct):
     enemyId: str
     name: str
     desc: str

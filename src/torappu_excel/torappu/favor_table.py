@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .favor_data_frames import FavorDataFrames
+from ..common import BaseStruct
 
 
-class FavorTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class FavorTable(BaseStruct):
     maxFavor: int
     favorFrames: list[FavorDataFrames]

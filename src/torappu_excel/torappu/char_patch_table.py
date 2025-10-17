@@ -1,38 +1,27 @@
-from pydantic import BaseModel, ConfigDict
-
 from .character_data import CharacterData
 from .player_battle_rank import PlayerBattleRank
+from ..common import BaseStruct
 
 
-class CharPatchData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CharPatchData(BaseStruct):
     infos: dict[str, "CharPatchData.PatchInfo"]
     patchChars: dict[str, CharacterData]
     unlockConds: dict[str, "CharPatchData.UnlockCond"]
     patchDetailInfoList: dict[str, "CharPatchData.PatchDetailInfo"]
 
-    class PatchInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PatchInfo(BaseStruct):
         tmplIds: list[str]
         default: str
 
-    class UnlockCond(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class UnlockCond(BaseStruct):
         conds: list["CharPatchData.UnlockCond.Item"]
 
-        class Item(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Item(BaseStruct):
             stageId: str
             completeState: PlayerBattleRank
             unlockTs: int
 
-    class PatchDetailInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PatchDetailInfo(BaseStruct):
         patchId: str
         sortId: int
         infoParam: str

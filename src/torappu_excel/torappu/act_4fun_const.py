@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class Act4funConst(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act4funConst(BaseStruct):
     liveMatAmtLowerLimit: int
     liveTurnUpperLimit: int
     superChatCountDownNum: int

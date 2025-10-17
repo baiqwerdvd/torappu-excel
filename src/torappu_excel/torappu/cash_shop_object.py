@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class CashShopObject(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CashShopObject(BaseStruct):
     goodId: str
     slotId: int
     price: int

@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SandboxV2EventEffectData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2EventEffectData(BaseStruct):
     eventEffectId: str
     buffId: str
     duration: int

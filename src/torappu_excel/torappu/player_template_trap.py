@@ -1,18 +1,12 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerTemplateTrap(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerTemplateTrap(BaseStruct):
     domains: dict[str, "PlayerTemplateTrap.Domin"]
 
-    class Trap(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Trap(BaseStruct):
         count: int
 
-    class Domin(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Domin(BaseStruct):
         traps: dict[str, "PlayerTemplateTrap.Trap"]
         squad: list[str]

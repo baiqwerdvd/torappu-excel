@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SpDynIllustInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SpDynIllustInfo(BaseStruct):
     skinId: str
     spDynIllustId: str
     spDynIllustSkinTag: str

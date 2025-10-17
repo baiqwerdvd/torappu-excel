@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RL02DevelopmentLine(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RL02DevelopmentLine(BaseStruct):
     fromNode: str
     toNode: str
     fromNodeP: int

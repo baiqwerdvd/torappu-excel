@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class CommonFavorUpInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CommonFavorUpInfo(BaseStruct):
     charId: str
     displayStartTime: int
     displayEndTime: int

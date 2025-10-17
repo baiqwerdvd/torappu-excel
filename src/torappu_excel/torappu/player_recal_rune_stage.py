@@ -1,11 +1,9 @@
-﻿from enum import IntEnum
+from enum import IntEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerRecalRuneStage(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRecalRuneStage(BaseStruct):
     state: "PlayerRecalRuneStage.State"
     record: int
     runes: list[str]

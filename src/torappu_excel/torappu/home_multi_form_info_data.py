@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .home_multi_form_change_rule import HomeMultiFormChangeRule
+from ..common import BaseStruct
 
 
-class HomeMultiFormInfoData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HomeMultiFormInfoData(BaseStruct):
     changeRule: HomeMultiFormChangeRule
     bgDesc: str
     tmDesc: str

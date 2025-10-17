@@ -1,8 +1,6 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class NewTrainingCampStageData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class NewTrainingCampStageData(BaseStruct):
     updateTs: int
     stages: list[str]

@@ -1,9 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_equip_mission import PlayerEquipMission
+from ..common import BaseStruct
 
 
-class PlayerEquipment(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerEquipment(BaseStruct):
     missions: dict[str, PlayerEquipMission]

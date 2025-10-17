@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .evolve_phase import EvolvePhase
+from ..common import BaseStruct
 
 
-class ActMultiV3TempCharData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActMultiV3TempCharData(BaseStruct):
     charId: str
     level: int
     evolvePhase: EvolvePhase

@@ -1,8 +1,6 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ActVecBreakV2ScheduleBlockData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActVecBreakV2ScheduleBlockData(BaseStruct):
     startTs: int
     endTs: int

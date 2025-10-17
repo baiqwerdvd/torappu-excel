@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_vec_break_v2_boss_data import ActVecBreakV2BossData
 from .act_vec_break_v2_particle_type import ActVecBreakV2ParticleType
+from ..common import BaseStruct
 
 
-class ActVecBreakV2OffenseStageData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActVecBreakV2OffenseStageData(BaseStruct):
     stageId: str
     level: int
     levelLayout: str

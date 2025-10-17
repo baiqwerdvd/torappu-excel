@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_topic_mode import RoguelikeTopicMode
+from ..common import BaseStruct
 
 
-class RL04DifficultyExt(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RL04DifficultyExt(BaseStruct):
     modeDifficulty: RoguelikeTopicMode
     grade: int
     leftDisasterDesc: str

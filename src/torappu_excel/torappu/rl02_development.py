@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .rl02_development_effect_type import RL02DevelopmentEffectType
 from .rl02_development_node_type import RL02DevelopmentNodeType
 from .roguelike_topic_display_item import RoguelikeTopicDisplayItem
+from ..common import BaseStruct
 
 
-class RL02Development(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RL02Development(BaseStruct):
     buffId: str
     nodeType: RL02DevelopmentNodeType
     frontNodeId: list[str]

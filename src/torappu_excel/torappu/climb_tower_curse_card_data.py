@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ClimbTowerCurseCardData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ClimbTowerCurseCardData(BaseStruct):
     id: str
     towerIdList: list[str]
     name: str

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .open_server_item_data import OpenServerItemData
+from ..common import BaseStruct
 
 
-class TotalCheckinData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class TotalCheckinData(BaseStruct):
     order: int
     item: OpenServerItemData
     colorId: int

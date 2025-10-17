@@ -1,8 +1,6 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ExpItemFeature(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ExpItemFeature(BaseStruct):
     id: str
     gainExp: int

@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_six_star_tag_finish_state import PlayerSixStarTagFinishState
+from ..common import BaseStruct
 
 
-class PlayerSixStarStage(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSixStarStage(BaseStruct):
     tagFinish: PlayerSixStarTagFinishState
     tagSelected: list[str]

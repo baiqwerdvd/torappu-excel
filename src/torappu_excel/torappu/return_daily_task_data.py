@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .mission_display_rewards import MissionDisplayRewards
+from ..common import BaseStruct
 
 
-class ReturnDailyTaskData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ReturnDailyTaskData(BaseStruct):
     groupId: str
     id: str
     groupSortId: int

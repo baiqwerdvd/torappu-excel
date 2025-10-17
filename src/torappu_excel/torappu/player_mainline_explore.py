@@ -1,11 +1,9 @@
-﻿from enum import StrEnum
+from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerMainlineExplore(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerMainlineExplore(BaseStruct):
     game: "PlayerMainlineExplore.PlayerExploreGameContext | None"
     outer: "PlayerMainlineExplore.PlayerExploreOuterContext"
 
@@ -14,9 +12,7 @@ class PlayerMainlineExplore(BaseModel):
         CHECK = "CHECK"
         EVENT = "EVENT"
 
-    class PlayerExploreGameContext(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameContext(BaseStruct):
         state: "PlayerMainlineExplore.PlayerExploreGameContextState"
         node: "PlayerMainlineExplore.PlayerExploreGameContextNode"
         map: "PlayerMainlineExplore.PlayerExploreGameContextMap"
@@ -30,9 +26,7 @@ class PlayerMainlineExplore(BaseModel):
         WAIT_CONFIRM = "WAIT_CONFIRM"
         FAIL = "FAIL"
 
-    class PlayerExploreGameContextState(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameContextState(BaseStruct):
         abilities: dict[str, int]
         groupId: str
         groupCode: str
@@ -45,80 +39,56 @@ class PlayerMainlineExplore(BaseModel):
         broadCast: list[str]
         startTs: int
 
-    class PlayerExploreGameContextNode(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameContextNode(BaseStruct):
         type: "PlayerMainlineExplore.DecisionNodeType"
         event: "PlayerMainlineExplore.PlayerExploreGameContextNodeEvent"
 
-    class PlayerExploreGameContextNodeEvent(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameContextNodeEvent(BaseStruct):
         events: list[str]
         choices: "list[PlayerMainlineExplore.PlayerExploreGameContextNodeEventChoice]"
 
-    class PlayerExploreGameContextNodeEventChoice(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameContextNodeEventChoice(BaseStruct):
         eventId: str
         choiceId: str
         abilitiesDelta: dict[str, int]
         abilitiesCondition: dict[str, int]
         successRate: float
 
-    class PlayerExploreGameContextMap(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameContextMap(BaseStruct):
         display: "PlayerMainlineExplore.PlayerExploreGameContextMapDisplay"
 
-    class PlayerExploreGameContextMapDisplay(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameContextMapDisplay(BaseStruct):
         nodeSeed: int
         pathSeed: int
         controlPoints: "list[PlayerMainlineExplore.PlayerExploreGameContextMapControlPoint]"
 
-    class PlayerExploreGameContextMapControlPoint(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameContextMapControlPoint(BaseStruct):
         stageId: str
         pos: "PlayerMainlineExplore.PlayerPosition"
 
-    class PlayerPosition(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerPosition(BaseStruct):
         x: int | float
         y: int | float
 
-    class PlayerExploreGameContextLog(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameContextLog(BaseStruct):
         passEvents: list[str]
         passTargets: list[str]
 
-    class PlayerExploreOuterContext(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreOuterContext(BaseStruct):
         isOpen: bool
         mission: dict[str, "PlayerMainlineExplore.PlayerExploreOuterContextMissionState"]
         lastGameResult: "PlayerMainlineExplore.PlayerExploreGameResult"
         historyPaths: "list[PlayerMainlineExplore.PlayerExploreOuterContextHistoryPath]"
 
-    class PlayerExploreGameResult(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreGameResult(BaseStruct):
         groupId: str
         groupCode: str
         heritageAbilities: dict[str, int]
 
-    class PlayerExploreOuterContextMissionState(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreOuterContextMissionState(BaseStruct):
         state: int
         progress: list[int]
 
-    class PlayerExploreOuterContextHistoryPath(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerExploreOuterContextHistoryPath(BaseStruct):
         success: bool
         path: "PlayerMainlineExplore.PlayerExploreGameContextMapDisplay"

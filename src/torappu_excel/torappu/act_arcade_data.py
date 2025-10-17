@@ -1,14 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
-from torappu_excel.common import CustomIntEnum
-
 from .item_bundle import ItemBundle
 from .rune_table import RuneTable
+from ..common import BaseStruct, CustomIntEnum
 
 
-class ActArcadeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArcadeData(BaseStruct):
     class Rank(CustomIntEnum):
         B = "B", 0
         A = "A", 1
@@ -37,23 +32,17 @@ class ActArcadeData(BaseModel):
     milestoneList: list["ActArcadeData.ArcadeMilestoneItemData"]
     constData: "ActArcadeData.ArcadeConstData"
 
-    class ArcadeStageRankRewardLevelData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArcadeStageRankRewardLevelData(BaseStruct):
         rank: "ActArcadeData.Rank"
         rankScore: int
         coinCnt: int
 
-    class ArcadeStageRankRewardData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArcadeStageRankRewardData(BaseStruct):
         stageId: str
         maxRewardRank: "ActArcadeData.Rank"
         rankRewardLevelDatas: list["ActArcadeData.ArcadeStageRankRewardLevelData"]
 
-    class ArcadeStageAdditionalData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArcadeStageAdditionalData(BaseStruct):
         stageId: str
         zoneId: str
         mechDescription: str
@@ -61,9 +50,7 @@ class ActArcadeData(BaseModel):
         maxSlot: int
         rankRewardData: "ActArcadeData.ArcadeStageRankRewardData"
 
-    class ArcadeZoneAdditionalData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArcadeZoneAdditionalData(BaseStruct):
         zoneId: str
         sortId: int
         zoneName: str
@@ -75,9 +62,7 @@ class ActArcadeData(BaseModel):
         subModeType: "ActArcadeData.SubModeType"
         zoneDesc: str
 
-    class ArcadeBadgeTierData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArcadeBadgeTierData(BaseStruct):
         badgeTierId: str
         sortId: int
         badgeTierIconId: str
@@ -89,9 +74,7 @@ class ActArcadeData(BaseModel):
         unlockDesc: str
         runeData: RuneTable.PackedRuneData | None
 
-    class ArcadeBadgeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArcadeBadgeData(BaseStruct):
         badgeId: str
         badgeType: "ActArcadeData.BadgeType"
         sortId: int
@@ -101,25 +84,19 @@ class ActArcadeData(BaseModel):
         scoreZone: str | None
         tiers: dict[str, "ActArcadeData.ArcadeBadgeTierData"]
 
-    class ArcadeBadgeTypeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArcadeBadgeTypeData(BaseStruct):
         badgeType: "ActArcadeData.BadgeType"
         badgeTypeName: str
         sortId: int
         buffRangeDesc: str | None
 
-    class ArcadeMilestoneItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArcadeMilestoneItemData(BaseStruct):
         mileStoneId: str
         mileStoneLvl: int
         needPointCnt: int
         reward: ItemBundle
 
-    class ArcadeConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArcadeConstData(BaseStruct):
         milestoneName: str
         milestoneNameEN: str
         milestoneItemId: str

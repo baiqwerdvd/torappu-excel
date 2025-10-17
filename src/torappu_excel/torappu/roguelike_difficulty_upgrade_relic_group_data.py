@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_difficulty_upgrade_relic_data import RoguelikeDifficultyUpgradeRelicData
+from ..common import BaseStruct
 
 
-class RoguelikeDifficultyUpgradeRelicGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeDifficultyUpgradeRelicGroupData(BaseStruct):
     relicData: list[RoguelikeDifficultyUpgradeRelicData]

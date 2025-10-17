@@ -1,14 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
-from torappu_excel.common import CustomIntEnum
-
 from .item_bundle import ItemBundle
 from .rune_table import RuneTable
+from ..common import BaseStruct, CustomIntEnum
 
 
-class Act25SideData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act25SideData(BaseStruct):
     class Act25SideArchiveItemType(CustomIntEnum):
         PIC = "PIC", 0
         STORY = "STORY", 1
@@ -40,9 +35,7 @@ class Act25SideData(BaseModel):
     fogUnlockData: dict[str, "Act25SideData.FogUnlockData"]
     farmList: list["Act25SideData.DailyFarmData"]
 
-    class ConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConstData(BaseStruct):
         getDailyCount: int
         costName: str
         costDesc: str
@@ -55,16 +48,12 @@ class Act25SideData(BaseModel):
         basicProgress: int
         harvestDesc: str
 
-    class ZoneDescInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ZoneDescInfo(BaseStruct):
         zoneId: str
         unlockText: str
         displayStartTime: int
 
-    class ArchiveItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArchiveItemData(BaseStruct):
         itemId: str
         itemType: "Act25SideData.Act25SideArchiveItemType"
         itemUnlockType: "Act25SideData.Act25SideArchiveItemUnlockType"
@@ -73,9 +62,7 @@ class Act25SideData(BaseModel):
         iconId: str | None
         itemName: str
 
-    class ArchiveMapInfoData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArchiveMapInfoData(BaseStruct):
         objectId: str
         type: "Act25SideData.Act25SideArchiveItemType"
         numberId: str
@@ -84,9 +71,7 @@ class Act25SideData(BaseModel):
         position: int
         hasDot: bool
 
-    class AreaInfoData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AreaInfoData(BaseStruct):
         areaId: str
         sortId: int
         areaIcon: str
@@ -100,9 +85,7 @@ class Act25SideData(BaseModel):
         finalId: str
         areaNewIcon: bool
 
-    class AreaMissionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AreaMissionData(BaseStruct):
         id: str
         areaId: str
         preposedMissionId: str | None
@@ -120,9 +103,7 @@ class Act25SideData(BaseModel):
         rewards: list[ItemBundle]
         archiveItems: list[str]
 
-    class BattlePerformanceData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BattlePerformanceData(BaseStruct):
         itemId: str
         sortId: int
         itemName: str
@@ -131,23 +112,17 @@ class Act25SideData(BaseModel):
         itemTechType: "Act25SideData.Act25sideTechType"
         runeData: RuneTable.PackedRuneData
 
-    class KeyData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class KeyData(BaseStruct):
         keyId: str
         keyName: str
         keyIcon: str
         toastText: str
 
-    class FogUnlockData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class FogUnlockData(BaseStruct):
         lockId: str
         lockedCollectionIconId: str
         unlockedCollectionIconId: str
 
-    class DailyFarmData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DailyFarmData(BaseStruct):
         transform: int
         unitTime: int

@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .home_multi_form_change_rule import HomeMultiFormChangeRule
 from .home_theme_multi_form_data import HomeThemeMultiFormData
 from .item_rarity import ItemRarity
+from ..common import BaseStruct
 
 
-class HomeThemeDisplayData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HomeThemeDisplayData(BaseStruct):
     id: str
     type: str
     sortId: int

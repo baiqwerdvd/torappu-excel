@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SpecialOperatorDetailTalentNodeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SpecialOperatorDetailTalentNodeData(BaseStruct):
     nodeId: str
     talentIndex: int
     updateCount: int

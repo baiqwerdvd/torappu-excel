@@ -1,10 +1,10 @@
-﻿from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class PlayerBuildingControlBuff(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    global_: "PlayerBuildingControlBuff.Global" = Field(alias="global")
+class PlayerBuildingControlBuff(BaseStruct):
+    global_: "PlayerBuildingControlBuff.Global" = field(name="global")
     manufacture: "PlayerBuildingControlBuff.Manufacture"
     trading: "PlayerBuildingControlBuff.Trading"
     meeting: "PlayerBuildingControlBuff.Meeting"
@@ -15,15 +15,11 @@ class PlayerBuildingControlBuff(BaseModel):
     dormitory: "PlayerBuildingControlBuff.Dormitory"
     training: "PlayerBuildingControlBuff.Training"
 
-    class Global(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Global(BaseStruct):
         apCost: int
         roomCnt: dict[str, int]
 
-    class Manufacture(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Manufacture(BaseStruct):
         speed: float | int
         sSpeed: float | int
         roomSpeed: dict[str, float | int]
@@ -34,9 +30,7 @@ class PlayerBuildingControlBuff(BaseModel):
         charLimit: dict[str, int]
         roomLimit: dict[str, int]
 
-    class Meeting(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Meeting(BaseStruct):
         clue: float | int
         speedUp: float | int
         sSpeed: float | int
@@ -44,31 +38,21 @@ class PlayerBuildingControlBuff(BaseModel):
         apCost: int
         notOwned: float | int
 
-    class Hire(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Hire(BaseStruct):
         spUp: "PlayerBuildingControlBuff.Hire.SpUp"
         apCost: int
         up: int
 
-        class SpUp(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SpUp(BaseStruct):
             base: float | int
             up: float | int
 
-    class Power(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Power(BaseStruct):
         apCost: int
 
-    class Dormitory(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Dormitory(BaseStruct):
         recover: int
         tagRecover: dict[str, int]
 
-    class Training(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Training(BaseStruct):
         speed: float

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_task_rarity import RoguelikeTaskRarity
+from ..common import BaseStruct
 
 
-class RoguelikeTaskData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTaskData(BaseStruct):
     taskId: str
     taskName: str
     taskDesc: str

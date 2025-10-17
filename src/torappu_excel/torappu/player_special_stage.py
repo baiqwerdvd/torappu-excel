@@ -1,9 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerSpecialStage(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSpecialStage(BaseStruct):
     id: str
     type: str
     val: list[bool | list[int]]

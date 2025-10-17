@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act1_vhalf_idle_tech_tree_node_type import Act1VHalfIdleTechTreeNodeType
 from .rune_table import RuneTable
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleTechTreeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleTechTreeData(BaseStruct):
     nodeId: str
     nodeType: Act1VHalfIdleTechTreeNodeType
     prevNodeId: list[str] | None
@@ -16,9 +13,7 @@ class Act1VHalfIdleTechTreeData(BaseModel):
     showPrevLockTips: bool
     effect: list["Act1VHalfIdleTechTreeData.Effect"]
 
-    class Effect(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Effect(BaseStruct):
         desc: str
         title: str
         iconId: str

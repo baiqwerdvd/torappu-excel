@@ -1,9 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerBuildingTrainingReduceTimeBd(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingTrainingReduceTimeBd(BaseStruct):
     fulltime: bool
     activated: bool
     cnt: int

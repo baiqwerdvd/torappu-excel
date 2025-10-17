@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class AprilFoolConst(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class AprilFoolConst(BaseStruct):
     battleFinishLoseDes: str
     killEnemyDes: str
     killBossDes: str

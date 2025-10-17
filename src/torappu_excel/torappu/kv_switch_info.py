@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class KVSwitchInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class KVSwitchInfo(BaseStruct):
     isDefault: bool
     displayTime: int
     zoneId: str | None

@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act1_vhalf_idle_enemy_preload_meta import Act1VHalfIdleEnemyPreloadMeta
 from .profession_category import ProfessionCategory
 from .rune_table import RuneTable
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleConstData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleConstData(BaseStruct):
     incomeProductionItems: list[str]
     milestoneId: str
     discount: list[int]
@@ -57,8 +54,6 @@ class Act1VHalfIdleConstData(BaseModel):
     unlockSpecialPlot: list[str]
     bossEnterBgmKey: str
 
-    class ProfessionDesc(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ProfessionDesc(BaseStruct):
         profession: ProfessionCategory
         desc: str

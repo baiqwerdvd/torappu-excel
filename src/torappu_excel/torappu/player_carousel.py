@@ -1,13 +1,9 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerCarousel(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCarousel(BaseStruct):
     furnitureShop: "PlayerCarousel.PlayerCarouselFurnitureShopData"
 
-    class PlayerCarouselFurnitureShopData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerCarouselFurnitureShopData(BaseStruct):
         goods: dict[str, int]
         groups: dict[str, int]

@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .mission_calc_state import MissionCalcState
+from ..common import BaseStruct
 
 
-class PlayerHiddenStage(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerHiddenStage(BaseStruct):
     missions: list[MissionCalcState]
     unlock: int

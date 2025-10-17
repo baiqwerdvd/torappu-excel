@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_archive_avg_item_data import ActArchiveAvgItemData
+from ..common import BaseStruct
 
 
-class ActArchiveAvgData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveAvgData(BaseStruct):
     avgs: dict[str, ActArchiveAvgItemData]

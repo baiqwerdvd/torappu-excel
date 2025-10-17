@@ -1,8 +1,6 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ActivityEnemyDuelEnemyData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityEnemyDuelEnemyData(BaseStruct):
     enemyId: str
     originalEnemyId: str

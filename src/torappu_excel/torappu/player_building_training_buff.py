@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_training_reduce_time_bd import PlayerBuildingTrainingReduceTimeBd
+from ..common import BaseStruct
 
 
-class PlayerBuildingTrainingBuff(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingTrainingBuff(BaseStruct):
     speed: float
     apCost: int
     lvEx: dict[str, float | int]
@@ -13,9 +10,7 @@ class PlayerBuildingTrainingBuff(BaseModel):
     reduce: "PlayerBuildingTrainingBuff.Reduce"
     reduceTimeBd: PlayerBuildingTrainingReduceTimeBd
 
-    class Reduce(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Reduce(BaseStruct):
         target: int | None
         progress: int
         cut: float | int

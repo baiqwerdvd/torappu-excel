@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_stage_state import PlayerStageState
+from ..common import BaseStruct
 
 
-class PlayerActFunStage(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerActFunStage(BaseStruct):
     state: PlayerStageState
     scores: list[int]

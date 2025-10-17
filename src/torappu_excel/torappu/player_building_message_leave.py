@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_message_leave_sp import PlayerBuildingMessageLeaveSP
+from ..common import BaseStruct
 
 
-class PlayerBuildingMessageLeave(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingMessageLeave(BaseStruct):
     inUse: bool
     lastVisitTs: int
     lastShowTs: int

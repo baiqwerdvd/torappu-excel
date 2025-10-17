@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .home_theme_limit_info_data import HomeThemeLimitInfoData
+from ..common import BaseStruct
 
 
-class HomeThemeLimitData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HomeThemeLimitData(BaseStruct):
     id: str
     limitInfos: list[HomeThemeLimitInfoData]

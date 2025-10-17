@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ShopRecommendTemplateNormalFurnParam(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ShopRecommendTemplateNormalFurnParam(BaseStruct):
     showStartTs: int
     showEndTs: int
     furnPackId: str

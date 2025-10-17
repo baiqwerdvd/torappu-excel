@@ -1,9 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_avatar_block import PlayerAvatarBlock
+from ..common import BaseStruct
 
 
-class PlayerAvatar(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerAvatar(BaseStruct):
     avatar_icon: dict[str, PlayerAvatarBlock]

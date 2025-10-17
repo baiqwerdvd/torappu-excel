@@ -1,5 +1,3 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_node_detail_content import PlayerNodeDetailContent
 from .player_node_foresight_type import PlayerNodeForesightType
 from .player_node_roll_info import PlayerNodeRollInfo
@@ -8,11 +6,10 @@ from .roguelike_event_type import RoguelikeEventType
 from .roguelike_node_line import RoguelikeNodeLine
 from .roguelike_node_position import RoguelikeNodePosition
 from .roguelike_shop import RoguelikeShop
+from ..common import BaseStruct
 
 
-class PlayerRoguelikeNode(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRoguelikeNode(BaseStruct):
     pos: RoguelikeNodePosition
     next: list[RoguelikeNodeLine]
     type: RoguelikeEventType

@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_home_condition_progress import PlayerHomeConditionProgress
+from ..common import BaseStruct
 
 
-class PlayerHomeUnlockStatus(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerHomeUnlockStatus(BaseStruct):
     unlock: int | None = None
     conditions: dict[str, PlayerHomeConditionProgress] | None = None

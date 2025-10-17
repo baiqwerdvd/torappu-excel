@@ -1,8 +1,6 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RoguelikeChaosPredefineLevelInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeChaosPredefineLevelInfo(BaseStruct):
     chaosLevelBeginNum: int
     chaosLevelEndNum: int

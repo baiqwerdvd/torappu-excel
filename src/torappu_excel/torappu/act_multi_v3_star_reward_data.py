@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class ActMultiV3StarRewardData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActMultiV3StarRewardData(BaseStruct):
     starNum: int
     rewards: list[ItemBundle]
     dailyMissionPoint: int

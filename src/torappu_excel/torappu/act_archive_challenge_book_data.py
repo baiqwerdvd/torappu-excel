@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_archive_challenge_book_item_data import ActArchiveChallengeBookItemData
+from ..common import BaseStruct
 
 
-class ActArchiveChallengeBookData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveChallengeBookData(BaseStruct):
     stories: dict[str, ActArchiveChallengeBookItemData]

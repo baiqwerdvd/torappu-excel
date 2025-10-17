@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .name_card_v2_module_sub_type import NameCardV2ModuleSubType
 from .name_card_v2_module_type import NameCardV2ModuleType
+from ..common import BaseStruct
 
 
-class NameCardV2RemovableModuleData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class NameCardV2RemovableModuleData(BaseStruct):
     id: str
     type: NameCardV2ModuleType
     sortId: int

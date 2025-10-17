@@ -1,8 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerNameCardMisc(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerNameCardMisc(BaseStruct):
     showDetail: bool
     showBirthday: bool

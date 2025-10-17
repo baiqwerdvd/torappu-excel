@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .climb_tower_level_drop_info import ClimbTowerLevelDropInfo
 from .climb_tower_level_type import ClimbTowerLevelType
+from ..common import BaseStruct
 
 
-class ClimbTowerSingleLevelData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ClimbTowerSingleLevelData(BaseStruct):
     id: str
     levelId: str
     towerId: str

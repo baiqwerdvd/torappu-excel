@@ -1,8 +1,6 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RL03DevDifficultyNodePairInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RL03DevDifficultyNodePairInfo(BaseStruct):
     frontNode: str
     nextNode: str

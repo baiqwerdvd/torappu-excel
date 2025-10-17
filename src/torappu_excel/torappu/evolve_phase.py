@@ -1,9 +1,16 @@
-from ..common import CustomIntEnum
+from enum import StrEnum, IntEnum
 
 
-class EvolvePhase(CustomIntEnum):
-    PHASE_0 = "PHASE_0", 0
-    PHASE_1 = "PHASE_1", 1
-    PHASE_2 = "PHASE_2", 2
-    PHASE_3 = "PHASE_3", 3
-    E_NUM = "E_NUM", 4
+class EvolvePhase(StrEnum):
+    PHASE_0 = "PHASE_0"
+    PHASE_1 = "PHASE_1"
+    PHASE_2 = "PHASE_2"
+    PHASE_3 = "PHASE_3"
+    E_NUM = "E_NUM"
+
+class EvolvePhaseEnum(IntEnum):
+    PHASE_0 = 0
+    PHASE_1 = 1
+    PHASE_2 = 2
+    PHASE_3 = 3
+    E_NUM = 4

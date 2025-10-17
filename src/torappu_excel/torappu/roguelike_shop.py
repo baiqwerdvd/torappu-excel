@@ -1,9 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .roguelike_goods import RoguelikeGoods
+from ..common import BaseStruct
 
 
-class RoguelikeShop(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeShop(BaseStruct):
     goods: list[RoguelikeGoods]

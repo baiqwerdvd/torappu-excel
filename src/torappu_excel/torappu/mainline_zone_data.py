@@ -1,13 +1,12 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .stage_diff_group import StageDiffGroup
+from ..common import BaseStruct
 
 
-class MainlineZoneData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MainlineZoneData(BaseStruct):
     class ZoneReplayBtnType(StrEnum):
         NONE = "NONE"
         RECAP = "RECAP"
@@ -27,4 +26,4 @@ class MainlineZoneData(BaseModel):
     spoilAlert: bool
     zoneOpenTime: int
     diffGroup: list[StageDiffGroup]
-    mainlneBgName: str | None = Field(default=None)
+    mainlneBgName: str | None = field(default=None)

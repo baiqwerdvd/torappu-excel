@@ -1,16 +1,15 @@
-﻿from enum import StrEnum
+from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .char_star_mark_state import CharStarMarkState
 from .evolve_phase import EvolvePhase
 from .player_char_patch import PlayerCharPatch
 from .tower_tactical import TowerTactical
+from ..common import BaseStruct
 
 
-class TowerCurrent(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class TowerCurrent(BaseStruct):
     status: "TowerCurrent.Status"
     godCard: "TowerCurrent.TowerGodCard"
     layer: "list[TowerCurrent.TowerGameLayer]"
@@ -33,9 +32,7 @@ class TowerCurrent(BaseModel):
         ASSIST = "ASSIST"
         NPC = "NPC"
 
-    class Status(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Status(BaseStruct):
         state: "TowerCurrent.TowerGameState"
         tower: str
         coord: int
@@ -44,22 +41,16 @@ class TowerCurrent(BaseModel):
         isHard: bool
         strategy: str
 
-    class TowerGodCard(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TowerGodCard(BaseStruct):
         id: str
         subGodCardId: str
 
-    class TowerGameLayer(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TowerGameLayer(BaseStruct):
         id: str
-        try_: int = Field(alias="try")
-        pass_: bool = Field(alias="pass")
+        try_: int = field(name="try")
+        pass_: bool = field(name="pass")
 
-    class GameCard(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class GameCard(BaseStruct):
         relation: str
         type: "TowerCurrent.TowerCardType"
         instId: int
@@ -75,22 +66,16 @@ class TowerCurrent(BaseModel):
         currentTmpl: str
         tmpl: dict[str, PlayerCharPatch]
 
-    class TowerTrapInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TowerTrapInfo(BaseStruct):
         id: str
         alias: str
 
-    class HalftimeRecruit(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class HalftimeRecruit(BaseStruct):
         count: int
         candidate: "list[TowerCurrent.HalftimeCandidateGroup]"
         canGiveUp: bool
 
-    class HalftimeCandidateGroup(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class HalftimeCandidateGroup(BaseStruct):
         groupId: str
         type: "TowerCurrent.TowerCardType"
         cards: "list[TowerCurrent.GameCard]"

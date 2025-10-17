@@ -1,11 +1,10 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .furn_shop_display_place import FurnShopDisplayPlace
+from ..common import BaseStruct
 
 
-class FurniShopObject(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class FurniShopObject(BaseStruct):
     goodId: str
     furniId: str
     displayName: str
@@ -18,4 +17,4 @@ class FurniShopObject(BaseModel):
     end: int
     count: int
     sequence: int
-    begin: int | None = Field(default=None)
+    begin: int | None = field(default=None)

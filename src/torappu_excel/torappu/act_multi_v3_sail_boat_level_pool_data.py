@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ActMultiV3SailBoatLevelPoolData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActMultiV3SailBoatLevelPoolData(BaseStruct):
     stageId: str
     startBlockPool: str
     midBlockPool: str

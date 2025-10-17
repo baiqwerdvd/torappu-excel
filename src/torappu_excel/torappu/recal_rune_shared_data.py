@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .recal_rune_const_data import RecalRuneConstData
 from .recal_rune_season_data import RecalRuneSeasonData
+from ..common import BaseStruct
 
 
-class RecalRuneSharedData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RecalRuneSharedData(BaseStruct):
     seasons: dict[str, RecalRuneSeasonData]
     constData: RecalRuneConstData

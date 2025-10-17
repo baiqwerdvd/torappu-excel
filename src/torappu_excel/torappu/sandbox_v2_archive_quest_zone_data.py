@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SandboxV2ArchiveQuestZoneData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2ArchiveQuestZoneData(BaseStruct):
     zoneId: str
     zoneName: str
     zoneBgPicId: str

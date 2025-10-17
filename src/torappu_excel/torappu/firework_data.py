@@ -1,13 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
-from torappu_excel.common import CustomIntEnum
-
 from .grid_position import GridPosition
+from ..common import BaseStruct, CustomIntEnum
 
 
-class FireworkData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class FireworkData(BaseStruct):
     class FireworkDirectionType(CustomIntEnum):
         TWO_DIR = "TWO_DIR", 0
         FOUR_DIR = "FOUR_DIR", 1
@@ -23,20 +18,14 @@ class FireworkData(BaseModel):
     levelData: dict[str, "FireworkData.LevelData"]
     constData: "FireworkData.ConstData"
 
-    class PlateContent(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlateContent(BaseStruct):
         plateContent: list[GridPosition]
 
-    class PlateSlotData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlateSlotData(BaseStruct):
         id: str
         idx: int
 
-    class PlateData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlateData(BaseStruct):
         plateId: str
         sortId: int
         directionType: "FireworkData.FireworkDirectionType"
@@ -45,9 +34,7 @@ class FireworkData(BaseModel):
         plateContents: list["FireworkData.PlateContent"]
         isCraft: bool
 
-    class AnimalData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AnimalData(BaseStruct):
         animalId: str
         sortId: int
         animalName: str
@@ -63,18 +50,14 @@ class FireworkData(BaseModel):
         changedToast: str
         fireworkAnimalNameIconId: str
 
-    class LevelData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LevelData(BaseStruct):
         levelId: str
         sortId: int
         trapPosX: int
         trapPosY: int
         isSPLevel: bool
 
-    class ConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConstData(BaseStruct):
         maxFireworkNum: int
         maxFireworkPlateRowCount: int
         unlockStageCode: str

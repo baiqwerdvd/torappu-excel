@@ -1,13 +1,12 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .item_bundle import ItemBundle
 from .shop_currency_unit import ShopCurrencyUnit
 from .special_item_info import SpecialItemInfo
+from ..common import BaseStruct
 
 
-class GPShopNormalGPItem(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class GPShopNormalGPItem(BaseStruct):
     goodId: str
     giftPackageId: str
     priority: int
@@ -19,7 +18,7 @@ class GPShopNormalGPItem(BaseModel):
     discount: float | int
     items: list[ItemBundle]
     specialItemInfos: dict[str, SpecialItemInfo]
-    startDateTime: int = Field(default=0)
-    endDateTime: int = Field(default=0)
-    groupId: str | None = Field(default=None)
-    buyCount: int | None = Field(default=None)
+    startDateTime: int = field(default=0)
+    endDateTime: int = field(default=0)
+    groupId: str | None = field(default=None)
+    buyCount: int | None = field(default=None)

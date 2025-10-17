@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class HomeBackgroundMultiFormData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HomeBackgroundMultiFormData(BaseStruct):
     multiFormBgId: str
     sortId: int
     bgMusicId: str

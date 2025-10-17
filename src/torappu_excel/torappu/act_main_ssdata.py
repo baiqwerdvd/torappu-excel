@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_main_sszone_addition_data import ActMainSSZoneAdditionData
+from ..common import BaseStruct
 
 
-class ActMainSSData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActMainSSData(BaseStruct):
     zoneAdditionDataMap: dict[str, ActMainSSZoneAdditionData]

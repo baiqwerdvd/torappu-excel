@@ -1,6 +1,4 @@
-﻿from enum import StrEnum
-
-from pydantic import BaseModel, ConfigDict
+from enum import StrEnum
 
 from .PlayerRoguelikeV2_CurrentData_Char import Char
 from .avatar_info import AvatarInfo
@@ -19,18 +17,15 @@ from .roguelike_game_month_task_class import RoguelikeGameMonthTaskClass
 from .roguelike_node_position import RoguelikeNodePosition
 from .roguelike_topic_mode import RoguelikeTopicMode
 from .shared_char_data import SharedCharData
+from ..common import BaseStruct
 
 
-class PlayerRoguelikeV2(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRoguelikeV2(BaseStruct):
     current: "PlayerRoguelikeV2.CurrentData"
     outer: dict[str, "PlayerRoguelikeV2.OuterData"]
     pinned: str
 
-    class CurrentData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CurrentData(BaseStruct):
         player: "PlayerRoguelikeV2.CurrentData.PlayerStatus"
         map: PlayerRoguelikeV2Dungeon
         inventory: "PlayerRoguelikeV2.CurrentData.Inventory"
@@ -40,9 +35,7 @@ class PlayerRoguelikeV2(BaseModel):
         record: "PlayerRoguelikeV2.CurrentData.Record"
         module: "PlayerRoguelikeV2.CurrentData.Module"
 
-        class PlayerStatus(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerStatus(BaseStruct):
             state: PlayerRoguelikePlayerState
             property: "PlayerRoguelikeV2.CurrentData.PlayerStatus.Properties"
             cursor: "PlayerRoguelikeV2.CurrentData.PlayerStatus.NodePosition"
@@ -56,9 +49,7 @@ class PlayerRoguelikeV2(BaseModel):
             zoneReward: dict[str, "list[PlayerRoguelikeV2.CurrentData.PlayerStatus.ZoneRewardItem]"] | None = None
             traderReturn: dict[str, "list[PlayerRoguelikeV2.CurrentData.PlayerStatus.ZoneRewardItem]"] | None = None
 
-            class Properties(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Properties(BaseStruct):
                 exp: int
                 level: int
                 maxLevel: int
@@ -69,15 +60,11 @@ class PlayerRoguelikeV2(BaseModel):
                 population: "PlayerRoguelikeV2.CurrentData.PlayerStatus.Properties.Population"
                 conPerfectBattle: int
 
-                class Hp(BaseModel):
-                    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+                class Hp(BaseStruct):
                     current: int
                     max: int
 
-                class Population(BaseModel):
-                    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+                class Population(BaseStruct):
                     cost: int
                     max: int
 
@@ -86,27 +73,19 @@ class PlayerRoguelikeV2(BaseModel):
                     NORMAL = "NORMAL"
                     HIDDEN = "HIDDEN"
 
-            class NodePosition(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class NodePosition(BaseStruct):
                 zone: int
                 position: RoguelikeNodePosition | None
 
-            class Status(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Status(BaseStruct):
                 bankPut: int
 
-            class InnerMission(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class InnerMission(BaseStruct):
                 tmpl: str
                 id: str
                 progress: list[int]
 
-            class NodeMission(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class NodeMission(BaseStruct):
                 id: str
                 state: "PlayerRoguelikeV2.CurrentData.PlayerStatus.NodeMission.NodeMissionState"
                 tip: bool
@@ -117,16 +96,12 @@ class PlayerRoguelikeV2(BaseModel):
                     COMPLETED = "COMPLETED"
                     ALL_FINISHED = "ALL_FINISHED"
 
-            class ZoneRewardItem(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class ZoneRewardItem(BaseStruct):
                 id: str
                 count: int
                 instId: str
 
-        class RecruitChar(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RecruitChar(BaseStruct):
             type: RoguelikeCharState
             upgradePhase: int
             upgradeLimited: bool
@@ -146,30 +121,22 @@ class PlayerRoguelikeV2(BaseModel):
             currentTmpl: str
             tmpl: dict[str, PlayerCharPatch]
 
-        class ExpeditionReturn(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ExpeditionReturn(BaseStruct):
             char: "list[PlayerRoguelikeV2.CurrentData.ExpeditionReturn.Char]"
             rewards: "list[PlayerRoguelikeV2.CurrentData.ExpeditionReturn.Reward]"
 
-            class Char(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Char(BaseStruct):
                 instId: str
                 isUpgrade: bool
                 isCure: bool
                 isCandle: bool
 
-            class Reward(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Reward(BaseStruct):
                 id: str
                 count: int
                 instId: str
 
-        class Troop(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Troop(BaseStruct):
             chars: dict[str, Char]
             expedition: list[str]
             expeditionDetails: dict[str, "PlayerRoguelikeV2.CurrentData.Troop.ExpedType"]
@@ -184,9 +151,7 @@ class PlayerRoguelikeV2(BaseModel):
                 GUIDED = "GUIDED"
                 NON_GUIDED = "NON_GUIDED"
 
-        class Relic(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Relic(BaseStruct):
             index: str
             id: str
             count: int
@@ -194,39 +159,31 @@ class PlayerRoguelikeV2(BaseModel):
             ts: int
             used: bool
 
-        class Trap(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Trap(BaseStruct):
             id: str
             ts: int
 
-        class ExploreTool(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ExploreTool(BaseStruct):
             id: str
             ts: int
 
-        class Recruit(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Recruit(BaseStruct):
             index: str
             id: str
             state: "PlayerRoguelikeV2.CurrentData.Recruit.State"
-            list: "list[PlayerRoguelikeV2.CurrentData.RecruitChar]"
+            list: list["PlayerRoguelikeV2.CurrentData.RecruitChar"]
             result: "PlayerRoguelikeV2.CurrentData.RecruitChar"
             ts: int
             needAssist: bool
-            assistList: dict[str, "list[PlayerRoguelikeV2.CurrentData.Recruit.FriendAssistData]"]
-            starFriendAssistList: dict[str, "list[PlayerRoguelikeV2.CurrentData.Recruit.FriendAssistData]"]
+            assistList: dict[str, list["PlayerRoguelikeV2.CurrentData.Recruit.FriendAssistData"]]  # pyright: ignore[reportInvalidTypeForm]
+            starFriendAssistList: dict[str, list["PlayerRoguelikeV2.CurrentData.Recruit.FriendAssistData"]]  # pyright: ignore[reportInvalidTypeForm]
 
             class State(StrEnum):
                 CREATE = "CREATE"
                 ACTIVE = "ACTIVE"
                 DONE = "DONE"
 
-            class OrigChar(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class OrigChar(BaseStruct):
                 assistSlotIndex: int
                 aliasName: str
                 assistCharList: list[SharedCharData]
@@ -242,70 +199,52 @@ class PlayerRoguelikeV2(BaseModel):
                 recentVisited: bool
                 avatar: AvatarInfo
 
-            class FriendAssistData(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class FriendAssistData(BaseStruct):
                 orig: "PlayerRoguelikeV2.CurrentData.Recruit.OrigChar"
                 recruit: "PlayerRoguelikeV2.CurrentData.RecruitChar"
 
-        class Inventory(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Inventory(BaseStruct):
             relic: dict[str, "PlayerRoguelikeV2.CurrentData.Relic"]
             recruit: dict[str, "PlayerRoguelikeV2.CurrentData.Recruit"]
-            stashRecruit: list[str] | None = None
-            stashRecruitLimit: int | None = None
             trap: "PlayerRoguelikeV2.CurrentData.Trap | None"
             exploreTool: dict[str, "PlayerRoguelikeV2.CurrentData.ExploreTool"]
             consumable: dict[str, int]
+            stashRecruit: list[str] | None = None
+            stashRecruitLimit: int | None = None
 
-        class Buff(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Buff(BaseStruct):
             tmpHP: int
             capsule: "PlayerRoguelikeV2.CurrentData.Capsule | None"
             squadBuff: list[str]
 
-        class Capsule(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Capsule(BaseStruct):
             id: str
             ts: int
             active: bool
 
-        class Game(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-            uid: str | None = None
+        class Game(BaseStruct):
             theme: str
             mode: RoguelikeTopicMode
             modeGrade: int
             equivalentGrade: int
+            start: int
+            outer: "PlayerRoguelikeV2.CurrentData.Game.Outer"
+            uid: str | None = None
             predefined: str | None = None
             difficult: int | None = None
             outerBuff: "PlayerRoguelikeV2.CurrentData.Game.OuterBuff  | None" = None
-            start: int
             activity: str | None = None
-            outer: "PlayerRoguelikeV2.CurrentData.Game.Outer"
 
-            class OuterBuff(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class OuterBuff(BaseStruct):
                 pass
 
-            class Outer(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Outer(BaseStruct):
                 support: bool
 
-        class Record(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Record(BaseStruct):
             brief: "PlayerRoguelikeV2.CurrentData.Record.EndingBrief | None"
 
-            class EndingBrief(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class EndingBrief(BaseStruct):
                 level: int
                 successL: int
                 ending: str
@@ -318,9 +257,7 @@ class PlayerRoguelikeV2(BaseModel):
                 endZoneId: str
                 modeGrade: int
 
-        class Module(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Module(BaseStruct):
             san: "PlayerRoguelikeV2.CurrentData.Module.San | None" = None
             dice: "PlayerRoguelikeV2.CurrentData.Module.Dice | None" = None
             totem: "PlayerRoguelikeV2.CurrentData.Module.Totem | None" = None
@@ -333,49 +270,35 @@ class PlayerRoguelikeV2(BaseModel):
             wrath: "PlayerRoguelikeV2.CurrentData.Module.Wrath | None" = None
             sky: "PlayerRoguelikeV2.CurrentData.Module.Sky | None" = None
 
-            class San(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class San(BaseStruct):
                 sanity: int
 
-            class Dice(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Dice(BaseStruct):
                 id: str
                 count: int
 
-            class InventoryTotem(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class InventoryTotem(BaseStruct):
                 id: str
                 index: str
                 used: bool
                 affix: str
                 ts: int
 
-            class Totem(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Totem(BaseStruct):
                 totemPiece: "list[PlayerRoguelikeV2.CurrentData.Module.InventoryTotem]"
                 predictTotemId: str
 
-            class Vision(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Vision(BaseStruct):
                 value: int
                 isMax: bool
 
-            class ChaosZoneDelta(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class ChaosZoneDelta(BaseStruct):
                 dValue: int
                 preLevel: int
                 afterLevel: int
                 dChaos: list[str]
 
-            class Chaos(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Chaos(BaseStruct):
                 value: int
                 level: int
                 curMaxValue: int
@@ -384,9 +307,7 @@ class PlayerRoguelikeV2(BaseModel):
                 deltaChaos: "PlayerRoguelikeV2.CurrentData.Module.ChaosZoneDelta"
                 lastBattleGain: int
 
-            class Fragment(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Fragment(BaseStruct):
                 totalWeight: int
                 limitWeight: int
                 overWeight: int
@@ -396,9 +317,7 @@ class PlayerRoguelikeV2(BaseModel):
                 sellCount: int
                 currInspiration: "PlayerRoguelikeV2.CurrentData.Module.InventoryInspiration"
 
-            class InventoryFragment(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class InventoryFragment(BaseStruct):
                 id: str
                 index: str
                 used: bool
@@ -407,72 +326,50 @@ class PlayerRoguelikeV2(BaseModel):
                 value: int
                 price: int
 
-            class InventoryInspiration(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class InventoryInspiration(BaseStruct):
                 instId: str
                 id: str
 
-            class Disaster(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Disaster(BaseStruct):
                 curDisaster: str
                 disperseStep: int
 
-            class NodeUpgrade(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class NodeUpgrade(BaseStruct):
                 nodeTypeInfoMap: dict[str, "PlayerRoguelikeV2.CurrentData.Module.NodeUpgradeInfo"]
 
-            class NodeUpgradeInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class NodeUpgradeInfo(BaseStruct):
                 tempUpgrade: str
                 upgradeList: list[str]
 
-            class Copper(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Copper(BaseStruct):
                 bag: dict[str, "PlayerRoguelikeV2.CurrentData.Module.InventoryCopper"]
                 redrawCost: int
 
-            class InventoryCopper(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class InventoryCopper(BaseStruct):
                 id: str
                 isDrawn: bool
                 layer: int
                 countDown: int
                 ts: int
 
-            class Wrath(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Wrath(BaseStruct):
                 wraths: list[str]
                 newWrath: int
 
-            class WrathInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class WrathInfo(BaseStruct):
                 wrathId: str
                 level: int
 
-            class Sky(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Sky(BaseStruct):
                 zones: dict[int, "PlayerRoguelikeV2.CurrentData.Module.SkyZoneInfo"]
 
-            class SkyZoneInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class SkyZoneInfo(BaseStruct):
                 id: str
                 ap: int
                 nodes: dict[int, "PlayerRoguelikeV2.CurrentData.Module.SkyZoneNodeInfo"]
                 mapExPad: "PlayerRoguelikeV2.CurrentData.Module.SkyZoneExPadInfo"
 
-            class SkyZoneExPadInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class SkyZoneExPadInfo(BaseStruct):
                 left: int
                 right: int
 
@@ -482,9 +379,7 @@ class PlayerRoguelikeV2(BaseModel):
                 FINISH = "FINISH"
                 CLOSE = "CLOSE"
 
-            class SkyZoneNodeInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class SkyZoneNodeInfo(BaseStruct):
                 state: "PlayerRoguelikeV2.CurrentData.Module.SkyZoneNodeState"
                 type: int
                 sceneSubType: int
@@ -495,9 +390,7 @@ class PlayerRoguelikeV2(BaseModel):
                 shopRefreshCnt: int
                 shopRefreshCost: int
 
-    class OuterData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class OuterData(BaseStruct):
         bp: "PlayerRoguelikeV2.OuterData.BattlePass"
         buff: "PlayerRoguelikeV2.OuterData.Buff"
         mission: "PlayerRoguelikeV2.OuterData.Mission"
@@ -508,51 +401,39 @@ class PlayerRoguelikeV2(BaseModel):
         challenge: "PlayerRoguelikeV2.OuterData.Challenge"
         activity: "PlayerRoguelikeV2.OuterData.PlayerRogueActivity"
 
-        class Record(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Record(BaseStruct):
             last: int
             stageCnt: dict[str, int]
             modeCnt: dict[RoguelikeTopicMode, int]
             bandCnt: dict[str, dict[str, int]]
             endingCnt: dict[RoguelikeTopicMode, dict[str, int]]
             bandGrade: dict[str, dict[str, int]] | None = None
-            history: "list[PlayerRoguelikeV2.OuterData.Record.History] | None" = None
+            history: list["PlayerRoguelikeV2.OuterData.Record.History"] | None = None
 
-            class History(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class History(BaseStruct):
                 seed: str
                 bandId: str
                 mode: RoguelikeTopicMode
                 modeGrade: int
                 ending: str
-                failEnding: str | None = None
                 result: int
                 endTs: int
+                failEnding: str | None = None
 
-        class BattlePass(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class BattlePass(BaseStruct):
             point: int
             reward: dict[str, int]
 
-        class Mission(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Mission(BaseStruct):
             updateId: str
             refresh: int
-            list: "list[PlayerRoguelikeV2.OuterData.Mission.MissionSlot]"
+            list: list["PlayerRoguelikeV2.OuterData.Mission.MissionSlot"]
 
-            class MissionSlot(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class MissionSlot(BaseStruct):
                 type: RoguelikeGameMonthTaskClass
                 mission: "PlayerRoguelikeV2.OuterData.Mission.MissionItem"
 
-            class MissionItem(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class MissionItem(BaseStruct):
                 type: RoguelikeGameMonthTaskClass
                 id: str
                 state: int
@@ -566,22 +447,18 @@ class PlayerRoguelikeV2(BaseModel):
                     UsePopulation = "UsePopulation"
                     CandleCharacter = "CandleCharacter"
 
-        class TotemCollection(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class TotemCollection(BaseStruct):
             totem: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
             affix: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
 
-        class Collection(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Collection(BaseStruct):
             band: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
             relic: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
             capsule: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
             activeTool: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
             mode: dict[RoguelikeTopicMode, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
             modeGrade: dict[
-                RoguelikeTopicMode, dict[int, "PlayerRoguelikeV2.OuterData.Collection.DifficultyUnlockInfo"]
+                RoguelikeTopicMode, dict[str, "PlayerRoguelikeV2.OuterData.Collection.DifficultyUnlockInfo"]
             ]
             recruitSet: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
             bgm: dict[str, int]
@@ -598,76 +475,54 @@ class PlayerRoguelikeV2(BaseModel):
             wrath: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"] | None = None
             chat: dict[str, int] | None = None
 
-            class ItemUnlockInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class ItemUnlockInfo(BaseStruct):
                 state: RoguelikeArchiveItemUnlockStatus
                 progress: list[int] | None
 
-            class DifficultyUnlockInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class DifficultyUnlockInfo(BaseStruct):
                 state: PlayerRoguelikeDifficultyStatus
                 progress: list[int] | None
 
-        class Bank(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Bank(BaseStruct):
             show: bool
             current: int
             record: int
             totalPut: int
             reward: dict[str, int]
 
-        class Buff(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Buff(BaseStruct):
             pointOwned: int
             pointCost: int
             unlocked: dict[str, int]
             score: int
 
-        class MonthTeam(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MonthTeam(BaseStruct):
             valid: list[str]
             reward: dict[str, int]
             mission: dict[str, list[int]]
 
-        class ChallengeCollection(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ChallengeCollection(BaseStruct):
             exploreTool: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"] | None = None
 
-        class Challenge(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Challenge(BaseStruct):
             reward: dict[str, int]
             grade: dict[str, PlayerRoguelikeChallengeStatus]
             collect: "PlayerRoguelikeV2.OuterData.ChallengeCollection"
             highScore: dict[str, int]
 
-        class NodeUpgradeInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class NodeUpgradeInfo(BaseStruct):
             unlockList: list[str]
 
-        class PlayerRogueActivity(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerRogueActivity(BaseStruct):
             SEED_MODE: (
                 dict[str, "PlayerRoguelikeV2.OuterData.PlayerRogueActivity.PlayerRoguelikeActivitySeedModeData"] | None
             ) = None
 
-            class PlayerRoguelikeActivitySeedModeData(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class PlayerRoguelikeActivitySeedModeData(BaseStruct):
                 unlockState: "PlayerRoguelikeV2.OuterData.PlayerRogueActivity.PlayerRogueActivityUnlockInfo"
                 seed: str
 
-            class PlayerRogueActivityUnlockInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class PlayerRogueActivityUnlockInfo(BaseStruct):
                 state: "PlayerRoguelikeV2.OuterData.PlayerRogueActivity.PlayerRogueActivityUnlockInfo.PlayerRogueActivityUnlockState"
                 progress: list[int]
 

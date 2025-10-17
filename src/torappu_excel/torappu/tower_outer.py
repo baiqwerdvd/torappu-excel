@@ -1,13 +1,10 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_squad_item import PlayerSquadItem
 from .tower_game_strategy import TowerGameStrategy
 from .tower_tactical import TowerTactical
+from ..common import BaseStruct
 
 
-class TowerOuter(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class TowerOuter(BaseStruct):
     training: dict[str, int]
     towers: dict[str, "TowerOuter.TowerData"]
     hasTowerPass: int
@@ -16,9 +13,7 @@ class TowerOuter(BaseModel):
     strategy: TowerGameStrategy
     squad: list[PlayerSquadItem] | None = None
 
-    class TowerData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TowerData(BaseStruct):
         best: int
         reward: list[int]
         unlockHard: bool

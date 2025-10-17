@@ -1,5 +1,3 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_multi_v3_const_data import ActMultiV3ConstData
 from .act_multi_v3_const_toast_data import ActMultiV3ConstToastData
 from .act_multi_v3_diff_star_reward_data import ActMultiV3DiffStarRewardData
@@ -23,11 +21,10 @@ from .act_multi_v3_temp_char_data import ActMultiV3TempCharData
 from .act_multi_v3_tips_data import ActMultiV3TipsData
 from .act_multi_v3_title_data import ActMultiV3TitleData
 from .act_multi_v3_weekly_photo_reward_data import ActMultiV3WeeklyPhotoRewardData
+from ..common import BaseStruct
 
 
-class ActMultiV3Data(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActMultiV3Data(BaseStruct):
     selectStepDataList: list[ActMultiV3SelectStepData]
     squadInfoList: list[ActMultiV3SquadInfoData]
     identityDataList: list[ActMultiV3IdentityData]

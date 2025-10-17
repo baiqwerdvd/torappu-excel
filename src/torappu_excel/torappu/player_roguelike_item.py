@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .roguelike_recruit_upgrade_character import RoguelikeRecruitUpgradeCharacter
+from ..common import BaseStruct
 
 
-class PlayerRoguelikeItem(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRoguelikeItem(BaseStruct):
     index: str
     id: str
     count: int

@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .blackboard import Blackboard
+from ..common import BaseStruct
 
 
-class RoguelikeBuff(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeBuff(BaseStruct):
     key: str
     blackboard: list[Blackboard]

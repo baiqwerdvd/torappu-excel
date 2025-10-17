@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .san_effect_rank import SanEffectRank
+from ..common import BaseStruct
 
 
-class RoguelikeSanRangeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeSanRangeData(BaseStruct):
     sanMax: int
     diceGroupId: str
     description: str

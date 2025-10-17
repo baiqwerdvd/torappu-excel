@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .rune_table import RuneTable
+from ..common import BaseStruct
 
 
-class ClimbTowerSubCardData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ClimbTowerSubCardData(BaseStruct):
     id: str
     mainCardId: str
     sortId: int

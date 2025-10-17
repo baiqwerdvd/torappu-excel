@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .rune_table import RuneTable
+from ..common import BaseStruct
 
 
-class ActVecBreakBattleBuffData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActVecBreakBattleBuffData(BaseStruct):
     buffId: str
     openTime: int
     name: str

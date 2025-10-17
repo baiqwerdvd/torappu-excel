@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
 from .six_star_milestone_reward_type import SixStarMilestoneRewardType
+from ..common import BaseStruct
 
 
-class SixStarMilestoneItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SixStarMilestoneItemData(BaseStruct):
     id: str
     sortId: int
     nodePoint: int

@@ -1,22 +1,16 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RoguelikeActivitySeedModeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeActivitySeedModeData(BaseStruct):
     officialSeedDataList: list["RoguelikeActivitySeedModeData.RoguelikeActivityOfficialSeedData"]
     constData: "RoguelikeActivitySeedModeData.RoguelikeActivitySeedModeConstData"
 
-    class RoguelikeActivityOfficialSeedData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RoguelikeActivityOfficialSeedData(BaseStruct):
         seed: str
         sortId: int
         desc: str
 
-    class RoguelikeActivitySeedModeConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RoguelikeActivitySeedModeConstData(BaseStruct):
         seedModeIntro: str
         emptyTextHint: str
         errorTextHint: str

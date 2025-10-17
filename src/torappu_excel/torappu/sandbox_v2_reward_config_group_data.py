@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_v2_reward_common_config import SandboxV2RewardCommonConfig
 from .sandbox_v2_reward_data import SandboxV2RewardData
+from ..common import BaseStruct
 
 
-class SandboxV2RewardConfigGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2RewardConfigGroupData(BaseStruct):
     stageMapPreviewRewardDict: dict[str, SandboxV2RewardData]
     stageDetailPreviewRewardDict: dict[str, SandboxV2RewardData]
     trapRewardDict: dict[str, SandboxV2RewardCommonConfig]

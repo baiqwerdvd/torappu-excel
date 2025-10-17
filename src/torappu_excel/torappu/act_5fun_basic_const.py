@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class Act5funBasicConst(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act5funBasicConst(BaseStruct):
     storyStageId: str
     betStageId: str
     storyRoundNumber: int

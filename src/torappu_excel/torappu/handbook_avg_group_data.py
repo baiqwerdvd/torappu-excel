@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .handbook_avg_data import HandbookAvgData
 from .handbook_unlock_param import HandbookUnlockParam
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class HandbookAvgGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HandbookAvgGroupData(BaseStruct):
     storySetId: str
     storySetName: str
     sortId: int

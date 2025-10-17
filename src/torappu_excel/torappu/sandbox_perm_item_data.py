@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_perm_item_type import SandboxPermItemType
+from ..common import BaseStruct
 
 
-class SandboxPermItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxPermItemData(BaseStruct):
     itemId: str
     itemType: SandboxPermItemType
     itemName: str

@@ -1,14 +1,11 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
-from .player_stage_state import PlayerStageState
+from .player_stage_state import PlayerStageStateStrEnum
+from ..common import BaseStruct
 
 
-class StoryData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StoryData(BaseStruct):
     id: str
     needCommit: bool
     repeatable: bool
@@ -20,9 +17,7 @@ class StoryData(BaseModel):
     setFlags: list[str] | None
     completedRewards: list[ItemBundle] | None
 
-    class Trigger(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Trigger(BaseStruct):
         class TriggerType(StrEnum):
             GAME_START = "GAME_START"
             BEFORE_BATTLE = "BEFORE_BATTLE"
@@ -42,9 +37,7 @@ class StoryData(BaseModel):
         key: str | None
         useRegex: bool
 
-    class Condition(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Condition(BaseStruct):
         minProgress: int
         maxProgress: int
         minPlayerLevel: int
@@ -52,9 +45,7 @@ class StoryData(BaseModel):
         excludedFlags: list[str]
         requiredStages: list["StoryData.Condition.StageCondition"]
 
-        class StageCondition(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class StageCondition(BaseStruct):
             stageId: str
-            minState: PlayerStageState
-            maxState: PlayerStageState
+            minState: PlayerStageStateStrEnum
+            maxState: PlayerStageStateStrEnum

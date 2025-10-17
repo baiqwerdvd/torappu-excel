@@ -1,15 +1,14 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .act_archive_type import ActArchiveType
 from .item_bundle import ItemBundle
 from .rune_table import RuneTable
+from ..common import BaseStruct
 
 
-class Act17sideData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act17sideData(BaseStruct):
     class NodeType(StrEnum):
         LANDMARK = "LANDMARK"
         STORY = "STORY"
@@ -64,19 +63,15 @@ class Act17sideData(BaseModel):
     zoneDataList: list["Act17sideData.ZoneData"]
     constData: "Act17sideData.ConstData"
 
-    class PlaceData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlaceData(BaseStruct):
         placeId: str
         placeDesc: str
         lockEventId: str | None
         zoneId: str
-        visibleCondType: str | None = Field(default=None)
-        visibleParams: list[str] | None = Field(default=None)
+        visibleCondType: str | None = field(default=None)
+        visibleParams: list[str] | None = field(default=None)
 
-    class NodeInfoData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class NodeInfoData(BaseStruct):
         nodeId: str
         nodeType: "Act17sideData.NodeType"
         sortId: int
@@ -84,12 +79,10 @@ class Act17sideData(BaseModel):
         isPointPlace: bool
         chapterId: str
         trackPointType: "Act17sideData.TrackPointType"
-        unlockCondType: str | None = Field(default=None)
-        unlockParams: list[str] | None = Field(default=None)
+        unlockCondType: str | None = field(default=None)
+        unlockParams: list[str] | None = field(default=None)
 
-    class LandmarkNodeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LandmarkNodeData(BaseStruct):
         nodeId: str
         landmarkId: str
         landmarkName: str
@@ -97,9 +90,7 @@ class Act17sideData(BaseModel):
         landmarkSpecialPic: str
         landmarkDesList: list[str]
 
-    class StoryNodeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class StoryNodeData(BaseStruct):
         nodeId: str
         storyId: str
         storyKey: str
@@ -108,15 +99,11 @@ class Act17sideData(BaseModel):
         confirmDes: str
         storyDesList: list[str]
 
-    class BattleNodeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BattleNodeData(BaseStruct):
         nodeId: str
         stageId: str
 
-    class TreasureNodeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TreasureNodeData(BaseStruct):
         nodeId: str
         treasureId: str
         treasureName: str
@@ -129,16 +116,12 @@ class Act17sideData(BaseModel):
         rewardList: list[ItemBundle]
         treasureType: "Act17sideData.TreasureType"
 
-    class EventNodeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class EventNodeData(BaseStruct):
         nodeId: str
         eventId: str
         endEventId: str
 
-    class TechNodeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TechNodeData(BaseStruct):
         nodeId: str
         techTreeId: str
         techTreeName: str
@@ -149,19 +132,15 @@ class Act17sideData(BaseModel):
         techDesList: list[str]
         missionIdList: list[str]
 
-    class ChoiceNodeOptionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ChoiceNodeOptionData(BaseStruct):
         canRepeat: bool
         eventId: str
         des: str
         unlockDes: str | None
-        unlockCondType: str | None = Field(default=None)
-        unlockParams: list[str] | None = Field(default=None)
+        unlockCondType: str | None = field(default=None)
+        unlockParams: list[str] | None = field(default=None)
 
-    class ChoiceNodeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ChoiceNodeData(BaseStruct):
         nodeId: str
         choicePic: str | None
         isDisposable: bool
@@ -172,18 +151,14 @@ class Act17sideData(BaseModel):
         choiceNum: int
         optionList: list["Act17sideData.ChoiceNodeOptionData"]
 
-    class EventData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class EventData(BaseStruct):
         eventId: str
         eventPic: str | None
         eventSpecialPic: str | None
         eventTitle: str
         eventDesList: list[str]
 
-    class ArchiveItemUnlockData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArchiveItemUnlockData(BaseStruct):
         itemId: str
         itemType: ActArchiveType
         unlockCondition: "Act17sideData.ArchiveItemUnlockCondition"
@@ -191,18 +166,14 @@ class Act17sideData(BaseModel):
         stageParam: "Act17sideData.ArchiveItemStageUnlockParam"
         chapterId: str | None
 
-    class TechTreeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TechTreeData(BaseStruct):
         techTreeId: str
         sortId: int
         techTreeName: str
         defaultBranchId: str
         lockDes: str
 
-    class TechTreeBranchData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TechTreeBranchData(BaseStruct):
         techTreeBranchId: str
         techTreeId: str
         techTreeBranchName: str
@@ -210,18 +181,14 @@ class Act17sideData(BaseModel):
         techTreeBranchDesc: str
         runeData: RuneTable.PackedRuneData
 
-    class MainlineChapterData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MainlineChapterData(BaseStruct):
         chapterId: str
         chapterDes: str
         chapterIcon: "Act17sideData.ChapterIconType"
         unlockDes: str
         id: str
 
-    class MainlineData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MainlineData(BaseStruct):
         mainlineId: str
         nodeId: str | None
         sortId: int
@@ -230,14 +197,10 @@ class Act17sideData(BaseModel):
         mainlineDes: str
         focusNodeId: str | None
 
-    class ZoneData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ZoneData(BaseStruct):
         zoneId: str
         unlockPlaceId: str | None
         unlockText: str
 
-    class ConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConstData(BaseStruct):
         techTreeUnlockEventId: str

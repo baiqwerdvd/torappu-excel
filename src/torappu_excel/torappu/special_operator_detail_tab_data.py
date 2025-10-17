@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .special_operator_detail_node_type import SpecialOperatorDetailNodeType
+from ..common import BaseStruct
 
 
-class SpecialOperatorDetailTabData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SpecialOperatorDetailTabData(BaseStruct):
     soTabId: str
     soTabName: str
     soTabSortId: int

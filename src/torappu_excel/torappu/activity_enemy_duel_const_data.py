@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class ActivityEnemyDuelConstData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityEnemyDuelConstData(BaseStruct):
     maxLoadingTime: float
     maxRetryTimeInBattle: float
     maxMatchTime: float
@@ -78,8 +75,6 @@ class ActivityEnemyDuelConstData(BaseModel):
     titlePicRotateTime: float
     titlePicId: str
 
-    class PingCond(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PingCond(BaseStruct):
         cond: int
         txt: str

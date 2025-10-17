@@ -1,12 +1,11 @@
-﻿from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .player_building_workshop_buff_bonus import PlayerBuildingWorkshopBuffBonus
 from .player_room_state import PlayerRoomState
+from ..common import BaseStruct
 
 
-class PlayerBuildingWorkshopBuff(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingWorkshopBuff(BaseStruct):
     rate: dict[str, float]
     apRate: dict[str, dict[str, float]]
     frate: "list[PlayerBuildingWorkshopBuff.Frate]"
@@ -21,53 +20,37 @@ class PlayerBuildingWorkshopBuff(BaseModel):
     activeBonus: dict[str, dict[str, list[PlayerBuildingWorkshopBuffBonus]]]
     state: PlayerRoomState | None = None
 
-    class Cost(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Cost(BaseStruct):
         type: str
         limit: int
         reduction: int
 
-    class CostRe(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CostRe(BaseStruct):
         type: str
-        from_: int = Field(alias="from")
+        from_: int = field(name="from")
         change: int
 
-    class Recovery(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Recovery(BaseStruct):
         type: str
         pace: int
         recover: int
 
-    class CostFormula(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CostFormula(BaseStruct):
         formulaIds: list[str]
         reduction: int
 
-    class CostForce(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CostForce(BaseStruct):
         type: str
         cost: int
 
-    class CostDevide(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CostDevide(BaseStruct):
         type: str
         limit: int
         denominator: int
 
-    class Frate(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Frate(BaseStruct):
         fid: str
         rate: float
 
-    class FFix(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class FFix(BaseStruct):
         asRarity: dict[str, dict[str, str]]

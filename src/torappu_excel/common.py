@@ -1,7 +1,38 @@
+from collections.abc import Callable, Iterable
 from enum import Enum
-from typing import Self
+from typing import Any, Self
 
+from msgspec import Struct, convert, json as mscjson
 from typing_extensions import override
+
+
+class BaseStruct(Struct, forbid_unknown_fields=True, omit_defaults=True, gc=False):
+    class Config:
+        encoder: mscjson.Encoder = mscjson.Encoder()
+
+    @classmethod
+    def convert(
+        cls,
+        obj: Any,
+        *,
+        strict: bool = True,
+        from_attributes: bool = False,
+        dec_hook: Callable[[type, Any], Any] | None = None,
+        builtin_types: Iterable[type] | None = None,
+        str_keys: bool = False,
+    ) -> Self:
+        return convert(
+            obj,
+            cls,
+            strict=strict,
+            from_attributes=from_attributes,
+            dec_hook=dec_hook,
+            builtin_types=builtin_types,
+            str_keys=str_keys,
+        )
+
+    def model_dump(self) -> dict[str, Any]:
+        return mscjson.decode(mscjson.encode(self))
 
 
 class CustomIntEnum(Enum):

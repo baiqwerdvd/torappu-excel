@@ -1,11 +1,10 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .data_unlock_type import DataUnlockType
+from ..common import BaseStruct
 
 
-class NPCUnlock(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class NPCUnlock(BaseStruct):
     unLockType: DataUnlockType
     unLockParam: str
-    unLockString: str | None = Field(default=None)
+    unLockString: str | None = field(default=None)

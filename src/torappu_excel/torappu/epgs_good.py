@@ -1,11 +1,10 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class EPGSGood(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class EPGSGood(BaseStruct):
     goodId: str
     goodType: str
     startTime: int
@@ -13,4 +12,4 @@ class EPGSGood(BaseModel):
     item: ItemBundle
     price: int
     sortId: int
-    endTime: int | None = Field(default=None)
+    endTime: int | None = field(default=None)

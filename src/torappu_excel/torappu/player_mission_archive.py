@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_mission_archive_node_state import PlayerMissionArchiveNodeState
+from ..common import BaseStruct
 
 
-class PlayerMissionArchive(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerMissionArchive(BaseStruct):
     isOpen: bool
     confirmEnterReward: bool
     nodes: dict[str, PlayerMissionArchiveNodeState]

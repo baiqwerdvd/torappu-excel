@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SandboxFoodStaminaData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxFoodStaminaData(BaseStruct):
     itemId: str
     potCnt: int
     foodStaminaCnt: int

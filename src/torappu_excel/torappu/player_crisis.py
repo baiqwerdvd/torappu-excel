@@ -1,33 +1,24 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_crisis_season import PlayerCrisisSeason
 from .player_crisis_shop import PlayerCrisisShop
+from ..common import BaseStruct
 
 
-class PlayerCrisisMap(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisisMap(BaseStruct):
     rank: int
     confirmed: int
 
 
-class PlayerCrisisTrainingStage(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisisTrainingStage(BaseStruct):
     point: int
 
 
-class PlayerCrisisTraining(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisisTraining(BaseStruct):
     currentStage: list[str]
     stage: dict[str, PlayerCrisisTrainingStage]
     nst: int
 
 
-class PlayerCrisis(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisis(BaseStruct):
     current: str
     map: dict[str, PlayerCrisisMap]
     shop: PlayerCrisisShop
@@ -37,9 +28,7 @@ class PlayerCrisis(BaseModel):
     nst: int
     box: list["PlayerCrisis.BoxItem"]
 
-    class BoxItem(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BoxItem(BaseStruct):
         id: str
         type: str
         count: int

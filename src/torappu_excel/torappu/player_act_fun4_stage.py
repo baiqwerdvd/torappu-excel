@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_stage_state import PlayerStageState
+from ..common import BaseStruct
 
 
-class PlayerActFun4Stage(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerActFun4Stage(BaseStruct):
     state: PlayerStageState
     liveTimes: int

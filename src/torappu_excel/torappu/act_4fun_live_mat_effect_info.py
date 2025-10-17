@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class Act4funLiveMatEffectInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act4funLiveMatEffectInfo(BaseStruct):
     liveMatEffectId: str
     valueId: str
     performGroup: str

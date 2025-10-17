@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class NameCardV2Consts(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class NameCardV2Consts(BaseStruct):
     defaultNameCardSkinId: str
     canUidHide: bool
     removableModuleMaxCount: int

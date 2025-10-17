@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_stage_state import PlayerStageState
+from ..common import BaseStruct
 
 
-class PlayerActFun6Stage(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerActFun6Stage(BaseStruct):
     stageId: str
     achievements: dict[str, int]
     speedrunning: int

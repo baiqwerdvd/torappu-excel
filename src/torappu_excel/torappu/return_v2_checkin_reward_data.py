@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .return_v2_checkin_reward_item_data import ReturnV2CheckInRewardItemData
+from ..common import BaseStruct
 
 
-class ReturnV2CheckInRewardData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ReturnV2CheckInRewardData(BaseStruct):
     groupId: str
     startTime: int
     endTime: int

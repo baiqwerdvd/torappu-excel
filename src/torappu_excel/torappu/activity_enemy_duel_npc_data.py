@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .enemy_duel_bet_strategy import EnemyDuelBetStrategy
+from ..common import BaseStruct
 
 
-class ActivityEnemyDuelNpcData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityEnemyDuelNpcData(BaseStruct):
     npcId: str
     avatarId: str
     name: str

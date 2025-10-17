@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SpecialOperatorConstData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SpecialOperatorConstData(BaseStruct):
     weeklyTaskBoardUnlock: str
     taskPinOnToast: str
     noFrontNodeToast: str

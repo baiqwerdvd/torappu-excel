@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .uni_equip_type import UniEquipType
+from ..common import BaseStruct
 
 
-class UniEquipTrack(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class UniEquipTrack(BaseStruct):
     charId: str
     equipId: str
     type: UniEquipType

@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .roguelike_item_bundle import RoguelikeItemBundle
+from ..common import BaseStruct
 
 
-class RoguelikeReward(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeReward(BaseStruct):
     index: str
     items: list[RoguelikeItemBundle]
     done: bool

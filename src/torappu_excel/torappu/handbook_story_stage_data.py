@@ -1,12 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .handbook_unlock_param import HandbookUnlockParam
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class HandbookStoryStageData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HandbookStoryStageData(BaseStruct):
     charId: str
     code: str
     description: str
@@ -18,6 +17,6 @@ class HandbookStoryStageData(BaseModel):
     stageId: str
     unlockParam: list[HandbookUnlockParam]
     zoneId: str
-    zoneNameForShow: str | None = Field(default=None)
-    stageNameForShow: str | None = Field(default=None)
-    picId: str | None = Field(default=None)
+    zoneNameForShow: str | None = field(default=None)
+    stageNameForShow: str | None = field(default=None)
+    picId: str | None = field(default=None)

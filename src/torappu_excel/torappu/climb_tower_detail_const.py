@@ -1,9 +1,9 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class ClimbTowerDetailConst(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ClimbTowerDetailConst(BaseStruct):
     unlockLevelId: str
     unlockModuleNumRequirement: int
     lowerItemId: str
@@ -23,4 +23,4 @@ class ClimbTowerDetailConst(BaseModel):
     sweepOpenDifficultLayer: int
     sweepCostCount: int
     squadMemStartTime: int
-    recruitStageSort: list[int] | None = Field(default=None)
+    recruitStageSort: list[int] | None = field(default=None)

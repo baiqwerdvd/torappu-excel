@@ -1,11 +1,10 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .zone_type import ZoneType
+from ..common import BaseStruct
 
 
-class ZoneData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ZoneData(BaseStruct):
     zoneID: str
     zoneIndex: int
     type: ZoneType
@@ -21,4 +20,4 @@ class ZoneData(BaseModel):
     sixStarMilestoneGroupId: str | None
     bindMainlineZoneId: str | None
     bindMainlineRetroZoneId: str | None
-    hasAdditionalPanel: bool | None = Field(default=None)
+    hasAdditionalPanel: bool | None = field(default=None)

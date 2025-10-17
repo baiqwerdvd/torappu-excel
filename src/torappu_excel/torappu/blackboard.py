@@ -1,9 +1,9 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class Blackboard(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Blackboard(BaseStruct):
     key: str
-    value: float | None = Field(default=None)
-    valueStr: str | None = Field(default=None)
+    value: float | None = field(default=None)
+    valueStr: str | None = field(default=None)

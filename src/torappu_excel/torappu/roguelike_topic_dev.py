@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_topic_dev_node_type import RoguelikeTopicDevNodeType
 from .roguelike_topic_display_item import RoguelikeTopicDisplayItem
+from ..common import BaseStruct
 
 
-class RoguelikeTopicDev(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTopicDev(BaseStruct):
     buffId: str
     sortId: int
     nodeType: RoguelikeTopicDevNodeType

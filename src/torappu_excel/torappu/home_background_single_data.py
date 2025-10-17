@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .home_background_multi_form_data import HomeBackgroundMultiFormData
 from .home_multi_form_change_rule import HomeMultiFormChangeRule
+from ..common import BaseStruct
 
 
-class HomeBackgroundSingleData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HomeBackgroundSingleData(BaseStruct):
     bgId: str
     bgSortId: int
     bgStartTime: int

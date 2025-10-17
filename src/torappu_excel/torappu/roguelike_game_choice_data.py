@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_choice_display_data import RoguelikeChoiceDisplayData
 from .roguelike_choice_left_deco_type import RoguelikeChoiceLeftDecoType
 from .roguelike_game_choice_type import RoguelikeGameChoiceType
+from ..common import BaseStruct
 
 
-class RoguelikeGameChoiceData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeGameChoiceData(BaseStruct):
     id: str
     title: str
     description: str | None

@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class StageDiffGroupTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StageDiffGroupTable(BaseStruct):
     normalId: str
     toughId: str | None
     easyId: str

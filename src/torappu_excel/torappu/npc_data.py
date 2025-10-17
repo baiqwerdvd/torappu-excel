@@ -1,12 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .illust_npc_res_type import IllustNPCResType
 from .npc_unlock import NPCUnlock
+from ..common import BaseStruct
 
 
-class NPCData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class NPCData(BaseStruct):
     appellation: str
     cv: str
     designerList: list[str] | None
@@ -21,4 +20,4 @@ class NPCData(BaseModel):
     resType: IllustNPCResType
     teamId: None
     unlockDict: dict[str, NPCUnlock]
-    minPowerId: str | None = Field(default=None)
+    minPowerId: str | None = field(default=None)

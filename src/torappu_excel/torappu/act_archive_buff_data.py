@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_archive_buff_item_data import ActArchiveBuffItemData
+from ..common import BaseStruct
 
 
-class ActArchiveBuffData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveBuffData(BaseStruct):
     buff: dict[str, ActArchiveBuffItemData]

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .recal_rune_rune_data import RecalRuneRuneData
+from ..common import BaseStruct
 
 
-class RecalRuneStageData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RecalRuneStageData(BaseStruct):
     stageId: str
     levelId: str
     juniorMedalId: str

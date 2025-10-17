@@ -1,16 +1,12 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleStageProductionData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleStageProductionData(BaseStruct):
     stageId: str
     fixedProduction: list[str]
     productionData: dict[str, "Act1VHalfIdleStageProductionData.ItemProductionData"]
 
-    class ItemProductionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ItemProductionData(BaseStruct):
         itemId: str
         efficiencyMax: int
         isFixed: bool

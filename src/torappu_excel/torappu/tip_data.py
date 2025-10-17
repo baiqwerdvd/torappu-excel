@@ -1,11 +1,9 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class TipData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class TipData(BaseStruct):
     class Category(StrEnum):
         NONE = "NONE"
         BATTLE = "BATTLE"

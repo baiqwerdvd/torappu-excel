@@ -1,13 +1,13 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class LMTGSShopSchedule(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class LMTGSShopSchedule(BaseStruct):
     gachaPoolId: str
     LMTGSId: str
     iconColor: str
     iconBackColor: str
     startTime: int
     endTime: int
-    storeTextColor: str | None = Field(default=None)
+    storeTextColor: str | None = field(default=None)

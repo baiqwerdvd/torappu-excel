@@ -1,7 +1,5 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SandboxV2TutorialBasicConst(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2TutorialBasicConst(BaseStruct):
     trainingQuestList: list[str]

@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ActivityEnemyDuelConstToastData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityEnemyDuelConstToastData(BaseStruct):
     createRoomAliveFailed: str
     joinRoomAliveFailed: str
     roomIdFormatError: str | None

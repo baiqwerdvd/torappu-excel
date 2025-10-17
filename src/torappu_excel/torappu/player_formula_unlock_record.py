@@ -1,9 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerFormulaUnlockRecord(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerFormulaUnlockRecord(BaseStruct):
     shop: dict[str, int]
     manufacture: dict[str, int]
     workshop: dict[str, int]

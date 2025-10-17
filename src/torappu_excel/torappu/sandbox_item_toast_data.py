@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_item_type import SandboxItemType
+from ..common import BaseStruct
 
 
-class SandboxItemToastData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxItemToastData(BaseStruct):
     itemType: SandboxItemType
     toastDesc: str
     color: str

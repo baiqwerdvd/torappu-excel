@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act1_vhalf_idle_plot_combine_type import Act1VHalfIdlePlotCombineType
 from .act1_vhalf_idle_plot_type import Act1VHalfIdlePlotType
+from ..common import BaseStruct
 
 
-class Act1VHalfIdlePlotData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdlePlotData(BaseStruct):
     plotId: str
     plotName: str
     plotType: Act1VHalfIdlePlotType
@@ -25,20 +22,14 @@ class Act1VHalfIdlePlotData(BaseModel):
     prevCombineData: "Act1VHalfIdlePlotData.PlotCombineData | None"
     derivedPlots: list[str]
 
-    class ItemDropData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ItemDropData(BaseStruct):
         itemId: str
         itemDropDesc: str
 
-    class PlotCombineData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlotCombineData(BaseStruct):
         combineType: Act1VHalfIdlePlotCombineType
         plots: list["Act1VHalfIdlePlotData.PlotCombineData.CombineItemData"]
 
-        class CombineItemData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class CombineItemData(BaseStruct):
             plotId: str
             plotCount: int

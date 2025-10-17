@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .relic_stable_unlock_param import RelicStableUnlockParam
 from .roguelike_item_rarity import RoguelikeItemRarity
 from .roguelike_item_type import RoguelikeItemType
+from ..common import BaseStruct
 
 
-class RoguelikeItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeItemData(BaseStruct):
     id: str
     name: str
     description: str | None

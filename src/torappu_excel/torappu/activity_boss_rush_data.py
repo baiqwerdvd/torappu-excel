@@ -1,16 +1,13 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
 from .occ_per import OccPer
 from .rune_table import RuneTable
 from .stage_drop_type import StageDropType
+from ..common import BaseStruct
 
 
-class ActivityBossRushData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityBossRushData(BaseStruct):
     class BossRushStageType(StrEnum):
         NONE = "NONE"
         NORMAL = "NORMAL"
@@ -33,15 +30,11 @@ class ActivityBossRushData(BaseModel):
     bestWaveRuneList: list[RuneTable.PackedRuneData]
     constData: "ActivityBossRushData.ConstData"
 
-    class ZoneAdditionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ZoneAdditionData(BaseStruct):
         unlockText: str
         displayStartTime: int
 
-    class BossRushStageGroupData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BossRushStageGroupData(BaseStruct):
         stageGroupId: str
         sortId: int
         stageGroupName: str
@@ -51,41 +44,31 @@ class ActivityBossRushData(BaseModel):
         isHardStageGroup: bool
         unlockCondtion: str | None
 
-    class BossRushStageAdditionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BossRushStageAdditionData(BaseStruct):
         stageId: str
         stageType: "ActivityBossRushData.BossRushStageType"
         stageGroupId: str
         teamIdList: list[str]
         unlockText: str | None
 
-    class DisplayDetailRewards(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DisplayDetailRewards(BaseStruct):
         occPercent: OccPer
         dropCount: int
         type: str
         id: str
         dropType: StageDropType
 
-    class BossRushDropInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BossRushDropInfo(BaseStruct):
         clearWaveCount: int
         displayDetailRewards: list["ActivityBossRushData.DisplayDetailRewards"]
         firstPassRewards: list[ItemBundle]
         passRewards: list[ItemBundle]
 
-    class BossRushMissionAdditionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BossRushMissionAdditionData(BaseStruct):
         missionId: str
         isRelicTask: bool
 
-    class BossRushTeamData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BossRushTeamData(BaseStruct):
         teamId: str
         teamName: str
         charIdList: list[str]
@@ -95,40 +78,30 @@ class ActivityBossRushData(BaseModel):
         maxCharNum: int
         runeData: RuneTable.PackedRuneData | None
 
-    class RelicData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RelicData(BaseStruct):
         relicId: str
         sortId: int
         name: str
         icon: str
         relicTaskId: str
 
-    class RelicLevelInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RelicLevelInfo(BaseStruct):
         level: int
         effectDesc: str
         runeData: RuneTable.PackedRuneData
         needItemCount: int
 
-    class RelicLevelInfoData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RelicLevelInfoData(BaseStruct):
         relicId: str
         levelInfos: dict[str, "ActivityBossRushData.RelicLevelInfo"]
 
-    class BossRushMileStoneData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BossRushMileStoneData(BaseStruct):
         mileStoneId: str
         mileStoneLvl: int
         needPointCnt: int
         rewardItem: ItemBundle
 
-    class ConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConstData(BaseStruct):
         maxProvidedCharNum: int
         textMilestoneItemLevelDesc: str
         milestonePointId: str

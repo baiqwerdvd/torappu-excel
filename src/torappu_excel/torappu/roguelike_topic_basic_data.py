@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_module_type import RoguelikeModuleType
 from .roguelike_topic_config import RoguelikeTopicConfig
+from ..common import BaseStruct
 
 
-class RoguelikeTopicBasicData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTopicBasicData(BaseStruct):
     id: str
     name: str
     startTime: int
@@ -20,9 +17,7 @@ class RoguelikeTopicBasicData(BaseModel):
     moduleTypes: list[RoguelikeModuleType]
     config: RoguelikeTopicConfig
 
-    class HomeEntryDisplayData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class HomeEntryDisplayData(BaseStruct):
         topicId: str
         displayId: str
         startTs: int

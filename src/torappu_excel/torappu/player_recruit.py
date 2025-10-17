@@ -1,21 +1,15 @@
-﻿from enum import IntEnum
+from enum import IntEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerRecruit(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRecruit(BaseStruct):
     normal: "PlayerRecruit.NormalModel"
 
-    class NormalModel(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class NormalModel(BaseStruct):
         slots: dict[str, "PlayerRecruit.NormalModel.SlotModel"]
 
-        class SlotModel(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SlotModel(BaseStruct):
             state: "PlayerRecruit.NormalModel.SlotModel.State"
             tags: list[int]
             selectTags: "list[PlayerRecruit.NormalModel.SlotModel.TagItem]"
@@ -24,11 +18,9 @@ class PlayerRecruit(BaseModel):
             realFinishTs: int
             durationInSec: int
 
-            class TagItem(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class TagItem(BaseStruct):
                 tagId: int
-                pick: bool
+                pick: int
 
             class State(IntEnum):
                 LOCK = 0

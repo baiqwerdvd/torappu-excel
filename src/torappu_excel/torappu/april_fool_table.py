@@ -1,16 +1,13 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act6_fun_data import Act6FunData
 from .act_4fun_data import Act4funData
 from .act_5fun_data import Act5FunData
 from .april_fool_const import AprilFoolConst
 from .april_fool_score_data import AprilFoolScoreData
 from .april_fool_stage_data import AprilFoolStageData
+from ..common import BaseStruct
 
 
-class AprilFoolTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class AprilFoolTable(BaseStruct):
     stages: dict[str, AprilFoolStageData]
     scoreDict: dict[str, list[AprilFoolScoreData]]
     constant: AprilFoolConst

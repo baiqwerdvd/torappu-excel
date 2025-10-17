@@ -1,20 +1,14 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerLimitedDropBuff(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerLimitedDropBuff(BaseStruct):
     dailyUsage: dict[str, "PlayerLimitedDropBuff.DailyUsage"]
     inventory: dict[str, "PlayerLimitedDropBuff.LimitedBuffGroup"]
 
-    class DailyUsage(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DailyUsage(BaseStruct):
         times: int
         ts: int
 
-    class LimitedBuffGroup(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LimitedBuffGroup(BaseStruct):
         ts: int
         count: int

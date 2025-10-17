@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .tip_data import TipData
 from .world_view_tip import WorldViewTip
+from ..common import BaseStruct
 
 
-class TipTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class TipTable(BaseStruct):
     tips: list[TipData]
     worldViewTips: list[WorldViewTip]

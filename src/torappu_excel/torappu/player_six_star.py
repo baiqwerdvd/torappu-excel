@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_six_star_milestone import PlayerSixStarMilestone
 from .player_six_star_stage import PlayerSixStarStage
+from ..common import BaseStruct
 
 
-class PlayerSixStar(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSixStar(BaseStruct):
     stages: dict[str, PlayerSixStarStage]
     groups: dict[str, PlayerSixStarMilestone]

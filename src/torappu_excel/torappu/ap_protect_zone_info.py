@@ -1,14 +1,10 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ApProtectZoneInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ApProtectZoneInfo(BaseStruct):
     zoneId: str
     timeRanges: list["ApProtectZoneInfo.TimeRange"]
 
-    class TimeRange(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TimeRange(BaseStruct):
         startTs: int
         endTs: int

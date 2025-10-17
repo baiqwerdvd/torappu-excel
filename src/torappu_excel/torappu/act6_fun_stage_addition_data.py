@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class Act6FunStageAdditionData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act6FunStageAdditionData(BaseStruct):
     description: str
     npcDialogText: str
     previewCharPicId: str

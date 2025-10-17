@@ -1,17 +1,12 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_v2_battle_rush_enemy_group_config import SandboxV2BattleRushEnemyGroupConfig
 from .sandbox_v2_enemy_rush_type import SandboxV2EnemyRushType
+from ..common import BaseStruct
 
 
-class SandboxV2BattleRushEnemyData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2BattleRushEnemyData(BaseStruct):
     rushEnemyGroupConfigs: dict[SandboxV2EnemyRushType, list[SandboxV2BattleRushEnemyGroupConfig]]
     rushEnemyDbRef: list["SandboxV2BattleRushEnemyData.RushEnemyDBRef"]
 
-    class RushEnemyDBRef(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RushEnemyDBRef(BaseStruct):
         id: str
         level: int

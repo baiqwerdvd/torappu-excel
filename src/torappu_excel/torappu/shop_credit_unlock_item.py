@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ShopCreditUnlockItem(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ShopCreditUnlockItem(BaseStruct):
     sortId: int
     unlockNum: int
     charId: str

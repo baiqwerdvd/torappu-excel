@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_copper_buff_type import RoguelikeCopperBuffType
 from .roguelike_copper_lucky_level import RoguelikeCopperLuckyLevel
+from ..common import BaseStruct
 
 
-class RoguelikeCopperData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeCopperData(BaseStruct):
     id: str
     groupId: str
     gildTypeId: str | None

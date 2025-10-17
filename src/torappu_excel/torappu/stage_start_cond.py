@@ -1,17 +1,12 @@
-from pydantic import BaseModel, ConfigDict
-
 from .evolve_phase import EvolvePhase
+from ..common import BaseStruct
 
 
-class StageStartCond(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StageStartCond(BaseStruct):
     requireChars: list["StageStartCond.RequireChar"]
     excludeAssists: list[str]
     isNotPass: bool
 
-    class RequireChar(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RequireChar(BaseStruct):
         charId: str
         evolvePhase: EvolvePhase

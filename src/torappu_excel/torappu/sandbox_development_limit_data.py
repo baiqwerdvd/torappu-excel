@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SandboxDevelopmentLimitData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxDevelopmentLimitData(BaseStruct):
     buffLimitedId: str
     positionX: int
     buffCostLimitedCount: int

@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_building_item_type import SandboxBuildingItemType
 from .sandbox_item_type import SandboxItemType
+from ..common import BaseStruct
 
 
-class SandboxNodeUpgradeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxNodeUpgradeData(BaseStruct):
     nodeUpdradeId: str
     name: str
     description: str

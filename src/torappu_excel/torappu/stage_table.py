@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .ap_protect_zone_info import ApProtectZoneInfo
 from .conditional_drop_info import ConditionalDropInfo
@@ -26,11 +26,10 @@ from .tile_append_info import TileAppendInfo
 from .timely_drop_info import TimelyDropInfo
 from .timely_drop_time_info import TimelyDropTimeInfo
 from .weekly_force_open_table import WeeklyForceOpenTable
+from ..common import BaseStruct
 
 
-class StageTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StageTable(BaseStruct):
     stages: dict[str, StageData]
     runeStageGroups: dict[str, RuneStageGroupData]
     mapThemes: dict[str, MapThemeData]
@@ -58,4 +57,4 @@ class StageTable(BaseModel):
     sixStarMilestoneInfo: dict[str, SixStarMilestoneGroupData]
     sixStarCompatibleInfo: dict[str, SixStarLinkedStageCompatibleInfo]
     conditionalDropInfo: dict[str, ConditionalDropInfo]
-    overrideUnlockInfo: dict[str, OverrideUnlockInfo] = Field(default_factory=dict)
+    overrideUnlockInfo: dict[str, OverrideUnlockInfo] = field(default_factory=dict)

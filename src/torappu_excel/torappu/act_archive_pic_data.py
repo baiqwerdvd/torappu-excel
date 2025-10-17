@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_archive_pic_item_data import ActArchivePicItemData
+from ..common import BaseStruct
 
 
-class ActArchivePicData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchivePicData(BaseStruct):
     pics: dict[str, ActArchivePicItemData]

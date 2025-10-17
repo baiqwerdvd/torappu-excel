@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act1_vhalf_idle_equip_type import Act1VHalfIdleEquipType
 from .rune_table import RuneTable
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleEquipData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleEquipData(BaseStruct):
     equipId: str
     alias: str
     iconId: str

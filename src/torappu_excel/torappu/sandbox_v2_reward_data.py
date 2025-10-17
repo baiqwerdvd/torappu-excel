@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_v2_reward_item_config_data import SandboxV2RewardItemConfigData
+from ..common import BaseStruct
 
 
-class SandboxV2RewardData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2RewardData(BaseStruct):
     rewardList: list[SandboxV2RewardItemConfigData]

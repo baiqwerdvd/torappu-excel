@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_archive_type import ActArchiveType
+from ..common import BaseStruct
 
 
-class RoguelikeArchiveEnroll(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeArchiveEnroll(BaseStruct):
     archiveType: ActArchiveType
     enrollId: str | None

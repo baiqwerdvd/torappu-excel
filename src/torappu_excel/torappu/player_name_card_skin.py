@@ -1,15 +1,11 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerNameCardSkin(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerNameCardSkin(BaseStruct):
     selected: str
     state: dict[str, "PlayerNameCardSkin.SkinState"]
     tmpl: dict[str, int]
 
-    class SkinState(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class SkinState(BaseStruct):
         unlock: bool
         progress: list[list[int]] | None

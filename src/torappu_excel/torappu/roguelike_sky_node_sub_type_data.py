@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_sky_zone_node_type import RoguelikeSkyZoneNodeType
+from ..common import BaseStruct
 
 
-class RoguelikeSkyNodeSubTypeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeSkyNodeSubTypeData(BaseStruct):
     evtType: RoguelikeSkyZoneNodeType
     subTypeId: int
     desc: str

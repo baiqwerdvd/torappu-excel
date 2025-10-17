@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RoguelikeTopicMilestoneUpdateData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTopicMilestoneUpdateData(BaseStruct):
     updateTime: int
     endTime: int
     maxBpLevel: int

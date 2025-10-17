@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .retro_trail_reward_item import RetroTrailRewardItem
+from ..common import BaseStruct
 
 
-class RetroTrailData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RetroTrailData(BaseStruct):
     retroId: str
     trailStartTime: int
     trailRewardList: list[RetroTrailRewardItem]

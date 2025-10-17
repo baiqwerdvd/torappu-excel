@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_event_type import RoguelikeEventType
+from ..common import BaseStruct
 
 
-class RoguelikeGameNodeSubTypeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeGameNodeSubTypeData(BaseStruct):
     eventType: RoguelikeEventType
     subTypeId: int
     iconId: str | None

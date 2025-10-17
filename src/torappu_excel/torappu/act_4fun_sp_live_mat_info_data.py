@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class Act4funSpLiveMatInfoData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act4funSpLiveMatInfoData(BaseStruct):
     spLiveMatId: str
     spLiveEveId: str
     stageId: str

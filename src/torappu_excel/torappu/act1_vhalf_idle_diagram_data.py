@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .vector2 import Vector2
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleDiagramData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleDiagramData(BaseStruct):
     width: float
     height: float
     pointPosDataMap: dict[str, "Act1VHalfIdleDiagramData.PointPosData"]
@@ -13,24 +10,16 @@ class Act1VHalfIdleDiagramData(BaseModel):
     lineRelationDataMap: dict[str, "Act1VHalfIdleDiagramData.LineRelationData"]
     nodePointDataMap: dict[str, "Act1VHalfIdleDiagramData.NodePointData"]
 
-    class PointPosData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PointPosData(BaseStruct):
         pos: Vector2
 
-    class LinePosData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LinePosData(BaseStruct):
         startPos: Vector2
         endPos: Vector2
 
-    class LineRelationData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LineRelationData(BaseStruct):
         startPointList: list[str]
         endPointList: list[str]
 
-    class NodePointData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class NodePointData(BaseStruct):
         nodeId: str

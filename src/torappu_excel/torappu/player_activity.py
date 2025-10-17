@@ -1,7 +1,5 @@
-﻿from enum import IntEnum, StrEnum
+from enum import IntEnum, StrEnum
 from typing import Any
-
-from pydantic import BaseModel, ConfigDict
 
 from .act_multi_v3_match_pos_type import ActMultiV3MatchPosType
 from .auto_chess_game import AutoChessGame
@@ -17,11 +15,10 @@ from .player_squad_item import PlayerSquadItem
 from .player_squad_tmpl import PlayerSquadTmpl
 from .player_stage_state import PlayerStageState
 from .shared_char_data import SharedCharData
+from ..common import BaseStruct
 
 
-class PlayerActivity(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerActivity(BaseStruct):
     DEFAULT: dict[str, "PlayerActivity.PlayerDefaultActivity"]
     MISSION_ONLY: dict[str, "PlayerActivity.PlayerMissionOnlyTypeActivity"]
     CHECKIN_ONLY: dict[str, "PlayerActivity.PlayerCheckinOnlyTypeActivity"]
@@ -81,31 +78,23 @@ class PlayerActivity(BaseModel):
     TYPE_ACT44SIDE: dict[str, "PlayerActivity.PlayerAct44SideActivity"]
     HALFIDLE_VERIFY1: dict[str, "PlayerActivity.PlayerAct1VHalfIdleActivity"]
     TYPE_ACT45SIDE: dict[str, "PlayerActivity.PlayerAct45SideActivity"]
+    VEC_BREAK: Any  # TODO: 临时占位
     TEAM_QUEST: dict[str, JObject] | None = None
     RECRUIT_ONLY: dict[str, "PlayerActivity.PlayerRecruitOnlyAct"] | None = None
-    VEC_BREAK: Any  # TODO: 临时占位
 
-    class PlayerDefaultActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerDefaultActivity(BaseStruct):
         coin: int
         shop: dict[str, int]
 
-    class PlayerMissionOnlyTypeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerMissionOnlyTypeActivity(BaseStruct):
         pass
 
-    class PlayerCheckinOnlyTypeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerCheckinOnlyTypeActivity(BaseStruct):
         history: list[int]
         dynOpt: list[str]
         extraHistory: list[int]
 
-    class PlayerCheckinVsTypeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerCheckinVsTypeActivity(BaseStruct):
         sweetVote: int
         saltyVote: int
         canVote: bool
@@ -116,68 +105,46 @@ class PlayerActivity(BaseModel):
         socialState: int
         actDay: int
 
-    class PlayerCheckinAllTypeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerCheckinAllTypeActivity(BaseStruct):
         history: list[int]
         allRecord: dict[str, int]
         allRewardStatus: dict[str, int]
         personalRecord: dict[str, int]
 
-    class MilestoneInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MilestoneInfo(BaseStruct):
         point: int
         got: list[str]
 
-    class PlayerCollectionTypeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerCollectionTypeActivity(BaseStruct):
         point: dict[str, int]
         history: dict[str, "PlayerActivity.PlayerCollectionTypeActivity.PlayerCollectionInfo"]
 
-        class PlayerCollectionInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerCollectionInfo(BaseStruct):
             ts: str
 
-    class PlayerAVGOnlyTypeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAVGOnlyTypeActivity(BaseStruct):
         isOpen: bool
 
-    class PlayerLoginOnlyTypeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerLoginOnlyTypeActivity(BaseStruct):
         reward: int
 
-    class PlayerMiniStoryActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerMiniStoryActivity(BaseStruct):
         coin: int
         favorList: list[str]
 
-    class PlayerRoguelikeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerRoguelikeActivity(BaseStruct):
         buffToken: int
         milestone: "PlayerActivity.PlayerRoguelikeActivity.MileStone"
         game: "PlayerActivity.PlayerRoguelikeActivity.GameStatus"
 
-        class MileStone(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MileStone(BaseStruct):
             token: int
             got: dict[str, int]
 
-        class GameStatus(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class GameStatus(BaseStruct):
             lastTs: int
 
-    class PlayerActSandbox(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerActSandbox(BaseStruct):
         map: "PlayerActivity.PlayerActSandbox.Map"
         status: "PlayerActivity.PlayerActSandbox.GameStatus"
         game: "PlayerActivity.PlayerActSandbox.Game"
@@ -197,20 +164,14 @@ class PlayerActivity(BaseModel):
         task: "PlayerActivity.PlayerActSandbox.Task"
         milestone: "PlayerActivity.PlayerActSandbox.Milestone"
 
-        class Map(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Map(BaseStruct):
             zone: dict[str, "PlayerActivity.PlayerActSandbox.Map.Zone"]
             node: dict[str, "PlayerActivity.PlayerActSandbox.Map.Node"]
 
-            class Zone(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Zone(BaseStruct):
                 weather: int
 
-            class Node(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Node(BaseStruct):
                 zone: str
                 tag: int
                 type: int
@@ -219,33 +180,23 @@ class PlayerActivity(BaseModel):
                 weather: "PlayerActivity.PlayerActSandbox.Map.Node.NodeWeather"
                 stageId: str
 
-                class NodeRelate(BaseModel):
-                    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+                class NodeRelate(BaseStruct):
                     adj: list[str]
                     layer: int
                     angle: float | int
                     depth: int
 
-                class NodeWeather(BaseModel):
-                    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+                class NodeWeather(BaseStruct):
                     level: int
 
-        class GameStatus(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class GameStatus(BaseStruct):
             state: int
             flag: "PlayerActivity.PlayerActSandbox.GameStatus.GameFlag"
 
-            class GameFlag(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class GameFlag(BaseStruct):
                 guide: int
 
-        class Game(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Game(BaseStruct):
             day: int
             totalDay: int
             ap: int
@@ -255,9 +206,7 @@ class PlayerActivity(BaseModel):
             settleType: int
             ts: int
 
-            class CrossDay(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class CrossDay(BaseStruct):
                 enemyRushNew: list[str]
                 enemyRushMove: dict[str, str]
                 trapRewards: list["PlayerActivity.PlayerActSandbox.Game.CrossDay.SandboxRewardItem"]
@@ -265,38 +214,28 @@ class PlayerActivity(BaseModel):
                 missionIds: list[str]
                 vagabond: dict[str, int]
 
-                class SandboxRewardItem(BaseModel):
-                    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+                class SandboxRewardItem(BaseStruct):
                     id: str
                     type: str
                     count: int
 
-        class Cook(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Cook(BaseStruct):
             water: int
             foodSum: int
             cookbook: dict[str, int]
             food: dict[str, "PlayerActivity.PlayerActSandbox.Cook.Food"]
 
-            class Food(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Food(BaseStruct):
                 itemId: str
                 minorBuff: list[str]
                 count: int
 
-        class Build(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Build(BaseStruct):
             blueprint: dict[str, int]
             building: dict[str, int]
             tactical: dict[str, int]
 
-        class NodeStage(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class NodeStage(BaseStruct):
             state: int
             view: str
             id: str | None
@@ -308,17 +247,13 @@ class PlayerActivity(BaseModel):
             trap: list["PlayerActivity.PlayerActSandbox.NodeStage.Trap"] | None
             action: list[list[int]] | None
 
-            class BaseInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class BaseInfo(BaseStruct):
                 key: str
                 pos: list[int]
                 isDead: int
                 hpRatio: int
 
-            class EntityStatus(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class EntityStatus(BaseStruct):
                 key: str
                 pos: list[int]
                 isDead: int
@@ -330,15 +265,11 @@ class PlayerActivity(BaseModel):
             class Cave(EntityStatus):
                 pass
 
-            class Enemy(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Enemy(BaseStruct):
                 key: str
                 count: list[int]
 
-            class Building(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Building(BaseStruct):
                 key: str
                 pos: list[int]
                 hpRatio: int
@@ -348,38 +279,28 @@ class PlayerActivity(BaseModel):
                 count: list[int] | None
                 extraParam: int | None
 
-        class NodeEvent(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class NodeEvent(BaseStruct):
             eventList: list["PlayerActivity.PlayerActSandbox.NodeEvent.Event"]
             originId: str
 
-            class Event(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Event(BaseStruct):
                 id: str
                 enter: str
                 state: bool | int
                 scene: str | None
 
-        class Npc(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Npc(BaseStruct):
             id: str
             life: int
             skillId: int
             startDialog: str | None
             npcDialog: str | None
 
-        class MapEnemyData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MapEnemyData(BaseStruct):
             enemyRush: dict[str, "PlayerActivity.PlayerActSandbox.MapEnemyData.EnemyRush"]
             rareAnimal: dict[str, "PlayerActivity.PlayerActSandbox.MapEnemyData.RareAnimal"]
 
-            class EnemyRush(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class EnemyRush(BaseStruct):
                 path: list[str]
                 groupKey: str
                 days: int
@@ -387,92 +308,66 @@ class PlayerActivity(BaseModel):
                 enemy: dict[str, list[int]]
                 boss: dict[str, "PlayerActivity.PlayerActSandbox.MapEnemyData.EnemyRush.RushBossStatus"] | None
 
-                class RushBossStatus(BaseModel):
-                    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+                class RushBossStatus(BaseStruct):
                     hpRatio: int
                     modeIndex: int
 
-            class RareAnimal(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class RareAnimal(BaseStruct):
                 nodeId: str
                 enemyId: str
                 enemyGroupKey: str
                 life: int
 
-        class Mission(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Mission(BaseStruct):
             missionId: str
             days: int
             charList: list[int]
 
-        class TroopData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class TroopData(BaseStruct):
             charAp: dict[str, int]
             todayAddAp: list[str | int]
             charFood: dict[str | int, "PlayerActivity.PlayerActSandbox.TroopData.CharFood"]
 
-            class CharFood(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class CharFood(BaseStruct):
                 itemId: str
                 minorBuff: list[str]
                 ts: int
 
-        class Tech(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Tech(BaseStruct):
             techs: list[str]
             researchTechs: list[str]
             researchTasks: dict[str, list[int]]
             token: int
             cent: int
 
-        class Box(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Box(BaseStruct):
             enabled: bool
             foods: dict[str, "PlayerActivity.PlayerActSandbox.Box.Food"]
             items: dict[str, dict[str, int]]
             cap: int
             day: int
 
-            class Food(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Food(BaseStruct):
                 itemId: str
                 minorBuff: list[str]
                 count: int
 
-        class Bank(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Bank(BaseStruct):
             enabled: bool
             count: int
             ratio: int
 
-        class Trigger(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Trigger(BaseStruct):
             flag: dict[str, int]
 
-        class Task(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Task(BaseStruct):
             token: dict[str, int]
 
-        class Milestone(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Milestone(BaseStruct):
             point: int
             got: list[str]
 
-    class PlayerPrayOnlyActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerPrayOnlyActivity(BaseStruct):
         lastTs: int
         extraCount: int
         prayDaily: int
@@ -480,20 +375,14 @@ class PlayerActivity(BaseModel):
         praying: bool
         prayArray: "list[PlayerActivity.PlayerPrayOnlyActivity.RewardInfo]"
 
-        class RewardInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RewardInfo(BaseStruct):
             index: int
             count: int
 
-    class PlayerSwitchOnlyActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerSwitchOnlyActivity(BaseStruct):
         rewards: dict[str, int]
 
-    class PlayerFlipOnlyActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerFlipOnlyActivity(BaseStruct):
         raffleCount: int
         todayRaffleCount: int
         remainingRaffleCount: int
@@ -501,18 +390,14 @@ class PlayerActivity(BaseModel):
         normalRewards: dict[int, "PlayerActivity.PlayerFlipOnlyActivity.ActFlipItemBundle"]
         grandStatus: int
 
-        class ActFlipItemBundle(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ActFlipItemBundle(BaseStruct):
             id: str
             type: str
             count: int
             ts: int
             prizeId: str
 
-    class PlayerGridGachaActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerGridGachaActivity(BaseStruct):
         lastDay: bool
         firstDay: bool
         openedPosition: list[int]
@@ -520,28 +405,20 @@ class PlayerActivity(BaseModel):
         rewardCount: int
         grandPositions: list[int]
 
-    class PlayerMultiplayActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerMultiplayActivity(BaseStruct):
         troop: dict[str, "PlayerActivity.PlayerMultiplayActivity.Troop"]
         stages: dict[str, "PlayerActivity.PlayerMultiplayActivity.Stage"]
 
-        class Troop(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Troop(BaseStruct):
             init: int
             squads: list[PlayerSquad]
 
-        class Stage(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Stage(BaseStruct):
             stageId: str
             state: PlayerStageState
             completeTimes: int
 
-    class PlayerMultiplayV2Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerMultiplayV2Activity(BaseStruct):
         squads: "PlayerActivity.PlayerMultiplayV2Activity.Squads"
         dailyMission: "PlayerActivity.PlayerMultiplayV2Activity.DailyMission"
         milestone: "PlayerActivity.PlayerMultiplayV2Activity.MilestoneInfo"
@@ -549,17 +426,13 @@ class PlayerActivity(BaseModel):
         match: "PlayerActivity.PlayerMultiplayV2Activity.Match"
         globalBan: bool
 
-        class PlayerMultiplayV2SquadItem(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerMultiplayV2SquadItem(BaseStruct):
             instId: int
             charInstId: int
             currentTmpl: str
             tmpl: dict[str, PlayerSquadTmpl]
 
-        class Squads(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Squads(BaseStruct):
             prefer: "list[PlayerActivity.PlayerMultiplayV2Activity.PlayerMultiplayV2SquadItem]"
             backup: "list[PlayerActivity.PlayerMultiplayV2Activity.PlayerMultiplayV2SquadItem]"
 
@@ -567,9 +440,7 @@ class PlayerActivity(BaseModel):
             NOT_CLAIM = "NOT_CLAIM"
             CLAIMED = "CLAIMED"
 
-        class DailyMission(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DailyMission(BaseStruct):
             process: int
             state: "PlayerActivity.PlayerMultiplayV2Activity.DailyMissionState"
 
@@ -577,31 +448,23 @@ class PlayerActivity(BaseModel):
             LOCK = "LOCK"
             UNLOCKED = "UNLOCKED"
 
-        class StageInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class StageInfo(BaseStruct):
             stageId: str
             score: int
             state: "PlayerActivity.PlayerMultiplayV2Activity.StageState"
             startTimes: int
             completeTimes: int
 
-        class Match(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Match(BaseStruct):
             beMentorCnt: int
             lockMentor: bool
             bannedUntilTs: int
 
-        class MilestoneInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MilestoneInfo(BaseStruct):
             point: int
             got: list[str]
 
-    class PlayerMultiV3Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerMultiV3Activity(BaseStruct):
         collection: "PlayerActivity.PlayerMultiV3Activity.Collection"
         troop: "PlayerActivity.PlayerMultiV3Activity.Troop"
         match: "PlayerActivity.PlayerMultiV3Activity.MatchInfo"
@@ -611,54 +474,38 @@ class PlayerActivity(BaseModel):
         scene: "PlayerActivity.PlayerMultiV3Activity.Scene"
         globalBan: bool
 
-        class Collection(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Collection(BaseStruct):
             info: "PlayerActivity.PlayerMultiV3Activity.CollectionInfo"
             title: "PlayerActivity.PlayerMultiV3Activity.Title"
             photo: "PlayerActivity.PlayerMultiV3Activity.Photo"
 
-        class CollectionInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class CollectionInfo(BaseStruct):
             finishCnt: int
             mentorCnt: int
             likeCnt: int
 
-        class Title(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Title(BaseStruct):
             unlock: list[str]
             select: list[str]
 
-        class Photo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Photo(BaseStruct):
             template: dict[str, dict[str, "PlayerActivity.PlayerMultiV3Activity.PhotoInstance"]]
             album: dict[str, "PlayerActivity.PlayerMultiV3Activity.Album"]
 
-        class PhotoInstance(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PhotoInstance(BaseStruct):
             players: "PlayerActivity.PlayerMultiV3Activity.PhotoPlayerInfo"
             chars: "list[PlayerActivity.PlayerMultiV3Activity.PhotoCharInfo]"
             stageId: str
             ts: int
 
-        class PhotoPlayerInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PhotoPlayerInfo(BaseStruct):
             mine: "PlayerActivity.PlayerMultiV3Activity.PhotoSelfInfo"
             mate: "PlayerActivity.PlayerMultiV3Activity.PhotoAssistInfo"
 
-        class PhotoSelfInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PhotoSelfInfo(BaseStruct):
             title: list[str]
 
-        class PhotoAssistInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PhotoAssistInfo(BaseStruct):
             uid: str
             sameChannel: bool
             title: list[str]
@@ -668,9 +515,7 @@ class PlayerActivity(BaseModel):
             nameCardSkinId: str
             nameCardSkinTmpl: int
 
-        class PhotoCharInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PhotoCharInfo(BaseStruct):
             charId: str
             currentTmpl: str
             skinId: str
@@ -678,92 +523,66 @@ class PlayerActivity(BaseModel):
             frame: int
             flip: bool
 
-        class Album(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Album(BaseStruct):
             commit: bool
             slot: dict[str, str]
 
-        class Troop(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Troop(BaseStruct):
             buff: "PlayerActivity.PlayerMultiV3Activity.TroopBuff"
             squads: dict[str, "PlayerActivity.PlayerMultiV3Activity.Squad"]
 
-        class TroopBuff(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class TroopBuff(BaseStruct):
             unlock: list[str]
             coin: int
             star: int
 
-        class Squad(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Squad(BaseStruct):
             prefer: "list[PlayerActivity.PlayerMultiV3Activity.SquadItem]"
             backup: "list[PlayerActivity.PlayerMultiV3Activity.SquadItem]"
             buffId: str
 
-        class SquadItem(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SquadItem(BaseStruct):
             innerInstId: int
             charInstId: int
             currentTmpl: str
             tmpl: dict[str, PlayerSquadTmpl]
 
-        class StageInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class StageInfo(BaseStruct):
             star: int
             exScore: int
             matchTimes: int
             startTimes: int
             finishTimes: int
 
-        class MatchInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MatchInfo(BaseStruct):
             bannedUntilTs: int
             lastModeList: list[str]
             lastMentorType: ActMultiV3MatchPosType
             lastReverse: int
 
-        class Milestone(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Milestone(BaseStruct):
             point: int
             got: list[str]
 
-        class Daily(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Daily(BaseStruct):
             process: int
             state: int
 
-        class Scene(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Scene(BaseStruct):
             lastMate: list[str]
 
-    class PlayerInterlockActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerInterlockActivity(BaseStruct):
         milestoneCoin: int
         milestoneGot: list[str]
         specialDefendStageId: str
         defend: dict[str, "list[PlayerActivity.PlayerInterlockActivity.DefendCharData]"]
         squad: dict[str, list[PlayerSquadItem]]
 
-        class DefendCharData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DefendCharData(BaseStruct):
             charInstId: int
             currentTmpl: str
 
-    class PlayerAct3D0Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct3D0Activity(BaseStruct):
         faction: str
         gachaCoin: int
         ticket: int
@@ -772,95 +591,67 @@ class PlayerActivity(BaseModel):
         milestone: "PlayerActivity.PlayerAct3D0Activity.MileStone"
         favorList: list[str]
 
-        class BoxState(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class BoxState(BaseStruct):
             content: dict[str, int]
 
-        class MileStone(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MileStone(BaseStruct):
             point: int
             rewards: dict[str, int]
 
-    class PlayerAct4D0Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct4D0Activity(BaseStruct):
         story: dict[str, int]
         milestone: "PlayerActivity.PlayerAct4D0Activity.MileStone"
 
-        class MileStone(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MileStone(BaseStruct):
             point: int
             rewards: dict[str, int]
 
-    class PlayerAct5D0Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct5D0Activity(BaseStruct):
         point_reward: MileStonePlayerInfo
 
-    class PlayerAct5D1Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct5D1Activity(BaseStruct):
         coin: int
         pt: int
         shop: "PlayerActivity.PlayerAct5D1Activity.PlayerAct5D1Shop"
         runeStage: dict[str, "PlayerActivity.PlayerAct5D1Activity.PlayerActRuneStage"]
         stageEnemy: dict[str, list[str]]
 
-        class PlayerAct5D1Shop(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerAct5D1Shop(BaseStruct):
             info: dict[str, int]
             progressInfo: dict[str, "PlayerActivity.PlayerAct5D1Activity.PlayerAct5D1Shop.ProgressInfo"]
 
-            class ProgressInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class ProgressInfo(BaseStruct):
                 count: int
                 order: int
 
-        class PlayerActRuneStage(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerActRuneStage(BaseStruct):
             schedule: str
             available: int
             scores: int
             rune: dict[str, int]
 
-    class PlayerAct9D0Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct9D0Activity(BaseStruct):
         coin: int
         favorList: list[str]
         news: dict[str, int]
         campaignCnt: int
 
-    class PlayerAct12sideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct12sideActivity(BaseStruct):
         coin: int
         campaignCnt: int
         favorList: list[str]
         milestone: "PlayerActivity.PlayerAct12sideActivity.MilestoneInfo"
         charm: "PlayerActivity.PlayerAct12sideActivity.CharmInfo"
 
-        class MilestoneInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MilestoneInfo(BaseStruct):
             point: int
             got: list[str]
 
-        class CharmInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class CharmInfo(BaseStruct):
             recycleStack: int
             firstGotReward: list[str]
 
-    class PlayerAct13sideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct13sideActivity(BaseStruct):
         token: int
         favorList: list[str]
         milestone: "PlayerActivity.PlayerAct13sideActivity.MilestoneInfo"
@@ -868,74 +659,52 @@ class PlayerActivity(BaseModel):
         flag: "PlayerActivity.PlayerAct13sideActivity.Flag"
         mission: "PlayerActivity.PlayerAct13sideActivity.DailyMissionPoolData"
 
-        class MilestoneInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MilestoneInfo(BaseStruct):
             point: int
             got: list[str]
 
-        class Flag(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Flag(BaseStruct):
             agenda: bool
             mission: bool
 
-        class SearchReward(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SearchReward(BaseStruct):
             id: str
             type: ItemType
 
-        class SearchCondition(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SearchCondition(BaseStruct):
             orgId: str
             reward: "PlayerActivity.PlayerAct13sideActivity.SearchReward"
 
-        class DailyMissionData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DailyMissionData(BaseStruct):
             missionId: str
             orgId: str
             principalId: str
             principalDescIdx: int
             rewardGroupId: str
 
-        class DailyMissionProgress(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DailyMissionProgress(BaseStruct):
             target: int
             value: int
 
-        class DailyMissionWithProgressData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DailyMissionWithProgressData(BaseStruct):
             mission: "PlayerActivity.PlayerAct13sideActivity.DailyMissionData"
             progress: "PlayerActivity.PlayerAct13sideActivity.DailyMissionProgress"
 
-        class DailyMissionPoolData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DailyMissionPoolData(BaseStruct):
             random: int
             condition: "PlayerActivity.PlayerAct13sideActivity.SearchCondition"
             pool: "list[PlayerActivity.PlayerAct13sideActivity.DailyMissionData]"
             board: "list[PlayerActivity.PlayerAct13sideActivity.DailyMissionWithProgressData]"
 
-    class PlayerAct17D7Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct17D7Activity(BaseStruct):
         isOpen: bool
 
-    class PlayerAct38D1Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct38D1Activity(BaseStruct):
         coin: int
         permanent: "PlayerActivity.PlayerAct38D1Activity.PermanentMapInfo"
         temporary: dict[str, "PlayerActivity.PlayerAct38D1Activity.BasicMapInfo"]
 
-        class BasicMapInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class BasicMapInfo(BaseStruct):
             state: int
             scoreTotal: list[int]
             rune: dict[str, int]
@@ -948,61 +717,43 @@ class PlayerActivity(BaseModel):
             reward: dict[str, "PlayerActivity.PlayerAct38D1Activity.PermanentMapInfo.RewardInfo"]
             daily: dict[str, int]
 
-            class RewardInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class RewardInfo(BaseStruct):
                 state: int
                 progress: int
 
-    class PlayerAprilFoolActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAprilFoolActivity(BaseStruct):
         isOpen: bool
 
-    class PlayerAct17SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct17SideActivity(BaseStruct):
         isOpen: bool
         coin: int
         favorList: list[str]
 
-    class PlayerBossRushActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerBossRushActivity(BaseStruct):
         milestone: "PlayerActivity.PlayerBossRushActivity.MilestoneInfo"
         relic: "PlayerActivity.PlayerBossRushActivity.RelicInfo"
         best: dict[str, int]
 
-        class MilestoneInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MilestoneInfo(BaseStruct):
             point: int
             got: list[str]
 
-        class TokenInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class TokenInfo(BaseStruct):
             current: int
             total: int
 
-        class RelicInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RelicInfo(BaseStruct):
             token: "PlayerActivity.PlayerBossRushActivity.TokenInfo"
             level: dict[str, int]
             select: str
 
-    class PlayerEnemyDuelActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerEnemyDuelActivity(BaseStruct):
         milestone: "PlayerActivity.PlayerEnemyDuelActivity.MilestoneInfo"
         dailyMission: "PlayerActivity.PlayerEnemyDuelActivity.DailyMission"
         modeInfo: dict[str, "PlayerActivity.PlayerEnemyDuelActivity.ModeInfo"]
         globalBan: bool
 
-        class MilestoneInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MilestoneInfo(BaseStruct):
             point: int
             got: list[str]
 
@@ -1010,50 +761,36 @@ class PlayerActivity(BaseModel):
             NOT_CLAIM = "NOT_CLAIM"
             CLAIMED = "CLAIMED"
 
-        class DailyMission(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DailyMission(BaseStruct):
             process: int
             state: "PlayerActivity.PlayerEnemyDuelActivity.DailyMissionState"
 
-        class ModeInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ModeInfo(BaseStruct):
             highScore: int
             curStage: str
             isUnlock: bool
 
-    class PlayerVecBreakV2(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerVecBreakV2(BaseStruct):
         milestone: "PlayerActivity.MilestoneInfo"
         activatedBuff: list[str]
         defendStages: dict[str, "PlayerActivity.PlayerVecBreakV2.DefendStageInfo"]
 
-        class DefendCharInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DefendCharInfo(BaseStruct):
             charInstId: int
             currentTmpl: str
 
-        class DefendStageInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DefendStageInfo(BaseStruct):
             stageId: str
             defendSquad: "list[PlayerActivity.PlayerVecBreakV2.DefendCharInfo]"
             recvTimeLimited: bool
             recvNormal: bool
 
-    class PlayerArcadeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerArcadeActivity(BaseStruct):
         milestone: "PlayerActivity.PlayerArcadeActivity.MilestoneInfo"
         badge: dict[str, "PlayerActivity.PlayerArcadeActivity.BadgeInfo"]
         score: dict[str, dict[str, int]]
 
-        class MilestoneInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MilestoneInfo(BaseStruct):
             point: int
             got: list[str]
 
@@ -1062,14 +799,10 @@ class PlayerActivity(BaseModel):
             InProgress = "InProgress"
             Unlocked = "Unlocked"
 
-        class BadgeInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class BadgeInfo(BaseStruct):
             status: "PlayerActivity.PlayerArcadeActivity.BadgeStatus"
 
-    class PlayerAct20SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct20SideActivity(BaseStruct):
         actBase: "PlayerActivity.PlayerAct20SideActivity.ActBaseInfo"
         dailyJudgeTimes: int
         entertainmentCompetition: dict[str, "PlayerActivity.PlayerAct20SideActivity.EntertainCompBestRecord"]
@@ -1078,60 +811,42 @@ class PlayerActivity(BaseModel):
         campaignCnt: int
         favorList: list[str]
 
-        class ActBaseInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ActBaseInfo(BaseStruct):
             actCoin: int
             milestone: "PlayerActivity.PlayerAct20SideActivity.MilestoneStateInfo"
 
-        class MilestoneStateInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MilestoneStateInfo(BaseStruct):
             point: int
             got: int
 
-        class HotValueInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class HotValueInfo(BaseStruct):
             hotVal: int
             dailyHotVal: int
 
-        class EntertainCompBestRecord(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class EntertainCompBestRecord(BaseStruct):
             performance: int
             expression: int
             operation: int
             level: CartCompetitionRank
 
-    class PlayerActFloatParadeActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerActFloatParadeActivity(BaseStruct):
         day: int
         canRaffle: bool
         result: "PlayerActivity.PlayerActFloatParadeActivity.Result"
 
-        class Result(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Result(BaseStruct):
             strategy: int
             eventId: str
 
-    class PlayerAct21SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct21SideActivity(BaseStruct):
         isOpen: bool
         coin: int
         favorList: list[str]
 
-    class PlayerActMainlineBuff(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerActMainlineBuff(BaseStruct):
         favorList: list[str]
 
-    class PlayerAct24SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct24SideActivity(BaseStruct):
         meal: "PlayerActivity.PlayerAct24SideActivity.Meal"
         alchemy: "PlayerActivity.PlayerAct24SideActivity.Alchemy"
         tool: dict[str, "PlayerActivity.PlayerAct24SideActivity.ToolState"]
@@ -1142,23 +857,17 @@ class PlayerActivity(BaseModel):
             UNSELECT = "UNSELECT"
             SELECT = "SELECT"
 
-        class Meal(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Meal(BaseStruct):
             chance: int
             id: str
             digested: bool
 
-        class Alchemy(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Alchemy(BaseStruct):
             price: int
             item: dict[str, int]
             gacha: dict[str, dict[str, int]]
 
-    class PlayerAct25SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct25SideActivity(BaseStruct):
         investigativeToken: int
         actCoin: int
         dailyTokenRefresh: bool
@@ -1173,37 +882,27 @@ class PlayerActivity(BaseModel):
             FINISHED = "FINISHED"
             OBTAINED = "OBTAINED"
 
-        class MissionProgress(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MissionProgress(BaseStruct):
             target: int
             value: int
 
-        class Mission(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Mission(BaseStruct):
             state: "PlayerActivity.PlayerAct25SideActivity.MissionState"
             progress: "PlayerActivity.PlayerAct25SideActivity.MissionProgress"
 
-        class Area(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Area(BaseStruct):
             missions: dict[str, "PlayerActivity.PlayerAct25SideActivity.Mission"]
             missionId: str
             lastFinMissionId: str
 
-        class DailyHarvest(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DailyHarvest(BaseStruct):
             harvenessTimeline: list[int]
             additionalHarvest: int
             currentRate: int
             preparedRate: int
             lastHarvenessTs: int
 
-    class PlayerAct27SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct27SideActivity(BaseStruct):
         day: int
         signedIn: bool
         stock: dict[str, int]
@@ -1228,40 +927,28 @@ class PlayerActivity(BaseModel):
             FOOD = "FOOD"
             SOUVENIR = "SOUVENIR"
 
-        class InquireInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class InquireInfo(BaseStruct):
             cur: int
             max: int
 
-        class PrePurchaseInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PrePurchaseInfo(BaseStruct):
             strategy: int
             shops: dict[str, list[int]]
 
-        class PurchaseInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PurchaseInfo(BaseStruct):
             strategy: int
             count: int
 
-        class PreSellInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PreSellInfo(BaseStruct):
             price: int
             shops: dict[str, list[int]]
 
-        class SellInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SellInfo(BaseStruct):
             price: int
             count: int
             bonus: int
 
-        class Sale(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Sale(BaseStruct):
             stateSell: "PlayerActivity.PlayerAct27SideActivity.SellGoodState"
             inquire: "PlayerActivity.PlayerAct27SideActivity.InquireInfo"
             groupId: str
@@ -1271,70 +958,48 @@ class PlayerActivity(BaseModel):
             sellsTmp: dict[str, "list[PlayerActivity.PlayerAct27SideActivity.PreSellInfo]"]
             sells: dict[str, dict[str, "PlayerActivity.PlayerAct27SideActivity.SellInfo"]]
 
-        class MilestoneInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MilestoneInfo(BaseStruct):
             point: int
             got: list[str]
 
-    class PlayerAct42D0Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct42D0Activity(BaseStruct):
         milestone: int
         areas: dict[str, "PlayerActivity.PlayerAct42D0Activity.AreaInfo"]
         spStages: dict[str, "PlayerActivity.PlayerAct42D0Activity.ChallengeStageInfo"]
         milestoneRecv: list[str]
         theHardestStage: str
 
-        class AreaInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class AreaInfo(BaseStruct):
             canUseBuff: bool
             stages: dict[str, "PlayerActivity.PlayerAct42D0Activity.NoramlStageInfo"]
 
-        class NoramlStageInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class NoramlStageInfo(BaseStruct):
             rating: int
 
-        class ChallengeStageInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ChallengeStageInfo(BaseStruct):
             missions: dict[str, "PlayerActivity.PlayerAct42D0Activity.ChallengeStageMissionInfo"]
 
-        class ChallengeStageMissionInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ChallengeStageMissionInfo(BaseStruct):
             target: int
             value: int
             state: int
 
-    class PlayerUniqueOnlyActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerUniqueOnlyActivity(BaseStruct):
         reward: int
 
-    class PlayerBlessOnlyActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerBlessOnlyActivity(BaseStruct):
         history: list[int]
         festivalHistory: "list[PlayerActivity.PlayerBlessOnlyActivity.BlessOnlyFestival]"
         lastTs: int
 
-        class BlessOnlyFestival(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class BlessOnlyFestival(BaseStruct):
             state: int
             charId: str
 
-    class PlayerRecruitOnlyAct(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerRecruitOnlyAct(BaseStruct):
         used: int
 
-    class PlayerAct29SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct29SideActivity(BaseStruct):
         actCoin: int
         accessToken: int
         favorList: list[str]
@@ -1347,41 +1012,29 @@ class PlayerActivity(BaseModel):
         melodyNax: dict[str, int]
         majorFinDic: dict[str, int]
 
-        class NpcInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class NpcInfo(BaseStruct):
             npc: str
             tryTimes: int
             hasRecv: bool
 
-        class MajorNpcInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MajorNpcInfo(BaseStruct):
             isOpen: bool
             npc: "PlayerActivity.PlayerAct29SideActivity.NpcInfo"
 
-        class HiddenNpcInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class HiddenNpcInfo(BaseStruct):
             needShow: bool
             npc: "PlayerActivity.PlayerAct29SideActivity.NpcInfo"
 
-        class DailyNpcInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DailyNpcInfo(BaseStruct):
             slot: dict[str, "PlayerActivity.PlayerAct29SideActivity.NpcInfo"]
 
-    class PlayerYear5GeneralActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerYear5GeneralActivity(BaseStruct):
         unconfirmedPoints: int
         nextRewardIndex: int
         coin: int
         favorList: list[str]
 
-    class PlayerAct36SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct36SideActivity(BaseStruct):
         dexNav: "PlayerActivity.PlayerAct36SideActivity.FoodHandbookInfo"
         coin: int
         favorList: list[str]
@@ -1391,16 +1044,12 @@ class PlayerActivity(BaseModel):
             FINISHED = "FINISHED"
             CLAIMED = "CLAIMED"
 
-        class FoodHandbookInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class FoodHandbookInfo(BaseStruct):
             enemySlot: dict[str, bool]
             food: dict[str, bool]
             rewardState: "PlayerActivity.PlayerAct36SideActivity.RewardState"
 
-    class PlayerAct35SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct35SideActivity(BaseStruct):
         carving: "PlayerActivity.PlayerAct35SideActivity.PlayerAct35SideCarving"
         unlock: dict[str, int]
         record: dict[str, int]
@@ -1417,9 +1066,7 @@ class PlayerActivity(BaseModel):
             SETTLE = "SETTLE"
             INFO = "INFO"
 
-        class PlayerAct35SideCarving(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerAct35SideCarving(BaseStruct):
             id: str
             round: int
             score: int
@@ -1431,36 +1078,26 @@ class PlayerActivity(BaseModel):
             shop: "PlayerActivity.PlayerAct35SideActivity.PlayerAct35SideCarvingShop"
             mission: "PlayerActivity.PlayerAct35SideActivity.CarvingTask"
 
-        class PlayerAct35SideCarvingShop(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerAct35SideCarvingShop(BaseStruct):
             coin: int
             good: "list[PlayerActivity.PlayerAct35SideActivity.ShopGood]"
             freeCardCnt: int
             refreshPrice: int
             slotPrice: int
 
-        class ShopGood(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ShopGood(BaseStruct):
             id: str
             price: int
 
-        class CarvingTask(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class CarvingTask(BaseStruct):
             id: str
             progress: list[int]
 
-        class MilestoneState(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class MilestoneState(BaseStruct):
             point: int
             got: list[str]
 
-    class PlayerAct38SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct38SideActivity(BaseStruct):
         coin: int
         favorList: list[str]
         fireworkPuzzleDict: dict[str, "PlayerActivity.PlayerAct38SideActivity.PlayerAct38SidePuzzle"]
@@ -1470,15 +1107,11 @@ class PlayerActivity(BaseModel):
             UNLOCK = "UNLOCK"
             COMPLETE = "COMPLETE"
 
-        class PlayerAct38SidePuzzle(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerAct38SidePuzzle(BaseStruct):
             puzzleStatus: "PlayerActivity.PlayerAct38SideActivity.PuzzleStatus"
             solutionList: "list[FireworkData.PlateSlotData]"
 
-    class PlayerAutoChessV1Activity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAutoChessV1Activity(BaseStruct):
         chessPool: dict[str, "PlayerActivity.PlayerAutoChessV1Activity.AutoChessCharCard"]
         dailyMission: "PlayerActivity.PlayerAutoChessV1Activity.DailyMission"
         protectTs: int
@@ -1487,15 +1120,11 @@ class PlayerActivity(BaseModel):
         band: dict[str, "PlayerActivity.PlayerAutoChessV1Activity.AutoChessBandUnlockInfo"]
         mode: dict[str, "PlayerActivity.PlayerAutoChessV1Activity.ModeRecord"]
 
-        class ModeRecord(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ModeRecord(BaseStruct):
             unlock: bool
             completeCnt: int
 
-        class Milestone(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Milestone(BaseStruct):
             point: int
             got: list[str]
 
@@ -1505,9 +1134,7 @@ class PlayerActivity(BaseModel):
             ASSIST_BY_FRIEND = "ASSIST_BY_FRIEND"
             DIY = "DIY"
 
-        class AutoChessCharCard(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class AutoChessCharCard(BaseStruct):
             chessId: str
             type: "PlayerActivity.PlayerAutoChessV1Activity.AutoChessCharType"
             diyChar: str
@@ -1519,41 +1146,29 @@ class PlayerActivity(BaseModel):
             assistInfo: "PlayerActivity.PlayerAutoChessV1Activity.AutoChessAssistInfo"
             diyOrigChessId: str
 
-        class AutoChessAssistInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class AutoChessAssistInfo(BaseStruct):
             uid: str
             nickName: str
             nickNumber: str
             alias: str
 
-        class AutoChessBandUnlockInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class AutoChessBandUnlockInfo(BaseStruct):
             state: int
             progress: "PlayerActivity.PlayerAutoChessV1Activity.AutoChessBandUnlockProgress"
 
-        class AutoChessBandUnlockProgress(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class AutoChessBandUnlockProgress(BaseStruct):
             value: int
             target: int
 
-        class DailyMission(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class DailyMission(BaseStruct):
             process: int
             state: int
 
-    class PlayerActMainSSActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerActMainSSActivity(BaseStruct):
         favorList: list[str]
         coin: int
 
-    class PlayerAct42SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct42SideActivity(BaseStruct):
         coin: int
         favorList: list[str]
         outerPlayerOpen: bool
@@ -1574,21 +1189,15 @@ class PlayerActivity(BaseModel):
             UNAVAILABLE = "UNAVAILABLE"
             AVAILABLE = "AVAILABLE"
 
-        class PlayerAct42sideTask(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerAct42sideTask(BaseStruct):
             state: "PlayerActivity.PlayerAct42SideActivity.TaskState"
 
-        class PlayerAct42sideTrustedItem(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerAct42sideTrustedItem(BaseStruct):
             has: int
             got: int
             dailyState: int
 
-    class PlayerAct45SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct45SideActivity(BaseStruct):
         coin: int
         favorList: list[str]
         platformUnlock: bool
@@ -1600,9 +1209,7 @@ class PlayerActivity(BaseModel):
             UNLOCK = "UNLOCK"
             ACCEPTED = "ACCEPTED"
 
-    class PlayerAct44SideActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAct44SideActivity(BaseStruct):
         coin: int
         favorList: list[str]
         campaignCnt: int
@@ -1615,9 +1222,7 @@ class PlayerActivity(BaseModel):
         outerOpen: bool
         game: "PlayerActivity.PlayerAct44SideActivity.PlayerInformant"
 
-        class Milestone(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Milestone(BaseStruct):
             point: int
             got: list[str]
 
@@ -1629,9 +1234,7 @@ class PlayerActivity(BaseModel):
             SINGLE_RESULT = "SINGLE_RESULT"
             RESULT = "RESULT"
 
-        class PlayerInformantInsight(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerInformantInsight(BaseStruct):
             patienceRE: int
             trustRE: int
             attentionRE: int
@@ -1639,18 +1242,14 @@ class PlayerActivity(BaseModel):
             trustMAX: int
             attentionMAX: int
 
-        class PlayerInformantTrader(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerInformantTrader(BaseStruct):
             patience: int
             trust: int
             attention: int
             choices: list[str]
             lastChoice: str
 
-        class PlayerInformantSettle(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerInformantSettle(BaseStruct):
             customerId: str
             tagId: str
             success: bool
@@ -1658,9 +1257,7 @@ class PlayerActivity(BaseModel):
             incomeRate: float
             income: int
 
-        class PlayerInformant(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class PlayerInformant(BaseStruct):
             state: "PlayerActivity.PlayerAct44SideActivity.InformantState"
             customerList: list[int]
             curCustomer: int
@@ -1677,10 +1274,7 @@ class PlayerActivity(BaseModel):
             tradeInfo: "PlayerActivity.PlayerAct44SideActivity.PlayerInformantTrader"
             settle: "list[PlayerActivity.PlayerAct44SideActivity.PlayerInformantSettle]"
 
-    class PlayerAct1VHalfIdleActivity(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        coin: int | None = None
+    class PlayerAct1VHalfIdleActivity(BaseStruct):
         troop: "PlayerActivity.PlayerAct1VHalfIdleActivity.Act1VHalfIdleTroop"
         stage: dict[str, "PlayerActivity.PlayerAct1VHalfIdleActivity.StageInfo"]
         settleInfo: "PlayerActivity.PlayerAct1VHalfIdleActivity.SettleStageInfo | None"
@@ -1690,46 +1284,37 @@ class PlayerActivity(BaseModel):
         inventory: dict[str, int]
         tech: "PlayerActivity.PlayerAct1VHalfIdleActivity.TechTree"
         globalBan: bool
+        coin: int | None = None
 
         class BossState(IntEnum):
             NO_APPEAR = 0
             NO_KILL = 1
             KILL = 2
 
-        class StageInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class StageInfo(BaseStruct):
             rate: dict[str, int] | None
             bossState: "PlayerActivity.PlayerAct1VHalfIdleActivity.BossState"
 
-        class SettleStageInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SettleStageInfo(BaseStruct):
             rate: dict[str, int]
             bossState: "PlayerActivity.PlayerAct1VHalfIdleActivity.BossState"
             stageId: str
             progress: int
 
-        class ProductionInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ProductionInfo(BaseStruct):
             rate: dict[str, int]
             product: dict[str, int]
             refreshTs: int
             harvestTs: int
 
-        class Act1VHalfIdleTroop(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Act1VHalfIdleTroop(BaseStruct):
             char: dict[str, "PlayerActivity.PlayerAct1VHalfIdleActivity.Act1VHalfIdleCharData"]
             trap: list[str]
             npc: list[str]
             assist: list[SharedCharData | None]
             extraAssist: bool
 
-        class Act1VHalfIdleCharData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Act1VHalfIdleCharData(BaseStruct):
             instId: int
             charId: str
             level: int
@@ -1739,19 +1324,13 @@ class PlayerActivity(BaseModel):
             defaultSkillId: str
             defaultEquipId: str
 
-        class RecruitInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RecruitInfo(BaseStruct):
             poolGain: dict[str, list[str]]
             poolTimes: dict[str, int]
 
-        class Milestone(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Milestone(BaseStruct):
             point: int
             got: list[str]
 
-        class TechTree(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class TechTree(BaseStruct):
             unlock: list[str]

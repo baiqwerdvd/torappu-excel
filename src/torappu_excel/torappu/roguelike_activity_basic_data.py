@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_activity_type import RoguelikeActivityType
 from .roguelike_topic_mode import RoguelikeTopicMode
+from ..common import BaseStruct
 
 
-class RoguelikeActivityBasicData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeActivityBasicData(BaseStruct):
     id: str
     type: RoguelikeActivityType
     startTime: int

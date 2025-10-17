@@ -1,9 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_recal_rune_season import PlayerRecalRuneSeason
+from ..common import BaseStruct
 
 
-class PlayerRecalRune(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRecalRune(BaseStruct):
     seasons: dict[str, PlayerRecalRuneSeason]

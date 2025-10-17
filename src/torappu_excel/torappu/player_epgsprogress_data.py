@@ -1,9 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_good_item_data import PlayerGoodItemData
+from ..common import BaseStruct
 
 
-class PlayerEPGSProgressData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerEPGSProgressData(BaseStruct):
     info: list[PlayerGoodItemData]

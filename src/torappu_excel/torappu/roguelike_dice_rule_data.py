@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .dice_result_class import DiceResultClass
 from .dice_result_show_type import DiceResultShowType
+from ..common import BaseStruct
 
 
-class RoguelikeDiceRuleData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeDiceRuleData(BaseStruct):
     dicePointMax: int
     diceResultClass: DiceResultClass
     diceGroupId: str

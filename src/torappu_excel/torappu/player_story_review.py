@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_story_review_unlock_info import PlayerStoryReviewUnlockInfo
+from ..common import BaseStruct
 
 
-class PlayerStoryReview(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerStoryReview(BaseStruct):
     groups: dict[str, PlayerStoryReviewUnlockInfo]
     tags: dict[str, int]

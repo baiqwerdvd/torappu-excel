@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .data_unlock_type import DataUnlockType
+from ..common import BaseStruct
 
 
-class HandbookUnlockParam(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HandbookUnlockParam(BaseStruct):
     unlockType: DataUnlockType
     unlockParam1: str
     unlockParam2: str | None

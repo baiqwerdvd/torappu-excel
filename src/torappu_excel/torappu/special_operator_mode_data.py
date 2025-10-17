@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .special_operator_target_type import SpecialOperatorTargetType
+from ..common import BaseStruct
 
 
-class SpecialOperatorModeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SpecialOperatorModeData(BaseStruct):
     type: SpecialOperatorTargetType
     typeName: str

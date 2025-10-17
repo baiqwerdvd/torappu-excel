@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_topic_bank_reward_type import RoguelikeTopicBankRewardType
+from ..common import BaseStruct
 
 
-class RoguelikeTopicBankReward(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTopicBankReward(BaseStruct):
     rewardId: str
     unlockGoldCnt: int
     rewardType: RoguelikeTopicBankRewardType

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .climb_tower_tatical_buff_type import ClimbTowerTaticalBuffType
+from ..common import BaseStruct
 
 
-class ClimbTowerTacticalBuffData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ClimbTowerTacticalBuffData(BaseStruct):
     id: str
     desc: str
     profession: str

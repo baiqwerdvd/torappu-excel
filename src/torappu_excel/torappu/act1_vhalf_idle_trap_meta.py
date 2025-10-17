@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act1_vhalf_idle_plot_type import Act1VHalfIdlePlotType
 from .half_idle_trap_buildable_type import HalfIdleTrapBuildableType
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleTrapMeta(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleTrapMeta(BaseStruct):
     trapType: Act1VHalfIdlePlotType
     buildType: HalfIdleTrapBuildableType
     skillIndex: int

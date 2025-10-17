@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SandboxV2RacingConstData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2RacingConstData(BaseStruct):
     attributeNameList: list[str]
     racerMaxValue: list[int]
     bagFullHintPercent: float

@@ -1,5 +1,3 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_cash_progress_data import PlayerCashProgressData
 from .player_classic_qcshop_progress_data import PlayerClassicQCShopProgressData
 from .player_common_shop_progress_data import PlayerCommonShopProgressData
@@ -11,11 +9,10 @@ from .player_lmtgsprogress_data import PlayerLMTGSProgressData
 from .player_low_qcshop_progress_data import PlayerLowQCShopProgressData
 from .player_skin_shop_data import PlayerSkinShopData
 from .player_social_shop_data import PlayerSocialShopData
+from ..common import BaseStruct
 
 
-class PlayerShop(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerShop(BaseStruct):
     LS: PlayerLowQCShopProgressData
     HS: PlayerHighQCShopProgressData
     CLASSIC: PlayerClassicQCShopProgressData

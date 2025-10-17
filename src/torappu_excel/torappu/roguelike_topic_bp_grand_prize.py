@@ -1,11 +1,10 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class RoguelikeTopicBPGrandPrize(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTopicBPGrandPrize(BaseStruct):
     grandPrizeDisplayId: str
     sortId: int
     displayUnlockYear: int
@@ -15,8 +14,8 @@ class RoguelikeTopicBPGrandPrize(BaseModel):
     displayName: str
     displayDiscription: str
     bpLevelId: str
-    itemBundle: ItemBundle | None = Field(default=None)
-    accordingCharId: str | None = Field(default=None)
-    accordingSkinId: str | None = Field(default=None)
-    detailAnnounceTime: str | None = Field(default=None)
-    picIdAftrerUnlock: str | None = Field(default=None)
+    itemBundle: ItemBundle | None = field(default=None)
+    accordingCharId: str | None = field(default=None)
+    accordingSkinId: str | None = field(default=None)
+    detailAnnounceTime: str | None = field(default=None)
+    picIdAftrerUnlock: str | None = field(default=None)

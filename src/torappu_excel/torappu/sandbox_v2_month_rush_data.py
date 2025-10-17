@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class SandboxV2MonthRushData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2MonthRushData(BaseStruct):
     monthlyRushId: str
     startTime: int
     endTime: int

@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_reward_common_config import SandboxRewardCommonConfig
 from .sandbox_reward_data import SandboxRewardData
 from .sandbox_trap_reward_config_data import SandboxTrapRewardConfigData
+from ..common import BaseStruct
 
 
-class SandboxRewardConfigGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxRewardConfigGroupData(BaseStruct):
     stagePreviewRewardDict: dict[str, SandboxRewardData]
     stageDefaultPreviewRewardDict: dict[str, SandboxRewardData]
     rushPreviewRewardDict: dict[str, SandboxRewardData]

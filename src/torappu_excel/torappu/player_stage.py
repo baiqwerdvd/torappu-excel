@@ -1,15 +1,12 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_stage_state import PlayerStageState
+from ..common import BaseStruct
 
 
-class PlayerStage(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerStage(BaseStruct):
     stageId: str
     completeTimes: int
     startTimes: int
     practiceTimes: int
     state: PlayerStageState
-    hasBattleReplay: bool
+    hasBattleReplay: int
     noCostCnt: int | None = None

@@ -1,14 +1,11 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .avatar_info import AvatarInfo
 from .player_birthday import PlayerBirthday
 from .player_friend_assist import PlayerFriendAssist
 from .voice_lang_type import VoiceLangType
+from ..common import BaseStruct
 
 
-class PlayerStatus(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerStatus(BaseStruct):
     nickName: str
     nickNumber: str
     serverName: str
@@ -31,14 +28,13 @@ class PlayerStatus(BaseModel):
     classicShard: int
     socialPoint: int
     buyApRemainTimes: int
-    apLimitUpFlag: bool
+    apLimitUpFlag: int
     uid: str
     classicGachaTicket: int
     classicTenGachaTicket: int
     registerTs: int
     secretary: str
     secretarySkinId: str
-    secretarySkinSp: bool | None = None
     resume: str
     birthday: PlayerBirthday
     monthlySubscriptionEndTime: int
@@ -51,8 +47,9 @@ class PlayerStatus(BaseModel):
     globalVoiceLan: VoiceLangType
     iosDiamond: int
     androidDiamond: int
+    flags: dict[str, int]
+    friendNumLimit: int
     payDiamond: int | None = None
     freeDiamond: int | None = None
-    flags: dict[str, bool]
-    friendNumLimit: int
+    secretarySkinSp: bool | None = None
     friendAssist: list[PlayerFriendAssist] | None = None

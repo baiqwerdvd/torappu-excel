@@ -1,8 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerBuildingWorkshopStatus(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingWorkshopStatus(BaseStruct):
     bonus: dict[str, list[int]]
     bonusActive: int | None

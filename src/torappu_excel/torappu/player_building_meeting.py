@@ -1,5 +1,3 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_diysolution import PlayerBuildingDIYSolution
 from .player_building_meeting_buff import PlayerBuildingMeetingBuff
 from .player_building_meeting_clue import PlayerBuildingMeetingClue
@@ -7,12 +5,10 @@ from .player_building_meeting_info_share_state import PlayerBuildingMeetingInfoS
 from .player_building_meeting_social_reward import PlayerBuildingMeetingSocialReward
 from .player_building_message_leave import PlayerBuildingMessageLeave
 from .player_room_state import PlayerRoomState
+from ..common import BaseStruct
 
 
-class PlayerBuildingMeeting(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    visitedUser: list[str] | None = None
+class PlayerBuildingMeeting(BaseStruct):
     buff: PlayerBuildingMeetingBuff
     state: PlayerRoomState
     processPoint: int
@@ -33,3 +29,4 @@ class PlayerBuildingMeeting(BaseModel):
     messageLeave: PlayerBuildingMessageLeave
     diySolution: PlayerBuildingDIYSolution
     expiredReward: int | None
+    visitedUser: list[str] | None = None

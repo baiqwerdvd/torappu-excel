@@ -1,14 +1,11 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_type import ItemType
 from .story_data import StoryData
 from .story_review_type import StoryReviewType
 from .story_review_unlock_type import StoryReviewUnlockType
+from ..common import BaseStruct
 
 
-class StoryReviewInfoClientData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StoryReviewInfoClientData(BaseStruct):
     storyReviewType: StoryReviewType
     storyId: str
     storyGroup: str

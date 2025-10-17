@@ -1,5 +1,3 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .charm_status import CharmStatus
 from .mission_player_data import MissionPlayerData
 from .player_activity import PlayerActivity
@@ -57,15 +55,13 @@ from .player_ticket_item import PlayerTicketItem
 from .player_tower import PlayerTower
 from .player_training_camp import PlayerTrainingCamp
 from .player_troop import PlayerTroop
+from ..common import BaseStruct
 
 
-class PlayerDataModel(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerDataModel(BaseStruct):
     event: PlayerEvents
     pushFlags: PlayerPushFlags
     status: PlayerStatus
-    monthlySub: dict[str, PlayerMonthlySubPer] | None = None
     troop: PlayerTroop
     dungeon: PlayerDungeon
     checkIn: PlayerCheckIn
@@ -80,7 +76,7 @@ class PlayerDataModel(BaseModel):
     collectionReward: PlayerCollection
     equipment: PlayerEquipment
     inventory: dict[str, int]
-    consumable: dict[str, dict[int, PlayerConsumableItem]]
+    consumable: dict[str, dict[str, PlayerConsumableItem]]
     ticket: dict[str, PlayerTicketItem]
     shop: PlayerShop
     invite: dict[str, dict[str, PlayerInviteData]]
@@ -120,3 +116,4 @@ class PlayerDataModel(BaseModel):
     limitedBuff: PlayerLimitedDropBuff
     performanceStory: PlayerPerformanceStory
     checkMeta: PlayerMeta
+    monthlySub: dict[str, PlayerMonthlySubPer] | None = None

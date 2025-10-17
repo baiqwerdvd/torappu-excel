@@ -1,13 +1,10 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class Act12SideData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act12SideData(BaseStruct):
     constData: "Act12SideData.ConstData"
     zoneAdditionDataList: list["Act12SideData.ZoneAdditionData"]
     missionDescList: dict[str, "Act12SideData.MissionDescInfo"]
@@ -34,9 +31,7 @@ class Act12SideData(BaseModel):
         NORMAL = "NORMAL"
         SMILE = "SMILE"
 
-    class ConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConstData(BaseStruct):
         recycleRewardThreshold: int
         charmRepoUnlockStageId: str
         recycleLowThreshold: int
@@ -48,25 +43,19 @@ class Act12SideData(BaseModel):
         fogUnlockTs: int
         fogUnlockDesc: str
 
-    class ZoneAdditionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ZoneAdditionData(BaseStruct):
         zoneId: str
         unlockText: str
         zoneClass: "Act12SideData.ActZoneClass"
 
-    class MissionDescInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MissionDescInfo(BaseStruct):
         zoneClass: "Act12SideData.ActZoneClass"
         specialMissionDesc: str
         needLock: bool
         unlockHint: str | None
         unlockStage: str | None
 
-    class MileStoneInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MileStoneInfo(BaseStruct):
         mileStoneId: str
         orderId: int
         tokenNum: int
@@ -74,18 +63,14 @@ class Act12SideData(BaseModel):
         isPrecious: bool
         mileStoneStage: int
 
-    class PhotoInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PhotoInfo(BaseStruct):
         picId: str
         picName: str
         mileStoneId: str
         picDesc: str
         jumpStageId: str | None
 
-    class RecycleDialogData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RecycleDialogData(BaseStruct):
         dialogType: "Act12SideData.RecycleDialogType"
         dialog: str
         dialogExpress: "Act12SideData.RecycleAnimationState"

@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .character_data import CharacterData
+from ..common import BaseStruct
 
 
-class CharacterTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CharacterTable(BaseStruct):
     chars: dict[str, CharacterData]

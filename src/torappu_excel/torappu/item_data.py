@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .building_data import BuildingData
 from .item_classify_type import ItemClassifyType
@@ -6,11 +6,10 @@ from .item_drop_shop_type import ItemDropShopType
 from .item_rarity import ItemRarity
 from .item_type import ItemType
 from .occ_per import OccPer
+from ..common import BaseStruct
 
 
-class ItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ItemData(BaseStruct):
     itemId: str
     name: str
     description: str | None
@@ -26,31 +25,23 @@ class ItemData(BaseModel):
     stageDropList: list["ItemData.StageDropInfo"]
     buildingProductList: list["ItemData.BuildingProductInfo"]
     shopRelateInfoList: list["ItemData.ShopRelateInfo"] | None
-    voucherRelateList: list["ItemData.VoucherRelateInfo"] | None = Field(default=None)
-    hideInItemGet: bool | None = Field(default=None)
+    voucherRelateList: list["ItemData.VoucherRelateInfo"] | None = field(default=None)
+    hideInItemGet: bool | None = field(default=None)
 
-    class StageDropInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class StageDropInfo(BaseStruct):
         stageId: str
         occPer: OccPer
         sortId: int
 
-    class BuildingProductInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BuildingProductInfo(BaseStruct):
         roomType: "BuildingData.RoomType"
         formulaId: str
 
-    class VoucherRelateInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class VoucherRelateInfo(BaseStruct):
         voucherId: str
         voucherItemType: ItemType
 
-    class ShopRelateInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ShopRelateInfo(BaseStruct):
         shopType: ItemDropShopType
         shopGroup: int
         startTs: int

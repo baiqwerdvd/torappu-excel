@@ -1,14 +1,11 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
 from .shared_char_data import SharedCharData
+from ..common import BaseStruct
 
 
-class ActivityInterlockData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityInterlockData(BaseStruct):
     class InterlockStageType(StrEnum):
         NONE = "NONE"
         NORMAL = "NORMAL"
@@ -21,34 +18,26 @@ class ActivityInterlockData(BaseModel):
     mileStoneItemList: list["ActivityInterlockData.MileStoneItemInfo"]
     finalStageProgressMap: dict[str, list["ActivityInterlockData.FinalStageProgressData"]]
 
-    class StageAdditionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class StageAdditionData(BaseStruct):
         stageId: str
         stageType: "ActivityInterlockData.InterlockStageType"
         lockStageKey: str | None
         lockSortIndex: int
 
-    class TreasureMonsterData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TreasureMonsterData(BaseStruct):
         lockStageKey: str
         enemyId: str
         enemyName: str
         enemyIcon: str
         enemyDescription: str
 
-    class MileStoneItemInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MileStoneItemInfo(BaseStruct):
         mileStoneId: str
         orderId: int
         tokenNum: int
         item: ItemBundle
 
-    class FinalStageProgressData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class FinalStageProgressData(BaseStruct):
         stageId: str
         killCnt: int
         apCost: int

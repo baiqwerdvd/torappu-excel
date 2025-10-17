@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .character_data import CharacterData
 from .uni_equip_target import UniEquipTarget
+from ..common import BaseStruct
 
 
-class BattleUniEquipData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class BattleUniEquipData(BaseStruct):
     resKey: str | None
     target: "UniEquipTarget"
     isToken: bool

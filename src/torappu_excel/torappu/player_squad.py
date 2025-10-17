@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_squad_item import PlayerSquadItem
+from ..common import BaseStruct
 
 
-class PlayerSquad(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    squadId: int
+class PlayerSquad(BaseStruct):
+    squadId: str
     name: str
     slots: list[PlayerSquadItem | None]

@@ -1,14 +1,13 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .grid_position import GridPosition
 from .obscured_rect import ObscuredRect
 from .shared_consts import SharedConsts
+from ..common import BaseStruct
 
 
-class RangeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RangeData(BaseStruct):
     id: str
     direction: SharedConsts.Direction
     grids: list[GridPosition]
-    boundingBoxes: list[ObscuredRect] | None = Field(default=None)
+    boundingBoxes: list[ObscuredRect] | None = field(default=None)

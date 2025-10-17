@@ -1,9 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_setting_perf import PlayerSettingPerf
+from ..common import BaseStruct
 
 
-class PlayerSetting(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSetting(BaseStruct):
     perf: PlayerSettingPerf

@@ -1,13 +1,10 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class VersusCheckInData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class VersusCheckInData(BaseStruct):
     class TasteType(StrEnum):
         DRAW = "DRAW"
         SWEET = "SWEET"
@@ -21,28 +18,20 @@ class VersusCheckInData(BaseModel):
     versusTotalDays: int
     ruleText: str
 
-    class DailyInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DailyInfo(BaseStruct):
         rewardList: list[ItemBundle]
         order: int
 
-    class VoteData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class VoteData(BaseStruct):
         plSweetNum: int
         plSaltyNum: int
         plTaste: int
 
-    class TasteInfoData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TasteInfoData(BaseStruct):
         plTaste: int
         tasteType: "VersusCheckInData.TasteType"
         tasteText: str
 
-    class TasteRewardData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TasteRewardData(BaseStruct):
         tasteType: "VersusCheckInData.TasteType"
         rewardItem: ItemBundle

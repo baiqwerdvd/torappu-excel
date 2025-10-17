@@ -1,12 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .blackboard import Blackboard
 from .shared_models import CharacterData as SharedCharacterData
+from ..common import BaseStruct
 
 
-class EquipTalentData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class EquipTalentData(BaseStruct):
     displayRangeId: bool
     upgradeDescription: str
     talentIndex: int
@@ -17,5 +16,5 @@ class EquipTalentData(BaseModel):
     description: str | None
     rangeId: str | None
     blackboard: list["Blackboard"]
-    tokenKey: str | None = Field(default=None)
-    isHideTalent: bool | None = Field(default=None)
+    tokenKey: str | None = field(default=None)
+    isHideTalent: bool | None = field(default=None)

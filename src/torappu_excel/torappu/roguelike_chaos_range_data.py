@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .chaos_effect_rank import ChaosEffectRank
+from ..common import BaseStruct
 
 
-class RoguelikeChaosRangeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeChaosRangeData(BaseStruct):
     chaosMax: int
     chaosDungeonEffect: ChaosEffectRank

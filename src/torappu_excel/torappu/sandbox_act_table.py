@@ -1,5 +1,3 @@
-from pydantic import BaseModel, ConfigDict
-
 from .legacy_in_level_rune_data import LegacyInLevelRuneData
 from .rune_table import RuneTable
 from .rush_enemy_group import RushEnemyGroup
@@ -36,11 +34,10 @@ from .sandbox_stamina_data import SandboxStaminaData
 from .sandbox_unit_data import SandboxUnitData
 from .sandbox_weather_data import SandboxWeatherData
 from .tip_data import TipData
+from ..common import BaseStruct
 
 
-class SandboxActTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxActTable(BaseStruct):
     mapConstTable: SandboxMapConstTable
     baseConstTable: SandboxBaseConstTable
     battleLoadingTips: list[TipData]

@@ -1,13 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
-from torappu_excel.common import CustomIntEnum
-
 from .act_archive_pic_type import ActArchivePicType
+from ..common import BaseStruct, CustomIntEnum
 
 
-class ActArchiveResData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveResData(BaseStruct):
     class ArchiveNewsLineType(CustomIntEnum):
         TextContent = "TextContent", 0
         ImageContent = "ImageContent", 1
@@ -21,9 +16,7 @@ class ActArchiveResData(BaseModel):
     logs: dict[str, "ActArchiveResData.LogArchiveResItemData"]
     challengeBooks: dict[str, "ActArchiveResData.ChallengeBookArchiveResItemData"]
 
-    class PicArchiveResItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PicArchiveResItemData(BaseStruct):
         id: str
         desc: str
         assetPath: str
@@ -32,16 +25,12 @@ class ActArchiveResData(BaseModel):
         picDescription: str
         kvId: str | None
 
-    class AudioArchiveResItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AudioArchiveResItemData(BaseStruct):
         id: str
         desc: str
         name: str
 
-    class AvgArchiveResItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AvgArchiveResItemData(BaseStruct):
         id: str
         desc: str
         breifPath: str | None
@@ -50,9 +39,7 @@ class ActArchiveResData(BaseModel):
         rawBrief: str | None
         titleIconPath: str | None
 
-    class StoryArchiveResItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class StoryArchiveResItemData(BaseStruct):
         id: str
         desc: str
         date: str | None
@@ -60,9 +47,7 @@ class ActArchiveResData(BaseModel):
         text: str
         titlePic: str | None
 
-    class NewsArchiveResItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class NewsArchiveResItemData(BaseStruct):
         id: str
         desc: str
         newsType: str
@@ -74,39 +59,29 @@ class ActArchiveResData(BaseModel):
         paramR: float
         newsLines: list["ActArchiveResData.ActivityNewsLine"]
 
-    class NewsFormatData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class NewsFormatData(BaseStruct):
         typeId: str
         typeName: str
         typeLogo: str
         typeMainLogo: str
         typeMainSealing: str
 
-    class ActivityNewsLine(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ActivityNewsLine(BaseStruct):
         lineType: "ActArchiveResData.ArchiveNewsLineType"
         content: str
 
-    class LandmarkArchiveResItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LandmarkArchiveResItemData(BaseStruct):
         landmarkId: str
         landmarkName: str
         landmarkPic: str
         landmarkDesc: str
         landmarkEngName: str
 
-    class LogArchiveResItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LogArchiveResItemData(BaseStruct):
         logId: str
         logDesc: str
 
-    class ChallengeBookArchiveResItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ChallengeBookArchiveResItemData(BaseStruct):
         storyId: str
         titleName: str
         storyName: str

@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .name_card_medal_type import NameCardMedalType
+from ..common import BaseStruct
 
 
-class PlayerMedalBoard(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerMedalBoard(BaseStruct):
     type: NameCardMedalType
     custom: str | None
     template: str

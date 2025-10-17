@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_good_item_data import PlayerGoodItemData
+from ..common import BaseStruct
 
 
-class PlayerSocialShopData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSocialShopData(BaseStruct):
     info: list[PlayerGoodItemData]
     charPurchase: dict[str, int]
     curShopId: str

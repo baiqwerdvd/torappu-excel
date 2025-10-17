@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .kv_switch_info import KVSwitchInfo
+from ..common import BaseStruct
 
 
-class ActivityKVSwitchData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityKVSwitchData(BaseStruct):
     kvSwitchInfo: dict[str, KVSwitchInfo]

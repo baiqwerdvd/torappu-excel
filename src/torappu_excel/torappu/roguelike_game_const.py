@@ -1,13 +1,12 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .roguelike_bank_reward_count_type import RoguelikeBankRewardCountType
 from .roguelike_event_type import RoguelikeEventType
 from .roguelike_reward_ex_drop_tag_src_type import RoguelikeRewardExDropTagSrcType
+from ..common import BaseStruct
 
 
-class RoguelikeGameConst(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeGameConst(BaseStruct):
     initSceneName: str
     failSceneName: str
     hpItemId: str
@@ -87,14 +86,14 @@ class RoguelikeGameConst(BaseModel):
     recruitStashMaxNum: int
     recruitStashMinNum: int
     hasTopicCharSelectMenuButton: bool
-    specialFailZoneId: str | None = Field(default=None)
-    unlockRouteItemCount: int | None = Field(default=None)
-    expeditionSelectDescFormat: str | None = Field(default=None)
-    travelLeaveToastFormat: str | None = Field(default=None)
-    charSelectTravelConflictToast: str | None = Field(default=None)
-    travelReturnDescUpgrade: str | None = Field(default=None)
-    travelReturnDesc: str | None = Field(default=None)
-    travelReturnDescItem: str | None = Field(default=None)
-    traderReturnTitle: str | None = Field(default=None)
-    traderReturnDesc: str | None = Field(default=None)
-    refreshNodeItemId: str | None = Field(default=None)
+    specialFailZoneId: str | None = field(default=None)
+    unlockRouteItemCount: int | None = field(default=None)
+    expeditionSelectDescFormat: str | None = field(default=None)
+    travelLeaveToastFormat: str | None = field(default=None)
+    charSelectTravelConflictToast: str | None = field(default=None)
+    travelReturnDescUpgrade: str | None = field(default=None)
+    travelReturnDesc: str | None = field(default=None)
+    travelReturnDescItem: str | None = field(default=None)
+    traderReturnTitle: str | None = field(default=None)
+    traderReturnDesc: str | None = field(default=None)
+    refreshNodeItemId: str | None = field(default=None)

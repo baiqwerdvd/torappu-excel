@@ -1,9 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_roguelike_zone import PlayerRoguelikeZone
+from ..common import BaseStruct
 
 
-class PlayerRoguelikeDungeon(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRoguelikeDungeon(BaseStruct):
     zones: dict[int, PlayerRoguelikeZone]

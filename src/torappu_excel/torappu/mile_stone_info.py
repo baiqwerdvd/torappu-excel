@@ -1,13 +1,10 @@
-﻿from enum import StrEnum
-
-from pydantic import BaseModel, ConfigDict
+from enum import StrEnum
 
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class MileStoneInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MileStoneInfo(BaseStruct):
     mileStoneId: str
     orderId: int
     tokenNum: int

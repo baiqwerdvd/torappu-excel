@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class StorylineMainlineData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StorylineMainlineData(BaseStruct):
     zoneId: str | None
     retroId: str | None
     decoImageId: str

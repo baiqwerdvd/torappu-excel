@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .return_v2_item_data import ReturnV2ItemData
+from ..common import BaseStruct
 
 
-class ReturnV2PriceRewardData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ReturnV2PriceRewardData(BaseStruct):
     contentId: str
     sortId: int
     pointRequire: int

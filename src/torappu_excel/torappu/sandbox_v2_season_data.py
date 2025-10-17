@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_v2_season_type import SandboxV2SeasonType
+from ..common import BaseStruct
 
 
-class SandboxV2SeasonData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2SeasonData(BaseStruct):
     seasonType: SandboxV2SeasonType
     name: str
     functionDesc: str

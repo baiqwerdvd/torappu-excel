@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .roguelike_activity_data import RoguelikeActivityData
 from .roguelike_archive_component_data import RoguelikeArchiveComponentData
@@ -55,11 +55,10 @@ from .roguelike_topic_month_squad import RoguelikeTopicMonthSquad
 from .roguelike_topic_update import RoguelikeTopicUpdate
 from .roguelike_zone_variation_data import RoguelikeZoneVariationData
 from .tip_data import TipData
+from ..common import BaseStruct
 
 
-class RoguelikeTopicDetail(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTopicDetail(BaseStruct):
     updates: list[RoguelikeTopicUpdate]
     enrolls: dict[str, RoguelikeTopicEnroll]
     milestones: list[RoguelikeTopicBP]
@@ -107,9 +106,9 @@ class RoguelikeTopicDetail(BaseModel):
     difficultyUpgradeRelicGroups: dict[str, RoguelikeDifficultyUpgradeRelicGroupData]
     styleConfig: RoguelikePredefinedConstStyleData
     activity: RoguelikeActivityData
-    endingRelicDetailList: list[RoguelikeEndingRelicDetailText] | None = Field(default=None)
-    shopDialogData: RoguelikeGameShopDialogData | None = Field(default=None)
-    shopDialogs: dict[RoguelikeGameShopDialogType, list[str]] | None = Field(default=None)
-    styles: dict[str, RoguelikePredefinedStyleData] | None = Field(default=None)
-    exploreTools: dict[str, RoguelikeGameExploreToolData] | None = Field(default=None)
-    rollNodeData: dict[str, RoguelikeRollNodeData] | None = Field(default=None)
+    endingRelicDetailList: list[RoguelikeEndingRelicDetailText] | None = field(default=None)
+    shopDialogData: RoguelikeGameShopDialogData | None = field(default=None)
+    shopDialogs: dict[RoguelikeGameShopDialogType, list[str]] | None = field(default=None)
+    styles: dict[str, RoguelikePredefinedStyleData] | None = field(default=None)
+    exploreTools: dict[str, RoguelikeGameExploreToolData] | None = field(default=None)
+    rollNodeData: dict[str, RoguelikeRollNodeData] | None = field(default=None)

@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class UniCollectionInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class UniCollectionInfo(BaseStruct):
     uniCollectionItemId: str
     uniqueItem: list[ItemBundle]

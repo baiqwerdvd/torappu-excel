@@ -1,5 +1,3 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act1_vbattle_item_drop_slot import Act1VBattleItemDropSlot
 from .act1_vhalf_idle_char_buff_data import Act1VHalfIdleCharBuffData
 from .act1_vhalf_idle_char_evolve_data import Act1VHalfIdleCharEvolveData
@@ -21,11 +19,10 @@ from .act1_vhalf_idle_tech_tree_data import Act1VHalfIdleTechTreeData
 from .act1_vhalf_idle_trap_meta import Act1VHalfIdleTrapMeta
 from .act1_vhalf_idle_weighted_battle_equip import Act1VHalfIdleWeightedBattleEquip
 from .act1_vweighted_res_item_bundle import Act1VWeightedResItemBundle
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleData(BaseStruct):
     gachaPoolData: dict[str, Act1VHalfIdleGachaPoolData]
     gachaCharData: dict[str, Act1VHalfIdleGachaCharData]
     plotTypeData: dict[str, Act1VHalfIdlePlotTypeData]
@@ -48,6 +45,6 @@ class Act1VHalfIdleData(BaseModel):
     resourceItemPoolDict: dict[str, list[Act1VWeightedResItemBundle]]
     equipItemPoolDict: dict[str, list[Act1VHalfIdleWeightedBattleEquip]]
     trapItemPoolDict: dict[str, list[str]]
-    equipItemData: dict[str, dict[int, list[Act1VHalfIdleEquipData]]]
+    equipItemData: dict[str, dict[str, list[Act1VHalfIdleEquipData]]]
     trapMetaDict: dict[str, Act1VHalfIdleTrapMeta]
     plotShowCombineHighlightDict: dict[str, list[str]]

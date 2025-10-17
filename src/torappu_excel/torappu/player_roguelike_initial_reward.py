@@ -1,13 +1,9 @@
-﻿from pydantic import BaseModel, ConfigDict
-
-from .roguelike_reward import RoguelikeReward
-
 from .player_roguelike_pending_event import PlayerRoguelikePendingEvent
+from .roguelike_reward import RoguelikeReward
+from ..common import BaseStruct
 
 
-class PlayerRoguelikeInitialReward(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRoguelikeInitialReward(BaseStruct):
     relic: RoguelikeReward
     scene: "PlayerRoguelikePendingEvent.SceneContent"
     recruit: RoguelikeReward

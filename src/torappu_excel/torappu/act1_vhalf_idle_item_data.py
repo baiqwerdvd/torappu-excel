@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act1_vhalf_idle_item_type import Act1VHalfIdleItemType
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleItemData(BaseStruct):
     actId: str
     itemId: str
     itemType: Act1VHalfIdleItemType

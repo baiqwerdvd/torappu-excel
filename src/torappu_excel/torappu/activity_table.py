@@ -1,6 +1,6 @@
 from typing import Any
 
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .act1_vhalf_idle_data import Act1VHalfIdleData
 from .act42_side_data import Act42SideData
@@ -73,11 +73,10 @@ from .pic_group import PicGroup
 from .rune_table import RuneTable
 from .siracusa_data import SiracusaData
 from .versus_checkin_data import VersusCheckInData
+from ..common import BaseStruct
 
 
-class ActivityTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityTable(BaseStruct):
     basicInfo: dict[str, "ActivityTable.BasicData"]
     homeActConfig: dict[str, "ActivityTable.HomeActivityConfig"]
     zoneToActivity: dict[str, str]
@@ -110,9 +109,7 @@ class ActivityTable(BaseModel):
     activityCrossDayTrackTypeDataDict: dict[str, CrossDayTrackTypeData]
     activityCrossDayTrackTypeMap: dict[str, list[str]]
 
-    class BasicData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BasicData(BaseStruct):
         id: str
         type: ActivityType
         name: str
@@ -129,80 +126,72 @@ class ActivityTable(BaseModel):
         isMagnify: bool
         picGroup: list[PicGroup]
         usePicGroup: bool
-        trapDomainId: str | None = Field(default=None)
-        displayType: ActivityDisplayType | None = Field(default=None)
-        recType: ActivityCompleteType | None = Field(default=None)
-        ungroupedMedalIds: list[str] | None = Field(default=None)
+        trapDomainId: str | None = field(default=None)
+        displayType: ActivityDisplayType | None = field(default=None)
+        recType: ActivityCompleteType | None = field(default=None)
+        ungroupedMedalIds: list[str] | None = field(default=None)
 
-    class HomeActivityConfig(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class HomeActivityConfig(BaseStruct):
         actId: str
         isPopupAfterCheckin: bool
         showTopBarMenu: bool
         actTopBarColor: str | None
         actTopBarText: str | None
 
-    class ActivityDetailTable(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+    class ActivityDetailTable(BaseStruct):
+        DEFAULT: dict[str, "DefaultFirstData"] = field(default_factory=dict[str, "DefaultFirstData"])
+        CHECKIN_ONLY: dict[str, "DefaultCheckInData"] = field(default_factory=dict)
+        CHECKIN_ALL_PLAYER: dict[str, "AllPlayerCheckinData"] = field(default_factory=dict)
+        CHECKIN_VS: dict[str, "VersusCheckInData"] = field(default_factory=dict)
+        TYPE_ACT3D0: dict[str, "Act3D0Data"] = field(default_factory=dict)
+        TYPE_ACT4D0: dict[str, "Act4D0Data"] = field(default_factory=dict)
+        TYPE_ACT5D0: dict[str, "Act5D0Data"] = field(default_factory=dict)
+        TYPE_ACT5D1: dict[str, "Act5D1Data"] = field(default_factory=dict)
+        COLLECTION: dict[str, "ActivityCollectionData"] = field(default_factory=dict)
+        TYPE_ACT9D0: dict[str, "Act9D0Data"] = field(default_factory=dict)
+        TYPE_ACT12SIDE: dict[str, "Act12SideData"] = field(default_factory=dict)
+        TYPE_ACT13SIDE: dict[str, "Act13SideData"] = field(default_factory=dict)
+        TYPE_ACT17SIDE: dict[str, "Act17sideData"] = field(default_factory=dict)
+        TYPE_ACT20SIDE: dict[str, "Act20SideData"] = field(default_factory=dict)
+        TYPE_ACT21SIDE: dict[str, "Act21SideData"] = field(default_factory=dict)
+        LOGIN_ONLY: dict[str, "ActivityLoginData"] = field(default_factory=dict)
+        SWITCH_ONLY: dict[str, "ActivitySwitchCheckinData"] = field(default_factory=dict)
+        MINISTORY: dict[str, "ActivityMiniStoryData"] = field(default_factory=dict)
+        ROGUELIKE: dict[str, "ActivityRoguelikeData"] = field(default_factory=dict)
+        MULTIPLAY: dict[str, "ActivityMultiplayData"] = field(default_factory=dict)
+        MULTIPLAY_VERIFY2: dict[str, "ActivityMultiplayVerify2Data"] = field(default_factory=dict)
+        INTERLOCK: dict[str, "ActivityInterlockData"] = field(default_factory=dict)
+        BOSS_RUSH: dict[str, "ActivityBossRushData"] = field(default_factory=dict)
+        FLOAT_PARADE: dict[str, "ActivityFloatParadeData"] = field(default_factory=dict)
+        SANDBOX: dict[str, "ActSandboxData"] = field(default_factory=dict)
+        MAIN_BUFF: dict[str, "ActivityMainlineBuffData"] = field(default_factory=dict)
+        TYPE_ACT24SIDE: dict[str, "Act24SideData"] = field(default_factory=dict)
+        TYPE_ACT25SIDE: dict[str, "Act25SideData"] = field(default_factory=dict)
+        TYPE_ACT27SIDE: dict[str, "Act27SideData"] = field(default_factory=dict)
+        TYPE_ACT38D1: dict[str, "Act38D1Data"] = field(default_factory=dict)
+        TYPE_ACT42D0: dict[str, "Act42D0Data"] = field(default_factory=dict)
+        TYPE_ACT29SIDE: dict[str, "Act29SideData"] = field(default_factory=dict)
+        YEAR_5_GENERAL: dict[str, "ActivityYear5GeneralData"] = field(default_factory=dict)
+        TYPE_ACT35SIDE: dict[str, "Act35SideData"] = field(default_factory=dict)
+        VEC_BREAK: dict[str, "ActVecBreakData"] = field(default_factory=dict)
+        VEC_BREAK_V2: dict[str, "ActVecBreakV2Data"] = field(default_factory=dict)
+        TYPE_ACT36SIDE: dict[str, "Act36SideData"] = field(default_factory=dict)
+        TYPE_ACT38SIDE: dict[str, "Act38SideData"] = field(default_factory=dict)
+        AUTOCHESS_VERIFY1: dict[str, "ActivityAutoChessVerify1Data"] = field(default_factory=dict)
+        ARCADE: dict[str, "ActArcadeData"] = field(default_factory=dict)
+        MULTIPLAY_V3: dict[str, "ActMultiV3Data"] = field(default_factory=dict)
+        TYPE_MAINSS: dict[str, "ActMainSSData"] = field(default_factory=dict)
+        ENEMY_DUEL: dict[str, "ActivityEnemyDuelData"] = field(default_factory=dict)
+        TYPE_ACT42SIDE: dict[str, "Act42SideData"] = field(default_factory=dict)
+        TYPE_ACT44SIDE: dict[str, "Act44SideData"] = field(default_factory=dict)
+        HALFIDLE_VERIFY1: dict[str, "Act1VHalfIdleData"] = field(default_factory=dict)
+        TYPE_ACT45SIDE: dict[str, "Act45SideData"] = field(default_factory=dict)
+        RECRUIT_ONLY: dict[str, "ActRecruitOnlyData"] = field(default_factory=dict)
 
-        DEFAULT: dict[str, "DefaultFirstData"] = Field(default_factory=dict[str, "DefaultFirstData"])
-        CHECKIN_ONLY: dict[str, "DefaultCheckInData"] = Field(default_factory=dict)
-        CHECKIN_ALL_PLAYER: dict[str, "AllPlayerCheckinData"] = Field(default_factory=dict)
-        CHECKIN_VS: dict[str, "VersusCheckInData"] = Field(default_factory=dict)
-        TYPE_ACT3D0: dict[str, "Act3D0Data"] = Field(default_factory=dict)
-        TYPE_ACT4D0: dict[str, "Act4D0Data"] = Field(default_factory=dict)
-        TYPE_ACT5D0: dict[str, "Act5D0Data"] = Field(default_factory=dict)
-        TYPE_ACT5D1: dict[str, "Act5D1Data"] = Field(default_factory=dict)
-        COLLECTION: dict[str, "ActivityCollectionData"] = Field(default_factory=dict)
-        TYPE_ACT9D0: dict[str, "Act9D0Data"] = Field(default_factory=dict)
-        TYPE_ACT12SIDE: dict[str, "Act12SideData"] = Field(default_factory=dict)
-        TYPE_ACT13SIDE: dict[str, "Act13SideData"] = Field(default_factory=dict)
-        TYPE_ACT17SIDE: dict[str, "Act17sideData"] = Field(default_factory=dict)
-        TYPE_ACT20SIDE: dict[str, "Act20SideData"] = Field(default_factory=dict)
-        TYPE_ACT21SIDE: dict[str, "Act21SideData"] = Field(default_factory=dict)
-        LOGIN_ONLY: dict[str, "ActivityLoginData"] = Field(default_factory=dict)
-        SWITCH_ONLY: dict[str, "ActivitySwitchCheckinData"] = Field(default_factory=dict)
-        MINISTORY: dict[str, "ActivityMiniStoryData"] = Field(default_factory=dict)
-        ROGUELIKE: dict[str, "ActivityRoguelikeData"] = Field(default_factory=dict)
-        MULTIPLAY: dict[str, "ActivityMultiplayData"] = Field(default_factory=dict)
-        MULTIPLAY_VERIFY2: dict[str, "ActivityMultiplayVerify2Data"] = Field(default_factory=dict)
-        INTERLOCK: dict[str, "ActivityInterlockData"] = Field(default_factory=dict)
-        BOSS_RUSH: dict[str, "ActivityBossRushData"] = Field(default_factory=dict)
-        FLOAT_PARADE: dict[str, "ActivityFloatParadeData"] = Field(default_factory=dict)
-        SANDBOX: dict[str, "ActSandboxData"] = Field(default_factory=dict)
-        MAIN_BUFF: dict[str, "ActivityMainlineBuffData"] = Field(default_factory=dict)
-        TYPE_ACT24SIDE: dict[str, "Act24SideData"] = Field(default_factory=dict)
-        TYPE_ACT25SIDE: dict[str, "Act25SideData"] = Field(default_factory=dict)
-        TYPE_ACT27SIDE: dict[str, "Act27SideData"] = Field(default_factory=dict)
-        TYPE_ACT38D1: dict[str, "Act38D1Data"] = Field(default_factory=dict)
-        TYPE_ACT42D0: dict[str, "Act42D0Data"] = Field(default_factory=dict)
-        TYPE_ACT29SIDE: dict[str, "Act29SideData"] = Field(default_factory=dict)
-        YEAR_5_GENERAL: dict[str, "ActivityYear5GeneralData"] = Field(default_factory=dict)
-        TYPE_ACT35SIDE: dict[str, "Act35SideData"] = Field(default_factory=dict)
-        VEC_BREAK: dict[str, "ActVecBreakData"] = Field(default_factory=dict)
-        VEC_BREAK_V2: dict[str, "ActVecBreakV2Data"] = Field(default_factory=dict)
-        TYPE_ACT36SIDE: dict[str, "Act36SideData"] = Field(default_factory=dict)
-        TYPE_ACT38SIDE: dict[str, "Act38SideData"] = Field(default_factory=dict)
-        AUTOCHESS_VERIFY1: dict[str, "ActivityAutoChessVerify1Data"] = Field(default_factory=dict)
-        ARCADE: dict[str, "ActArcadeData"] = Field(default_factory=dict)
-        MULTIPLAY_V3: dict[str, "ActMultiV3Data"] = Field(default_factory=dict)
-        TYPE_MAINSS: dict[str, "ActMainSSData"] = Field(default_factory=dict)
-        ENEMY_DUEL: dict[str, "ActivityEnemyDuelData"] = Field(default_factory=dict)
-        TYPE_ACT42SIDE: dict[str, "Act42SideData"] = Field(default_factory=dict)
-        TYPE_ACT44SIDE: dict[str, "Act44SideData"] = Field(default_factory=dict)
-        HALFIDLE_VERIFY1: dict[str, "Act1VHalfIdleData"] = Field(default_factory=dict)
-        TYPE_ACT45SIDE: dict[str, "Act45SideData"] = Field(default_factory=dict)
-        RECRUIT_ONLY: dict[str, "ActRecruitOnlyData"] = Field(default_factory=dict)
-
-    class ActivityExtraData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ActivityExtraData(BaseStruct):
         MAINLINE_BP: dict[str, "ActMainlineBpExtraData"]
 
-    class ActivityHiddenStageUnlockConditionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ActivityHiddenStageUnlockConditionData(BaseStruct):
         unlockStageId: str
         unlockTemplate: str
         unlockParams: list[str] | None
@@ -215,25 +204,19 @@ class ActivityTable(BaseModel):
         desc: str
         riddle: str
 
-    class ActivityHiddenStageData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ActivityHiddenStageData(BaseStruct):
         stageId: str
         encodedName: str
         showStageId: str
         rewardDiamond: bool
         missions: list["ActivityTable.ActivityHiddenStageUnlockConditionData"]
 
-    class ExtraData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ExtraData(BaseStruct):
         periodId: str
         startTs: int
         endTs: int
 
-    class TemplateTrapData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TemplateTrapData(BaseStruct):
         trapId: str
         sortId: int
         trapName: str
@@ -243,28 +226,20 @@ class ActivityTable(BaseModel):
         trapUnlockDesc: str
         trapBuffId: str
 
-    class ActivityTrapConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ActivityTrapConstData(BaseStruct):
         stageUnlockTrapDesc: str
         trapMaximum: int
         stageCanNotUseTrap: list[str]
 
-    class ActivityTrapsData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ActivityTrapsData(BaseStruct):
         templateTraps: dict[str, "ActivityTable.TemplateTrapData"]
         trapConstData: "ActivityTable.ActivityTrapConstData"
 
-    class TrapMissionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TrapMissionData(BaseStruct):
         id: str
         description: str
         type: MissionType
         rewards: list["MissionDisplayRewards"]
 
-    class ActivityTrapMissionsData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ActivityTrapMissionsData(BaseStruct):
         trapMissions: dict[str, "ActivityTable.TrapMissionData"]

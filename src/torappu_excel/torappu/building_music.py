@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .building_music_state import BuildingMusicState
+from ..common import BaseStruct
 
 
-class BuildingMusic(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class BuildingMusic(BaseStruct):
     inUse: bool
     selected: str
     state: dict[str, BuildingMusicState]

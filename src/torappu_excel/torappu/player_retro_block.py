@@ -1,8 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerRetroBlock(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    locked: bool
-    open: bool
+class PlayerRetroBlock(BaseStruct):
+    locked: int
+    open: int

@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerBuildingWorkshopBuffBonus(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingWorkshopBuffBonus(BaseStruct):
     formulaType: str
     apCond: int
     bonusNeed: int

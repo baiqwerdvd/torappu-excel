@@ -1,9 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerBuildingManufactureBuff(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingManufactureBuff(BaseStruct):
     apCost: "PlayerBuildingManufactureBuff.ApCost"
     speed: float | int
     sSpeed: float | int
@@ -16,8 +14,6 @@ class PlayerBuildingManufactureBuff(BaseModel):
     flag: dict[str, int]
     skillExtend: dict[str, list[str]]
 
-    class ApCost(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ApCost(BaseStruct):
         self: dict[str, int]
         all: int

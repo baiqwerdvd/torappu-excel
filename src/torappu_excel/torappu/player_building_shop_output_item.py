@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .item_type import ItemType
+from ..common import BaseStruct
 
 
-class PlayerBuildingShopOutputItem(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingShopOutputItem(BaseStruct):
     type: ItemType
     count: int

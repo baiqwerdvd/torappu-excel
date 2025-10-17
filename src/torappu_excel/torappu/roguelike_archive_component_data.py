@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .act_archive_buff_data import ActArchiveBuffData
 from .act_archive_capsule_data import ActArchiveCapsuleData
@@ -13,11 +13,10 @@ from .act_archive_relic_data import ActArchiveRelicData
 from .act_archive_totem_data import ActArchiveTotemData
 from .act_archive_trap_data import ActArchiveTrapData
 from .act_archive_wrath_data import ActArchiveWrathData
+from ..common import BaseStruct
 
 
-class RoguelikeArchiveComponentData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeArchiveComponentData(BaseStruct):
     relic: ActArchiveRelicData
     capsule: ActArchiveCapsuleData | None
     trap: ActArchiveTrapData
@@ -28,6 +27,6 @@ class RoguelikeArchiveComponentData(BaseModel):
     chaos: ActArchiveChaosData | None
     wrath: ActArchiveWrathData | None
     copper: ActArchiveCopperData | None
-    fragment: ActArchiveFragmentData | None = Field(default=None)
-    disaster: ActArchiveDisasterData | None = Field(default=None)
-    challengeBook: ActArchiveChallengeBookData | None = Field(default=None)
+    fragment: ActArchiveFragmentData | None = field(default=None)
+    disaster: ActArchiveDisasterData | None = field(default=None)
+    challengeBook: ActArchiveChallengeBookData | None = field(default=None)

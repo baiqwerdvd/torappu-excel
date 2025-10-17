@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_17side_data import Act17sideData
+from ..common import BaseStruct
 
 
-class ActArchiveChapterLogData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveChapterLogData(BaseStruct):
     chapterName: str
     displayId: str
     unlockDes: str

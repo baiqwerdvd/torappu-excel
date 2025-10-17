@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .medal_expire_type import MedalExpireType
+from ..common import BaseStruct
 
 
-class MedalExpireTime(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MedalExpireTime(BaseStruct):
     start: int
     end: int
     type: MedalExpireType

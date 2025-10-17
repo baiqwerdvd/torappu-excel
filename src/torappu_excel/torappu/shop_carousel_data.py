@@ -1,16 +1,11 @@
-from pydantic import BaseModel, ConfigDict
-
 from .shop_route_target import ShopRouteTarget
+from ..common import BaseStruct
 
 
-class ShopCarouselData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ShopCarouselData(BaseStruct):
     items: list["ShopCarouselData.Item"]
 
-    class Item(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Item(BaseStruct):
         spriteId: str
         startTime: int
         endTime: int

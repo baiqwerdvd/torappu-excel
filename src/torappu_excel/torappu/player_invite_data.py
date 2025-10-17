@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_invite_info import PlayerInviteInfo
+from ..common import BaseStruct
 
 
-class PlayerInviteData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerInviteData(BaseStruct):
     closeAccept: bool
     newInvite: bool
     inviteList: list[PlayerInviteInfo]

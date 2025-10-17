@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .profession_id import ProfessionID
+from ..common import BaseStruct
 
 
-class SandboxMissionData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxMissionData(BaseStruct):
     missionId: str
     desc: str
     effectDesc: str | None

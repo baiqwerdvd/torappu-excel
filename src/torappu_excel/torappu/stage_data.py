@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .appearance_style import AppearanceStyle
 from .item_bundle import ItemBundle
@@ -12,11 +12,10 @@ from .stage_diff_group import StageDiffGroup
 from .stage_drop_type import StageDropType
 from .stage_type import StageType
 from .weight_item_bundle import WeightItemBundle
+from ..common import BaseStruct
 
 
-class StageData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StageData(BaseStruct):
     class PerformanceStageFlag(StrEnum):
         NORMAL_STAGE = "NORMAL_STAGE"
         PERFORMANCE_STAGE = "PERFORMANCE_STAGE"
@@ -79,17 +78,15 @@ class StageData(BaseModel):
     sixStarDisplayRewardList: list[ItemBundle] | None
     advancedRuneIdList1: list[str]
     advancedRuneIdList2: list[str]
-    canUseCharm: bool | None = Field(default=None)
-    canUseTech: bool | None = Field(default=None)
-    canUseTrapTool: bool | None = Field(default=None)
-    canUseBattlePerformance: bool | None = Field(default=None)
-    canContinuousBattle: bool | None = Field(default=None)
-    extraCondition: list["StageData.ExtraConditionDesc"] | None = Field(default=None)
-    extraInfo: list["StageData.SpecialStoryInfo"] | None = Field(default=None)
+    canUseCharm: bool | None = field(default=None)
+    canUseTech: bool | None = field(default=None)
+    canUseTrapTool: bool | None = field(default=None)
+    canUseBattlePerformance: bool | None = field(default=None)
+    canContinuousBattle: bool | None = field(default=None)
+    extraCondition: list["StageData.ExtraConditionDesc"] | None = field(default=None)
+    extraInfo: list["StageData.SpecialStoryInfo"] | None = field(default=None)
 
-    class StageDropInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class StageDropInfo(BaseStruct):
         firstPassRewards: list[ItemBundle] | None
         firstCompleteRewards: list[ItemBundle] | None
         passRewards: list[list[WeightItemBundle]] | None
@@ -97,9 +94,7 @@ class StageData(BaseModel):
         displayRewards: list["StageData.DisplayRewards"]
         displayDetailRewards: list["StageData.DisplayDetailRewards"]
 
-    class DisplayRewards(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DisplayRewards(BaseStruct):
         type: ItemType
         id: str
         dropType: StageDropType
@@ -107,22 +102,16 @@ class StageData(BaseModel):
     class DisplayDetailRewards(DisplayRewards):
         occPercent: OccPer
 
-    class ConditionDesc(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConditionDesc(BaseStruct):
         stageId: str
         completeState: PlayerBattleRank
 
-    class ExtraConditionDesc(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ExtraConditionDesc(BaseStruct):
         index: int
         template: str
         unlockParam: list[str]
 
-    class SpecialStoryInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class SpecialStoryInfo(BaseStruct):
         stageId: str
         rewards: list[ItemBundle]
         progressInfo: "StageData.SpecialProgressInfo"
@@ -130,8 +119,6 @@ class StageData(BaseModel):
         keyItemId: str | None
         unlockDesc: str | None
 
-    class SpecialProgressInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class SpecialProgressInfo(BaseStruct):
         progressType: "StageData.SpecialStageUnlockProgressType"
         descList: dict[str, str] | None

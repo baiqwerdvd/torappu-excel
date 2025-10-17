@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_game_item_rarity import RoguelikeGameItemRarity
 from .roguelike_game_item_sub_type import RoguelikeGameItemSubType
 from .roguelike_game_item_type import RoguelikeGameItemType
+from ..common import BaseStruct
 
 
-class RoguelikeGameItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeGameItemData(BaseStruct):
     id: str
     name: str
     description: str | None

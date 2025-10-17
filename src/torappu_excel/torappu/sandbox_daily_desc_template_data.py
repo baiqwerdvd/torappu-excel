@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_daily_desc_template_type import SandboxDailyDescTemplateType
+from ..common import BaseStruct
 
 
-class SandboxDailyDescTemplateData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxDailyDescTemplateData(BaseStruct):
     type: SandboxDailyDescTemplateType
     templateDesc: list[str]

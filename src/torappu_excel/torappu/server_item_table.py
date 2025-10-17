@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .activity_potential_character_info import ActivityPotentialCharacterInfo
 from .ap_supply_feature import ApSupplyFeature
@@ -10,11 +10,10 @@ from .item_data import ItemData
 from .item_pack_info import ItemPackInfo
 from .server_item_reminder_info import ServerItemReminderInfo
 from .uni_collection_info import UniCollectionInfo
+from ..common import BaseStruct
 
 
-class ServerItemTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ServerItemTable(BaseStruct):
     items: dict[str, ItemData]
     expItems: dict[str, ExpItemFeature]
     potentialItems: dict[str, dict[str, str]]
@@ -27,5 +26,5 @@ class ServerItemTable(BaseModel):
     activityPotentialCharacters: dict[str, ActivityPotentialCharacterInfo]
     favorCharacters: dict[str, FavorCharacterInfo]
     itemShopNameDict: dict[str, str]
-    reminderInfo: ServerItemReminderInfo | None = Field(default=None)
-    charVoucherItems: dict[str, CharVoucherItemFeature] | None = Field(default=None)
+    reminderInfo: ServerItemReminderInfo | None = field(default=None)
+    charVoucherItems: dict[str, CharVoucherItemFeature] | None = field(default=None)

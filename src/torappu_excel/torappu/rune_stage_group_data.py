@@ -1,16 +1,12 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RuneStageGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RuneStageGroupData(BaseStruct):
     groupId: str
     activeRuneStages: list["RuneStageGroupData.RuneStageInst"]
     startTs: int
     endTs: int
 
-    class RuneStageInst(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RuneStageInst(BaseStruct):
         stageId: str
         activePackedRuneIds: list[str]

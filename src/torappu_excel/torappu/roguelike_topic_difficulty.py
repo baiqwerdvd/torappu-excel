@@ -1,12 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .roguelike_topic_difficulty_warning_type import RoguelikeTopicDifficultyWarningType
 from .roguelike_topic_mode import RoguelikeTopicMode
+from ..common import BaseStruct
 
 
-class RoguelikeTopicDifficulty(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTopicDifficulty(BaseStruct):
     modeDifficulty: RoguelikeTopicMode
     grade: int
     name: str
@@ -31,11 +30,9 @@ class RoguelikeTopicDifficulty(BaseModel):
     unlockText: str | None
     displayIconId: str | None
     hideEndingStory: bool
-    isHard: bool | None = Field(default=None)
-    ruleDescReplacements: list["RoguelikeTopicDifficulty.RuleDescReplacement"] | None = Field(default=None)
+    isHard: bool | None = field(default=None)
+    ruleDescReplacements: list["RoguelikeTopicDifficulty.RuleDescReplacement"] | None = field(default=None)
 
-    class RuleDescReplacement(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RuleDescReplacement(BaseStruct):
         enrollId: str
         ruleDesc: str

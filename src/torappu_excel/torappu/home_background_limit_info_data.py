@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class HomeBackgroundLimitInfoData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HomeBackgroundLimitInfoData(BaseStruct):
     limitInfoId: str
     startTime: int
     endTime: int

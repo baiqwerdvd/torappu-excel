@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .evolve_phase import EvolvePhase
 from .special_operator_condition_view_type import SpecialOperatorConditionViewType
 from .special_operator_detail_node_type import SpecialOperatorDetailNodeType
+from ..common import BaseStruct
 
 
-class SpecialOperatorDetailNodeUnlockData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SpecialOperatorDetailNodeUnlockData(BaseStruct):
     nodeId: str
     nodeType: SpecialOperatorDetailNodeType
     isInGameMechanics: bool

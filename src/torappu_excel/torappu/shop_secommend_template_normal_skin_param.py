@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ShopRecommendTemplateNormalSkinParam(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ShopRecommendTemplateNormalSkinParam(BaseStruct):
     showStartTs: int
     showEndTs: int
     skinIds: list[str]

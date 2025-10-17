@@ -1,14 +1,10 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_hire_buff import PlayerBuildingHireBuff
 from .player_building_hiring_state import PlayerBuildingHiringState
+from ..common import BaseStruct
 
 
-class PlayerBuildingHire(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingHire(BaseStruct):
     buff: PlayerBuildingHireBuff
-    recruitSlotId: int | None = None
     state: PlayerBuildingHiringState
     processPoint: float
     speed: float
@@ -16,3 +12,4 @@ class PlayerBuildingHire(BaseModel):
     refreshCount: int
     completeWorkTime: int
     presetQueue: list[list[int]]
+    recruitSlotId: int | None = None

@@ -1,15 +1,12 @@
-from pydantic import BaseModel, ConfigDict
-
 from .recommend_item_tag_tips import RecommendItemTagTips
 from .shop_keeper_word import ShopKeeperWord
 from .shop_recommend_group import ShopRecommendGroup
 from .shop_recommend_template_param import ShopRecommendTemplateParam
 from .shop_recommend_template_type import ShopRecommendTemplateType
+from ..common import BaseStruct
 
 
-class ShopRecommendItem(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ShopRecommendItem(BaseStruct):
     tagId: str
     displayType: str
     tagName: str

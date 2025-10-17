@@ -1,16 +1,13 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
-
 from .act_archive_type import ActArchiveType
 from .item_bundle import ItemBundle
 from .mission_display_rewards import MissionDisplayRewards
 from .shared_models import ActivityTable
+from ..common import BaseStruct
 
 
-class Act13SideData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act13SideData(BaseStruct):
     constData: "Act13SideData.ConstData"
     orgDataMap: dict[str, "Act13SideData.OrgData"]
     principalDataMap: dict[str, "Act13SideData.PrincipalData"]
@@ -39,9 +36,7 @@ class Act13SideData(BaseModel):
         PRESTIGE = "PRESTIGE"
         STAGE = "STAGE"
 
-    class ConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConstData(BaseStruct):
         prestigeDescList: list[str]
         dailyRandomCount: list[list[int]] | None
         dailyWeightInitial: int
@@ -55,9 +50,7 @@ class Act13SideData(BaseModel):
         unlockPrestigeCond: str
         hotSpotShowFlag: int
 
-    class PrestigeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PrestigeData(BaseStruct):
         rank: "Act13SideData.PrestigeRank"
         threshold: int
         reward: ItemBundle | None
@@ -65,24 +58,18 @@ class Act13SideData(BaseModel):
         archiveCount: int
         avgCount: int
 
-    class LongTermMissionGroupData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LongTermMissionGroupData(BaseStruct):
         groupId: str
         groupName: str
         orgId: str
         missionList: list[str]
 
-    class OrgSectionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class OrgSectionData(BaseStruct):
         sectionName: str
         sortId: int
         groupData: "Act13SideData.LongTermMissionGroupData"
 
-    class OrgData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class OrgData(BaseStruct):
         orgId: str
         orgName: str
         orgEnName: str
@@ -93,18 +80,14 @@ class Act13SideData(BaseModel):
         orgSectionList: list["Act13SideData.OrgSectionData"]
         prestigeItem: ItemBundle
 
-    class PrincipalData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PrincipalData(BaseStruct):
         principalId: str
         principalName: str
         principalEnName: str
         avgCharId: str
         principalDescList: list[str]
 
-    class LongTermMissionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class LongTermMissionData(BaseStruct):
         missionName: str
         groupId: str
         principalId: str
@@ -113,9 +96,7 @@ class Act13SideData(BaseModel):
         haveStageBtn: bool
         jumpStageId: str | None
 
-    class DailyMissionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DailyMissionData(BaseStruct):
         id: str
         sortId: int
         description: str
@@ -129,23 +110,17 @@ class Act13SideData(BaseModel):
         jumpStageId: str
         agendaCount: int
 
-    class DailyMissionRewardGroupData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DailyMissionRewardGroupData(BaseStruct):
         groupId: str
         rewards: list[ItemBundle]
 
-    class ArchiveItemUnlockData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ArchiveItemUnlockData(BaseStruct):
         itemId: str
         itemType: ActArchiveType
         unlockCondition: "Act13SideData.UnlockCondition"
         param1: str | None
         param2: str | None
 
-    class ZoneAdditionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ZoneAdditionData(BaseStruct):
         unlockText: str
         zoneClass: "Act13SideData.ActZoneClass"

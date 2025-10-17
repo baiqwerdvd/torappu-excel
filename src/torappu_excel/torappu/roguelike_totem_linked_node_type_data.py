@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_event_type import RoguelikeEventType
 from .roguelike_totem_blur_node_type import RoguelikeTotemBlurNodeType
+from ..common import BaseStruct
 
 
-class RoguelikeTotemLinkedNodeTypeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTotemLinkedNodeTypeData(BaseStruct):
     effectiveNodeTypes: list[RoguelikeEventType]
     blurNodeTypes: list[RoguelikeTotemBlurNodeType]

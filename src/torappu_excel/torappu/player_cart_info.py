@@ -1,10 +1,9 @@
-﻿from enum import StrEnum
-from pydantic import BaseModel, ConfigDict
+from enum import StrEnum
+
+from ..common import BaseStruct
 
 
-class PlayerCartInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCartInfo(BaseStruct):
     battleCar: dict["PlayerCartInfo.CartAccessoryPos", str]
     exhibitionCar: dict["PlayerCartInfo.CartAccessoryPos", str | None]
     accessories: dict[str, "PlayerCartInfo.CompInfo"]
@@ -18,13 +17,9 @@ class PlayerCartInfo(BaseModel):
         CAR_OS_01 = "CAR_OS_01"
         CAR_OS_02 = "CAR_OS_02"
 
-    class Cart(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Cart(BaseStruct):
         pass
 
-    class CompInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CompInfo(BaseStruct):
         id: str
         num: int

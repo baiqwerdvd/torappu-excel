@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_exp_style_config_param import RoguelikeExpStyleConfigParam
+from ..common import BaseStruct
 
 
-class RoguelikePredefinedExpStyleConfigData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikePredefinedExpStyleConfigData(BaseStruct):
     paramDict: dict[RoguelikeExpStyleConfigParam, str]

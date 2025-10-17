@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class LongTermCheckInGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class LongTermCheckInGroupData(BaseStruct):
     groupId: str
     sortId: int
     startTs: int

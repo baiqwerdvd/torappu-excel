@@ -1,17 +1,11 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RoguelikeGameShopDialogData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeGameShopDialogData(BaseStruct):
     types: dict[str, "RoguelikeGameShopDialogData.RoguelikeGameShopDialogTypeData"]
 
-    class RoguelikeGameShopDialogTypeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        class RoguelikeGameShopDialogGroupData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RoguelikeGameShopDialogTypeData(BaseStruct):
+        class RoguelikeGameShopDialogGroupData(BaseStruct):
             content: list[str]
 
         groups: dict[

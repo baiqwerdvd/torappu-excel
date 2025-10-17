@@ -1,15 +1,10 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_workshop_buff import PlayerBuildingWorkshopBuff
+from ..common import BaseStruct
 
 
-class PlayerBuildingWorkshop(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingWorkshop(BaseStruct):
     buff: PlayerBuildingWorkshopBuff
     statistic: "PlayerBuildingWorkshop.Statistic"
 
-    class Statistic(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Statistic(BaseStruct):
         noAddition: int

@@ -1,21 +1,15 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class Act21SideData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act21SideData(BaseStruct):
     zoneAdditionDataMap: dict[str, "Act21SideData.ZoneAddtionData"]
     constData: "Act21SideData.ConstData"
 
-    class ZoneAddtionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ZoneAddtionData(BaseStruct):
         zoneId: str
         unlockText: str
         stageUnlockText: str | None
         entryId: str
 
-    class ConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConstData(BaseStruct):
         lineConnectZone: str

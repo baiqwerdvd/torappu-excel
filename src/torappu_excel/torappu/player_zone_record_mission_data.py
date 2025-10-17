@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_zone_record_mission_process_data import PlayerZoneRecordMissionProcessData
+from ..common import BaseStruct
 
 
-class PlayerZoneRecordMissionData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerZoneRecordMissionData(BaseStruct):
     state: int
     process: PlayerZoneRecordMissionProcessData

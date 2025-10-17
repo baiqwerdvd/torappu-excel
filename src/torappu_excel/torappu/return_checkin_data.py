@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class ReturnCheckinData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ReturnCheckinData(BaseStruct):
     isImportant: bool
     checkinRewardItems: list[ItemBundle]

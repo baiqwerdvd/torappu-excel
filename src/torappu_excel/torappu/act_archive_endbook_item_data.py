@@ -1,13 +1,13 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class ActArchiveEndbookItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveEndbookItemData(BaseStruct):
     endBookId: str
     sortId: int
     endbookName: str
     unlockDesc: str
     textId: str
-    enrollId: str | None = Field(default=None)
-    isLast: bool | None = Field(default=None)
+    enrollId: str | None = field(default=None)
+    isLast: bool | None = field(default=None)

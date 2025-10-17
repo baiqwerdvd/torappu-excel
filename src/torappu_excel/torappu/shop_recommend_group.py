@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .shop_recommend_data import ShopRecommendData
+from ..common import BaseStruct
 
 
-class ShopRecommendGroup(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ShopRecommendGroup(BaseStruct):
     recommendGroup: list[int]
     dataList: list[ShopRecommendData]

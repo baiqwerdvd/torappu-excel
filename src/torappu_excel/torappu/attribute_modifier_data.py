@@ -1,15 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
-from torappu_excel.common import CustomIntEnum
-
 from .abnormal_combo import AbnormalCombo
 from .abnormal_flag import AbnormalFlag
 from .attribute_type import AttributeType
+from ..common import BaseStruct, CustomIntEnum
 
 
-class AttributeModifierData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class AttributeModifierData(BaseStruct):
     abnormalFlags: list[AbnormalFlag] | None
     abnormalImmunes: list[AbnormalFlag] | None
     abnormalAntis: list[AbnormalFlag] | None
@@ -17,9 +12,7 @@ class AttributeModifierData(BaseModel):
     abnormalComboImmunes: list[AbnormalCombo] | None
     attributeModifiers: list["AttributeModifierData.AttributeModifier"]
 
-    class AttributeModifier(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AttributeModifier(BaseStruct):
         class FormulaItemType(CustomIntEnum):
             ADDITION = "ADDITION", 0
             MULTIPLIER = "MULTIPLIER", 1

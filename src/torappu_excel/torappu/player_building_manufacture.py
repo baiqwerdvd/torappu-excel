@@ -1,13 +1,10 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .building_buff_display import BuildingBuffDisplay
 from .player_building_manufacture_buff import PlayerBuildingManufactureBuff
 from .player_room_state import PlayerRoomState
+from ..common import BaseStruct
 
 
-class PlayerBuildingManufacture(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingManufacture(BaseStruct):
     buff: PlayerBuildingManufactureBuff
     state: PlayerRoomState
     formulaId: str

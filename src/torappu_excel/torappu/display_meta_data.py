@@ -1,5 +1,3 @@
-from pydantic import BaseModel, ConfigDict
-
 from .emoticon_data import EmoticonData
 from .guidebook_group_data import GuidebookGroupData
 from .home_background_data import HomeBackgroundData
@@ -8,11 +6,10 @@ from .mail_sender_data import MailSenderData
 from .name_card_v2_data import NameCardV2Data
 from .player_avatar_data import PlayerAvatarData
 from .story_variant_data import StoryVariantData
+from ..common import BaseStruct
 
 
-class DisplayMetaData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class DisplayMetaData(BaseStruct):
     playerAvatarData: PlayerAvatarData
     homeBackgroundData: HomeBackgroundData
     nameCardV2Data: NameCardV2Data

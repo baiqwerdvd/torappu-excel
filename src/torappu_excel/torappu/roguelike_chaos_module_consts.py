@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RoguelikeChaosModuleConsts(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeChaosModuleConsts(BaseStruct):
     maxChaosLevel: int
     maxChaosSlot: int
     chaosNotMaxDescription: str

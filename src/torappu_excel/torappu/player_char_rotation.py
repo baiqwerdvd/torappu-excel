@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_char_rotation_preset import PlayerCharRotationPreset
+from ..common import BaseStruct
 
 
-class PlayerCharRotation(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCharRotation(BaseStruct):
     current: str
     preset: dict[str, PlayerCharRotationPreset]

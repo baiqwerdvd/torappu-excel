@@ -1,47 +1,41 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class SharedCharData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SharedCharData(BaseStruct):
     charId: str
     potentialRank: int
     mainSkillLvl: int
     evolvePhase: int
     level: int
     favorPoint: int
-    currentEquip: str | None = Field(default=None)
-    equips: dict[str, "SharedCharData.CharEquipInfo"] | None = Field(alias="equip", default={})
-    skillIndex: int | None = Field(default=None)
-    skinId: str | None = Field(default=None)
-    skin: str | None = Field(default=None)
-    skills: list["SharedCharData.SharedCharSkillData"] | None = Field(default=None)
-    crisisRecord: dict[str, int] | None = Field(default=None)
-    crisisV2Record: dict[str, int] | None = Field(default=None)
-    currentTmpl: str | None = Field(default=None)
-    tmpl: dict[str, "SharedCharData.TmplData"] | None = Field(default=None)
+    currentEquip: str | None = field(default=None)
+    equips: dict[str, "SharedCharData.CharEquipInfo"] | None = field(name="equip", default={})
+    skillIndex: int | None = field(default=None)
+    skinId: str | None = field(default=None)
+    skin: str | None = field(default=None)
+    skills: list["SharedCharData.SharedCharSkillData"] | None = field(default=None)
+    crisisRecord: dict[str, int] | None = field(default=None)
+    crisisV2Record: dict[str, int] | None = field(default=None)
+    currentTmpl: str | None = field(default=None)
+    tmpl: dict[str, "SharedCharData.TmplData"] | None = field(default=None)
 
-    class CharEquipInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CharEquipInfo(BaseStruct):
         hide: int
         locked: bool | int
         level: int
 
-    class SharedCharSkillData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class SharedCharSkillData(BaseStruct):
         skillId: str
         specializeLevel: int
-        completeUpgradeTime: int | None = Field(default=None)
-        unlock: bool | int | None = Field(default=None)
-        state: int | None = Field(default=None)
+        completeUpgradeTime: int | None = field(default=None)
+        unlock: bool | int | None = field(default=None)
+        state: int | None = field(default=None)
 
-    class TmplData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TmplData(BaseStruct):
         skinId: str
         defaultSkillIndex: int
         skills: list["SharedCharData.SharedCharSkillData"]
         currentEquip: str | None
-        equip: dict[str, "SharedCharData.SharedCharSkillData"] | None = Field(default=None)
+        equip: dict[str, "SharedCharData.SharedCharSkillData"] | None = field(default=None)

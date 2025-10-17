@@ -1,12 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .activity_type import ActivityType
 from .retro_type import RetroType
+from ..common import BaseStruct
 
 
-class RetroActData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RetroActData(BaseStruct):
     retroId: str
     type: RetroType
     linkedActId: list[str]
@@ -17,6 +16,6 @@ class RetroActData(BaseModel):
     haveTrail: bool
     customActId: str | None
     customActType: ActivityType
-    detail: str | None = Field(default=None)
-    isRecommend: bool | None = Field(default=None)
-    recommendTagRemoveStage: str | None = Field(default=None)
+    detail: str | None = field(default=None)
+    isRecommend: bool | None = field(default=None)
+    recommendTagRemoveStage: str | None = field(default=None)

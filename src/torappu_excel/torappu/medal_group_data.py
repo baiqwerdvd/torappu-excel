@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .medal_expire_time import MedalExpireTime
+from ..common import BaseStruct
 
 
-class MedalGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MedalGroupData(BaseStruct):
     groupId: str
     groupName: str
     groupDesc: str

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .rune_table import RuneTable
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleCharBuffInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleCharBuffInfo(BaseStruct):
     id: str
     level: int
     charCount: int

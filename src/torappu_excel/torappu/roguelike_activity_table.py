@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_activity_seed_mode_data import RoguelikeActivitySeedModeData
+from ..common import BaseStruct
 
 
-class RoguelikeActivityTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeActivityTable(BaseStruct):
     SEED_MODE: dict[str, RoguelikeActivitySeedModeData]

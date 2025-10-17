@@ -1,14 +1,13 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .char_word_show_type import CharWordShowType
 from .char_word_unlock_param import CharWordUnlockParam
 from .char_word_voice_type import CharWordVoiceType
 from .data_unlock_type import DataUnlockType
+from ..common import BaseStruct
 
 
-class CharWordData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CharWordData(BaseStruct):
     wordKey: str
     charId: str
     voiceId: str
@@ -21,4 +20,4 @@ class CharWordData(BaseModel):
     lockDescription: str | None
     placeType: CharWordShowType
     voiceAsset: str
-    charWordId: str | None = Field(default=None)
+    charWordId: str | None = field(default=None)

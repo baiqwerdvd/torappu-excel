@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class FifthAnnivExploreTargetData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class FifthAnnivExploreTargetData(BaseStruct):
     id: str
     linkStageId: str
     targetValues: dict[str, int]

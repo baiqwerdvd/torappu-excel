@@ -1,13 +1,13 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class BGMBank(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class BGMBank(BaseStruct):
     name: str
     intro: str | None
     loop: str | None
     volume: float
     crossfade: float
     delay: float
-    fadeStyleId: str | None = Field(default=None)
+    fadeStyleId: str | None = field(default=None)

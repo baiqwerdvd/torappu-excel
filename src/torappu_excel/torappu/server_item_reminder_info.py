@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .server_item_reminder_mail_data import ServerItemReminderMailData
+from ..common import BaseStruct
 
 
-class ServerItemReminderInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ServerItemReminderInfo(BaseStruct):
     paidItemIdList: list[str]
     paidReminderMail: ServerItemReminderMailData

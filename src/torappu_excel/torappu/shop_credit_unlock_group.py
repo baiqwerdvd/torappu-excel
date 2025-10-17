@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .shop_credit_unlock_item import ShopCreditUnlockItem
+from ..common import BaseStruct
 
 
-class ShopCreditUnlockGroup(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ShopCreditUnlockGroup(BaseStruct):
     id: str
     index: str
     startDateTime: int

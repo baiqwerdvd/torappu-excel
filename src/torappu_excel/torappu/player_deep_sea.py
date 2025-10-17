@@ -1,11 +1,9 @@
-﻿from enum import IntEnum
+from enum import IntEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerDeepSea(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerDeepSea(BaseStruct):
     places: dict[str, "PlayerDeepSea.PlaceStatus"]
     nodes: dict[str, "PlayerDeepSea.NodeStatus"]
     choices: dict[str, "list[PlayerDeepSea.ChoiceStatus]"]
@@ -43,8 +41,6 @@ class PlayerDeepSea(BaseModel):
         UNLOCK = 1
         ACTIVED = 2
 
-    class TechData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TechData(BaseStruct):
         state: "PlayerDeepSea.TechStatus"
         branch: str

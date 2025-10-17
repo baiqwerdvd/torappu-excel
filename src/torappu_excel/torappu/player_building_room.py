@@ -1,6 +1,4 @@
-﻿from typing import Any
-
-from pydantic import BaseModel, ConfigDict
+from typing import Any
 
 from .player_building_control import PlayerBuildingControl
 from .player_building_dormitory import PlayerBuildingDormitory
@@ -13,13 +11,11 @@ from .player_building_shop import PlayerBuildingShop
 from .player_building_trading import PlayerBuildingTrading
 from .player_building_training import PlayerBuildingTraining
 from .player_building_workshop import PlayerBuildingWorkshop
+from ..common import BaseStruct
 
 
-class PlayerBuildingRoom(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingRoom(BaseStruct):
     MANUFACTURE: dict[str, PlayerBuildingManufacture]
-    SHOP: dict[str, PlayerBuildingShop] | None = None
     POWER: dict[str, PlayerBuildingPower]
     CONTROL: dict[str, PlayerBuildingControl]
     MEETING: dict[str, PlayerBuildingMeeting]
@@ -31,3 +27,4 @@ class PlayerBuildingRoom(BaseModel):
     TRADING: dict[str, PlayerBuildingTrading]
     CORRIDOR: dict[str, dict[str, Any]]
     ELEVATOR: dict[str, dict[str, Any]]
+    SHOP: dict[str, PlayerBuildingShop] | None = None

@@ -1,14 +1,11 @@
-﻿from enum import IntEnum
-
-from pydantic import BaseModel, ConfigDict
+from enum import IntEnum
 
 from .mission_daily_rewards import MissionDailyRewards
 from .mission_player_state import MissionPlayerState
+from ..common import BaseStruct
 
 
-class MissionPlayerData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MissionPlayerData(BaseStruct):
     missions: dict[str, dict[str, MissionPlayerState]]
     missionRewards: MissionDailyRewards
     missionGroups: dict[str, "MissionPlayerData.MissionGroupState"]

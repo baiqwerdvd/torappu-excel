@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .level_data import LevelData
+from ..common import BaseStruct
 
 
-class RoguelikeStageData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeStageData(BaseStruct):
     id: str
     linkedStageId: str
     levelId: str

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_v2_season_type import SandboxV2SeasonType
+from ..common import BaseStruct
 
 
-class SandboxV2RiftConst(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2RiftConst(BaseStruct):
     refreshRate: int
     randomDungeonId: str
     huntDungeonId: str | None

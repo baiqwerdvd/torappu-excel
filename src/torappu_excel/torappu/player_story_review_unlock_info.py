@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .story_review_unlock_info import StoryReviewUnlockInfo
+from ..common import BaseStruct
 
 
-class PlayerStoryReviewUnlockInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerStoryReviewUnlockInfo(BaseStruct):
     rts: int
     stories: list[StoryReviewUnlockInfo]
     trailRewards: list[str] | None = None

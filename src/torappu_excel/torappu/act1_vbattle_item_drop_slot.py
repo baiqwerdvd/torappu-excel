@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act1_vweighted_battle_item_pool import Act1VWeightedBattleItemPool
+from ..common import BaseStruct
 
 
-class Act1VBattleItemDropSlot(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VBattleItemDropSlot(BaseStruct):
     prob: float
     itemPools: list[Act1VWeightedBattleItemPool]

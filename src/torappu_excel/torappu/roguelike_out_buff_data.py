@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_outer_buff import RoguelikeOuterBuff
+from ..common import BaseStruct
 
 
-class RoguelikeOutBuffData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeOutBuffData(BaseStruct):
     id: str
     buffs: dict[str, RoguelikeOuterBuff]

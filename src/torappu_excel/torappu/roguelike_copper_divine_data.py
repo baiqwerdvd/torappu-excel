@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_copper_divine_result_type import RoguelikeCopperDivineResultType
 from .roguelike_copper_divine_type import RoguelikeCopperDivineType
+from ..common import BaseStruct
 
 
-class RoguelikeCopperDivineData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeCopperDivineData(BaseStruct):
     eventId: str
     groupId: str
     showDesc: str

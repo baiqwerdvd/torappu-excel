@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_control_buff import PlayerBuildingControlBuff
+from ..common import BaseStruct
 
 
-class PlayerBuildingControl(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingControl(BaseStruct):
     buff: PlayerBuildingControlBuff
     apCost: int
     lastUpdateTime: int

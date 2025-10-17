@@ -1,20 +1,15 @@
-from dataclasses import field
-
-from pydantic import BaseModel, ConfigDict
+from msgspec import field
 
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class StringKeyFrames(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StringKeyFrames(BaseStruct):
     level: int
     data: str
 
 
-class CrisisClientDataSeasonInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CrisisClientDataSeasonInfo(BaseStruct):
     seasonId: str
     startTs: int
     endTs: int
@@ -26,16 +21,12 @@ class CrisisClientDataSeasonInfo(BaseModel):
     permBgmHard: str | None
 
 
-class CrisisMapRankInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CrisisMapRankInfo(BaseStruct):
     rewards: list[ItemBundle]
     unlockPoint: int
 
 
-class CrisisTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CrisisTable(BaseStruct):
     seasonInfo: list[CrisisClientDataSeasonInfo]
     meta: str
     unlockCoinLv3: int

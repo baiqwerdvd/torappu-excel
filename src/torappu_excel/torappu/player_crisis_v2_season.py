@@ -1,17 +1,14 @@
-﻿from enum import IntEnum
-
-from pydantic import BaseModel, ConfigDict
+from enum import IntEnum
 
 from .player_crisis_social_info import PlayerCrisisSocialInfo
+from ..common import BaseStruct
 
 
-class PlayerCrisisV2Season(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    coin: int | None = None
+class PlayerCrisisV2Season(BaseStruct):
     permanent: "PlayerCrisisV2Season.PermanentMapInfo"
     temporary: dict[str, "PlayerCrisisV2Season.BasicMapInfo"]
     social: PlayerCrisisSocialInfo
+    coin: int | None = None
 
     class RuneState(IntEnum):
         UNKNOWN = 0
@@ -29,29 +26,23 @@ class PlayerCrisisV2Season(BaseModel):
         COMPLETED = 1
         CLAIMED = 2
 
-    class RewardInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RewardInfo(BaseStruct):
         state: "PlayerCrisisV2Season.NodeState"
         progress: int
 
-    class PermanentMapInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PermanentMapInfo(BaseStruct):
         scoreSingle: list[int]
         comment: list[str]
         exRunes: dict[str, "PlayerCrisisV2Season.RuneState"]
         runePack: dict[str, "PlayerCrisisV2Season.BagState"]
         reward: dict[str, "PlayerCrisisV2Season.RewardInfo"]
-        state: bool
+        state: int
         scoreTotal: list[int]
         rune: dict[str, "PlayerCrisisV2Season.RuneState"]
         challenge: dict[str, "PlayerCrisisV2Season.NodeState"]
 
-    class BasicMapInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        state: bool
+    class BasicMapInfo(BaseStruct):
+        state: int
         scoreTotal: list[int]
         rune: dict[str, "PlayerCrisisV2Season.RuneState"]
         challenge: dict[str, "PlayerCrisisV2Season.NodeState"]

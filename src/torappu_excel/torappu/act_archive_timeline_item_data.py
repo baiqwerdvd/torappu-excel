@@ -1,15 +1,15 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class ActArchiveTimelineItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveTimelineItemData(BaseStruct):
     timelineId: str
     timelineSortId: int
     timelineTitle: str
     timelineDes: str
-    picIdList: list[str] | None = Field(default=None)
-    audioIdList: list[str] | None = Field(default=None)
-    avgIdList: list[str] | None = Field(default=None)
-    storyIdList: list[str] | None = Field(default=None)
-    newsIdList: list[str] | None = Field(default=None)
+    picIdList: list[str] | None = field(default=None)
+    audioIdList: list[str] | None = field(default=None)
+    avgIdList: list[str] | None = field(default=None)
+    storyIdList: list[str] | None = field(default=None)
+    newsIdList: list[str] | None = field(default=None)

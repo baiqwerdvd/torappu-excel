@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_v2_development_type import SandboxV2DevelopmentType
+from ..common import BaseStruct
 
 
-class SandboxV2DevelopmentData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2DevelopmentData(BaseStruct):
     techId: str
     techType: SandboxV2DevelopmentType
     positionX: int

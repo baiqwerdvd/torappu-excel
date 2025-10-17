@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class StorylineConstData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StorylineConstData(BaseStruct):
     recommendHideGuideGroupId: str
     tutorialSelectStorylineId: str
     mainlineStorylineId: str

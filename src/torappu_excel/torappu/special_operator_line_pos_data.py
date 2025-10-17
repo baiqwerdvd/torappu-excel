@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .vector2 import Vector2
+from ..common import BaseStruct
 
 
-class SpecialOperatorLinePosData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SpecialOperatorLinePosData(BaseStruct):
     startPos: Vector2
     endPos: Vector2

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .default_shop_data import DefaultShopData
 from .default_zone_data import DefaultZoneData
+from ..common import BaseStruct
 
 
-class DefaultFirstData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class DefaultFirstData(BaseStruct):
     zoneList: list[DefaultZoneData]
     shopList: list[DefaultShopData] | None

@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .voucher_display_type import VoucherDisplayType
+from ..common import BaseStruct
 
 
-class CharVoucherItemFeature(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CharVoucherItemFeature(BaseStruct):
     displayType: VoucherDisplayType
     id: str

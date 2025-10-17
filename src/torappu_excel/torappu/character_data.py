@@ -1,6 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
-
-from torappu_excel.common import CustomIntEnum
+from msgspec import field
 
 from .attributes_data import AttributesData
 from .blackboard import Blackboard
@@ -14,11 +12,10 @@ from .rarity_rank import RarityRank
 from .shared_models import CharacterData as SharedCharacterData
 from .special_operator_target_type import SpecialOperatorTargetType
 from .talent_data import TalentData
+from ..common import BaseStruct, CustomIntEnum
 
 
-class CharacterData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CharacterData(BaseStruct):
     name: str
     description: str | None
     spTargetType: SpecialOperatorTargetType
@@ -50,24 +47,20 @@ class CharacterData(BaseModel):
     potentialRanks: list["CharacterData.PotentialRank"]
     favorKeyFrames: list["CharacterData.AttributesKeyFrame"] | None
     allSkillLvlup: list["CharacterData.SkillLevelCost"]
-    sortIndex: int | None = Field(default=None)
-    mainPower: "PowerData | None" = Field(default=None)
-    subPower: list["PowerData"] | None = Field(default=None)
-    minPowerId: str | None = Field(default=None)
-    maxPowerId: str | None = Field(default=None)
-    displayTokenDict: dict[str, bool] | None = Field(default=None)
-    classicPotentialItemId: str | None = Field(default=None)
-    tokenKey: str | None = Field(default=None)
+    sortIndex: int | None = field(default=None)
+    mainPower: "PowerData | None" = field(default=None)
+    subPower: list["PowerData"] | None = field(default=None)
+    minPowerId: str | None = field(default=None)
+    maxPowerId: str | None = field(default=None)
+    displayTokenDict: dict[str, bool] | None = field(default=None)
+    classicPotentialItemId: str | None = field(default=None)
+    tokenKey: str | None = field(default=None)
 
-    class SkillLevelCost(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class SkillLevelCost(BaseStruct):
         unlockCond: "SharedCharacterData.UnlockCondition"
         lvlUpCost: list[ItemBundle] | None
 
-    class PotentialRank(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PotentialRank(BaseStruct):
         class TypeEnum(CustomIntEnum):
             BUFF = "BUFF", 0
             CUSTOM = "CUSTOM", 1
@@ -77,84 +70,60 @@ class CharacterData(BaseModel):
         buff: ExternalBuff | None
         equivalentCost: list[ItemBundle] | None
 
-    class AttributesDeltaKeyFrame(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AttributesDeltaKeyFrame(BaseStruct):
         pass
 
-    class UnlockCondition(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class UnlockCondition(BaseStruct):
         phase: EvolvePhase
         level: int
 
-    class TalentDataBundle(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TalentDataBundle(BaseStruct):
         candidates: list[TalentData] | None
 
-    class MasterData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MasterData(BaseStruct):
         level: int
         masterId: str
         talentData: TalentData
 
-    class MainSkill(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MainSkill(BaseStruct):
         skillId: str | None
         overridePrefabKey: str | None
         overrideTokenKey: str | None
         levelUpCostCond: list["CharacterData.MainSkill.SpecializeLevelData"]
         unlockCond: "SharedCharacterData.UnlockCondition"
 
-        class SpecializeLevelData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SpecializeLevelData(BaseStruct):
             unlockCond: "SharedCharacterData.UnlockCondition"
             lvlUpTime: int
             levelUpCost: list[ItemBundle] | None
 
-    class AttributesKeyFrame(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AttributesKeyFrame(BaseStruct):
         level: int
         data: AttributesData
 
-    class PhaseData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PhaseData(BaseStruct):
         characterPrefabKey: str
         rangeId: str | None
         maxLevel: int
         attributesKeyFrames: list["CharacterData.AttributesKeyFrame"]
         evolveCost: list[ItemBundle] | None
 
-    class TraitData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TraitData(BaseStruct):
         unlockCondition: "SharedCharacterData.UnlockCondition"
         requiredPotentialRank: int
         blackboard: list[Blackboard]
         overrideDescripton: str | None
         prefabKey: str | None
         rangeId: str | None
-        additionalDesc: str | None = Field(default=None)
+        additionalDesc: str | None = field(default=None)
 
-    class TraitDataBundle(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TraitDataBundle(BaseStruct):
         candidates: list["CharacterData.TraitData"]
 
-    class EquipTalentDataBundle(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class EquipTalentDataBundle(BaseStruct):
         candidates: list["EquipTalentData"] | None
 
-    class EquipTraitData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class EquipTraitData(BaseStruct):
         additionalDescription: str | None
         unlockCondition: "SharedCharacterData.UnlockCondition"
         requiredPotentialRank: int
@@ -163,14 +132,10 @@ class CharacterData(BaseModel):
         prefabKey: str | None
         rangeId: str | None
 
-    class EquipTraitDataBundle(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class EquipTraitDataBundle(BaseStruct):
         candidates: list["CharacterData.EquipTraitData"] | None
 
-    class PowerData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PowerData(BaseStruct):
         nationId: str | None
         groupId: str | None
         teamId: str | None
@@ -182,7 +147,5 @@ class TokenCharacterData(CharacterData):
     allSkillLvlup: list["CharacterData.SkillLevelCost"] | None  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class MasterDataBundle(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MasterDataBundle(BaseStruct):
     candidates: list["CharacterData.MasterData"] | None

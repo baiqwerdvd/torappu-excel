@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class LMTGSShopOverlaySchedule(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class LMTGSShopOverlaySchedule(BaseStruct):
     gachaPoolId1: str
     gachaPoolId2: str
     picId: str

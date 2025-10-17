@@ -1,10 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerCharSkill(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    unlock: bool
+class PlayerCharSkill(BaseStruct):
+    unlock: int
     skillId: str
     state: int
     specializeLevel: int

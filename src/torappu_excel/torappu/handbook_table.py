@@ -1,19 +1,14 @@
-from pydantic import BaseModel, ConfigDict
-
 from .data_unlock_type import DataUnlockTypeInt
 from .handbook_info_text_view_data import HandBookInfoTextViewData
+from ..common import BaseStruct
 
 
-class StoryTextAudioInfoListItem(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StoryTextAudioInfoListItem(BaseStruct):
     storyText: str | None
     storyTitle: str | None
 
 
-class StoryTextAudioItem(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StoryTextAudioItem(BaseStruct):
     stories: list[StoryTextAudioInfoListItem]
     unLockorNot: bool
     unLockType: DataUnlockTypeInt
@@ -21,9 +16,7 @@ class StoryTextAudioItem(BaseModel):
     unLockString: str
 
 
-class CharHandbook(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CharHandbook(BaseStruct):
     charID: str
     drawName: str
     infoName: str
@@ -31,7 +24,5 @@ class CharHandbook(BaseModel):
     storyTextAudio: list[StoryTextAudioItem]
 
 
-class HandbookTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HandbookTable(BaseStruct):
     char_102_texas: CharHandbook

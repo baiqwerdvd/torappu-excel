@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .storyline_location_type import StorylineLocationType
 from .storyline_mainline_split_data import StorylineMainlineSplitData
+from ..common import BaseStruct
 
 
-class StorylineLocationData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StorylineLocationData(BaseStruct):
     locationId: str
     locationType: StorylineLocationType
     sortId: int

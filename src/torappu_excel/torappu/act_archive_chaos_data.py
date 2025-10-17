@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_archive_chaos_item_data import ActArchiveChaosItemData
+from ..common import BaseStruct
 
 
-class ActArchiveChaosData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveChaosData(BaseStruct):
     chaos: dict[str, ActArchiveChaosItemData]

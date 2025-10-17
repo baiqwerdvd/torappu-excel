@@ -1,13 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
-from torappu_excel.common import CustomIntEnum
-
 from .roguelike_event_type import RoguelikeEventType
+from ..common import BaseStruct, CustomIntEnum
 
 
-class RoguelikeEndingDetailText(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeEndingDetailText(BaseStruct):
     class Type(CustomIntEnum):
         SHOW_CHOICE = "SHOW_CHOICE", 0
         SHOW_RELIC = "SHOW_RELIC", 1

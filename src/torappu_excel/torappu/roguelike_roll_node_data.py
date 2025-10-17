@@ -1,15 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_event_type import RoguelikeEventType
+from ..common import BaseStruct
 
 
-class RoguelikeRollNodeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeRollNodeData(BaseStruct):
     zoneId: str
     groups: dict[str, "RoguelikeRollNodeData.RoguelikeRollNodeGroupData"]
 
-    class RoguelikeRollNodeGroupData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RoguelikeRollNodeGroupData(BaseStruct):
         nodeType: RoguelikeEventType

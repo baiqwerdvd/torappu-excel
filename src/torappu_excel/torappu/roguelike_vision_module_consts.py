@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RoguelikeVisionModuleConsts(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeVisionModuleConsts(BaseStruct):
     maxVision: int
     totemBottomDescription: str
     chestBottomDescription: str

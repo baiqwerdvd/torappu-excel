@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_node_type import SandboxNodeType
+from ..common import BaseStruct
 
 
-class SandboxNodeTypeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxNodeTypeData(BaseStruct):
     nodeType: SandboxNodeType
     name: str
     subName: str

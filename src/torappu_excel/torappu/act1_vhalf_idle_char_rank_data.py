@@ -1,17 +1,12 @@
-from pydantic import BaseModel, ConfigDict
-
 from .evolve_phase import EvolvePhase
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleCharRankData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleCharRankData(BaseStruct):
     evolvePhase: EvolvePhase
     expData: list["Act1VHalfIdleCharRankData.CharRankData"]
 
-    class CharRankData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CharRankData(BaseStruct):
         level: int
         accumulatedExp: int
         exp: int

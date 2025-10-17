@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_trainer_state import PlayerBuildingTrainerState
+from ..common import BaseStruct
 
 
-class PlayerBuildingTrainer(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingTrainer(BaseStruct):
     state: PlayerBuildingTrainerState
     charInstId: int

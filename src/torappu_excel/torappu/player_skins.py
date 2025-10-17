@@ -1,9 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerSkins(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSkins(BaseStruct):
     characterSkins: dict[str, int]
     skinTs: dict[str, int]
-    skinSp: dict[str, bool]
+    skinSp: dict[str, int]

@@ -1,8 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class OpenServerCheckIn(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class OpenServerCheckIn(BaseStruct):
     isAvailable: bool
-    history: list[bool]
+    history: list[int]

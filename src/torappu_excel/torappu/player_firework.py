@@ -1,23 +1,16 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .firework_data import FireworkData
+from ..common import BaseStruct
 
 
-class PlayerFirework(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerFirework(BaseStruct):
     unlock: bool
     plate: "PlayerFirework.PlayerPlate"
     animal: "PlayerFirework.PlayerAnimal"
 
-    class PlayerPlate(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerPlate(BaseStruct):
         unlock: dict[str, int]
         slots: "list[FireworkData.PlateSlotData]"
 
-    class PlayerAnimal(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerAnimal(BaseStruct):
         unlock: dict[str, int]
         select: str

@@ -1,11 +1,10 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .sandbox_v2_craft_item_type import SandboxV2CraftItemType
+from ..common import BaseStruct
 
 
-class SandboxV2CraftItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2CraftItemData(BaseStruct):
     itemId: str
     type: SandboxV2CraftItemType | None
     buildingUnlockDesc: str
@@ -16,4 +15,4 @@ class SandboxV2CraftItemData(BaseModel):
     repairCost: int
     craftGroupId: str
     recipeLevel: int
-    isHidden: bool | None = Field(default=None)
+    isHidden: bool | None = field(default=None)

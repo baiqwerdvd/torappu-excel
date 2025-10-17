@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
 from .recal_rune_stage_data import RecalRuneStageData
+from ..common import BaseStruct
 
 
-class RecalRuneSeasonData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RecalRuneSeasonData(BaseStruct):
     seasonId: str
     sortId: int
     startTs: int

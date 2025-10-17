@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_totem_color_type import RoguelikeTotemColorType
 from .roguelike_totem_linked_node_type_data import RoguelikeTotemLinkedNodeTypeData
 from .roguelike_totem_pos_type import RoguelikeTotemPosType
+from ..common import BaseStruct
 
 
-class RoguelikeTotemBuffData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeTotemBuffData(BaseStruct):
     totemId: str
     color: RoguelikeTotemColorType
     pos: RoguelikeTotemPosType

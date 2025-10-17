@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .profession_id import ProfessionID
 from .rarity_rank import RarityRank  # noqa: F401 # pyright: ignore[reportUnusedImport]
+from ..common import BaseStruct
 
 
-class RoguelikeUpgradeTicketFeature(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeUpgradeTicketFeature(BaseStruct):
     id: str
     profession: int
     rarity: int

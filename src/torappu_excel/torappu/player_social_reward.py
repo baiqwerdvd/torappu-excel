@@ -1,10 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerSocialReward(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    canReceive: bool
+class PlayerSocialReward(BaseStruct):
+    canReceive: int
     first: int
     assistAmount: int
     comfortAmount: int

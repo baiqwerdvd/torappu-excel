@@ -1,25 +1,19 @@
-﻿from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class PlayerBuildingPowerBuff(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingPowerBuff(BaseStruct):
     laborSpeed: float
     apCost: "PlayerBuildingPowerBuff.ApCost"
-    global_: "PlayerBuildingPowerBuff.Global" = Field(alias="global")
+    global_: "PlayerBuildingPowerBuff.Global" = field(name="global")
     manufacture: "PlayerBuildingPowerBuff.Manufacture"
 
-    class ApCost(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+    class ApCost(BaseStruct):
+        self_: dict[str, int] = field(name="self")
 
-        self_: dict[str, int] = Field(alias="self")
-
-    class Global(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Global(BaseStruct):
         roomCnt: dict[str, int]
 
-    class Manufacture(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Manufacture(BaseStruct):
         charSpeed: dict[str, float | int]

@@ -1,11 +1,9 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class HandbookDisplayCondition(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HandbookDisplayCondition(BaseStruct):
     class DisplayType(StrEnum):
         DISPLAY_IF_CHAREXIST = "DISPLAY_IF_CHAREXIST"
         INVISIBLE_IF_CHAREXIST = "INVISIBLE_IF_CHAREXIST"

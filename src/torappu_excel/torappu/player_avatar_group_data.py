@@ -1,12 +1,9 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_avatar_group_type import PlayerAvatarGroupType
+from ..common import BaseStruct
 
 
-class PlayerAvatarGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerAvatarGroupData(BaseStruct):
     avatarType: PlayerAvatarGroupType
     typeName: str
-    sortId: int | None = None
     avatarIdList: list[str]
+    sortId: int | None = None

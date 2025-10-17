@@ -1,9 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class OpenServerChainLogin(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class OpenServerChainLogin(BaseStruct):
     isAvailable: bool
     nowIndex: int
-    history: list[bool]
+    history: list[int]

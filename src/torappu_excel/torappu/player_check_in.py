@@ -1,20 +1,16 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerCheckIn(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    canCheckIn: bool
+class PlayerCheckIn(BaseStruct):
+    canCheckIn: int
     checkInGroupId: str
     checkInRewardIndex: int
-    checkInHistory: list[bool]
+    checkInHistory: list[int]
     newbiePackage: "PlayerCheckIn.PlayerNewbiePackage"
     showCount: int
     longTermRecvRecord: dict[str, int]
 
-    class PlayerNewbiePackage(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerNewbiePackage(BaseStruct):
         open: bool
         groupId: str
         checkInHistory: list[int]

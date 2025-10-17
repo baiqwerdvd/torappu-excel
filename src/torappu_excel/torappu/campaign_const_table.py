@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class CampaignConstTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CampaignConstTable(BaseStruct):
     systemPreposedStage: str
     rotateStartTime: int
     rotatePreposedStage: str

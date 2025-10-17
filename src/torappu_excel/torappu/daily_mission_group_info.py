@@ -1,17 +1,13 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class DailyMissionGroupInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class DailyMissionGroupInfo(BaseStruct):
     startTime: int
     endTime: int
     tagState: str | None
     periodList: list["DailyMissionGroupInfo.periodInfo"]
 
-    class periodInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class periodInfo(BaseStruct):
         missionGroupId: str
         rewardGroupId: str
         period: list[int]

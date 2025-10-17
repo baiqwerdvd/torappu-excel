@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .dyn_entry_switch_info import DynEntrySwitchInfo
+from ..common import BaseStruct
 
 
-class ActivityDynEntrySwitchData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityDynEntrySwitchData(BaseStruct):
     entrySwitchInfo: dict[str, DynEntrySwitchInfo]
     randomEntrySwitchInfo: dict[str, DynEntrySwitchInfo]

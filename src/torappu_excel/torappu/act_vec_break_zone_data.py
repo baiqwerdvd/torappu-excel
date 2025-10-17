@@ -1,15 +1,11 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class ActVecBreakZoneData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActVecBreakZoneData(BaseStruct):
     offenseZoneDict: dict[str, "ActVecBreakZoneData.ZoneData"]
     defenseZoneDict: dict[str, "ActVecBreakZoneData.ZoneData"]
 
-    class ZoneData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ZoneData(BaseStruct):
         zoneId: str
         zoneName: str | None
         startTs: int

@@ -1,9 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_six_star_milestone_state import PlayerSixStarMilestoneState
+from ..common import BaseStruct
 
 
-class PlayerSixStarMilestoneItem(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSixStarMilestoneItem(BaseStruct):
     state: PlayerSixStarMilestoneState

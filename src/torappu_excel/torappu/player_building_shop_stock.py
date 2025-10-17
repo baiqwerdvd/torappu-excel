@@ -1,12 +1,9 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .date_time import DateTime
 from .player_room_state import PlayerRoomState
+from ..common import BaseStruct
 
 
-class PlayerBuildingShopStock(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingShopStock(BaseStruct):
     buffSpeed: float
     state: PlayerRoomState
     formulaId: str

@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_archive_capsule_item_data import ActArchiveCapsuleItemData
+from ..common import BaseStruct
 
 
-class ActArchiveCapsuleData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveCapsuleData(BaseStruct):
     capsule: dict[str, ActArchiveCapsuleItemData]

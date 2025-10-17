@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_v2_base_unlock_func_display_type import SandboxV2BaseUnlockFuncDisplayType
 from .sandbox_v2_base_unlock_func_type import SandboxV2BaseUnlockFuncType
+from ..common import BaseStruct
 
 
-class SandboxV2BaseUpdateFunctionPreviewDetailData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2BaseUpdateFunctionPreviewDetailData(BaseStruct):
     funcId: str
     unlockType: SandboxV2BaseUnlockFuncType
     typeTitle: str

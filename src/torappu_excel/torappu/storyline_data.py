@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .storyline_location_data import StorylineLocationData
 from .storyline_type import StorylineType
+from ..common import BaseStruct
 
 
-class StorylineData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class StorylineData(BaseStruct):
     storylineId: str
     storylineType: StorylineType
     sortId: int

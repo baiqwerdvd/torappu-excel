@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .mission_display_rewards import MissionDisplayRewards
 from .mission_type import MissionType
+from ..common import BaseStruct
 
 
-class MissionGroup(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MissionGroup(BaseStruct):
     id: str
     title: str | None
     type: MissionType

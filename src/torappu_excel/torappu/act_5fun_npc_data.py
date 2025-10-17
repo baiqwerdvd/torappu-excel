@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .npc_strategy import NpcStrategy
+from ..common import BaseStruct
 
 
-class Act5FunNpcData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act5FunNpcData(BaseStruct):
     npcId: str
     avatarId: str
     name: str

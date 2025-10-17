@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .activity_custom_data import ActivityCustomData
 from .retro_act_data import RetroActData
@@ -7,11 +7,10 @@ from .retro_trail_data import RetroTrailData
 from .retro_trail_rule_data import RetroTrailRuleData
 from .stage_data import StageData
 from .stage_valid_info import StageValidInfo
+from ..common import BaseStruct
 
 
-class RetroStageTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RetroStageTable(BaseStruct):
     zoneToRetro: dict[str, str]
     stageValidInfo: dict[str, StageValidInfo]
     retroActList: dict[str, RetroActData]
@@ -25,5 +24,5 @@ class RetroStageTable(BaseModel):
     retroDetail: str
     retroPreShowTime: int
     retroUnlockCost: int
-    stages: dict[str, RetroStageOverrideInfo] | None = Field(default=None)
-    retroCoinMax: int | None = Field(default=None)
+    stages: dict[str, RetroStageOverrideInfo] | None = field(default=None)
+    retroCoinMax: int | None = field(default=None)

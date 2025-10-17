@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_medal_custom_layout import PlayerMedalCustomLayout
+from ..common import BaseStruct
 
 
-class PlayerMedalCustom(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerMedalCustom(BaseStruct):
     currentIndex: str
     customs: dict[str, PlayerMedalCustomLayout]

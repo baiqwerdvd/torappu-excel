@@ -1,17 +1,12 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class ActSandboxData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActSandboxData(BaseStruct):
     milestoneDataList: list["ActSandboxData.MilestoneData"]
     milestoneTokenId: str
 
-    class MilestoneData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MilestoneData(BaseStruct):
         milestoneId: str
         orderId: int
         tokenId: str

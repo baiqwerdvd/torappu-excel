@@ -1,11 +1,9 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class LevelData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class LevelData(BaseStruct):
     class Difficulty(StrEnum):
         NONE = "NONE"
         NORMAL = "NORMAL"

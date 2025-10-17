@@ -1,19 +1,14 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class Act45SideData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act45SideData(BaseStruct):
     charData: dict[str, "Act45SideData.Act45SideCharData"]
     mailData: dict[str, "Act45SideData.Act45SideMailData"]
     constData: "Act45SideData.Act45SideConstData"
     zoneAdditionDataMap: dict[str, "Act45SideData.Act45SideZoneAdditionData"]
 
-    class Act45SideCharData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act45SideCharData(BaseStruct):
         charId: str
         sortId: int
         charIllustId: str
@@ -21,9 +16,7 @@ class Act45SideData(BaseModel):
         charName: str
         unlockStageId: str
 
-    class Act45SideMailData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act45SideMailData(BaseStruct):
         mailId: str
         sortId: int
         charName: str
@@ -33,15 +26,11 @@ class Act45SideData(BaseModel):
         sendTime: int
         rewards: list[ItemBundle]
 
-    class Act45SideZoneAdditionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act45SideZoneAdditionData(BaseStruct):
         zoneId: str
         unlockText: str
 
-    class Act45SideConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act45SideConstData(BaseStruct):
         entryStageId: str
         toastCharUnlock: str
         toastLivePageUnlock: str

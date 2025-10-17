@@ -1,11 +1,9 @@
-﻿from enum import StrEnum
+from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class CartComponents(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CartComponents(BaseStruct):
     compId: str
     sortId: int
     type: "CartComponents.CartAccessoryType"

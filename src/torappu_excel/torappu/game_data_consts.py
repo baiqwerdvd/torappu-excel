@@ -1,13 +1,12 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .item_bundle import ItemBundle
 from .sub_profession_attack_type import SubProfessionAttackType
 from .term_description_data import TermDescriptionData
+from ..common import BaseStruct
 
 
-class GameDataConsts(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class GameDataConsts(BaseStruct):
     addedRewardDisplayZone: str
     advancedGachaCrystalCost: int
     announceWebBusType: str
@@ -130,22 +129,18 @@ class GameDataConsts(BaseModel):
     isSoCharEnabled: bool
     isVoucherClassicItemDistinguishable: bool = False
     operatorRecordsStartTime: int = -1
-    subProfessionDamageTypePairs: dict[str, SubProfessionAttackType] = Field(default_factory=dict)
+    subProfessionDamageTypePairs: dict[str, SubProfessionAttackType] = field(default_factory=dict)
     crisisUnlockStage: str = ""
     isSandboxPermFuncEnabled: bool = False
-    classicProtectChar: list[str] = Field(default_factory=list)
+    classicProtectChar: list[str] = field(default_factory=list)
     continuousActionOpen: bool = False
     defaultMinContinuousBattleTimes: int = -1
     defaultMaxContinuousBattleTimes: int = -1
 
-    class CharAssistRefreshTimeState(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CharAssistRefreshTimeState(BaseStruct):
         Hour: int
         Minute: int
 
-    class FeverGameData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class FeverGameData(BaseStruct):
         feverDuration: float
         feverNeed: float

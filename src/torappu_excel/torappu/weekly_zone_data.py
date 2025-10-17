@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .weekly_type import WeeklyType
+from ..common import BaseStruct
 
 
-class WeeklyZoneData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class WeeklyZoneData(BaseStruct):
     daysOfWeek: list[int]
     type: WeeklyType

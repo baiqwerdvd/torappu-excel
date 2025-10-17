@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .stage_data import StageData
+from ..common import BaseStruct
 
 
-class TimelyDropInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class TimelyDropInfo(BaseStruct):
     dropInfo: dict[str, StageData.StageDropInfo]

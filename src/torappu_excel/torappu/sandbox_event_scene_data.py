@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_event_type import SandboxEventType
+from ..common import BaseStruct
 
 
-class SandboxEventSceneData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxEventSceneData(BaseStruct):
     choiceSceneId: str
     type: SandboxEventType
     title: str

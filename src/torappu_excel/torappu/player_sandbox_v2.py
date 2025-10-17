@@ -1,19 +1,18 @@
-﻿from enum import IntEnum, StrEnum
+from enum import IntEnum, StrEnum
 
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .player_squad_item import PlayerSquadItem
 from .sandbox_v2_enemy_rush_type import SandboxV2EnemyRushType
-from .sandbox_v2_node_type import SandboxV2NodeType
-from .sandbox_v2_quest_line_badge_type import SandboxV2QuestLineBadgeType
+from .sandbox_v2_node_type import SandboxV2NodeTypeEnum
+from .sandbox_v2_quest_line_badge_type import SandboxV2QuestLineBadgeTypeEnum
 from .sandbox_v2_rare_animal_type import SandboxV2RareAnimalType
-from .sandbox_v2_season_type import SandboxV2SeasonType
-from .sandbox_v2_weather_type import SandboxV2WeatherType
+from .sandbox_v2_season_type import SandboxV2SeasonTypeEnum
+from .sandbox_v2_weather_type import SandboxV2WeatherTypeEnum
+from ..common import BaseStruct
 
 
-class PlayerSandboxV2(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSandboxV2(BaseStruct):
     status: "PlayerSandboxV2.Status"
     base: "PlayerSandboxV2.BaseInfo"
     main: "PlayerSandboxV2.Dungeon"
@@ -52,9 +51,7 @@ class PlayerSandboxV2(BaseModel):
         EXPLORED = 1
         COMPLETED = 2
 
-    class Status(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Status(BaseStruct):
         state: "PlayerSandboxV2.GameState"
         ts: int
         ver: int
@@ -64,10 +61,7 @@ class PlayerSandboxV2(BaseModel):
         mode: int
         exploreMode: bool
 
-    class BaseInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        ver: int | None = None
+    class BaseInfo(BaseStruct):
         baseLv: int
         portableUnlock: bool
         outpostUnlock: bool
@@ -75,10 +69,9 @@ class PlayerSandboxV2(BaseModel):
         upgradeProgress: list[list[int]]
         repairDiscount: int
         bossKill: list[str]
+        ver: int | None = None
 
-    class Dungeon(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Dungeon(BaseStruct):
         game: "PlayerSandboxV2.Dungeon.Game"
         map: "PlayerSandboxV2.Dungeon.Map"
         stage: "PlayerSandboxV2.Dungeon.Stage"
@@ -87,66 +80,48 @@ class PlayerSandboxV2(BaseModel):
         event: "PlayerSandboxV2.Dungeon.EventGroup"
         report: "PlayerSandboxV2.Dungeon.Report"
 
-        class Game(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Game(BaseStruct):
             mapId: str
             day: int
             maxDay: int
             ap: int
             maxAp: int
 
-        class Zone(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
+        class Zone(BaseStruct):
+            state: int
+            weather: SandboxV2WeatherTypeEnum
 
-            state: bool
-            weather: SandboxV2WeatherType
-
-        class NodeRelate(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class NodeRelate(BaseStruct):
             pos: list[float]
             adj: list[str]
             depth: int
 
-        class Node(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Node(BaseStruct):
             zone: str
-            type: SandboxV2NodeType
+            type: SandboxV2NodeTypeEnum
             state: "PlayerSandboxV2.NodeState"
             relate: "PlayerSandboxV2.Dungeon.NodeRelate"
             stageId: str
             weatherLv: int
 
-        class Season(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-            type: SandboxV2SeasonType
+        class Season(BaseStruct):
+            type: SandboxV2SeasonTypeEnum
             remain: int
             total: int
 
-        class Map(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Map(BaseStruct):
             season: "PlayerSandboxV2.Dungeon.Season"
             zone: dict[str, "PlayerSandboxV2.Dungeon.Zone"]
             node: dict[str, "PlayerSandboxV2.Dungeon.Node"]
 
-        class Stage(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Stage(BaseStruct):
             node: dict[str, "PlayerSandboxV2.Dungeon.NodeStage"]
 
-        class Report(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Report(BaseStruct):
             settle: "PlayerSandboxV2.Dungeon.ReportSettle"
             daily: "PlayerSandboxV2.Dungeon.ReportDaily"
 
-        class ReportDetail(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ReportDetail(BaseStruct):
             dayScore: int
             hasRift: bool
             riftScore: int
@@ -156,36 +131,26 @@ class PlayerSandboxV2(BaseModel):
             home: dict[str, int]
             make: "PlayerSandboxV2.Dungeon.ReportMake"
 
-        class ReportMake(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ReportMake(BaseStruct):
             tactical: int
             food: int
 
-        class ReportDaily(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ReportDaily(BaseStruct):
             isLoad: bool
             fromDay: int
             seasonChange: bool
             mission: "PlayerSandboxV2.Dungeon.ReportMission"
             baseProduct: "list[PlayerSandboxV2.Dungeon.ReportGainItem]"
 
-        class ReportMission(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ReportMission(BaseStruct):
             squad: list[list[int]]
             reward: "list[PlayerSandboxV2.Dungeon.ReportGainItem]"
 
-        class ReportGainItem(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ReportGainItem(BaseStruct):
             id: str
             count: int
 
-        class ReportSettle(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ReportSettle(BaseStruct):
             score: int
             scoreRatio: str
             techToken: int
@@ -194,122 +159,93 @@ class PlayerSandboxV2(BaseModel):
             shopCoinMax: bool
             detail: "PlayerSandboxV2.Dungeon.ReportDetail"
 
-        class EntityStatus(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class EntityStatus(BaseStruct):
             key: str
             pos: list[int]
-            isDead: bool
+            isDead: int
             hpRatio: int
 
-        class BaseInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class BaseInfo(BaseStruct):
             key: str
             pos: list[int]
-            isDead: bool
+            isDead: int
             hpRatio: int
 
-        class Portable(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Portable(BaseStruct):
             key: str
             pos: list[int]
-            isDead: bool
+            isDead: int
             hpRatio: int
 
-        class Nest(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Nest(BaseStruct):
             key: str
             pos: list[int]
-            isDead: bool
+            isDead: int
             hpRatio: int
 
-        class Cave(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Cave(BaseStruct):
+            key: str
+            pos: list[int]
+            isDead: int
+            hpRatio: int
             extraParam: int | None = None
+
+        class Gate(BaseStruct):
             key: str
             pos: list[int]
-            isDead: bool
+            isDead: int
             hpRatio: int
 
-        class Gate(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Mine(BaseStruct):
             key: str
             pos: list[int]
-            isDead: bool
+            isDead: int
             hpRatio: int
 
-        class Mine(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-            key: str
-            pos: list[int]
-            isDead: bool
-            hpRatio: int
-
-        class Selection(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Selection(BaseStruct):
             count: list[int]
             key: str
             pos: list[int]
-            isDead: bool
+            isDead: int
             hpRatio: int
 
-        class Collect(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Collect(BaseStruct):
             count: list[int]
             extraParam: int
             key: str
             pos: list[int]
-            isDead: bool
+            isDead: int
             hpRatio: int
 
-        class Hunt(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Hunt(BaseStruct):
             key: str
             count: list[int]
 
-        class Trap(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Trap(BaseStruct):
             key: str
             pos: list[int]
-            isDead: bool
+            isDead: int
             hpRatio: int
 
-        class Building(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Building(BaseStruct):
             key: str
             pos: list[int]
             hpRatio: int
             dir: int
 
-        class CatchAnimal(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class CatchAnimal(BaseStruct):
             room: int
             enemy: "list[PlayerSandboxV2.Dungeon.CatchAnimal.CatchAnimalInfo]"
 
-            class CatchAnimalInfo(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class CatchAnimalInfo(BaseStruct):
                 id: str
                 count: int
 
-        class NodeStage(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class NodeStage(BaseStruct):
             id: str
             state: "PlayerSandboxV2.StageState"
             view: str
+            action: list[list[int]]
             base: "list[PlayerSandboxV2.Dungeon.BaseInfo] | None" = None
             port: "list[PlayerSandboxV2.Dungeon.Portable] | None" = None
             nest: "list[PlayerSandboxV2.Dungeon.Nest] | None" = None
@@ -321,7 +257,6 @@ class PlayerSandboxV2(BaseModel):
             hunt: "list[PlayerSandboxV2.Dungeon.Hunt] | None" = None
             trap: "list[PlayerSandboxV2.Dungeon.Trap] | None" = None
             building: "list[PlayerSandboxV2.Dungeon.Building] | None" = None
-            action: list[list[int]]
             actionKill: list[list[int]] | None = None
             animal: "list[PlayerSandboxV2.Dungeon.CatchAnimal] | None" = None
 
@@ -331,21 +266,15 @@ class PlayerSandboxV2(BaseModel):
             SRC_MARKET = 2
             SRC_RIFT_MAIN = 3
 
-        class FloatSource(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class FloatSource(BaseStruct):
             type: "PlayerSandboxV2.Dungeon.FloatSourceType"
             id: str
 
-        class EnemyRushBossStatus(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class EnemyRushBossStatus(BaseStruct):
             hpRatio: int
             modeIndex: int
 
-        class EnemyRush(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class EnemyRush(BaseStruct):
             enemyRushType: SandboxV2EnemyRushType
             groupKey: str
             state: int
@@ -353,184 +282,134 @@ class PlayerSandboxV2(BaseModel):
             path: list[str]
             enemy: list[int]
             boss: dict[str, "PlayerSandboxV2.Dungeon.EnemyRushBossStatus"]
-            badge: SandboxV2QuestLineBadgeType
+            badge: SandboxV2QuestLineBadgeTypeEnum
             src: "PlayerSandboxV2.Dungeon.FloatSource"
 
-        class RareAnimal(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RareAnimal(BaseStruct):
             rareAnimalType: SandboxV2RareAnimalType
             enemyId: str
             enemyGroupKey: str
             day: int
             path: list[str]
-            badge: SandboxV2QuestLineBadgeType
+            badge: SandboxV2QuestLineBadgeTypeEnum
             src: "PlayerSandboxV2.Dungeon.FloatSource"
             extra: "PlayerSandboxV2.Dungeon.RareAnimalExtraInfo"
 
-        class RareAnimalExtraInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RareAnimalExtraInfo(BaseStruct):
             hpRatio: int
             found: bool
 
-        class Enemy(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Enemy(BaseStruct):
             enemyRush: dict[str, "PlayerSandboxV2.Dungeon.EnemyRush"]
             rareAnimal: dict[str, "PlayerSandboxV2.Dungeon.RareAnimal"]
 
-        class NpcGroup(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class NpcGroup(BaseStruct):
             node: dict[str, "list[PlayerSandboxV2.Dungeon.NpcGroup.Npc]"]
             favor: dict[str, int]
 
-            class Npc(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Npc(BaseStruct):
                 id: str
                 instId: int
-                type: bool
+                type: int
                 enable: bool
                 day: int
-                dialog: dict[int, "PlayerSandboxV2.Dungeon.NpcGroup.Npc.NpcMeta"]
-                badge: SandboxV2QuestLineBadgeType
+                dialog: dict[str, "PlayerSandboxV2.Dungeon.NpcGroup.Npc.NpcMeta"]
+                badge: SandboxV2QuestLineBadgeTypeEnum
                 src: "PlayerSandboxV2.Dungeon.FloatSource"
 
-                class NpcMeta(BaseModel):
-                    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+                class NpcMeta(BaseStruct):
                     gacha: "list[PlayerSandboxV2.Dungeon.NpcGroup.Npc.NpcMeta.GachaItemPair] | None" = None
 
-                    class GachaItemPair(BaseModel):
-                        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+                    class GachaItemPair(BaseStruct):
                         count: int
                         id: str
                         idx: int
 
-        class Effect(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Effect(BaseStruct):
             instId: int
             id: str
             day: int
 
-        class EventGroup(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class EventGroup(BaseStruct):
             node: dict[str, "list[PlayerSandboxV2.Dungeon.EventGroup.Event]"]
             effect: "list[PlayerSandboxV2.Dungeon.Effect]"
 
-            class Event(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class Event(BaseStruct):
                 id: str
                 instId: int
                 scene: str
                 state: int
-                badge: SandboxV2QuestLineBadgeType
+                badge: SandboxV2QuestLineBadgeTypeEnum
                 src: "PlayerSandboxV2.Dungeon.FloatSource"
 
-    class Troop(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        food: dict[int, "PlayerSandboxV2.Troop.CharFood"]
+    class Troop(BaseStruct):
+        food: dict[str, "PlayerSandboxV2.Troop.CharFood"]
         squad: "list[PlayerSandboxV2.Troop.Squad]"
         usedChar: list[int]
 
-        class CharFood(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class CharFood(BaseStruct):
             id: str
             sub: list[str]
             day: int
 
-        class Squad(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Squad(BaseStruct):
             slots: list[PlayerSquadItem]
             tools: list[str]
 
-    class Cook(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Cook(BaseStruct):
         drink: int
         extraDrink: int
         book: dict[str, int]
         food: dict[str, "PlayerSandboxV2.Cook.Food"]
 
-        class Food(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Food(BaseStruct):
             id: str
             sub: list[str]
             count: int
 
-    class Build(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Build(BaseStruct):
         book: dict[str, int]
         building: dict[str, int]
         tactical: dict[str, int]
         animal: dict[str, int]
 
-    class Bag(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Bag(BaseStruct):
         material: dict[str, int]
         craft: list[str]
 
-    class Bank(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Bank(BaseStruct):
         book: list[str]
         coin: dict[str, int]
 
-    class Tech(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Tech(BaseStruct):
         token: int
         cent: int
         unlock: list[str]
 
-    class QuestGroup(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class QuestGroup(BaseStruct):
         pending: "list[PlayerSandboxV2.QuestGroup.Quest]"
         complete: list[str]
 
-        class Quest(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Quest(BaseStruct):
             id: str
-            state: bool
+            state: int
             progIdx: int
             progress: list[list[int]]
 
-    class Shop(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Shop(BaseStruct):
         unlock: bool
         day: int
         slots: "list[PlayerSandboxV2.Shop.ShopSlotData]"
 
-        class ShopSlotData(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class ShopSlotData(BaseStruct):
             id: str
             count: int
             price: int | None = None
 
-    class Month(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Month(BaseStruct):
         rushPass: list[str]
 
-    class RiftInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RiftInfo(BaseStruct):
         isUnlocked: bool
         reserveTimes: dict[str, int]
         difficultyLvMax: dict[str, int]
@@ -541,15 +420,11 @@ class PlayerSandboxV2(BaseModel):
         settleInfo: "PlayerSandboxV2.RiftInfo.SettleInfo | None"
         randomRemain: int | None = None
 
-        class RewardItem(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RewardItem(BaseStruct):
             id: str
             count: int
 
-        class Reservation(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Reservation(BaseStruct):
             instId: int
             rift: str
             mainTarget: str
@@ -567,143 +442,103 @@ class PlayerSandboxV2(BaseModel):
             SETTLE = "SETTLE"
             INVALID = "INVALID"
 
-        class GameInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class GameInfo(BaseStruct):
             status: "PlayerSandboxV2.RiftInfo.RiftGameStatus"
             mainProgress: list[int]
             subProgress: list[int]
             mainFail: bool
             pin: "PlayerSandboxV2.RiftInfo.GameInfo.RiftFloat"
 
-            class RiftFloat(BaseModel):
-                model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+            class RiftFloat(BaseStruct):
                 nodeId: str
-                badge: SandboxV2QuestLineBadgeType
+                badge: SandboxV2QuestLineBadgeTypeEnum
                 src: "PlayerSandboxV2.Dungeon.FloatSource"
 
-        class SettleReward(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SettleReward(BaseStruct):
             main: "list[PlayerSandboxV2.RiftInfo.RewardItem]"
             sub: "list[PlayerSandboxV2.RiftInfo.RewardItem]"
 
-        class SettleInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SettleInfo(BaseStruct):
             reward: "PlayerSandboxV2.RiftInfo.SettleReward"
             portHp: int
 
-    class Supply(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Supply(BaseStruct):
         unlock: bool
         enable: bool
         slotCnt: int
         char: list[int]
 
-    class Expedition(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Expedition(BaseStruct):
         squad: "list[PlayerSandboxV2.Expedition.Squad]"
 
-        class Squad(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Squad(BaseStruct):
             id: str
             day: int
             char: list[int]
 
-    class Save(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Save(BaseStruct):
         day: int
         maxAp: int
         season: "PlayerSandboxV2.Dungeon.Season"
         ts: int
         slot: int
 
-    class Archive(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Archive(BaseStruct):
         save: "list[PlayerSandboxV2.Save]"
         nextLoadTs: int
         loadTs: int
         daily: "PlayerSandboxV2.Save | None"
         loadTimes: int
 
-    class Collect(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Collect(BaseStruct):
         pending: "PlayerSandboxV2.Collect.Pending"
         complete: "PlayerSandboxV2.Collect.Complete"
 
-        class Pending(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Pending(BaseStruct):
             achievement: dict[str, list[int]]
 
-        class Complete(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Complete(BaseStruct):
             achievement: list[str]
             quest: list[str]
             music: list[str]
 
-    class Buff(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Buff(BaseStruct):
         rune: "PlayerSandboxV2.Buff.Runes"
 
-        class Runes(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-            global_: list[str] = Field(alias="global")
+        class Runes(BaseStruct):
+            global_: list[str] = field(name="global")
             node: dict[str, list[str]]
             char: dict[str, list[str]]
 
-    class Racing(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Racing(BaseStruct):
         unlock: bool
         bag: "PlayerSandboxV2.Racing.RacerBag"
         bagTmp: "PlayerSandboxV2.Racing.TempRacerBag"
         token: int
 
-        class RacerName(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RacerName(BaseStruct):
             prefix: str
             suffix: str
 
-        class RacerTalent(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RacerTalent(BaseStruct):
             born: str | None
             learned: str | None
 
-        class RacerBaseInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RacerBaseInfo(BaseStruct):
             id: str
             inst: int
             level: int
             attrib: list[int]
             skill: "PlayerSandboxV2.Racing.RacerTalent"
 
-        class TempRacerInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class TempRacerInfo(BaseStruct):
             id: str
             inst: int
             level: int
             attrib: list[int]
             skill: "PlayerSandboxV2.Racing.RacerTalent"
 
-        class RacerInfo(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RacerInfo(BaseStruct):
             name: "PlayerSandboxV2.Racing.RacerName"
             mark: bool
             medal: list[str]
@@ -713,26 +548,18 @@ class PlayerSandboxV2(BaseModel):
             attrib: list[int]
             skill: "PlayerSandboxV2.Racing.RacerTalent"
 
-        class RacerBagBase(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RacerBagBase(BaseStruct):
             cap: int
 
-        class TempRacerBag(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class TempRacerBag(BaseStruct):
             racer: dict[str, "PlayerSandboxV2.Racing.TempRacerInfo"]
             cap: int
 
-        class RacerBag(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RacerBag(BaseStruct):
             racer: dict[str, "PlayerSandboxV2.Racing.RacerInfo"]
             cap: int
 
-    class Challenge(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Challenge(BaseStruct):
         unlock: dict[str, list[int]]
         status: "PlayerSandboxV2.Challenge.ChallengeStatus | None"
         cur: "PlayerSandboxV2.Challenge.Current | None"
@@ -748,17 +575,13 @@ class PlayerSandboxV2(BaseModel):
             CHALLENGE_SETTLE = 2
             UNDEFINED = 3
 
-        class Current(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Current(BaseStruct):
             startDay: int
             startLoadTimes: int
             hardRatio: int
             enemyKill: int
 
-        class History(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class History(BaseStruct):
             startDay: int
             startLoadTimes: int
             ts: int

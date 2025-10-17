@@ -1,15 +1,12 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sub_profession_data import SubProfessionData
 from .uni_equip_data import UniEquipData, UniEquipDataOld
 from .uni_equip_mission_data import UniEquipMissionData, UniEquipMissionDataOld
 from .uni_equip_time_info import UniEquipTimeInfo
 from .uni_equip_type_info import UniEquipTypeInfo
+from ..common import BaseStruct
 
 
-class UniEquipTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class UniEquipTable(BaseStruct):
     equipDict: dict[str, UniEquipData]
     missionList: dict[str, UniEquipMissionData]
     subProfDict: dict[str, SubProfessionData]
@@ -19,9 +16,7 @@ class UniEquipTable(BaseModel):
     equipTrackDict: list[UniEquipTimeInfo]
 
 
-class UniEquipTableOld(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class UniEquipTableOld(BaseStruct):
     equipDict: dict[str, UniEquipDataOld]
     missionList: dict[str, UniEquipMissionDataOld]
     subProfDict: dict[str, SubProfessionData]

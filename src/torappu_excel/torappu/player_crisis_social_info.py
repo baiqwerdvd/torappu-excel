@@ -1,15 +1,11 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerCrisisSocialInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisisSocialInfo(BaseStruct):
     assistCnt: int
-    maxPnt: int
+    maxPnt: str
     chars: "list[PlayerCrisisSocialInfo.AssistChar]"
 
-    class AssistChar(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AssistChar(BaseStruct):
         charId: str
         cnt: int

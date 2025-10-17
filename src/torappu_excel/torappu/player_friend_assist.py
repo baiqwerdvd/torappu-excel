@@ -1,13 +1,10 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_squad_tmpl import PlayerSquadTmpl
+from ..common import BaseStruct
 
 
-class PlayerFriendAssist(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerFriendAssist(BaseStruct):
     charInstId: int
-    currentTmpl: str | None = None
     skillIndex: int
     currentEquip: str
     tmpl: dict[str, PlayerSquadTmpl] | None = None
+    currentTmpl: str | None = None

@@ -1,12 +1,9 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .auto_chess_game_state import AutoChessGameState
 from .shared_consts import SharedConsts
+from ..common import BaseStruct
 
 
-class AutoChessGame(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class AutoChessGame(BaseStruct):
     startTs: str
     seed: int
     mode: str
@@ -25,23 +22,17 @@ class AutoChessGame(BaseModel):
     table: "AutoChessGame.Table"
     buff: "AutoChessGame.Buff"
 
-    class Effect(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Effect(BaseStruct):
         instId: int
         effectId: str
         ts: int
         startRound: int
 
-    class Health(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Health(BaseStruct):
         hp: int
         shield: int
 
-    class Store(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Store(BaseStruct):
         lv: int
         coin: int
         isForzen: bool
@@ -50,88 +41,64 @@ class AutoChessGame(BaseModel):
         charGoods: dict[int, "AutoChessGame.AutoChessCharGoods"]
         trapGoods: dict[int, "AutoChessGame.AutoChessTrapGoods"]
 
-    class Table(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Table(BaseStruct):
         chars: "list[AutoChessGame.AutoChessChar]"
         trap: "list[AutoChessGame.AutoChessTrap]"
         recruitCard: "AutoChessGame.Table.RecruitCard"
         spellUsing: dict[int, "AutoChessGame.Table.Spell"]
         gameInfo: "AutoChessGame.AutoChessGameInfo"
 
-        class RecruitCard(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class RecruitCard(BaseStruct):
             instId: int
             effect: "list[AutoChessGame.AutoChessCharGoods]"
 
-        class Spell(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class Spell(BaseStruct):
             instId: int
             chessId: str
             startRound: int
             activated: bool
 
-    class AutoChessGameInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AutoChessGameInfo(BaseStruct):
         chessInstMap: dict[int, "AutoChessGame.AutoChessGameInfo.BattleChessInst"]
 
-        class BattleChessInst(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class BattleChessInst(BaseStruct):
             instId: int
             isToken: bool
             dir: "SharedConsts.Direction"
             buildSeq: int
 
-    class AutoChessCharGoods(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AutoChessCharGoods(BaseStruct):
         id: str
         price: int
 
-    class AutoChessTrapGoods(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AutoChessTrapGoods(BaseStruct):
         id: str
         price: int
 
-    class AutoChessInst(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AutoChessInst(BaseStruct):
         instId: int
         chessId: str
         overrideChessId: str
 
-    class AutoChessTrap(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AutoChessTrap(BaseStruct):
         instId: int
         chessId: str
         overrideChessId: str
 
-    class AutoChessChar(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AutoChessChar(BaseStruct):
         equip: dict[int, "AutoChessGame.AutoChessTrap"]
         damage: int
         instId: int
         chessId: str
         overrideChessId: str
 
-    class AutoChessForce(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AutoChessForce(BaseStruct):
         forceId: str
         hp: int
         extraForce: list[str]
         effect: "list[AutoChessGame.Effect]"
 
-    class Buff(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Buff(BaseStruct):
         gainCoinCounter: dict[str, "AutoChessGame.Buff.GainCoinCounter"]
         killEnemyCounter: dict[str, "AutoChessGame.Buff.EnemyCounter"]
         chessPurchase: dict[str, int]
@@ -141,31 +108,21 @@ class AutoChessGame(BaseModel):
         slotAdd: int
         effectShow: dict[int, "AutoChessGame.Buff.EffectShowItem"]
 
-        class SpecialRefresh(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class SpecialRefresh(BaseStruct):
             cnt: int
 
-        class EnemyCounter(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class EnemyCounter(BaseStruct):
             base: int
             process: int
 
-        class GainCoinCounter(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class GainCoinCounter(BaseStruct):
             base: int
             reduce: int
             process: int
 
-        class EffectShowItem(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class EffectShowItem(BaseStruct):
             leftCnt: int
 
-        class BattleLayerEffect(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class BattleLayerEffect(BaseStruct):
             effectInst: int
             count: int

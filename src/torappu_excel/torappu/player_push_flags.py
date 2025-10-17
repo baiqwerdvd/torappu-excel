@@ -1,11 +1,9 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerPushFlags(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    hasGifts: bool
-    hasFriendRequest: bool
-    hasClues: bool
-    hasFreeLevelGP: bool
+class PlayerPushFlags(BaseStruct):
+    hasGifts: int
+    hasFriendRequest: int
+    hasClues: int
+    hasFreeLevelGP: int
     status: int

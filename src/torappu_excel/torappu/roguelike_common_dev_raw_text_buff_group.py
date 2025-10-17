@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RoguelikeCommonDevRawTextBuffGroup(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeCommonDevRawTextBuffGroup(BaseStruct):
     nodeIdList: list[str]
     groupIconId: str
     sortId: int

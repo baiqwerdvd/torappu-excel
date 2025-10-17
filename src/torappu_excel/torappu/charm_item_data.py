@@ -1,12 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .charm_rarity import CharmRarity
 from .rune_table import RuneTable
+from ..common import BaseStruct
 
 
-class CharmItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CharmItemData(BaseStruct):
     id: str
     sort: int
     name: str
@@ -22,4 +21,4 @@ class CharmItemData(BaseModel):
     obtainInRandom: bool
     dropStages: list[str]
     runeData: "RuneTable.PackedRuneData"
-    charmEffect: str | None = Field(default=None)
+    charmEffect: str | None = field(default=None)

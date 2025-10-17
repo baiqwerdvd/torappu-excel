@@ -1,23 +1,19 @@
-﻿from enum import IntEnum
+from enum import IntEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerCampaign(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCampaign(BaseStruct):
     campaignCurrentFee: int
     campaignTotalFee: int
-    activeGroupId: str | None = None
     open: "PlayerCampaign.StageOpenInfo"
     missions: dict[str, "PlayerCampaign.MissionState"]
     instances: dict[str, "PlayerCampaign.Stage"]
     sweepMaxKills: dict[str, int]
     lastRefreshTs: int
+    activeGroupId: str | None = None
 
-    class StageOpenInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class StageOpenInfo(BaseStruct):
         permanent: list[str]
         training: list[str]
         rotate: str
@@ -25,9 +21,7 @@ class PlayerCampaign(BaseModel):
         tGroup: str
         tAllOpen: str | None
 
-    class Stage(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Stage(BaseStruct):
         maxKills: int
         rewardStatus: list[int]
 

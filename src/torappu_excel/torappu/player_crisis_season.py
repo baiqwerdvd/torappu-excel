@@ -1,56 +1,42 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerCrisisChallenge(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisisChallenge(BaseStruct):
     pointList: dict[str, int]
     topPoint: int
     taskList: dict[str, "PlayerCrisisChallenge.PlayerChallengeTask"]
 
-    class PlayerChallengeTask(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerChallengeTask(BaseStruct):
         fts: int
         rts: int
 
 
-class PlayerCrisisPermanent(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisisPermanent(BaseStruct):
     rune: dict[str, int]
     challenge: PlayerCrisisChallenge
     point: int
     nst: int
 
 
-class PlayerCrisisTemporary(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisisTemporary(BaseStruct):
     schedule: str
     challenge: PlayerCrisisChallenge
     point: int
     nst: int
 
 
-class PlayerCrisisSocialInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisisSocialInfo(BaseStruct):
     assistCnt: int
     maxPnt: str | int
     chars: list["PlayerCrisisSocialInfo.AssistChar"]
     history: dict[str, int] | None
 
-    class AssistChar(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class AssistChar(BaseStruct):
         charId: str
         cnt: int
 
 
-class PlayerCrisisSeason(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrisisSeason(BaseStruct):
     coin: int
     tCoin: int
     permanent: PlayerCrisisPermanent

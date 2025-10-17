@@ -1,14 +1,10 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RoguelikeDisasterModuleData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeDisasterModuleData(BaseStruct):
     disasterData: dict[str, "RoguelikeDisasterModuleData.RoguelikeDisasterData"]
 
-    class RoguelikeDisasterData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RoguelikeDisasterData(BaseStruct):
         id: str
         iconId: str
         toastIconId: str

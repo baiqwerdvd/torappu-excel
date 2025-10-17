@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
 from .mail_archive_item_type import MailArchiveItemType
+from ..common import BaseStruct
 
 
-class MailArchiveItemData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MailArchiveItemData(BaseStruct):
     id: str
     type: MailArchiveItemType
     sortId: int

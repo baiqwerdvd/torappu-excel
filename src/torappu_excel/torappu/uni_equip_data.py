@@ -1,13 +1,12 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .evolve_phase import EvolvePhase
 from .item_bundle import ItemBundle
 from .uni_equip_type import UniEquipType
+from ..common import BaseStruct
 
 
-class UniEquipData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class UniEquipData(BaseStruct):
     uniEquipId: str
     uniEquipName: str
     uniEquipIcon: str
@@ -34,12 +33,10 @@ class UniEquipData(BaseModel):
     specialEquipDesc: str | None
     specialEquipColor: str | None
     charColor: str | None
-    unlockFavorPoint: int | None = Field(default=None)
+    unlockFavorPoint: int | None = field(default=None)
 
 
-class UniEquipDataOld(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class UniEquipDataOld(BaseStruct):
     uniEquipId: str
     uniEquipName: str
     uniEquipIcon: str
@@ -58,16 +55,12 @@ class UniEquipDataOld(BaseModel):
     type: UniEquipType
     traitDescBundle: list["UniEquipDataOld.TraitDescBundle"]
 
-    class TraitDescBundle(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TraitDescBundle(BaseStruct):
         unlockCondition: "UniEquipDataOld.UnlockCondition"
         requiredPotentialRank: int
         overrideDescription: str | None
         additiveDescription: str
 
-    class UnlockCondition(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class UnlockCondition(BaseStruct):
         phase: int
         level: int

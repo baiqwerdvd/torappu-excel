@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class NameCardV2TimeLimitInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class NameCardV2TimeLimitInfo(BaseStruct):
     id: str
     availStartTime: int
     availEndTime: int

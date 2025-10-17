@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_building_char_bubble import PlayerBuildingCharBubble
+from ..common import BaseStruct
 
 
-class PlayerBuildingChar(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingChar(BaseStruct):
     charId: str
     lastApAddTime: int
     ap: int
@@ -14,12 +11,10 @@ class PlayerBuildingChar(BaseModel):
     changeScale: int
     bubble: "PlayerBuildingChar.BubbleContainer"
     workTime: int
-    skin: str | None = None
     privateRooms: list[str]
+    skin: str | None = None
 
-    class BubbleContainer(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BubbleContainer(BaseStruct):
         normal: PlayerBuildingCharBubble
         assist: PlayerBuildingCharBubble
         private: PlayerBuildingCharBubble

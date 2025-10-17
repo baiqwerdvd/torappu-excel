@@ -1,18 +1,13 @@
-from pydantic import BaseModel, ConfigDict
-
 from .data_unlock_type import DataUnlockType
+from ..common import BaseStruct
 
 
-class HandBookStoryViewData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class HandBookStoryViewData(BaseStruct):
     stories: list["HandBookStoryViewData.StoryText"]
     storyTitle: str
     unLockorNot: bool
 
-    class StoryText(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class StoryText(BaseStruct):
         storyText: str
         unLockType: DataUnlockType
         unLockParam: str

@@ -1,12 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .act_archive_chat_item_data import ActArchiveChatItemData
+from ..common import BaseStruct
 
 
-class ActArchiveChatGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveChatGroupData(BaseStruct):
     sortId: int
     chatItemList: list[ActArchiveChatItemData]
-    clientChatItemData: list[ActArchiveChatItemData] | None = Field(default=None)
-    numChat: int | None = Field(default=None)
+    clientChatItemData: list[ActArchiveChatItemData] | None = field(default=None)
+    numChat: int | None = field(default=None)

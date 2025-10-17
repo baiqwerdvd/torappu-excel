@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RL02DevRawTextBuffGroup(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RL02DevRawTextBuffGroup(BaseStruct):
     nodeIdList: list[str]
     useLevelMark: bool
     groupIconId: str

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_copper_lucky_level import RoguelikeCopperLuckyLevel
+from ..common import BaseStruct
 
 
-class ActArchiveCopperLuckyLevelData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveCopperLuckyLevelData(BaseStruct):
     luckyLevel: RoguelikeCopperLuckyLevel
     luckyName: str
     luckyDesc: str

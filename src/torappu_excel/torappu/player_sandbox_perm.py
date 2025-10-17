@@ -1,15 +1,10 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_sandbox_v2 import PlayerSandboxV2
+from ..common import BaseStruct
 
 
-class PlayerSandboxPerm(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSandboxPerm(BaseStruct):
     template: "PlayerSandboxPerm.PlayerSandboxTemplateData"
     isClose: bool
 
-    class PlayerSandboxTemplateData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class PlayerSandboxTemplateData(BaseStruct):
         SANDBOX_V2: dict[str, PlayerSandboxV2]

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act1_vhalf_idle_gacha_pool_type import Act1VHalfIdleGachaPoolType
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleGachaPoolData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleGachaPoolData(BaseStruct):
     poolId: str
     itemId: str
     poolType: Act1VHalfIdleGachaPoolType
@@ -14,8 +11,6 @@ class Act1VHalfIdleGachaPoolData(BaseModel):
     charData: list[str]
     consumeData: list["Act1VHalfIdleGachaPoolData.ConsumeData"]
 
-    class ConsumeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConsumeData(BaseStruct):
         gachaTimes: int
         consume: int

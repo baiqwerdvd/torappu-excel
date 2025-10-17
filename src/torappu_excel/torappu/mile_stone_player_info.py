@@ -1,14 +1,10 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class MileStonePlayerInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MileStonePlayerInfo(BaseStruct):
     points: dict[str, int]
     got: dict[str, "MileStonePlayerInfo.MileStoneRewardTicketItem"]
 
-    class MileStoneRewardTicketItem(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class MileStoneRewardTicketItem(BaseStruct):
         ts: int
         count: int

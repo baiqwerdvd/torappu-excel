@@ -1,11 +1,9 @@
-﻿from enum import IntEnum
+from enum import IntEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerSpecialOperatorNode(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSpecialOperatorNode(BaseStruct):
     id: str
     state: "PlayerSpecialOperatorNode.State"
     type: str

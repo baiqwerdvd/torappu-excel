@@ -1,10 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_home_unlock_status import PlayerHomeUnlockStatus
+from ..common import BaseStruct
 
 
-class PlayerHomeBackground(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerHomeBackground(BaseStruct):
     selected: str
     bgs: dict[str, PlayerHomeUnlockStatus]

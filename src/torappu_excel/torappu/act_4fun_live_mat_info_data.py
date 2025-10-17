@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act4fun_stage_attribute_type import Act4funStageAttributeType
 from .act_4fun_live_mat_effect_info import Act4funLiveMatEffectInfo
+from ..common import BaseStruct
 
 
-class Act4funLiveMatInfoData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act4funLiveMatInfoData(BaseStruct):
     liveMatId: str
     stageId: str
     name: str

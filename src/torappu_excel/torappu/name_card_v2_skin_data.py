@@ -1,13 +1,12 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .item_rarity import ItemRarity
 from .name_card_v2_skin_type import NameCardV2SkinType
 from .name_card_v2_time_limit_info import NameCardV2TimeLimitInfo
+from ..common import BaseStruct
 
 
-class NameCardV2SkinData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class NameCardV2SkinData(BaseStruct):
     id: str
     name: str
     type: NameCardV2SkinType
@@ -24,7 +23,7 @@ class NameCardV2SkinData(BaseModel):
     canChangeTmpl: bool
     isTimeLimit: bool
     timeLimitInfoList: list[NameCardV2TimeLimitInfo]
-    isSpTheme: bool | None = Field(default=None)
-    defaultShowDetail: bool | None = Field(default=None)
-    themeName: str | None = Field(default=None)
-    themeEnName: str | None = Field(default=None)
+    isSpTheme: bool | None = field(default=None)
+    defaultShowDetail: bool | None = field(default=None)
+    themeName: str | None = field(default=None)
+    themeEnName: str | None = field(default=None)

@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class FifthAnnivExploreBroadcastData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class FifthAnnivExploreBroadcastData(BaseStruct):
     id: str
     eventCount: int
     stageId: str

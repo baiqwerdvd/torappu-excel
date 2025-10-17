@@ -1,11 +1,9 @@
-﻿from enum import IntEnum
+from enum import IntEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerSiracusaMap(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerSiracusaMap(BaseStruct):
     select: str | None
     card: dict[str, "PlayerSiracusaMap.CharCard"]
     opera: "PlayerSiracusaMap.Opera"
@@ -38,35 +36,25 @@ class PlayerSiracusaMap(BaseModel):
         RELEASE = 1
         RELEASED = 2
 
-    class BattleProgress(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BattleProgress(BaseStruct):
         value: int
         target: int
 
-    class TaskInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TaskInfo(BaseStruct):
         state: "PlayerSiracusaMap.StateEnum"
         option: list[str] | None = None
         progress: "PlayerSiracusaMap.BattleProgress | None" = None
 
-    class TaskRing(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TaskRing(BaseStruct):
         task: dict[str, "PlayerSiracusaMap.TaskInfo"]
         state: "PlayerSiracusaMap.TaskRingStatus"
 
-    class CharCard(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CharCard(BaseStruct):
         item: dict[str, "PlayerSiracusaMap.CharCardItemEnum"]
         taskRing: dict[str, "PlayerSiracusaMap.TaskRing"]
         state: "PlayerSiracusaMap.CharCardStatus"
 
-    class Opera(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Opera(BaseStruct):
         total: int
         show: str | None
         release: dict[str, "PlayerSiracusaMap.OperaState"]

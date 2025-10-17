@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_copper_type import RoguelikeCopperType
+from ..common import BaseStruct
 
 
-class ActArchiveCopperTypeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActArchiveCopperTypeData(BaseStruct):
     copperType: RoguelikeCopperType
     typeName: str
     typeIconId: str

@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class RecalRuneConstData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RecalRuneConstData(BaseStruct):
     stageCountPerSeason: int
     juniorRewardMedalCount: int
     seniorRewardMedalCount: int

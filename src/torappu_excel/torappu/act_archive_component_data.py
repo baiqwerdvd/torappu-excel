@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .act_archive_avg_data import ActArchiveAvgData
 from .act_archive_challenge_book_data import ActArchiveChallengeBookData
@@ -9,17 +9,16 @@ from .act_archive_news_data import ActArchiveNewsData
 from .act_archive_pic_data import ActArchivePicData
 from .act_archive_story_data import ActArchiveStoryData
 from .act_archive_timeline_data import ActArchiveTimelineData
+from ..common import BaseStruct
 
 
-class ActArchiveComponentData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    timeline: ActArchiveTimelineData | None = Field(default=None)
-    music: ActArchiveMusicData | None = Field(default=None)
-    pic: ActArchivePicData | None = Field(default=None)
-    story: ActArchiveStoryData | None = Field(default=None)
-    avg: ActArchiveAvgData | None = Field(default=None)
-    news: ActArchiveNewsData | None = Field(default=None)
-    landmark: dict[str, ActArchiveLandmarkItemData] | None = Field(default=None)
-    log: dict[str, ActArchiveChapterLogData] | None = Field(default=None)
-    challengeBook: ActArchiveChallengeBookData | None = Field(default=None)
+class ActArchiveComponentData(BaseStruct):
+    timeline: ActArchiveTimelineData | None = field(default=None)
+    music: ActArchiveMusicData | None = field(default=None)
+    pic: ActArchivePicData | None = field(default=None)
+    story: ActArchiveStoryData | None = field(default=None)
+    avg: ActArchiveAvgData | None = field(default=None)
+    news: ActArchiveNewsData | None = field(default=None)
+    landmark: dict[str, ActArchiveLandmarkItemData] | None = field(default=None)
+    log: dict[str, ActArchiveChapterLogData] | None = field(default=None)
+    challengeBook: ActArchiveChallengeBookData | None = field(default=None)

@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .climb_tower_tower_type import ClimbTowerTowerType
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class ClimbTowerSingleTowerData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ClimbTowerSingleTowerData(BaseStruct):
     id: str
     sortId: int
     stageNum: int
@@ -27,8 +24,6 @@ class ClimbTowerSingleTowerData(BaseModel):
     dangerDesc: str
     hardModeDesc: str | None
 
-    class ClimbTowerTaskRewardData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ClimbTowerTaskRewardData(BaseStruct):
         levelNum: int
         rewards: list[ItemBundle]

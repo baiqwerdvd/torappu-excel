@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .fifth_anniv_explore_value_type import FifthAnnivExploreValueType
+from ..common import BaseStruct
 
 
-class FifthAnnivExploreGroupData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class FifthAnnivExploreGroupData(BaseStruct):
     id: str
     name: str
     desc: str

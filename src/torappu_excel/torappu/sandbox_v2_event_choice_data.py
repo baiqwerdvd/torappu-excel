@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .sandbox_v2_event_choice_type import SandboxV2EventChoiceType
+from ..common import BaseStruct
 
 
-class SandboxV2EventChoiceData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2EventChoiceData(BaseStruct):
     choiceId: str
     type: SandboxV2EventChoiceType
     costAction: int

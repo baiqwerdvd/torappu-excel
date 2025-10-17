@@ -1,11 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class CharExtraWordData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CharExtraWordData(BaseStruct):
     wordKey: str
     charId: str
     voiceId: str
     voiceText: str
-    charWordId: str | None = Field(default=None)
+    charWordId: str | None = field(default=None)

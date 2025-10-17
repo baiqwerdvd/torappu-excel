@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class SpecialOperatorDetailUniEquipNodeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SpecialOperatorDetailUniEquipNodeData(BaseStruct):
     nodeId: str
     uniEquipId: str
     equipLevel: int

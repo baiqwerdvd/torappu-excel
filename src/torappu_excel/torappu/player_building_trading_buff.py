@@ -1,9 +1,7 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerBuildingTradingBuff(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingTradingBuff(BaseStruct):
     speed: float
     limit: int
     apCost: "PlayerBuildingTradingBuff.APCost"
@@ -16,43 +14,31 @@ class PlayerBuildingTradingBuff(BaseModel):
     orderWtBuff: list["PlayerBuildingTradingBuff.OrderWtBuff"]
     speGoldOrder: "PlayerBuildingTradingBuff.SpeGoldOrder"
 
-    class APCost(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class APCost(BaseStruct):
         self: dict[str, int]
         all: int
         single: dict[str, int]
 
-    class ViolatedInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ViolatedInfo(BaseStruct):
         orderChecker: list["PlayerBuildingTradingBuff.ViolatedInfo.OrderChecker"]
         cntBuff: list["PlayerBuildingTradingBuff.ViolatedInfo.CntBuff"]
 
-        class OrderChecker(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class OrderChecker(BaseStruct):
             itemId: str
             ordTyp: str
             cnt: int
 
-        class CntBuff(BaseModel):
-            model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+        class CntBuff(BaseStruct):
             itemId: str
             ordTyp: str
             itemCnt: int
             coinId: str
             coinCnt: int
 
-    class OrderWtBuff(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class OrderWtBuff(BaseStruct):
         itemId: str
         orderType: str
         cnt: int
 
-    class SpeGoldOrder(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class SpeGoldOrder(BaseStruct):
         activated: bool

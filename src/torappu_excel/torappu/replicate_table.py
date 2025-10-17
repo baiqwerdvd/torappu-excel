@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .replicate_data import ReplicateData
+from ..common import BaseStruct
 
 
-class ReplicateTable(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ReplicateTable(BaseStruct):
     replicateList: list[ReplicateData]

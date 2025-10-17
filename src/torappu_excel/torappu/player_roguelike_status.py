@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_roguelike_cursor import PlayerRoguelikeCursor
+from ..common import BaseStruct
 
 
-class PlayerRoguelikeStatus(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRoguelikeStatus(BaseStruct):
     uuid: str
     level: int
     exp: int

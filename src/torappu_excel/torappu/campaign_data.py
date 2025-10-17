@@ -1,15 +1,12 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
 from .stage_data import StageData
 from .weight_item_bundle import WeightItemBundle
+from ..common import BaseStruct
 
 
-class CampaignData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class CampaignData(BaseStruct):
     class CampaignStageType(StrEnum):
         NONE = "NONE"
         PERMANENT = "PERMANENT"
@@ -22,29 +19,21 @@ class CampaignData(BaseModel):
     isCustomized: bool
     dropGains: dict[CampaignStageType, "CampaignData.DropGainInfo"]
 
-    class BreakRewardLadder(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BreakRewardLadder(BaseStruct):
         killCnt: int
         breakFeeAdd: int
         rewards: list[ItemBundle]
 
-    class CampaignDropInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class CampaignDropInfo(BaseStruct):
         firstPassRewards: list[ItemBundle] | None
         passRewards: list[list[WeightItemBundle]] | None
         displayDetailRewards: list["StageData.DisplayDetailRewards"] | None
 
-    class DropLadder(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DropLadder(BaseStruct):
         killCnt: int
         dropInfo: "CampaignData.CampaignDropInfo"
 
-    class GainLadder(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class GainLadder(BaseStruct):
         killCnt: int
         apFailReturn: int
         favor: int
@@ -52,9 +41,7 @@ class CampaignData(BaseModel):
         goldGain: int
         displayDiamondShdNum: int
 
-    class DropGainInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DropGainInfo(BaseStruct):
         dropLadders: list["CampaignData.DropLadder"]
         gainLadders: list["CampaignData.GainLadder"]
         displayRewards: list["StageData.DisplayRewards"]

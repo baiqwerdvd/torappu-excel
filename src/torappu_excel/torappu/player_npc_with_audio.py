@@ -1,9 +1,6 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .voice_lang_type import VoiceLangType
+from ..common import BaseStruct
 
 
-class PlayerNpcWithAudio(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerNpcWithAudio(BaseStruct):
     npcShowAudioInfoFlag: VoiceLangType

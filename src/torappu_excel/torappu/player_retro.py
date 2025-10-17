@@ -1,15 +1,12 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_retro_block import PlayerRetroBlock
+from ..common import BaseStruct
 
 
-class PlayerRetro(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRetro(BaseStruct):
     coin: int
-    supplement: bool
+    supplement: int
     block: dict[str, PlayerRetroBlock]
     lst: int
     nst: int
-    trail: dict[str, dict[str, bool]]
+    trail: dict[str, dict[str, int]]
     rewardPerm: list[str]

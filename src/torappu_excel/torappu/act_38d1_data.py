@@ -1,11 +1,9 @@
 from enum import StrEnum
 
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class Act38D1Data(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act38D1Data(BaseStruct):
     class Act38D1NodeSlotType(StrEnum):
         NONE = "NONE"
         UNKNOW = "UNKNOW"
@@ -37,49 +35,35 @@ class Act38D1Data(BaseModel):
     constData: "Act38D1Data.Act38D1ConstData"
     trackPointPeriodData: list[int]
 
-    class Act38D1NodeData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act38D1NodeData(BaseStruct):
         slotId: str
         groupId: str | None
         isUpper: bool
         adjacentSlotList: list[str]
 
-    class Act38D1RoadData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act38D1RoadData(BaseStruct):
         roadId: str
         startSlotId: str
         endSlotId: str
 
-    class Act38D1RewardBoxData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act38D1RewardBoxData(BaseStruct):
         rewardBoxId: str
         roadId: str
 
-    class Act38D1ExclusionGroupData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act38D1ExclusionGroupData(BaseStruct):
         groupId: str
         slotIdList: list[str]
 
-    class Act38D1DimensionItemData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act38D1DimensionItemData(BaseStruct):
         desc: str
         maxScore: int
 
-    class Act38D1CommentData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act38D1CommentData(BaseStruct):
         id: str
         sortId: int
         desc: str
 
-    class Act38D1StageDetailData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act38D1StageDetailData(BaseStruct):
         nodeDataMap: dict[str, "Act38D1Data.Act38D1NodeData"]
         roadDataMap: dict[str, "Act38D1Data.Act38D1RoadData"]
         rewardBoxDataMap: dict[str, "Act38D1Data.Act38D1RewardBoxData"]
@@ -87,9 +71,7 @@ class Act38D1Data(BaseModel):
         dimensionItemList: list["Act38D1Data.Act38D1DimensionItemData"]
         commentDataMap: dict[str, "Act38D1Data.Act38D1CommentData"]
 
-    class Act38D1ConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act38D1ConstData(BaseStruct):
         redScoreThreshold: int
         detailBkgRedThreshold: int
         voiceGrade: int

@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .mission_archive_node_data import MissionArchiveNodeData
 from .mission_archive_voice_clip_data import MissionArchiveVoiceClipData
+from ..common import BaseStruct
 
 
-class MissionArchiveData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MissionArchiveData(BaseStruct):
     topicId: str
     zones: list[str]
     nodes: list[MissionArchiveNodeData]

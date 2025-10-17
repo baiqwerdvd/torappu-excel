@@ -1,12 +1,11 @@
-﻿from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .building_data import BuildingData
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class PlayerBuildingTradingOrder(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerBuildingTradingOrder(BaseStruct):
     instId: int
     type: "BuildingData.OrderType"
     delivery: list[ItemBundle]
@@ -15,14 +14,10 @@ class PlayerBuildingTradingOrder(BaseModel):
     isViolated: bool | None = None
     specGoldTag: "PlayerBuildingTradingOrder.TradingGoldTag | None" = None
 
-    class TradingOrderBuff(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-        from_: str = Field(alias="from")
+    class TradingOrderBuff(BaseStruct):
+        from_: str = field(name="from")
         param: int
 
-    class TradingGoldTag(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class TradingGoldTag(BaseStruct):
         activated: bool
-        from_: str = Field(alias="from")
+        from_: str = field(name="from")

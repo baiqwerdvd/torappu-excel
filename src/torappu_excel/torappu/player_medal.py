@@ -1,11 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_medal_custom import PlayerMedalCustom
 from .player_per_medal import PlayerPerMedal
+from ..common import BaseStruct
 
 
-class PlayerMedal(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerMedal(BaseStruct):
     medals: dict[str, PlayerPerMedal]
     custom: PlayerMedalCustom

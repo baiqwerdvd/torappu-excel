@@ -1,9 +1,6 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_module_type import RoguelikeModuleType
+from ..common import BaseStruct
 
 
-class RoguelikeModuleBaseData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeModuleBaseData(BaseStruct):
     moduleType: RoguelikeModuleType

@@ -1,15 +1,13 @@
-﻿from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
+
+from ..common import BaseStruct
 
 
-class PlayerHandBookAddon(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
-    stage: dict[str, "PlayerHandBookAddon.StageInfo"] = Field(default_factory=dict)
+class PlayerHandBookAddon(BaseStruct):
     story: dict[str, "PlayerHandBookAddon.GetInfo"]
+    stage: dict[str, "PlayerHandBookAddon.StageInfo"] = field(default_factory=dict)
 
-    class GetInfo(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class GetInfo(BaseStruct):
         fts: int
         rts: int
 

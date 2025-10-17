@@ -1,12 +1,9 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .player_name_card_misc import PlayerNameCardMisc
 from .player_name_card_skin import PlayerNameCardSkin
+from ..common import BaseStruct
 
 
-class PlayerNameCardStyle(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerNameCardStyle(BaseStruct):
     componentOrder: list[str]
     skin: PlayerNameCardSkin
     misc: PlayerNameCardMisc

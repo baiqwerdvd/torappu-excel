@@ -1,12 +1,9 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_type import ItemType
 from .stage_drop_type import StageDropType
+from ..common import BaseStruct
 
 
-class WeightItemBundle(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class WeightItemBundle(BaseStruct):
     id: str
     type: ItemType
     dropType: StageDropType

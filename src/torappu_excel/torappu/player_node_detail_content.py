@@ -1,17 +1,13 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerNodeDetailContent(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerNodeDetailContent(BaseStruct):
     scene: str
     battleShop: "PlayerNodeDetailContent.BattleShop"
     wish: list[str]
     battle: list[str]
     hasShopBoss: bool
 
-    class BattleShop(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BattleShop(BaseStruct):
         hasShopBoss: bool
         goods: list[str]

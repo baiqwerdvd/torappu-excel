@@ -1,12 +1,11 @@
-from pydantic import BaseModel, ConfigDict, Field
+from msgspec import field
 
 from .char_word_show_type import CharWordShowType
+from ..common import BaseStruct
 
 
-class FestivalVoiceWeightData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class FestivalVoiceWeightData(BaseStruct):
     showType: CharWordShowType
     weight: float
     priority: int
-    weightValue: float | None = Field(default=None)
+    weightValue: float | None = field(default=None)

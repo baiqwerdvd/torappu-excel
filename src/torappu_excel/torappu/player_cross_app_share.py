@@ -1,12 +1,8 @@
-﻿from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class PlayerCrossAppShare(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerCrossAppShare(BaseStruct):
     shareMissions: dict[str, "PlayerCrossAppShare.ShareMissionData"]
 
-    class ShareMissionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ShareMissionData(BaseStruct):
         counter: int

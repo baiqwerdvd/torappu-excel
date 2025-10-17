@@ -1,10 +1,7 @@
-from pydantic import BaseModel, ConfigDict
-
 from .uni_equip_track import UniEquipTrack
+from ..common import BaseStruct
 
 
-class UniEquipTimeInfo(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class UniEquipTimeInfo(BaseStruct):
     timeStamp: int
     trackList: list[UniEquipTrack]

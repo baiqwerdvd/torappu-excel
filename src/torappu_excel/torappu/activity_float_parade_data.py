@@ -1,29 +1,22 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class ActivityFloatParadeData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class ActivityFloatParadeData(BaseStruct):
     constData: "ActivityFloatParadeData.ConstData"
     dailyDataDic: list["ActivityFloatParadeData.DailyData"]
     rewardPools: dict[str, dict[str, "ActivityFloatParadeData.RewardPool"]]
     tacticList: list["ActivityFloatParadeData.Tactic"]
     groupInfos: dict[str, "ActivityFloatParadeData.GroupData"]
 
-    class ConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class ConstData(BaseStruct):
         cityName: str
         lowStandard: float
         variationTitle: str
         ruleDesc: str
         cityNamePic: str
 
-    class DailyData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class DailyData(BaseStruct):
         dayIndex: int
         dateName: str
         placeName: str
@@ -32,9 +25,7 @@ class ActivityFloatParadeData(BaseModel):
         eventGroupId: str
         extReward: ItemBundle | None
 
-    class RewardPool(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class RewardPool(BaseStruct):
         grpId: str
         id: str
         type: str
@@ -42,18 +33,14 @@ class ActivityFloatParadeData(BaseModel):
         desc: str | None
         reward: ItemBundle
 
-    class Tactic(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Tactic(BaseStruct):
         id: int
         name: str
         packName: str
         briefName: str
         rewardVar: dict[str, float]
 
-    class GroupData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class GroupData(BaseStruct):
         groupId: str
         name: str
         startDay: int

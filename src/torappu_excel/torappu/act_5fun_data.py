@@ -1,5 +1,3 @@
-from pydantic import BaseModel, ConfigDict
-
 from .act_5fun_basic_const import Act5funBasicConst
 from .act_5fun_basic_npc_data import Act5FunBasicNpcData
 from .act_5fun_choice_reward_data import Act5FunChoiceRewardData
@@ -11,11 +9,10 @@ from .act_5fun_round_data import Act5FunRoundData
 from .act_5fun_settle_rating_data import Act5FunSettleRatingData
 from .act_5fun_settle_streak_data import Act5FunSettleStreakData
 from .act_5fun_settle_success_data import Act5FunSettleSuccessData
+from ..common import BaseStruct
 
 
-class Act5FunData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act5FunData(BaseStruct):
     battleData: "Act5FunData.BattleData"
     constData: Act5funBasicConst
     npcData: dict[str, Act5FunBasicNpcData]
@@ -23,9 +20,7 @@ class Act5FunData(BaseModel):
     streakData: list[Act5FunSettleStreakData]
     successData: list[Act5FunSettleSuccessData]
 
-    class BattleData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class BattleData(BaseStruct):
         battleConstData: Act5funConst
         roundData: dict[str, Act5FunRoundData]
         npcData: dict[str, Act5FunNpcData]

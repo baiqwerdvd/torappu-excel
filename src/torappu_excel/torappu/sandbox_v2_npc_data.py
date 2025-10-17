@@ -1,13 +1,10 @@
-from pydantic import BaseModel, ConfigDict
-
 from .battle_dialog_type import BattleDialogType
 from .sandbox_v2_npc_type import SandboxV2NpcType
 from .shared_consts import SharedConsts
+from ..common import BaseStruct
 
 
-class SandboxV2NpcData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class SandboxV2NpcData(BaseStruct):
     npcId: str
     trapId: str
     npcType: SandboxV2NpcType

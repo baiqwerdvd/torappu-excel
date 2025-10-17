@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .item_bundle import ItemBundle
+from ..common import BaseStruct
 
 
-class Act27SideData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act27SideData(BaseStruct):
     goodDataMap: dict[str, "Act27SideData.Act27SideGoodData"]
     mileStoneList: list["Act27SideData.Act27SideMileStoneData"]
     goodLaunchDataList: list["Act27SideData.Act27SideGoodLaunchData"]
@@ -15,9 +12,7 @@ class Act27SideData(BaseModel):
     zoneAdditionDataMap: dict[str, "Act27SideData.Act27sideZoneAdditionData"]
     constData: "Act27SideData.Act27SideConstData"
 
-    class Act27SideGoodData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act27SideGoodData(BaseStruct):
         id: str
         name: str
         typeDesc: str
@@ -28,17 +23,13 @@ class Act27SideData(BaseModel):
         sellShopList: list[str]
         isPermanent: bool
 
-    class Act27SideMileStoneData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act27SideMileStoneData(BaseStruct):
         mileStoneId: str
         mileStoneLvl: int
         needPointCnt: int
         rewardItem: ItemBundle
 
-    class Act27SideGoodLaunchData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act27SideGoodLaunchData(BaseStruct):
         groupId: str
         startTime: int
         stageId: str | None
@@ -47,43 +38,31 @@ class Act27SideData(BaseModel):
         foodId: str
         souvenirId: str
 
-    class Act27SideShopData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act27SideShopData(BaseStruct):
         shopId: str
         sortId: int
         name: str
         iconId: str
 
-    class Act27SideInquireData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act27SideInquireData(BaseStruct):
         mileStonePt: int
         inquireCount: int
 
-    class Act27SideDynEntrySwitchData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act27SideDynEntrySwitchData(BaseStruct):
         entryId: str
         startHour: int
         signalId: str
 
-    class Act27sideZoneAdditionData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act27sideZoneAdditionData(BaseStruct):
         zoneId: str
         unlockText: str
         displayTime: str
 
-    class Act27SideMileStoneFurniRewardData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act27SideMileStoneFurniRewardData(BaseStruct):
         furniId: str
         pointNum: int
 
-    class Act27SideConstData(BaseModel):
-        model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+    class Act27SideConstData(BaseStruct):
         stageId: str
         stageCode: str
         purchasePriceName: list[str]

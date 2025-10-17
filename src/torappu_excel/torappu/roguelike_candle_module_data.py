@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .roguelike_candle_module_consts import RoguelikeCandleModuleConsts
+from ..common import BaseStruct
 
 
-class RoguelikeCandleModuleData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class RoguelikeCandleModuleData(BaseStruct):
     candleTicketIdList: list[str]
     moduleConsts: RoguelikeCandleModuleConsts
     candleBattleStageIdList: list[str]

@@ -1,11 +1,8 @@
-from pydantic import BaseModel, ConfigDict
-
 from .medal_per_data import MedalPerData
 from .medal_type_data import MedalTypeData
+from ..common import BaseStruct
 
 
-class MedalData(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class MedalData(BaseStruct):
     medalList: list[MedalPerData]
     medalTypeData: dict[str, MedalTypeData]

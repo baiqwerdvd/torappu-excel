@@ -1,9 +1,7 @@
-from pydantic import BaseModel, ConfigDict
+from ..common import BaseStruct
 
 
-class Act1VHalfIdleEnemyDropBundle(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class Act1VHalfIdleEnemyDropBundle(BaseStruct):
     exp: int
     mileStoneCnt: int
     battleItemDropPool: str

@@ -1,13 +1,10 @@
-﻿from pydantic import BaseModel, ConfigDict
-
 from .char_star_mark_state import CharStarMarkState
 from .evolve_phase import EvolvePhase
 from .player_char_patch import PlayerCharPatch
+from ..common import BaseStruct
 
 
-class PlayerRoguelikeCharacter(BaseModel):
-    model_config: ConfigDict = ConfigDict(extra="forbid")  # pyright: ignore[reportIncompatibleVariableOverride]
-
+class PlayerRoguelikeCharacter(BaseStruct):
     upgradePhase: int
     upgradeLimited: bool
     isAddition: int
