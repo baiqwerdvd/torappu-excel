@@ -7,4 +7,4 @@ class ActivitySwitchCheckinMainRewardShowData(BaseStruct):
     mainRewardName: str | None
     mainRewardCount: int
     hasTip: bool
-    tipItemBundle: ItemBundle
+    tipItemBundle: ItemBundle | None

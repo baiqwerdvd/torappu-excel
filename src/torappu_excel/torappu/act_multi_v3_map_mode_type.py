@@ -6,3 +6,4 @@ class ActMultiV3MapModeType(CustomIntEnum):
     NORMAL = "NORMAL", 1
     FOOTBALL = "FOOTBALL", 2
     DEFENCE = "DEFENCE", 3
+    RAFT = "RAFT", 4
