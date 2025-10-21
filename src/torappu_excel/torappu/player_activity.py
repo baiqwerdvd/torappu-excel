@@ -1,7 +1,7 @@
 from enum import IntEnum, StrEnum
 from typing import Any
 
-from .act_multi_v3_match_pos_type import ActMultiV3MatchPosType
+from .act_multi_v3_match_pos_type import ActMultiV3MatchPosIntType
 from .auto_chess_game import AutoChessGame
 from .avatar_info import AvatarInfo
 from .cart_competition_rank import CartCompetitionRank
@@ -79,7 +79,7 @@ class PlayerActivity(BaseStruct):
     HALFIDLE_VERIFY1: dict[str, "PlayerActivity.PlayerAct1VHalfIdleActivity"]
     TYPE_ACT45SIDE: dict[str, "PlayerActivity.PlayerAct45SideActivity"]
     VEC_BREAK: Any  # TODO: 临时占位
-    TEAM_QUEST: dict[str, JObject] | None = None
+    TEAM_QUEST: dict[str, Any] | None = None
     RECRUIT_ONLY: dict[str, "PlayerActivity.PlayerRecruitOnlyAct"] | None = None
 
     class PlayerDefaultActivity(BaseStruct):
@@ -473,6 +473,7 @@ class PlayerActivity(BaseStruct):
         stage: dict[str, "PlayerActivity.PlayerMultiV3Activity.StageInfo"]
         scene: "PlayerActivity.PlayerMultiV3Activity.Scene"
         globalBan: bool
+        team: "PlayerActivity.PlayerMultiV3Activity.Team"
 
         class Collection(BaseStruct):
             info: "PlayerActivity.PlayerMultiV3Activity.CollectionInfo"
@@ -557,7 +558,7 @@ class PlayerActivity(BaseStruct):
         class MatchInfo(BaseStruct):
             bannedUntilTs: int
             lastModeList: list[str]
-            lastMentorType: ActMultiV3MatchPosType
+            lastMentorType: ActMultiV3MatchPosIntType
             lastReverse: int
 
         class Milestone(BaseStruct):
@@ -570,6 +571,16 @@ class PlayerActivity(BaseStruct):
 
         class Scene(BaseStruct):
             lastMate: list[str]
+            endTs: int
+            reverse: int
+            sceneId: str
+            stageId: str
+            startTs: int
+
+        class Team(BaseStruct):
+            startTs: int
+            teamId: str
+            teamType: int
 
     class PlayerInterlockActivity(BaseStruct):
         milestoneCoin: int
