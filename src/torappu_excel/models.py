@@ -50,228 +50,204 @@ from .torappu.zone_table import ZoneTable as ZoneTable_
 
 
 class ActivityTable(ActivityTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class AudioTable(AudioData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class BattleEquipTable(BaseStruct):
     equips: dict[str, BattleEquipPack]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class BuildingTable(BuildingData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class CampaignTable(CampaignTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class ChapterTable(BaseStruct):
     chapters: dict[str, ChapterData]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class CharacterTable(BaseStruct):
     chars: dict[str, CharacterData]
-
-    __version__: str = "25-10-22-11-51-22_eda48a"
 
 
 class CharMasterTable(BaseStruct):
     masters: dict[str, MasterDataBundle]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class CharMetaTable(CharMetaTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class CharmTable(CharmData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class CharPatchTable(CharPatchData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class CharwordTable(CharwordTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class CheckinTable(CheckinTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class ClimbTowerTable(ClimbTowerTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class ClueTable(MeetingClueData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class CrisisTable(CrisisTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class CrisisV2Table(CrisisV2SharedData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class DisplayMetaTable(DisplayMetaData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class EnemyHandbookTable(EnemyHandBookDataGroup):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class FavorTable(FavorTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class GachaTable(GachaData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class GameDataConst(GameDataConsts):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class HandbookInfoTable(HandbookInfoTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class HandbookTable(HandbookTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class HandbookTeamTable(BaseStruct):
     team: dict[str, HandbookTeamData]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class ItemTable(ServerItemTable):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class MedalTable(MedalData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class MissionTable(MissionTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class OpenServerTable(OpenServerSchedule):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class PlayerAvatarTable(PlayerAvatarData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class RangeTable(BaseStruct):
     range: dict[str, RangeData]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class ReplicateTable(BaseStruct):
     replicate: dict[str, ReplicateTable_]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class RetroTable(RetroStageTable):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class RoguelikeTable(RoguelikeTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class RoguelikeTopicTable(RoguelikeTopicTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class SandboxPermTable(SandboxPermTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class SandboxTable(SandboxTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class ShopClientTable(ShopClientData):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class SkillTable(BaseStruct):
     skills: dict[str, SkillDataBundle]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class SkinTable(SkinTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class SpecialOperatorTable(SpecialOperatorTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class StageTable(StageTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class StoryReviewMetaTable(StoryReviewMetaTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class StoryReviewTable(BaseStruct):
     storyreview: dict[str, StoryReviewGroupClientData]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class StoryTable(BaseStruct):
     stories: dict[str, StoryData]
-
-    __version__: str = "25-10-22-11-51-22_eda48a"
 
 
 class TechBuffTable(BaseStruct):
     runes: list[RuneTable.PackedRuneData]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class TipTable(TipTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class TokenTable(BaseStruct):
     tokens: dict[str, TokenCharacterData]
 
-    __version__: str = "25-10-22-11-51-22_eda48a"
-
 
 class UniequipData(UniEquipTableOld):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class UniequipTable(UniEquipTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
 
 
 class ZoneTable(ZoneTable_):
-    __version__: str = "25-10-22-11-51-22_eda48a"
+    pass
