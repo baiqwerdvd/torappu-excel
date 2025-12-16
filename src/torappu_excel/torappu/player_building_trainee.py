@@ -8,3 +8,4 @@ class PlayerBuildingTrainee(BaseStruct):
     processPoint: float
     speed: float
     targetSkill: int
+    charTemplate: str

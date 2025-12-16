@@ -78,6 +78,7 @@ class StageData(BaseStruct):
     sixStarDisplayRewardList: list[ItemBundle] | None
     advancedRuneIdList1: list[str]
     advancedRuneIdList2: list[str]
+    useSpecialSizeMapPreview: bool
     canUseCharm: bool | None = field(default=None)
     canUseTech: bool | None = field(default=None)
     canUseTrapTool: bool | None = field(default=None)

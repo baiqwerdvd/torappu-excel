@@ -16,6 +16,7 @@ class RetroActData(BaseStruct):
     haveTrail: bool
     customActId: str | None
     customActType: ActivityType
+    trapDomainId: str | None
     detail: str | None = field(default=None)
     isRecommend: bool | None = field(default=None)
     recommendTagRemoveStage: str | None = field(default=None)

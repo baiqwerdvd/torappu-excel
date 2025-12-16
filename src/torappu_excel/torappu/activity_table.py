@@ -25,7 +25,9 @@ from .act_36side_data import Act36SideData
 from .act_38_side_data import Act38SideData
 from .act_38d1_data import Act38D1Data
 from .act_42d0_data import Act42D0Data
+from .act_46_side_data import Act46SideData
 from .act_arcade_data import ActArcadeData
+from .act_auto_chess_data import ActAutoChessData
 from .act_main_ssdata import ActMainSSData
 from .act_mainline_bp_extra_data import ActMainlineBpExtraData
 from .act_multi_v3_data import ActMultiV3Data
@@ -57,6 +59,7 @@ from .activity_type import ActivityType
 from .activity_year5_general_data import ActivityYear5GeneralData
 from .all_player_checkin_data import AllPlayerCheckinData
 from .april_fool_table import AprilFoolTable
+from .auto_chess_data import AutoChessData
 from .cart_data import CartData
 from .cross_day_track_type_data import CrossDayTrackTypeData
 from .default_checkin_data import DefaultCheckInData
@@ -105,6 +108,7 @@ class ActivityTable(BaseStruct):
     trapRuneDataDict: dict[str, RuneTable.PackedRuneData]
     missionArchives: dict[str, MissionArchiveData]
     fifthAnnivExploreData: FifthAnnivExploreData
+    autoChessData: AutoChessData
     activityTemplateMissionStyles: dict[str, ActivityTemplateMissionStyles]
     activityCrossDayTrackTypeDataDict: dict[str, CrossDayTrackTypeData]
     activityCrossDayTrackTypeMap: dict[str, list[str]]
@@ -187,6 +191,8 @@ class ActivityTable(BaseStruct):
         HALFIDLE_VERIFY1: dict[str, "Act1VHalfIdleData"] = field(default_factory=dict)
         TYPE_ACT45SIDE: dict[str, "Act45SideData"] = field(default_factory=dict)
         RECRUIT_ONLY: dict[str, "ActRecruitOnlyData"] = field(default_factory=dict)
+        TYPE_ACT46SIDE: dict[str, "Act46SideData"] = field(default_factory=dict)
+        AUTOCHESS_SEASON: dict[str, "ActAutoChessData"] = field(default_factory=dict)
 
     class ActivityExtraData(BaseStruct):
         MAINLINE_BP: dict[str, "ActMainlineBpExtraData"]
@@ -225,11 +231,17 @@ class ActivityTable(BaseStruct):
         trapTaskId: str
         trapUnlockDesc: str
         trapBuffId: str
+        availableCount: int
 
     class ActivityTrapConstData(BaseStruct):
-        stageUnlockTrapDesc: str
+        stageUnlockTrapDesc: str | None
         trapMaximum: int
         stageCanNotUseTrap: list[str]
+        mustSelectTrap: bool
+        systemUnlockToast: str | None
+        squadSaveSuccessToast: str
+        lockedToast: str | None
+        showBtnBack: bool
 
     class ActivityTrapsData(BaseStruct):
         templateTraps: dict[str, "ActivityTable.TemplateTrapData"]

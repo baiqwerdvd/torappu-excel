@@ -19,7 +19,7 @@ class EnemyHandBookData(BaseStruct):
     sortId: int
     name: str
     enemyLevel: EnemyLevelType
-    description: str
+    description: str | None
     attackType: str | None
     ability: str | None
     isInvalidKilled: bool

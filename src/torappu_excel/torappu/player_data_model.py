@@ -2,6 +2,7 @@ from .charm_status import CharmStatus
 from .mission_player_data import MissionPlayerData
 from .player_activity import PlayerActivity
 from .player_april_fool import PlayerAprilFool
+from .player_auto_chess_perm import PlayerAutoChessPerm
 from .player_avatar import PlayerAvatar
 from .player_building import PlayerBuilding
 from .player_campaign import PlayerCampaign
@@ -95,6 +96,7 @@ class PlayerDataModel(BaseStruct):
     rlv2: PlayerRoguelikeV2
     backflow: PlayerReturnData
     campaignsV2: PlayerCampaign
+    autochessSeason: PlayerAutoChessPerm
     charm: CharmStatus
     deepSea: PlayerDeepSea
     car: PlayerCartInfo
