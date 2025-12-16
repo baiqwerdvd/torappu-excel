@@ -1,6 +1,8 @@
 from enum import IntEnum, StrEnum
 from typing import Any
 
+from msgspec import field
+
 from .act_multi_v3_match_pos_type import ActMultiV3MatchPosIntType
 from .auto_chess_game import AutoChessGame
 from .avatar_info import AvatarInfo
@@ -78,6 +80,8 @@ class PlayerActivity(BaseStruct):
     TYPE_ACT44SIDE: dict[str, "PlayerActivity.PlayerAct44SideActivity"]
     HALFIDLE_VERIFY1: dict[str, "PlayerActivity.PlayerAct1VHalfIdleActivity"]
     TYPE_ACT45SIDE: dict[str, "PlayerActivity.PlayerAct45SideActivity"]
+    TYPE_ACT46SIDE: dict[str, "PlayerActivity.PlayerAct46SideActivity"]
+    AUTOCHESS_SEASON: dict[str, "PlayerActivity.PlayerActAutoChessActivity"]
     VEC_BREAK: Any  # TODO: 临时占位
     TEAM_QUEST: dict[str, Any] | None = None
     RECRUIT_ONLY: dict[str, "PlayerActivity.PlayerRecruitOnlyAct"] | None = None
@@ -645,7 +649,7 @@ class PlayerActivity(BaseStruct):
         coin: int
         favorList: list[str]
         news: dict[str, int]
-        campaignCnt: int
+        campaignCnt: int | None = field(default=None)
 
     class PlayerAct12sideActivity(BaseStruct):
         coin: int
@@ -1345,3 +1349,129 @@ class PlayerActivity(BaseStruct):
 
         class TechTree(BaseStruct):
             unlock: list[str]
+
+    class PlayerCommonDailyMission(BaseStruct):
+        process: int
+        state: "PlayerActivity.PlayerCommonDailyMission.DailyMissionState"
+
+        class DailyMissionState(StrEnum):
+            NOT_CLAIM = "NOT_CLAIM"
+            CLAIMED = "CLAIMED"
+
+    class PlayerActAutoChessActivity(BaseStruct):
+        mode: dict[str, "PlayerActivity.PlayerActAutoChessActivity.Mode"]
+        dailyMission: "PlayerActivity.PlayerCommonDailyMission"
+        band: dict[str, "PlayerActivity.PlayerActAutoChessActivity.BandElem"]
+        protectTs: int
+        trophyNum: int
+        milestone: "PlayerActivity.MilestoneInfo"
+        match: "PlayerActivity.PlayerActAutoChessActivity.MatchInfo"
+        scene: "PlayerActivity.PlayerActAutoChessActivity.Scene"
+        globalBan: bool
+        chessSquad: dict[str, "PlayerActivity.PlayerActAutoChessActivity.AutoChessSquadSlot"]
+
+        class BandState(StrEnum):
+            LOCK = "LOCK"
+            UNLOCKED = "UNLOCKED"
+
+        class AutoChessCharType(StrEnum):
+            OWN = "OWN"
+            BACK_UP = "BACK_UP"
+            ASSIST_BY_FRIEND = "ASSIST_BY_FRIEND"
+            DIY = "DIY"
+            PRESET = "PRESET"
+
+        class Mode(BaseStruct):
+            unlock: bool
+            completeCnt: int
+
+        class BandUnlockProgress(BaseStruct):
+            value: int
+            target: int
+
+        class BandElem(BaseStruct):
+            state: "PlayerActivity.PlayerActAutoChessActivity.BandState"
+            progress: "PlayerActivity.PlayerActAutoChessActivity.BandUnlockProgress"
+            passCnt: int
+
+        class AutoChessSquadSlot(BaseStruct):
+            chessId: str
+            charId: str
+            tmplId: str
+            diyBackupChessId: str
+            cultivateEffect: str
+            currentEquip: str
+            skin: str
+            type: "PlayerActivity.PlayerActAutoChessActivity.AutoChessCharType"
+            potentialRank: int
+            skillIndex: int
+            assistInfo: "PlayerActivity.PlayerActAutoChessActivity.AutoChessAssistInfo"
+
+        class AutoChessAssistInfo(BaseStruct):
+            uid: str
+            nickName: str
+            nickNumber: str
+            alias: str
+
+        class MatchInfo(BaseStruct):
+            bannedUntilTs: int
+
+        class Scene(BaseStruct):
+            lastMate: list[str]
+
+    class PlayerAct46SideActivity(BaseStruct):
+        coin: int
+        favorList: list[str]
+        outerOpen: bool
+        game: "PlayerActivity.PlayerAct46SideActivity.PlayerMonopolyGame"
+        monoStages: dict[str, "PlayerActivity.PlayerAct46SideActivity.PlayerMonopolyStage"]
+
+        class PlayerMonopolyGame(BaseStruct):
+            stageId: str
+            startTs: int
+            buff: "list[PlayerActivity.PlayerAct46SideActivity.PlayerMonopolyBuff]"
+            round: int
+            cardList: list[int]
+            lastCard: int
+            step: int
+            nodeList: "list[PlayerActivity.PlayerAct46SideActivity.PlayerMonopolyStageNode]"
+            task: "PlayerActivity.PlayerAct46SideActivity.PlayerMonopolyTaskPanelInfo"
+
+        class PlayerMonopolyTaskItemProcess(BaseStruct):
+            type: str
+            value: int
+            target: int
+
+        class PlayerMonopolyTask(BaseStruct):
+            id: str
+            point: int
+            process: "list[PlayerActivity.PlayerAct46SideActivity.PlayerMonopolyTaskItemProcess]"
+
+        class PlayerMonopolyBuff(BaseStruct):
+            id: str
+            process: "PlayerActivity.PlayerAct46SideActivity.PlayerMonopolyBuff.BuffProcess"
+
+            class BuffProcess(BaseStruct):
+                value: int
+                target: int
+
+        class MonopolyStageStatus(StrEnum):
+            LOCK = "LOCK"
+            UNLOCK = "UNLOCK"
+            PASS = "PASS"
+
+        class PlayerMonopolyStage(BaseStruct):
+            state: "PlayerActivity.PlayerAct46SideActivity.MonopolyStageStatus"
+            highScore: int
+
+        class PlayerMonopolyStageNode(BaseStruct):
+            type: str
+            resource: int
+            buffRate: int
+            lock: bool
+            crate: bool
+
+        class PlayerMonopolyTaskPanelInfo(BaseStruct):
+            shortList: "list[PlayerActivity.PlayerAct46SideActivity.PlayerMonopolyTask]"
+            longList: "list[PlayerActivity.PlayerAct46SideActivity.PlayerMonopolyTask]"
+            score: int

@@ -448,6 +448,9 @@ class PlayerRoguelikeV2(BaseStruct):
                     PassNodeType = "PassNodeType"
                     UsePopulation = "UsePopulation"
                     CandleCharacter = "CandleCharacter"
+                    PassNodeSkyType = "PassNodeSkyType"
+                    KillEnemy = "KillEnemy"
+                    PassNode = "PassNode"
 
         class TotemCollection(BaseStruct):
             totem: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]

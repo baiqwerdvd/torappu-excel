@@ -3,7 +3,7 @@ from ..common import BaseStruct
 
 class ActRecruitOnlyData(BaseStruct):
     recruitData: "ActRecruitOnlyData.RecruitOnlyItemData"
-    previewData: "ActRecruitOnlyData.RecruitOnlyItemData"
+    previewData: "ActRecruitOnlyData.RecruitOnlyItemData | None"
 
     class RecruitOnlyItemData(BaseStruct):
         id: str

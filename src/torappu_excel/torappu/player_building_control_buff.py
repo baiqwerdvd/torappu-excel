@@ -41,7 +41,7 @@ class PlayerBuildingControlBuff(BaseStruct):
     class Hire(BaseStruct):
         spUp: "PlayerBuildingControlBuff.Hire.SpUp"
         apCost: int
-        up: int
+        up: float | int
 
         class SpUp(BaseStruct):
             base: float | int

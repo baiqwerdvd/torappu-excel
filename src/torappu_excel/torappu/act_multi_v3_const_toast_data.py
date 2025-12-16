@@ -1,3 +1,5 @@
+from msgspec import field
+
 from ..common import BaseStruct
 
 
@@ -19,7 +21,6 @@ class ActMultiV3ConstToastData(BaseStruct):
     roomCollaboratorReviseMode: str
     continuousClicks: str
     matchNoProject: str
-    reportNoProject: str
     otherModeTrainingLock: str
     teamLock: str
     mentorLockTips: str
@@ -39,3 +40,4 @@ class ActMultiV3ConstToastData(BaseStruct):
     cannotSaveTitleChange: str
     matchPrepareRoomClose: str
     stageListViewTimeLockToast: str
+    reportNoProject: str | None = field(default=None)

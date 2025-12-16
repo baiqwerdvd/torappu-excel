@@ -1,3 +1,5 @@
+from msgspec import field
+
 from .act_multi_v3_inverse_unlock_cond import ActMultiV3InverseUnlockCond
 from .item_bundle import ItemBundle
 from .player_avatar_group_type import PlayerAvatarGroupType
@@ -46,7 +48,6 @@ class ActMultiV3ConstData(BaseStruct):
     footballGreatVoiceNum: int
     defenceGreatVoiceWave: int
     reportMaxNum: int
-    reportText: str
     reward1Id: str
     reward1Text: str
     reward2Id: str
@@ -93,6 +94,7 @@ class ActMultiV3ConstData(BaseStruct):
     boatExchangeForceMax: int
     boatExchangeForceMin: int
     waterSpeedFactor: float
+    reportText: str | None = field(default=None)
 
     class PingCond(BaseStruct):
         cond: int
