@@ -1,3 +1,5 @@
+from msgspec import field
+
 from .player_friend_assist import PlayerFriendAssist
 from .player_medal_board import PlayerMedalBoard
 from .player_social_reward import PlayerSocialReward
@@ -7,7 +9,7 @@ from ..common import BaseStruct
 class PlayerSocial(BaseStruct):
     yCrisisSs: str
     yCrisisV2Ss: str
-    assistCharList: list[PlayerFriendAssist]
+    assistCharList: list[PlayerFriendAssist | None]
     yesterdayReward: PlayerSocialReward
-    medalBoard: PlayerMedalBoard
+    medalBoard: PlayerMedalBoard | None = field(default=None)
     starFriendFlag: int | None = None

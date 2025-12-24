@@ -1,11 +1,12 @@
-from collections.abc import Callable, Iterable
+from collections.abc import Callable, Iterable, Iterator
 from enum import Enum
-from typing import Any, Self
+from typing import Any, Self, dataclass_transform
 
-from msgspec import Struct, convert, json as mscjson
+from msgspec import Struct, convert, field, json as mscjson
 from typing_extensions import override
 
 
+@dataclass_transform(field_specifiers=(field,))
 class BaseStruct(Struct, forbid_unknown_fields=True, omit_defaults=True, gc=False):
     class Config:
         encoder: mscjson.Encoder = mscjson.Encoder()
@@ -30,6 +31,13 @@ class BaseStruct(Struct, forbid_unknown_fields=True, omit_defaults=True, gc=Fals
             builtin_types=builtin_types,
             str_keys=str_keys,
         )
+
+    def __iter__(self) -> Iterator[tuple[str, Any]]:
+        for field_name in self.__struct_fields__:
+            yield field_name, getattr(self, field_name)
+
+    def keys(self) -> Iterator[str]:
+        yield from self.__struct_fields__
 
     def model_dump(self) -> dict[str, Any]:
         return mscjson.decode(mscjson.encode(self))

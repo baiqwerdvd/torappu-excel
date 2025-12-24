@@ -20,69 +20,69 @@ from .shared_char_data import SharedCharData
 from ..common import BaseStruct
 
 
-class PlayerActivity(BaseStruct):
-    DEFAULT: dict[str, "PlayerActivity.PlayerDefaultActivity"]
-    MISSION_ONLY: dict[str, "PlayerActivity.PlayerMissionOnlyTypeActivity"]
-    CHECKIN_ONLY: dict[str, "PlayerActivity.PlayerCheckinOnlyTypeActivity"]
-    CHECKIN_ALL_PLAYER: dict[str, "PlayerActivity.PlayerCheckinAllTypeActivity"]
-    CHECKIN_VS: dict[str, "PlayerActivity.PlayerCheckinVsTypeActivity"]
-    COLLECTION: dict[str, "PlayerActivity.PlayerCollectionTypeActivity"]
-    AVG_ONLY: dict[str, "PlayerActivity.PlayerAVGOnlyTypeActivity"]
-    LOGIN_ONLY: dict[str, "PlayerActivity.PlayerLoginOnlyTypeActivity"]
-    MINISTORY: dict[str, "PlayerActivity.PlayerMiniStoryActivity"]
-    ROGUELIKE: dict[str, "PlayerActivity.PlayerRoguelikeActivity"]
-    SANDBOX: dict[str, "PlayerActivity.PlayerActSandbox"]
-    PRAY_ONLY: dict[str, "PlayerActivity.PlayerPrayOnlyActivity"]
-    FLIP_ONLY: dict[str, "PlayerActivity.PlayerFlipOnlyActivity"]
-    MULTIPLAY: dict[str, "PlayerActivity.PlayerMultiplayActivity"]
-    MULTIPLAY_VERIFY2: dict[str, "PlayerActivity.PlayerMultiplayV2Activity"]
-    MULTIPLAY_V3: dict[str, "PlayerActivity.PlayerMultiV3Activity"]
-    INTERLOCK: dict[str, "PlayerActivity.PlayerInterlockActivity"]
-    TYPE_ACT3D0: dict[str, "PlayerActivity.PlayerAct3D0Activity"]
-    TYPE_ACT4D0: dict[str, "PlayerActivity.PlayerAct4D0Activity"]
-    TYPE_ACT5D0: dict[str, "PlayerActivity.PlayerAct5D0Activity"]
-    TYPE_ACT5D1: dict[str, "PlayerActivity.PlayerAct5D1Activity"]
-    TYPE_ACT9D0: dict[str, "PlayerActivity.PlayerAct9D0Activity"]
-    TYPE_ACT17D7: dict[str, "PlayerActivity.PlayerAct17D7Activity"]
-    TYPE_ACT38D1: dict[str, "PlayerActivity.PlayerAct38D1Activity"]
-    TYPE_ACT12SIDE: dict[str, "PlayerActivity.PlayerAct12sideActivity"]
-    TYPE_ACT13SIDE: dict[str, "PlayerActivity.PlayerAct13sideActivity"]
-    GRID_GACHA: dict[str, "PlayerActivity.PlayerGridGachaActivity"]
-    GRID_GACHA_V2: dict[str, JObject]
-    APRIL_FOOL: dict[str, "PlayerActivity.PlayerAprilFoolActivity"]
-    TYPE_ACT17SIDE: dict[str, "PlayerActivity.PlayerAct17SideActivity"]
-    BOSS_RUSH: dict[str, "PlayerActivity.PlayerBossRushActivity"]
-    ENEMY_DUEL: dict[str, "PlayerActivity.PlayerEnemyDuelActivity"]
-    VEC_BREAK_V2: dict[str, "PlayerActivity.PlayerVecBreakV2"]
-    ARCADE: dict[str, "PlayerActivity.PlayerArcadeActivity"]
-    TYPE_ACT20SIDE: dict[str, "PlayerActivity.PlayerAct20SideActivity"]
-    FLOAT_PARADE: dict[str, "PlayerActivity.PlayerActFloatParadeActivity"]
-    TYPE_ACT21SIDE: dict[str, "PlayerActivity.PlayerAct21SideActivity"]
-    MAIN_BUFF: dict[str, "PlayerActivity.PlayerActMainlineBuff"]
-    TYPE_ACT24SIDE: dict[str, "PlayerActivity.PlayerAct24SideActivity"]
-    TYPE_ACT25SIDE: dict[str, "PlayerActivity.PlayerAct25SideActivity"]
-    SWITCH_ONLY: dict[str, "PlayerActivity.PlayerSwitchOnlyActivity"]
-    TYPE_ACT27SIDE: dict[str, "PlayerActivity.PlayerAct27SideActivity"]
-    UNIQUE_ONLY: dict[str, "PlayerActivity.PlayerUniqueOnlyActivity"]
-    MAINLINE_BP: dict[str, JObject]
-    TYPE_ACT42D0: dict[str, "PlayerActivity.PlayerAct42D0Activity"]
-    TYPE_ACT29SIDE: dict[str, "PlayerActivity.PlayerAct29SideActivity"]
-    BLESS_ONLY: dict[str, "PlayerActivity.PlayerBlessOnlyActivity"]
-    CHECKIN_ACCESS: dict[str, JObject]
-    YEAR_5_GENERAL: dict[str, "PlayerActivity.PlayerYear5GeneralActivity"]
-    TYPE_ACT35SIDE: dict[str, "PlayerActivity.PlayerAct35SideActivity"]
-    TYPE_ACT36SIDE: dict[str, "PlayerActivity.PlayerAct36SideActivity"]
-    TYPE_ACT38SIDE: dict[str, "PlayerActivity.PlayerAct38SideActivity"]
-    AUTOCHESS_VERIFY1: dict[str, "PlayerActivity.PlayerAutoChessV1Activity"]
-    CHECKIN_VIDEO: dict[str, JObject]
-    TYPE_MAINSS: dict[str, "PlayerActivity.PlayerActMainSSActivity"]
-    TYPE_ACT42SIDE: dict[str, "PlayerActivity.PlayerAct42SideActivity"]
-    TYPE_ACT44SIDE: dict[str, "PlayerActivity.PlayerAct44SideActivity"]
-    HALFIDLE_VERIFY1: dict[str, "PlayerActivity.PlayerAct1VHalfIdleActivity"]
-    TYPE_ACT45SIDE: dict[str, "PlayerActivity.PlayerAct45SideActivity"]
-    TYPE_ACT46SIDE: dict[str, "PlayerActivity.PlayerAct46SideActivity"]
-    AUTOCHESS_SEASON: dict[str, "PlayerActivity.PlayerActAutoChessActivity"]
-    VEC_BREAK: Any  # TODO: 临时占位
+class PlayerActivity(BaseStruct, forbid_unknown_fields=True, kw_only=True):
+    DEFAULT: dict[str, "PlayerActivity.PlayerDefaultActivity"] = field(default_factory=dict)
+    MISSION_ONLY: dict[str, "PlayerActivity.PlayerMissionOnlyTypeActivity"] = field(default_factory=dict)
+    CHECKIN_ONLY: dict[str, "PlayerActivity.PlayerCheckinOnlyTypeActivity"] = field(default_factory=dict)
+    CHECKIN_ALL_PLAYER: dict[str, "PlayerActivity.PlayerCheckinAllTypeActivity"] = field(default_factory=dict)
+    CHECKIN_VS: dict[str, "PlayerActivity.PlayerCheckinVsTypeActivity"] = field(default_factory=dict)
+    COLLECTION: dict[str, "PlayerActivity.PlayerCollectionTypeActivity"] = field(default_factory=dict)
+    AVG_ONLY: dict[str, "PlayerActivity.PlayerAVGOnlyTypeActivity"] = field(default_factory=dict)
+    LOGIN_ONLY: dict[str, "PlayerActivity.PlayerLoginOnlyTypeActivity"] = field(default_factory=dict)
+    MINISTORY: dict[str, "PlayerActivity.PlayerMiniStoryActivity"] = field(default_factory=dict)
+    ROGUELIKE: dict[str, "PlayerActivity.PlayerRoguelikeActivity"] = field(default_factory=dict)
+    SANDBOX: dict[str, "PlayerActivity.PlayerActSandbox"] = field(default_factory=dict)
+    PRAY_ONLY: dict[str, "PlayerActivity.PlayerPrayOnlyActivity"] = field(default_factory=dict)
+    FLIP_ONLY: dict[str, "PlayerActivity.PlayerFlipOnlyActivity"] = field(default_factory=dict)
+    MULTIPLAY: dict[str, "PlayerActivity.PlayerMultiplayActivity"] = field(default_factory=dict)
+    MULTIPLAY_VERIFY2: dict[str, "PlayerActivity.PlayerMultiplayV2Activity"] = field(default_factory=dict)
+    MULTIPLAY_V3: dict[str, "PlayerActivity.PlayerMultiV3Activity"] = field(default_factory=dict)
+    INTERLOCK: dict[str, "PlayerActivity.PlayerInterlockActivity"] = field(default_factory=dict)
+    TYPE_ACT3D0: dict[str, "PlayerActivity.PlayerAct3D0Activity"] = field(default_factory=dict)
+    TYPE_ACT4D0: dict[str, "PlayerActivity.PlayerAct4D0Activity"] = field(default_factory=dict)
+    TYPE_ACT5D0: dict[str, "PlayerActivity.PlayerAct5D0Activity"] = field(default_factory=dict)
+    TYPE_ACT5D1: dict[str, "PlayerActivity.PlayerAct5D1Activity"] = field(default_factory=dict)
+    TYPE_ACT9D0: dict[str, "PlayerActivity.PlayerAct9D0Activity"] = field(default_factory=dict)
+    TYPE_ACT17D7: dict[str, "PlayerActivity.PlayerAct17D7Activity"] = field(default_factory=dict)
+    TYPE_ACT38D1: dict[str, "PlayerActivity.PlayerAct38D1Activity"] = field(default_factory=dict)
+    TYPE_ACT12SIDE: dict[str, "PlayerActivity.PlayerAct12sideActivity"] = field(default_factory=dict)
+    TYPE_ACT13SIDE: dict[str, "PlayerActivity.PlayerAct13sideActivity"] = field(default_factory=dict)
+    GRID_GACHA: dict[str, "PlayerActivity.PlayerGridGachaActivity"] = field(default_factory=dict)
+    GRID_GACHA_V2: dict[str, JObject] = field(default_factory=dict)
+    APRIL_FOOL: dict[str, "PlayerActivity.PlayerAprilFoolActivity"] = field(default_factory=dict)
+    TYPE_ACT17SIDE: dict[str, "PlayerActivity.PlayerAct17SideActivity"] = field(default_factory=dict)
+    BOSS_RUSH: dict[str, "PlayerActivity.PlayerBossRushActivity"] = field(default_factory=dict)
+    ENEMY_DUEL: dict[str, "PlayerActivity.PlayerEnemyDuelActivity"] = field(default_factory=dict)
+    VEC_BREAK_V2: dict[str, "PlayerActivity.PlayerVecBreakV2"] = field(default_factory=dict)
+    ARCADE: dict[str, "PlayerActivity.PlayerArcadeActivity"] = field(default_factory=dict)
+    TYPE_ACT20SIDE: dict[str, "PlayerActivity.PlayerAct20SideActivity"] = field(default_factory=dict)
+    FLOAT_PARADE: dict[str, "PlayerActivity.PlayerActFloatParadeActivity"] = field(default_factory=dict)
+    TYPE_ACT21SIDE: dict[str, "PlayerActivity.PlayerAct21SideActivity"] = field(default_factory=dict)
+    MAIN_BUFF: dict[str, "PlayerActivity.PlayerActMainlineBuff"] = field(default_factory=dict)
+    TYPE_ACT24SIDE: dict[str, "PlayerActivity.PlayerAct24SideActivity"] = field(default_factory=dict)
+    TYPE_ACT25SIDE: dict[str, "PlayerActivity.PlayerAct25SideActivity"] = field(default_factory=dict)
+    SWITCH_ONLY: dict[str, "PlayerActivity.PlayerSwitchOnlyActivity"] = field(default_factory=dict)
+    TYPE_ACT27SIDE: dict[str, "PlayerActivity.PlayerAct27SideActivity"] = field(default_factory=dict)
+    UNIQUE_ONLY: dict[str, "PlayerActivity.PlayerUniqueOnlyActivity"] = field(default_factory=dict)
+    MAINLINE_BP: dict[str, JObject] = field(default_factory=dict)
+    TYPE_ACT42D0: dict[str, "PlayerActivity.PlayerAct42D0Activity"] = field(default_factory=dict)
+    TYPE_ACT29SIDE: dict[str, "PlayerActivity.PlayerAct29SideActivity"] = field(default_factory=dict)
+    BLESS_ONLY: dict[str, "PlayerActivity.PlayerBlessOnlyActivity"] = field(default_factory=dict)
+    CHECKIN_ACCESS: dict[str, JObject] = field(default_factory=dict)
+    YEAR_5_GENERAL: dict[str, "PlayerActivity.PlayerYear5GeneralActivity"] = field(default_factory=dict)
+    TYPE_ACT35SIDE: dict[str, "PlayerActivity.PlayerAct35SideActivity"] = field(default_factory=dict)
+    TYPE_ACT36SIDE: dict[str, "PlayerActivity.PlayerAct36SideActivity"] = field(default_factory=dict)
+    TYPE_ACT38SIDE: dict[str, "PlayerActivity.PlayerAct38SideActivity"] = field(default_factory=dict)
+    AUTOCHESS_VERIFY1: dict[str, "PlayerActivity.PlayerAutoChessV1Activity"] = field(default_factory=dict)
+    CHECKIN_VIDEO: dict[str, JObject] = field(default_factory=dict)
+    TYPE_MAINSS: dict[str, "PlayerActivity.PlayerActMainSSActivity"] = field(default_factory=dict)
+    TYPE_ACT42SIDE: dict[str, "PlayerActivity.PlayerAct42SideActivity"] = field(default_factory=dict)
+    TYPE_ACT44SIDE: dict[str, "PlayerActivity.PlayerAct44SideActivity"] = field(default_factory=dict)
+    HALFIDLE_VERIFY1: dict[str, "PlayerActivity.PlayerAct1VHalfIdleActivity"] = field(default_factory=dict)
+    TYPE_ACT45SIDE: dict[str, "PlayerActivity.PlayerAct45SideActivity"] = field(default_factory=dict)
+    TYPE_ACT46SIDE: dict[str, "PlayerActivity.PlayerAct46SideActivity"] = field(default_factory=dict)
+    AUTOCHESS_SEASON: dict[str, "PlayerActivity.PlayerActAutoChessActivity"] = field(default_factory=dict)
+    VEC_BREAK: dict[str, Any] | None = None
     TEAM_QUEST: dict[str, Any] | None = None
     RECRUIT_ONLY: dict[str, "PlayerActivity.PlayerRecruitOnlyAct"] | None = None
 

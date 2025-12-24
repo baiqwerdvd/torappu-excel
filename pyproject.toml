@@ -4,7 +4,7 @@ authors = [
   { name = "DICE_Lab" },
   { name = "baiqwerdvd", email = "baiqwerdvd@gmail.com" },
 ]
-version = "2.6.82"
+version = "2.6.83"
 description = "Torappu Client Excel Model Library"
 license = { file = "LICENSE" }
 readme = "README.md"
@@ -17,8 +17,8 @@ dependencies = [
 ]
 
 [build-system]
-build-backend = "hatchling.build"
-requires = ["hatchling"]
+requires = ["uv_build>=0.9.18,<0.10.0"]
+build-backend = "uv_build"
 
 [dependency-groups]
 dev = [{ include-group = "lint" }, { include-group = "test" }]

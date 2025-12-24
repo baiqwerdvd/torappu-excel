@@ -5,8 +5,18 @@ from .mission_player_state import MissionPlayerState
 from ..common import BaseStruct
 
 
+class MissionPlayerDataGroup(BaseStruct):  # Checked
+    MAIN: dict[str, MissionPlayerState]
+    GUIDE: dict[str, MissionPlayerState]
+    ACTIVITY: dict[str, MissionPlayerState]
+    DAILY: dict[str, MissionPlayerState]
+    WEEKLY: dict[str, MissionPlayerState]
+    OPENSERVER: dict[str, MissionPlayerState]
+    SUB: dict[str, MissionPlayerState]
+
+
 class MissionPlayerData(BaseStruct):
-    missions: dict[str, dict[str, MissionPlayerState]]
+    missions: MissionPlayerDataGroup
     missionRewards: MissionDailyRewards
     missionGroups: dict[str, "MissionPlayerData.MissionGroupState"]
     pinnedSpecialOperator: str

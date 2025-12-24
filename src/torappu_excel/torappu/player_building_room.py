@@ -1,5 +1,7 @@
 from typing import Any
 
+from msgspec import field
+
 from .player_building_control import PlayerBuildingControl
 from .player_building_dormitory import PlayerBuildingDormitory
 from .player_building_hire import PlayerBuildingHire
@@ -15,16 +17,16 @@ from ..common import BaseStruct
 
 
 class PlayerBuildingRoom(BaseStruct):
-    MANUFACTURE: dict[str, PlayerBuildingManufacture]
-    POWER: dict[str, PlayerBuildingPower]
-    CONTROL: dict[str, PlayerBuildingControl]
-    MEETING: dict[str, PlayerBuildingMeeting]
-    HIRE: dict[str, PlayerBuildingHire]
-    DORMITORY: dict[str, PlayerBuildingDormitory]
-    PRIVATE: dict[str, PlayerBuildingPrivate]
-    TRAINING: dict[str, PlayerBuildingTraining]
-    WORKSHOP: dict[str, PlayerBuildingWorkshop]
-    TRADING: dict[str, PlayerBuildingTrading]
-    CORRIDOR: dict[str, dict[str, Any]]
-    ELEVATOR: dict[str, dict[str, Any]]
+    MANUFACTURE: dict[str, PlayerBuildingManufacture] = field(default_factory=dict)
+    POWER: dict[str, PlayerBuildingPower] = field(default_factory=dict)
+    CONTROL: dict[str, PlayerBuildingControl] = field(default_factory=dict)
+    MEETING: dict[str, PlayerBuildingMeeting] = field(default_factory=dict)
+    HIRE: dict[str, PlayerBuildingHire] = field(default_factory=dict)
+    DORMITORY: dict[str, PlayerBuildingDormitory] = field(default_factory=dict)
+    PRIVATE: dict[str, PlayerBuildingPrivate] = field(default_factory=dict)
+    TRAINING: dict[str, PlayerBuildingTraining] = field(default_factory=dict)
+    WORKSHOP: dict[str, PlayerBuildingWorkshop] = field(default_factory=dict)
+    TRADING: dict[str, PlayerBuildingTrading] = field(default_factory=dict)
+    CORRIDOR: dict[str, dict[str, Any]] = field(default_factory=dict)
+    ELEVATOR: dict[str, dict[str, Any]] = field(default_factory=dict)
     SHOP: dict[str, PlayerBuildingShop] | None = None
