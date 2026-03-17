@@ -1,3 +1,5 @@
+from msgspec import field
+
 from .player_building_trainee_state import PlayerBuildingTraineeState
 from ..common import BaseStruct
 
@@ -8,4 +10,4 @@ class PlayerBuildingTrainee(BaseStruct):
     processPoint: float
     speed: float
     targetSkill: int
-    charTemplate: str
+    charTemplate: str | None = field(default=None)

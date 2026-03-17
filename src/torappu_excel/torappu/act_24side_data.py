@@ -46,6 +46,8 @@ class Act24SideData(BaseStruct):
     missionDataList: dict[str, "Act24SideData.MissionExtraData"]
     meldingDropDict: dict[str, StageData.StageDropInfo]
     stageMapPreviewDict: dict[str, list[str]]
+    huntDatabaseDict: dict[str, "Act24SideData.HuntDatabaseData"] | None
+    stageIdToUnlockItemIdDict: dict[str, str]
     constData: "Act24SideData.ConstData"
 
     class ToolData(BaseStruct):
@@ -73,6 +75,7 @@ class Act24SideData(BaseStruct):
 
     class MeldingItemData(BaseStruct):
         meldingId: str
+        bgId: str
         sortId: int
         meldingPrice: int
         rarity: "Act24SideData.MeldingItemRarityType"
@@ -115,11 +118,35 @@ class Act24SideData(BaseStruct):
         taskClient: str
         taskClientDesc: str
 
+    class HuntDatabaseData(BaseStruct):
+        id: str
+        name: str
+        sortId: int
+        level: int
+        isBoss: bool
+        bossPicId: str
+        iconSmallId: str
+        iconLargeId: str
+        basicDesc: str
+        rideIcon: str
+        rideDesc: str
+        secretTaskId: str
+        secretTaskItemId: str
+        secretTaskDesc: str
+        secretContent: str
+
     class ConstData(BaseStruct):
         stageUnlockToolDesc: str
         mealLackMoney: str
         mealDayTimesLimit: int
         toolMaximum: int
         stageCanNotUseToTool: list[str]
-        gachaDefaultProb: float | int
-        gachaExtraProb: float | int
+        hunterGuideRewardItemId: str
+        hunterGuideRewardItemType: str
+        hunterGuideRewardItemCount: int
+        hunterGuideDetailTabPosition: int
+        taskRewardItemNoIconDisplayId: str
+        specialLevelUnlockTaskId: str
+        missionProgressFormat: str
+        gachaDefaultProb: float
+        gachaExtraProb: float

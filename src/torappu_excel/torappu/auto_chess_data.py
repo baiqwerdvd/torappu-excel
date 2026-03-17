@@ -1,3 +1,5 @@
+from msgspec import field
+
 from .auto_chess_bond_type import AutoChessBondType
 from .auto_chess_broadcast_type import AutoChessBroadcastType
 from .auto_chess_prepare_step_type import AutoChessPrepareStepType
@@ -37,9 +39,11 @@ class AutoChessData(BaseStruct):
     class AutoChessVersionInfoData(BaseStruct):
         versionId: str | None
         activityId: str
-        updateTime: int
-        appearTimeOnMainScreen: int
-        disappearTimeOnMainScreen: int
+        seasonName: str
+        startTime: int
+        updateTime: int | None = field(default=None)
+        appearTimeOnMainScreen: int | None = field(default=None)
+        disappearTimeOnMainScreen: int | None = field(default=None)
 
     class AutoChessBandData(BaseStruct):
         bandId: str
@@ -74,6 +78,7 @@ class AutoChessData(BaseStruct):
         icon: str
         isPower: bool
         bondOrder: int
+        isHiddenCharList: bool
 
     class AutoChessBossInfoData(BaseStruct):
         bossId: str
@@ -141,6 +146,7 @@ class AutoChessData(BaseStruct):
         enemyAtkFactor: float
         enemyDefFactor: float
         enemyMagicResistanceFactor: float
+        singleReconnectTime: int
         specialPhaseStayTime: int
         hintTimeSpecialPhase: int
         hintTimeNormalPhase: int
@@ -158,6 +164,7 @@ class AutoChessData(BaseStruct):
         bossTrailerStartRound: int
         singleClosureStayTime: float
         matchTimeMax: float
+        enemyDataLevelId: str
 
     class AutoChessTurnInfoData(BaseStruct):
         round: int

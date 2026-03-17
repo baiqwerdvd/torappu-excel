@@ -20,7 +20,7 @@ class PlayerBuildingMeeting(BaseStruct):
     received: int
     infoShare: PlayerBuildingMeetingInfoShareState
     lastUpdateTime: int
-    dailyReward: PlayerBuildingMeetingClue
+    dailyReward: PlayerBuildingMeetingClue | None
     mustgetClue: list[str]
     startApCounter: dict[str, int]
     mfc: dict[str, int]

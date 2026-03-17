@@ -1,5 +1,6 @@
 from collections.abc import Callable, Iterable, Iterator
 from enum import Enum
+import json
 from typing import Any, Self, dataclass_transform
 
 from msgspec import Struct, convert, field, json as mscjson
@@ -41,6 +42,9 @@ class BaseStruct(Struct, forbid_unknown_fields=True, omit_defaults=True, gc=Fals
 
     def model_dump(self) -> dict[str, Any]:
         return mscjson.decode(mscjson.encode(self))
+
+    def to_string(self) -> str:
+        return json.dumps(self.model_dump(), ensure_ascii=False, separators=(",", ":"))
 
 
 class CustomIntEnum(Enum):

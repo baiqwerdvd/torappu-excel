@@ -38,6 +38,7 @@ from .roguelike_game_variation_data import RoguelikeGameVariationData
 from .roguelike_game_zone_data import RoguelikeGameZoneData
 from .roguelike_predefined_const_style_data import RoguelikePredefinedConstStyleData
 from .roguelike_predefined_style_data import RoguelikePredefinedStyleData
+from .roguelike_relic_tips_data import RoguelikeRelicTipsData
 from .roguelike_roll_node_data import RoguelikeRollNodeData
 from .roguelike_task_data import RoguelikeTaskData
 from .roguelike_topic_bank_reward import RoguelikeTopicBankReward
@@ -106,6 +107,7 @@ class RoguelikeTopicDetail(BaseStruct):
     difficultyUpgradeRelicGroups: dict[str, RoguelikeDifficultyUpgradeRelicGroupData]
     styleConfig: RoguelikePredefinedConstStyleData
     activity: RoguelikeActivityData
+    relicTipsData: dict[str, RoguelikeRelicTipsData]
     endingRelicDetailList: list[RoguelikeEndingRelicDetailText] | None = field(default=None)
     shopDialogData: RoguelikeGameShopDialogData | None = field(default=None)
     shopDialogs: dict[RoguelikeGameShopDialogType, list[str]] | None = field(default=None)

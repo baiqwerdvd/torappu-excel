@@ -12,3 +12,5 @@ class RoguelikeTopicBP(BaseStruct):
     itemCount: int
     isGoodPrize: bool
     isGrandPrize: bool
+    isReturnDisplay: bool
+    returnSortId: int

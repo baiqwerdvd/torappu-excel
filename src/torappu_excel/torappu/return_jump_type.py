@@ -1,0 +1,14 @@
+from enum import StrEnum
+
+
+class ReturnJumpType(StrEnum):
+    NONE = "NONE"
+    ZONE_GROUP = "ZONE_GROUP"
+    ROGUE = "ROGUE"
+    CLIMB_TOWER = "CLIMB_TOWER"
+    CAMPAIGN = "CAMPAIGN"
+    BUILDING = "BUILDING"
+    RECRUIT_BUILD = "RECRUIT_BUILD"
+    DAILY_MISSION = "DAILY_MISSION"
+    SANDBOX = "SANDBOX"
+    MAIN_SS = "MAIN_SS"

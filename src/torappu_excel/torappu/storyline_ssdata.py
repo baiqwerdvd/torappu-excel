@@ -1,8 +1,9 @@
+from msgspec import field
+
 from ..common import BaseStruct
 
 
 class StorylineSSData(BaseStruct):
-    name: str
     desc: str
     backgroundId: str
     tags: list[str]
@@ -11,3 +12,4 @@ class StorylineSSData(BaseStruct):
     isRecommended: bool
     recommendHideStageId: str | None
     overrideStageList: list[str] | None
+    name: str | None = field(default=None)

@@ -7,3 +7,4 @@ class ActAutoChessModeDifficultyType(StrEnum):
     FUNNY = "FUNNY"
     NORMAL = "NORMAL"
     HARD = "HARD"
+    ABYSS = "ABYSS"

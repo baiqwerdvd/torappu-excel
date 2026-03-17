@@ -4,6 +4,7 @@ from .campaign_group_data import CampaignGroupData
 from .campaign_mission_data import CampaignMissionData
 from .campaign_region_data import CampaignRegionData
 from .campaign_rotate_open_time_data import CampaignRotateOpenTimeData
+from .campaign_stage_map_data import CampaignStageMapData
 from .campaign_training_all_open_time_data import CampaignTrainingAllOpenTimeData
 from .campaign_training_open_time_data import CampaignTrainingOpenTimeData
 from .campaign_zone_data import CampaignZoneData
@@ -21,3 +22,4 @@ class CampaignTable(BaseStruct):
     campaignRotateStageOpenTimes: list[CampaignRotateOpenTimeData]
     campaignTrainingStageOpenTimes: list[CampaignTrainingOpenTimeData]
     campaignTrainingAllOpenTimes: list[CampaignTrainingAllOpenTimeData]
+    campaignZoneMapData: dict[str, dict[str, CampaignStageMapData]]

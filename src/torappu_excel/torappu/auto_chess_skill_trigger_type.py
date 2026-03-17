@@ -14,3 +14,4 @@ class AutoChessSkillTriggerType(StrEnum):
     GDGLOW_SKILL_2 = "GDGLOW_SKILL_2"
     ACT_DEFAULT = "ACT_DEFAULT"
     AUTO_STOP = "AUTO_STOP"
+    TAKE_DAMAGE = "TAKE_DAMAGE"

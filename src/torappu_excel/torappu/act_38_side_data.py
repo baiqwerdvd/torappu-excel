@@ -28,6 +28,7 @@ class Act38SideData(BaseStruct):
 
     class Act38SidePuzzleInfo(BaseStruct):
         puzzleId: str
+        sortId: int
         startTime: int
         puzzleGroupId: str
 

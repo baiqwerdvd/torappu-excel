@@ -1,3 +1,5 @@
+from msgspec import field
+
 from .long_term_check_in_data import LongTermCheckInData
 from .newbie_checkin_package_data import NewbieCheckInPackageData
 from .open_server_const import OpenServerConst
@@ -13,6 +15,6 @@ class OpenServerSchedule(BaseStruct):
     dataMap: dict[str, OpenServerData]
     constant: OpenServerConst
     playerReturn: ReturnData
-    playerReturnV2: ReturnDataV2
     newbieCheckInPackageList: list[NewbieCheckInPackageData]
     longTermCheckInData: LongTermCheckInData
+    playerReturnV2: ReturnDataV2 | None = field(default=None)

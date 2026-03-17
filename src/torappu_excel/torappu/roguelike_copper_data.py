@@ -13,3 +13,4 @@ class RoguelikeCopperData(BaseStruct):
     poemList: list[str]
     alwaysShowCountDown: bool
     buffItemIdList: list[str]
+    isAllLuckyLevel: bool

@@ -1,3 +1,4 @@
+from .avatar_const_data import AvatarConstData
 from .player_avatar_group_data import PlayerAvatarGroupData
 from .player_avatar_group_type import PlayerAvatarGroupType
 from .player_avatar_per_data import PlayerAvatarPerData
@@ -8,3 +9,4 @@ class PlayerAvatarData(BaseStruct):
     defaultAvatarId: str
     avatarList: list[PlayerAvatarPerData]
     avatarTypeData: dict[PlayerAvatarGroupType, PlayerAvatarGroupData]
+    constData: AvatarConstData | None = None

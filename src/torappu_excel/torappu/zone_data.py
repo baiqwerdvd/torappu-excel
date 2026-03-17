@@ -20,4 +20,5 @@ class ZoneData(BaseStruct):
     sixStarMilestoneGroupId: str | None
     bindMainlineZoneId: str | None
     bindMainlineRetroZoneId: str | None
+    diamondRewardCount: int
     hasAdditionalPanel: bool | None = field(default=None)

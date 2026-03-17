@@ -8,3 +8,5 @@ class ActivityEnemyDuelPoolData(BaseStruct):
     poolBoss: float
     poolMusic: float
     poolNoSurpriseEnemy: float
+    poolGiantBoss: float
+    poolAntiGiantBoss: float

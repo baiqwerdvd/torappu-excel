@@ -1,6 +1,9 @@
 from msgspec import field
 
 from .ap_protect_zone_info import ApProtectZoneInfo
+from .cggallery_cgdata import CGGalleryCGData
+from .cggallery_display_data import CGGalleryDisplayData
+from .cggallery_group_data import CGGalleryGroupData
 from .conditional_drop_info import ConditionalDropInfo
 from .map_theme_data import MapThemeData
 from .override_drop_info import OverrideDropInfo
@@ -53,6 +56,9 @@ class StageTable(BaseStruct):
     storylineStorySets: dict[str, StorylineStorySetData]
     storylineTags: dict[str, StorylineTagData]
     storylineConst: StorylineConstData
+    cgGalleryDisplays: dict[str, CGGalleryDisplayData]
+    cgGalleryGroups: dict[str, CGGalleryGroupData]
+    cgGalleryCgs: dict[str, CGGalleryCGData]
     sixStarRuneData: dict[str, SixStarRuneData]
     sixStarMilestoneInfo: dict[str, SixStarMilestoneGroupData]
     sixStarCompatibleInfo: dict[str, SixStarLinkedStageCompatibleInfo]

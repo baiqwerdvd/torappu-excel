@@ -10,6 +10,7 @@ class NameCardV2SkinData(BaseStruct):
     id: str
     name: str
     type: NameCardV2SkinType
+    isSecret: bool
     sortId: int
     skinStartTime: int
     skinDesc: str

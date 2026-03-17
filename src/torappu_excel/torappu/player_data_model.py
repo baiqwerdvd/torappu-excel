@@ -23,6 +23,7 @@ from .player_equipment import PlayerEquipment
 from .player_events import PlayerEvents
 from .player_firework import PlayerFirework
 from .player_gacha import PlayerGacha
+from .player_gallery import PlayerGallery
 from .player_home_background import PlayerHomeBackground
 from .player_home_theme import PlayerHomeTheme
 from .player_invite_data import PlayerInviteData
@@ -114,6 +115,7 @@ class PlayerDataModel(BaseStruct):
     aprilFool: PlayerAprilFool
     npcAudio: dict[str, PlayerNpcWithAudio]
     charRotation: PlayerCharRotation
+    gallery: PlayerGallery
     mainline: PlayerMainlineRecord
     limitedBuff: PlayerLimitedDropBuff
     performanceStory: PlayerPerformanceStory

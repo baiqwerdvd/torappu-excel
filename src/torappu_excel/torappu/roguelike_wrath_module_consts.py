@@ -5,3 +5,4 @@ class RoguelikeWrathModuleConsts(BaseStruct):
     getWrathTransition: str
     getWrathToast: str
     hiddenWrathType: str
+    pacifiedWrathLevel: int

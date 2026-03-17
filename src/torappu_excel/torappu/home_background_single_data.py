@@ -7,6 +7,7 @@ class HomeBackgroundSingleData(BaseStruct):
     bgId: str
     bgSortId: int
     bgStartTime: int
+    isSecret: bool
     bgName: str
     bgDes: str
     bgUsage: str
@@ -15,5 +16,6 @@ class HomeBackgroundSingleData(BaseStruct):
     multiFormList: list[HomeBackgroundMultiFormData]
     obtainApproach: str
     unlockDesList: list[str]
+    multiPicId: str | None
     bgMusicId: str | None = None
     bgType: str | None = None

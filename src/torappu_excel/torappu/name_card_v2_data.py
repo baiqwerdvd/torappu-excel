@@ -1,3 +1,4 @@
+from .art_gallery_group_data import ArtGalleryGroupData
 from .name_card_v2_consts import NameCardV2Consts
 from .name_card_v2_module_data import NameCardV2ModuleData
 from .name_card_v2_removable_module_data import NameCardV2RemovableModuleData
@@ -9,4 +10,5 @@ class NameCardV2Data(BaseStruct):
     fixedModuleData: dict[str, NameCardV2ModuleData]
     removableModuleData: dict[str, NameCardV2RemovableModuleData]
     skinData: dict[str, NameCardV2SkinData]
+    skinGroupDatas: list[ArtGalleryGroupData]
     consts: NameCardV2Consts

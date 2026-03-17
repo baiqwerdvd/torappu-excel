@@ -9,3 +9,4 @@ class RoguelikeWrathData(BaseStruct):
     levelName: str
     functionDesc: str
     desc: str
+    isPacified: bool

@@ -29,3 +29,5 @@ class ActVecBreakV2ConstData(BaseStruct):
     defenceBattleFinishActivateText: str
     defenceBattleFinishSquadText: str
     milestoneTrackId: str
+    themeColor: str
+    subTitleName: str

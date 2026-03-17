@@ -1,4 +1,5 @@
 from .act6_fun_data import Act6FunData
+from .act7_fun_data import Act7FunData
 from .act_4fun_data import Act4funData
 from .act_5fun_data import Act5FunData
 from .april_fool_const import AprilFoolConst
@@ -14,3 +15,4 @@ class AprilFoolTable(BaseStruct):
     act4FunData: Act4funData
     act5FunData: Act5FunData
     act6FunData: Act6FunData
+    act7FunData: Act7FunData

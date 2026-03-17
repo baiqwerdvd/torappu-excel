@@ -13,3 +13,4 @@ class GachaRuleType(CustomIntEnum):
     SPECIAL = "SPECIAL", 8
     DOUBLE = "DOUBLE", 9
     CLASSIC_DOUBLE = "CLASSIC_DOUBLE", 10
+    BACKFLOW = "BACKFLOW", 11

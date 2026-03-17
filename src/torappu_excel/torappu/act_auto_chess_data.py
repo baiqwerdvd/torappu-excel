@@ -1,5 +1,6 @@
 from msgspec import field
 
+from .act_auto_chess_bond_active_condition_type import ActAutoChessBondActiveConditionType
 from .act_auto_chess_bond_active_type import ActAutoChessBondActiveType
 from .act_auto_chess_mode_difficulty_type import ActAutoChessModeDifficultyType
 from .act_auto_chess_mode_type import ActAutoChessModeType
@@ -67,6 +68,7 @@ class ActAutoChessData(BaseStruct):
         activeBondIdList: list[str]
         inactiveBondIdList: list[str]
         inactiveEnemyKey: list[str]
+        startTime: int
 
     class ActAutoChessBondInfo(BaseStruct):
         bondId: str
@@ -74,11 +76,15 @@ class ActAutoChessData(BaseStruct):
         desc: str
         iconId: str
         activeCount: int
+        activeCondition: ActAutoChessBondActiveConditionType
+        activeConditionTemplate: str | None
+        activeParamList: list[str]
         effectId: str
         activeType: ActAutoChessBondActiveType
         identifier: int
         weight: int
         isActiveInDeck: bool
+        maxInactiveBondCount: int
         descParamBaseList: list[str]
         descParamPerStackList: list[str]
         noStack: bool
@@ -105,6 +111,7 @@ class ActAutoChessData(BaseStruct):
         effectId: str
         victorCount: int
         bandRewardModulus: float
+        updateTime: int
 
     class ActAutoChessCharChessStatusData(BaseStruct):
         evolvePhase: EvolvePhase
@@ -243,6 +250,7 @@ class ActAutoChessData(BaseStruct):
         bloodPoint: int
         bloodPointNormal: int
         bloodPointHard: int
+        bloodPointAbyss: int
         isHidingBoss: bool
 
     class ActAutochessSpecialEnemyEntry(BaseStruct):
@@ -289,7 +297,7 @@ class ActAutoChessData(BaseStruct):
         trBondIds: list[str]
         trBannedBondIds: list[str]
         milestoneTrackId: str
-        bandNextUpdateTs: int
         escapedBattleTemplateMapSinglePlayer: str
         escapedBattleTemplateMapMultiPlayer: str
         webBusType: str
+        bandNextUpdateTs: int | None = field(default=None)

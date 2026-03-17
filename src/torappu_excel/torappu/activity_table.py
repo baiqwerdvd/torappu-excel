@@ -75,6 +75,7 @@ from .mission_type import MissionType
 from .pic_group import PicGroup
 from .rune_table import RuneTable
 from .siracusa_data import SiracusaData
+from .story_read_tips_data import StoryReadTipsData
 from .versus_checkin_data import VersusCheckInData
 from ..common import BaseStruct
 
@@ -112,6 +113,7 @@ class ActivityTable(BaseStruct):
     activityTemplateMissionStyles: dict[str, ActivityTemplateMissionStyles]
     activityCrossDayTrackTypeDataDict: dict[str, CrossDayTrackTypeData]
     activityCrossDayTrackTypeMap: dict[str, list[str]]
+    activityStoryReadTipsDatas: dict[str, StoryReadTipsData]
 
     class BasicData(BaseStruct):
         id: str

@@ -19,5 +19,5 @@ class PlayerBuildingDormitory(BaseStruct):
             exclude: dict[str, int]
 
             class SingleTarget(BaseStruct):
-                target: str | None
+                target: int | None
                 value: int

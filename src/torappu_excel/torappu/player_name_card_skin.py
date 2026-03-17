@@ -1,3 +1,5 @@
+from msgspec import field
+
 from ..common import BaseStruct
 
 
@@ -9,3 +11,4 @@ class PlayerNameCardSkin(BaseStruct):
     class SkinState(BaseStruct):
         unlock: bool
         progress: list[list[int]] | None
+        unlockTs: int | None = field(default=None)

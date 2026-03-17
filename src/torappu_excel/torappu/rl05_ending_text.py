@@ -20,6 +20,7 @@ class RL05EndingText(BaseStruct):
     summaryHoldCandle: str
     summaryHoldCandleRecruit: str
     summaryHoldCandleUpgrade: str
+    summaryExpeditionEndingFourToFive: str
     summaryExchangeSpZoneGet: str
     summaryMeetShopSpZone: str
     summaryBattleFailSpZone: str

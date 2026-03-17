@@ -528,7 +528,7 @@ class PlayerRoguelikeV2(BaseStruct):
                 seed: str
 
             class PlayerRogueActivityUnlockInfo(BaseStruct):
-                state: "PlayerRoguelikeV2.OuterData.PlayerRogueActivity.PlayerRogueActivityUnlockInfo.PlayerRogueActivityUnlockState"
+                state: "PlayerRoguelikeV2.OuterData.PlayerRogueActivity.PlayerRogueActivityUnlockInfo.PlayerRogueActivityUnlockState"  # noqa: E501
                 progress: list[int]
 
                 class PlayerRogueActivityUnlockState(StrEnum):

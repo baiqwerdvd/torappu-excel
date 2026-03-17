@@ -20,6 +20,7 @@ class RuneData(BaseStruct):
         sideType: SideType | None = field(default=None)
         playerSideMask: BuildableTypeStr | BuildableType | None = field(default=None)
         charIdFilter: list[str] | None = field(default=None)
+        charIdExcludeFilter: list[str] | None = field(default=None)
         enemyIdFilter: list[str] | None = field(default=None)
         enemyIdExcludeFilter: list[str] | None = field(default=None)
         enemyLevelTypeFilter: list[str] | None = field(default=None)

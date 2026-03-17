@@ -792,7 +792,7 @@ class PlayerActivity(BaseStruct, forbid_unknown_fields=True, kw_only=True):
 
         class DefendCharInfo(BaseStruct):
             charInstId: int
-            currentTmpl: str
+            currentTmpl: str | None = field(default=None)
 
         class DefendStageInfo(BaseStruct):
             stageId: str
@@ -1354,9 +1354,9 @@ class PlayerActivity(BaseStruct, forbid_unknown_fields=True, kw_only=True):
         process: int
         state: "PlayerActivity.PlayerCommonDailyMission.DailyMissionState"
 
-        class DailyMissionState(StrEnum):
-            NOT_CLAIM = "NOT_CLAIM"
-            CLAIMED = "CLAIMED"
+        class DailyMissionState(IntEnum):
+            NOT_CLAIM = 0
+            CLAIMED = 1
 
     class PlayerActAutoChessActivity(BaseStruct):
         mode: dict[str, "PlayerActivity.PlayerActAutoChessActivity.Mode"]
@@ -1365,21 +1365,22 @@ class PlayerActivity(BaseStruct, forbid_unknown_fields=True, kw_only=True):
         protectTs: int
         trophyNum: int
         milestone: "PlayerActivity.MilestoneInfo"
-        match: "PlayerActivity.PlayerActAutoChessActivity.MatchInfo"
         scene: "PlayerActivity.PlayerActAutoChessActivity.Scene"
         globalBan: bool
         chessSquad: dict[str, "PlayerActivity.PlayerActAutoChessActivity.AutoChessSquadSlot"]
+        team: "PlayerActivity.PlayerActAutoChessActivity.Team"
+        match: "PlayerActivity.PlayerActAutoChessActivity.MatchInfo | None" = field(default=None)
 
-        class BandState(StrEnum):
-            LOCK = "LOCK"
-            UNLOCKED = "UNLOCKED"
+        class BandState(IntEnum):
+            LOCK = 0
+            UNLOCKED = 1
 
-        class AutoChessCharType(StrEnum):
-            OWN = "OWN"
-            BACK_UP = "BACK_UP"
-            ASSIST_BY_FRIEND = "ASSIST_BY_FRIEND"
-            DIY = "DIY"
-            PRESET = "PRESET"
+        class AutoChessCharType(IntEnum):
+            OWN = 0
+            BACK_UP = 1
+            ASSIST_BY_FRIEND = 2
+            DIY = 3
+            PRESET = 4
 
         class Mode(BaseStruct):
             unlock: bool
@@ -1397,27 +1398,32 @@ class PlayerActivity(BaseStruct, forbid_unknown_fields=True, kw_only=True):
         class AutoChessSquadSlot(BaseStruct):
             chessId: str
             charId: str
-            tmplId: str
-            diyBackupChessId: str
-            cultivateEffect: str
-            currentEquip: str
+            cultivateEffect: str | None
+            currentEquip: str | None
             skin: str
             type: "PlayerActivity.PlayerActAutoChessActivity.AutoChessCharType"
             potentialRank: int
             skillIndex: int
-            assistInfo: "PlayerActivity.PlayerActAutoChessActivity.AutoChessAssistInfo"
+            tmplId: str | None = field(default=None)
+            diyBackupChessId: str | None = field(default=None)
+            assistInfo: "PlayerActivity.PlayerActAutoChessActivity.AutoChessAssistInfo | None" = field(default=None)
 
         class AutoChessAssistInfo(BaseStruct):
             uid: str
             nickName: str
             nickNumber: str
-            alias: str
+            alias: str | None
 
         class MatchInfo(BaseStruct):
             bannedUntilTs: int
 
         class Scene(BaseStruct):
             lastMate: list[str]
+
+        class Team(BaseStruct):
+            startTs: int
+            teamId: str
+            teamType: int
 
     class PlayerAct46SideActivity(BaseStruct):
         coin: int

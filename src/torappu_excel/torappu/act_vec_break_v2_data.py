@@ -1,3 +1,5 @@
+from msgspec import field
+
 from .act_vec_break_v2_battle_buff_data import ActVecBreakV2BattleBuffData
 from .act_vec_break_v2_const_data import ActVecBreakV2ConstData
 from .act_vec_break_v2_defense_basic_data import ActVecBreakV2DefenseBasicData
@@ -28,4 +30,5 @@ class ActVecBreakV2Data(BaseStruct):
     defenseZoneId: str
     offenseZoneId: str
     hardZoneId: str
-    firstDefenseGroupId: str
+    firstDefenseStageId: str
+    firstDefenseGroupId: str | None = field(default=None)

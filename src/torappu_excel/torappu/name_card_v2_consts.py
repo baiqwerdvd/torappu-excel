@@ -5,3 +5,4 @@ class NameCardV2Consts(BaseStruct):
     defaultNameCardSkinId: str
     canUidHide: bool
     removableModuleMaxCount: int
+    approachHideText: str

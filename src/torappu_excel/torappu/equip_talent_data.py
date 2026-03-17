@@ -9,6 +9,7 @@ class EquipTalentData(BaseStruct):
     displayRangeId: bool
     upgradeDescription: str
     talentIndex: int
+    validModeIndices: list[int] | None
     unlockCondition: "SharedCharacterData.UnlockCondition"
     requiredPotentialRank: int
     prefabKey: str

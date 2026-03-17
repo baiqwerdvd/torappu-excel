@@ -1,3 +1,4 @@
+from .art_gallery_group_data import ArtGalleryGroupData
 from .home_background_limit_data import HomeBackgroundLimitData
 from .home_background_single_data import HomeBackgroundSingleData
 from .home_multi_form_info_data import HomeMultiFormInfoData
@@ -11,7 +12,9 @@ class HomeBackgroundData(BaseStruct):
     defaultBackgroundId: str
     defaultThemeId: str
     homeBgDataList: list[HomeBackgroundSingleData]
+    backgroundGroupDatas: list[ArtGalleryGroupData]
     themeList: list[HomeThemeDisplayData]
+    themeGroupDatas: list[ArtGalleryGroupData]
     backgroundLimitData: dict[str, HomeBackgroundLimitData]
     themeLimitData: dict[str, HomeThemeLimitData]
     multiFormInfoData: list[HomeMultiFormInfoData]

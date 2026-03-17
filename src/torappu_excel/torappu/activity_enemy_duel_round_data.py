@@ -4,6 +4,7 @@ from ..common import BaseStruct
 class ActivityEnemyDuelRoundData(BaseStruct):
     roundId: str
     modeId: str
+    guessTime: int
     round: int
     enemyPredefined: bool
     roundScore: int

@@ -9,6 +9,7 @@ class HomeThemeDisplayData(BaseStruct):
     type: str
     sortId: int
     startTime: int
+    isSecret: bool
     tmName: str
     tmDes: str
     tmUsage: str
@@ -20,3 +21,4 @@ class HomeThemeDisplayData(BaseStruct):
     isLimitObtain: bool
     hideWhenLimit: bool
     rarity: ItemRarity
+    multiPicId: str | None

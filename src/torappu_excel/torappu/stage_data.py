@@ -32,14 +32,14 @@ class StageData(BaseStruct):
     stageId: str
     levelId: str | None
     zoneId: str
-    code: str
+    code: str | None
     name: str | None
     description: str | None
     hardStagedId: str | None
     sixStarStageId: str | None
     dangerLevel: str | None
     dangerPoint: int | float
-    loadingPicId: str
+    loadingPicId: str | None
     canPractice: bool
     canBattleReplay: bool
     apCost: int
