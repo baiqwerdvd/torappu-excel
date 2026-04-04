@@ -23,9 +23,16 @@ class BaseStruct(Struct, forbid_unknown_fields=True, omit_defaults=True, gc=Fals
         builtin_types: Iterable[type] | None = None,
         str_keys: bool = False,
     ) -> Self:
+        if obj is None:
+            return None  # pyright: ignore[reportReturnType]
+        if isinstance(obj, BaseStruct):
+            if idCheck := getattr(obj, "id_", None):
+                if isinstance(idCheck, object):
+                    setattr(obj, "id_", str(idCheck))
+            obj = obj.model_dump()
         return convert(
-            obj,
-            cls,
+            obj=obj,
+            type=cls,
             strict=strict,
             from_attributes=from_attributes,
             dec_hook=dec_hook,
@@ -39,6 +46,10 @@ class BaseStruct(Struct, forbid_unknown_fields=True, omit_defaults=True, gc=Fals
 
     def keys(self) -> Iterator[str]:
         yield from self.__struct_fields__
+
+    def values(self) -> Iterator[Any]:
+        for field_name in self.__struct_fields__:
+            yield getattr(self, field_name)
 
     def model_dump(self) -> dict[str, Any]:
         return mscjson.decode(mscjson.encode(self))

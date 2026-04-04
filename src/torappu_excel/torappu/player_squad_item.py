@@ -4,7 +4,7 @@ from ..common import BaseStruct
 
 class PlayerSquadItem(BaseStruct):
     charInstId: int
-    currentEquip: str | None
     skillIndex: int
+    currentEquip: str | None = None
     currentTmpl: str | None = None
     tmpl: dict[str, PlayerSquadTmpl] | None = None

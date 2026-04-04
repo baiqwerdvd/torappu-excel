@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
 
@@ -26,7 +26,7 @@ jobs:
         run: uv python install ${{ matrix.python-version }}
 
       - name: Sync dependencies
-        run: uv sync
+        run: uv sync --dev
         shell: bash
 
       - name: Run Tests
