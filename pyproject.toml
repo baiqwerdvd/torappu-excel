@@ -4,7 +4,7 @@ authors = [
   { name = "DICE_Lab" },
   { name = "baiqwerdvd", email = "baiqwerdvd@gmail.com" },
 ]
-version = "2.7.12"
+version = "2.7.13"
 description = "Torappu Client Excel Model Library"
 license = { file = "LICENSE" }
 readme = "README.md"
