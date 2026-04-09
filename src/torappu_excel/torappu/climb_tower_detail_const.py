@@ -23,4 +23,5 @@ class ClimbTowerDetailConst(BaseStruct):
     sweepOpenDifficultLayer: int
     sweepCostCount: int
     squadMemStartTime: int
+    recordNoResetStartTime: int
     recruitStageSort: list[int] | None = field(default=None)

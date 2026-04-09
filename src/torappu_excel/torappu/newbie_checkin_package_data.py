@@ -8,6 +8,9 @@ class NewbieCheckInPackageData(BaseStruct):
     endTime: int
     bindGPGoodId: str
     checkInDuration: int
+    compensateEndDay: int
     totalCheckInDay: int
     iconId: str
     checkInRewardDict: dict[str, list[NewbieCheckInPackageRewardData]]
+    trigStartTime: int
+    trigEndTime: int

@@ -127,6 +127,7 @@ class GameDataConsts(BaseStruct):
     isRecalRuneFuncEnabled: bool
     feverGameData: "GameDataConsts.FeverGameData"
     isSoCharEnabled: bool
+    avgReaderModeDefaultSetting: "GameDataConsts.AVGReaderModeDefaultSetting"
     isVoucherClassicItemDistinguishable: bool = False
     operatorRecordsStartTime: int = -1
     subProfessionDamageTypePairs: dict[str, SubProfessionAttackType] = field(default_factory=dict)
@@ -144,3 +145,8 @@ class GameDataConsts(BaseStruct):
     class FeverGameData(BaseStruct):
         feverDuration: float
         feverNeed: float
+
+    class AVGReaderModeDefaultSetting(BaseStruct):
+        defaultReaderFontsize: int
+        defaultReaderLinespace: int
+        defaultReaderBackgroundAlpha: int

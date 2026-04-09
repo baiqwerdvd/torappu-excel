@@ -6,3 +6,5 @@ class SpDynIllustInfo(BaseStruct):
     spDynIllustId: str
     spDynIllustSkinTag: str
     spIllustId: str
+    spPortraitId: str
+    spAvatarId: str

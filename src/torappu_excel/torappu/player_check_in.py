@@ -1,3 +1,5 @@
+from msgspec import field
+
 from ..common import BaseStruct
 
 
@@ -7,6 +9,7 @@ class PlayerCheckIn(BaseStruct):
     checkInRewardIndex: int
     checkInHistory: list[int]
     newbiePackage: "PlayerCheckIn.PlayerNewbiePackage"
+    newbieChooseGP: "PlayerCheckIn.PlayerNewbieChoosePackage"
     showCount: int
     longTermRecvRecord: dict[str, int]
 
@@ -16,3 +19,6 @@ class PlayerCheckIn(BaseStruct):
         checkInHistory: list[int]
         finish: int
         stopSale: int
+
+    class PlayerNewbieChoosePackage(BaseStruct):
+        stopSaleTs: int | None = field(default=None)

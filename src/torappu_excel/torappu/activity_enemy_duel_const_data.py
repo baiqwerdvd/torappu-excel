@@ -34,6 +34,7 @@ class ActivityEnemyDuelConstData(BaseStruct):
     minBetCd: float
     defaultEmoticonItemId: str
     defaultEmoticonPicId: str
+    defaultEnemyTag: str
     modeOperationRoundNumber: int
     modeOperationInitialScore: int
     modeOperationMaxScore: int

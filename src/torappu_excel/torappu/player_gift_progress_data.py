@@ -8,4 +8,5 @@ class PlayerGiftProgressData(BaseStruct):
     level: PlayerGiftProgressPerData
     weekly: PlayerGiftProgressRotateData
     monthly: PlayerGiftProgressRotateData
+    conditionChoose: PlayerGiftProgressPerData
     choose: PlayerGiftProgressPerData | None = None

@@ -23,7 +23,7 @@ class NameCardV2SkinData(BaseStruct):
     skinTmplCnt: int
     canChangeTmpl: bool
     isTimeLimit: bool
-    timeLimitInfoList: list[NameCardV2TimeLimitInfo]
+    timeLimitInfoList: dict[str, NameCardV2TimeLimitInfo]
     isSpTheme: bool | None = field(default=None)
     defaultShowDetail: bool | None = field(default=None)
     themeName: str | None = field(default=None)

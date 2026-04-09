@@ -11,7 +11,9 @@ class CharSkinData(BaseStruct):
     dynIllustId: str | None
     spDynIllustId: str | None
     avatarId: str
+    spAvatarId: str | None
     portraitId: str | None
+    spPortraitId: str | None
     dynPortraitId: str | None
     dynEntranceId: str | None
     buildingId: str | None

@@ -1,4 +1,5 @@
 from .art_gallery_collect_data import ArtGalleryCollectData
+from .avg_dialog_setting_data import AVGDialogSettingData
 from .emoticon_data import EmoticonData
 from .guidebook_group_data import GuidebookGroupData
 from .home_background_data import HomeBackgroundData
@@ -28,3 +29,4 @@ class DisplayMetaData(BaseStruct):
     artGalleryCollectData: ArtGalleryCollectData
     magazineLeafData: MagazineLeafData
     stickerData: StickerData
+    avgDialogSettingData: AVGDialogSettingData
