@@ -110,12 +110,12 @@ class ActivityTable(BaseStruct):
     trapRuneDataDict: dict[str, RuneTable.PackedRuneData]
     missionArchives: dict[str, MissionArchiveData]
     fifthAnnivExploreData: FifthAnnivExploreData
+    anniv7thData: Anniv7thMainlineData
     autoChessData: AutoChessData
     activityTemplateMissionStyles: dict[str, ActivityTemplateMissionStyles]
     activityCrossDayTrackTypeDataDict: dict[str, CrossDayTrackTypeData]
     activityCrossDayTrackTypeMap: dict[str, list[str]]
     activityStoryReadTipsDatas: dict[str, StoryReadTipsData]
-    anniv7thData: Anniv7thMainlineData | None = field(default=None)
 
     class BasicData(BaseStruct):
         id: str

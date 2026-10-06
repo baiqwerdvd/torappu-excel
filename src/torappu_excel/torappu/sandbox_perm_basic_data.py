@@ -1,5 +1,3 @@
-from msgspec import field
-
 from .sandbox_perm_enroll_point_data import SandboxPermEnrollPointData
 from .sandbox_perm_template_type import SandboxPermTemplateType
 from ..common import BaseStruct
@@ -17,9 +15,9 @@ class SandboxPermBasicData(BaseStruct):
     homeEntryDisplayData: list["SandboxPermBasicData.HomeEntryDisplayData"]
     webBusType: str
     medalGroupId: str
-    showMedalId: str | None = field(default=None)
-    description: str | None = field(default=None)
-    enrollPoints: dict[str, SandboxPermEnrollPointData] = field(default_factory=dict)
+    showMedalId: str
+    description: str
+    enrollPoints: dict[str, SandboxPermEnrollPointData]
 
     class HomeEntryDisplayData(BaseStruct):
         displayId: str

@@ -1,5 +1,3 @@
-from msgspec import field
-
 from .choose_shop_relation import ChooseShopRelation
 from .lmtgs_shop_overlay_schedule import LMTGSShopOverlaySchedule
 from .lmtgs_shop_schedule import LMTGSShopSchedule
@@ -19,6 +17,7 @@ class ShopClientData(BaseStruct):
     shopKeeperData: "ShopClientData.ShopKeeperData"
     carousels: list[ShopCarouselData]
     chooseShopRelations: list[ChooseShopRelation]
+    chooseOptionToGoodDict: dict[str, str]
     shopUnlockDict: dict[str, ShopUnlockType]
     extraQCShopRule: list[str]
     repQCShopRule: list[str]
@@ -27,7 +26,6 @@ class ShopClientData(BaseStruct):
     shopMonthlySubGoodId: str
     ls: list[LMTGSShopSchedule]
     os: list[LMTGSShopOverlaySchedule]
-    chooseOptionToGoodDict: dict[str, str] = field(default_factory=dict)
 
     class ShopKeeperData(BaseStruct):
         welcomeWords: list[ShopKeeperWord]

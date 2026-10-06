@@ -150,4 +150,4 @@ class GameDataConsts(BaseStruct):
         defaultReaderFontsize: int
         defaultReaderLinespace: int
         defaultReaderBackgroundAlpha: int
-        defaultNameReaderFontsize: int | None = field(default=None)
+        defaultNameReaderFontsize: int
