@@ -8,3 +8,6 @@ class SandboxV2DevelopmentType(StrEnum):
     SHOP = "SHOP"
     BATTLE = "BATTLE"
     DUNGEON = "DUNGEON"
+    EXPLORE = "EXPLORE"
+    RESOURCE = "RESOURCE"
+    INITIAL = "INITIAL"

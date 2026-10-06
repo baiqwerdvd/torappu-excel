@@ -1,5 +1,7 @@
 from enum import StrEnum
 
+from msgspec import field
+
 from .character_data import CharacterData
 from .grid_position import GridPosition
 from .item_bundle import ItemBundle
@@ -89,6 +91,7 @@ class BuildingData(BaseStruct):
     emojis: list[str]
     categoryNames: dict[str, str]
     buffSortData: dict[str, "BuildingData.BuildingRoomTypeBuffSortData"]
+    tradingRoomInfoData: "BuildingData.TradingRoomInfoData | None" = field(default=None)
 
     class RoomCategory(StrEnum):
         NONE = "NONE"
@@ -411,6 +414,14 @@ class BuildingData(BaseStruct):
         class buffGroupInfo(BaseStruct):
             targets: list[str]
             sortId: int
+
+    class TradingRoomSpecialOrderInfo(BaseStruct):
+        charId: str
+        iconId: str
+        title: str
+
+    class TradingRoomInfoData(BaseStruct):
+        tradingRoomSpecialOrderData: dict[str, "BuildingData.TradingRoomSpecialOrderInfo"]
 
     class RoomBeanParam(BaseStruct):
         pass

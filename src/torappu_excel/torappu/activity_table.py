@@ -58,6 +58,7 @@ from .activity_theme_data import ActivityThemeData
 from .activity_type import ActivityType
 from .activity_year5_general_data import ActivityYear5GeneralData
 from .all_player_checkin_data import AllPlayerCheckinData
+from .anniv7th_mainline_data import Anniv7thMainlineData
 from .april_fool_table import AprilFoolTable
 from .auto_chess_data import AutoChessData
 from .cart_data import CartData
@@ -114,6 +115,7 @@ class ActivityTable(BaseStruct):
     activityCrossDayTrackTypeDataDict: dict[str, CrossDayTrackTypeData]
     activityCrossDayTrackTypeMap: dict[str, list[str]]
     activityStoryReadTipsDatas: dict[str, StoryReadTipsData]
+    anniv7thData: Anniv7thMainlineData | None = field(default=None)
 
     class BasicData(BaseStruct):
         id: str

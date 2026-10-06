@@ -10,3 +10,4 @@ class SandboxV2FoodAttribute(StrEnum):
     SKILL_POINT = "SKILL_POINT"
     SPECIAL = "SPECIAL"
     ENHANCED = "ENHANCED"
+    FUNCTION = "FUNCTION"
