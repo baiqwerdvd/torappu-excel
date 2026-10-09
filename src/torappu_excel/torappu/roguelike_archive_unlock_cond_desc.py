@@ -4,4 +4,4 @@ from ..common import BaseStruct
 
 class RoguelikeArchiveUnlockCondDesc(BaseStruct):
     archiveType: ActArchiveType
-    description: str
+    description: str | None

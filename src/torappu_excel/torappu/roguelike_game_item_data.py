@@ -8,8 +8,8 @@ class RoguelikeGameItemData(BaseStruct):
     id: str
     name: str
     description: str | None
-    usage: str
-    obtainApproach: str
+    usage: str | None
+    obtainApproach: str | None
     iconId: str
     itemIconGroupId: str | None
     type: RoguelikeGameItemType

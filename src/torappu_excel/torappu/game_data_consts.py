@@ -128,6 +128,8 @@ class GameDataConsts(BaseStruct):
     feverGameData: "GameDataConsts.FeverGameData"
     isSoCharEnabled: bool
     avgReaderModeDefaultSetting: "GameDataConsts.AVGReaderModeDefaultSetting"
+    friendAddUidLimit: int
+    friendUrlFormat: str
     isVoucherClassicItemDistinguishable: bool = False
     operatorRecordsStartTime: int = -1
     subProfessionDamageTypePairs: dict[str, SubProfessionAttackType] = field(default_factory=dict)

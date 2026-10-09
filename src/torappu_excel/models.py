@@ -1,5 +1,6 @@
 from .common import BaseStruct
 from .torappu.activity_table import ActivityTable as ActivityTable_
+from .torappu.ark_odc_table import ArkOdcTable
 from .torappu.audio_data import AudioData as AudioData
 from .torappu.battle_equip_pack import BattleEquipPack
 from .torappu.building_data import BuildingData as BuildingData
@@ -50,6 +51,10 @@ from .torappu.zone_table import ZoneTable as ZoneTable_
 
 
 class ActivityTable(ActivityTable_):
+    pass
+
+
+class ArkventTable(ArkOdcTable):
     pass
 
 

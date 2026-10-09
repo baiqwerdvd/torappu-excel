@@ -5,6 +5,7 @@ from ..common import BaseStruct
 
 
 class ActivityTemplateMissionStyles(BaseStruct):
+    isMissionBgCustomType: bool
     bigRewardType: TemplateMissionBigRewardType
     bigRewardParamList: list[str]
     isMissionListCommonType: bool

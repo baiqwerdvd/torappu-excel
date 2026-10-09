@@ -14,9 +14,10 @@ class MagazineLeafItemData(BaseStruct):
     usage: str
     approach: str
     rarity: ItemRarity
-    templateId: str
+    templateId: str | None
     templateStartTime: int
-    templateColor: str
+    templateColor: str | None
+    templateColor2: str | None
     skinDefaultPos: Vector2
     skinDefaultScale: float
     leafDecorMaxNumMap: dict[str, int]

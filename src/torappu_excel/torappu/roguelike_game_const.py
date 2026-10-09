@@ -27,6 +27,7 @@ class RoguelikeGameConst(BaseStruct):
     normBoxTrapId: str | None
     rareBoxTrapId: str | None
     badBoxTrapId: str | None
+    toolBoxTrapId: str | None
     maxHpItemId: str | None
     shieldItemId: str | None
     keyItemId: str | None
@@ -55,6 +56,8 @@ class RoguelikeGameConst(BaseStruct):
     expeditionReturnDescCure: str | None
     expeditionReturnDesc: str | None
     expeditionReturnDescItem: str | None
+    expedEndingRelic: str | None
+    expedEndingRelicDesc: str | None
     expeditionReturnRewardBlackList: list[str]
     candleReturnDescCandleUpgrade: str | None
     candleReturnDescCandle: str | None
@@ -74,11 +77,12 @@ class RoguelikeGameConst(BaseStruct):
     specialRecruitFuncDesc: str | None
     specialRecruitDetailDesc: str | None
     portalZones: list[str]
+    treasureBuffs: list[str] | None
     diffDisplayZoneId: str | None
     exploreExpOnKill: str | None
     fusionName: str | None
     fusionNotifyToast: str | None
-    haveSpZone: bool
+    haveCustomZone: bool
     gotCharCandleBuffToast: str | None
     gotCharsCandleBuffToast: str | None
     stashedRecruitNodeDescription: str | None

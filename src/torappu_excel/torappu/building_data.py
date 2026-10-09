@@ -49,6 +49,7 @@ class BuildingData(BaseStruct):
     betaRemoveTime: int
     furniHighlightTime: float
     canNotVisitToast: str
+    meetingMessageBoardEmoteTime: int
     musicPlayerOpenTime: int
     roomsWithoutRemoveStaff: list[str]
     privateFavorLevelThresholds: list[int]
@@ -67,6 +68,7 @@ class BuildingData(BaseStruct):
     workshopData: "BuildingData.RoomBean_1"
     trainingData: "BuildingData.TrainingBean"
     powerData: "BuildingData.PowerRoomBean"
+    recycleData: "BuildingData.RecycleBean"
     chars: dict[str, "BuildingData.BuildingCharacter"]
     buffs: dict[str, "BuildingData.BuildingBuff"]
     workshopBonus: dict[str, list[str]]
@@ -90,6 +92,10 @@ class BuildingData(BaseStruct):
     categoryNames: dict[str, str]
     buffSortData: dict[str, "BuildingData.BuildingRoomTypeBuffSortData"]
     tradingRoomInfoData: "BuildingData.TradingRoomInfoData"
+    recycleRoomOutputPoolDatas: dict[str, "BuildingData.RecycleRoomOutputPoolData"]
+    recycleRoomOutputPoolContentDatas: dict[str, "BuildingData.RecycleRoomOutputPoolContentData"]
+    recycleRoomInputItemDatas: dict[str, "BuildingData.RecycleRoomInputItemData"]
+    recycleRoomConsts: "BuildingData.RecycleRoomConsts"
 
     class RoomCategory(StrEnum):
         NONE = "NONE"
@@ -122,6 +128,7 @@ class BuildingData(BaseStruct):
         WORKSHOP = "WORKSHOP"
         TRAINING = "TRAINING"
         PRIVATE = "PRIVATE"
+        RECYCLE = "RECYCLE"
         FUNCTIONAL = "FUNCTIONAL"
         ALL = "ALL"
 
@@ -729,3 +736,42 @@ class BuildingData(BaseStruct):
         bgmDescUnlocked: str
         unlockType: str
         unlockParams: list[str]
+
+    class RecyclePhase(BaseStruct):
+        recycleCapacity: int
+        recycleSpeed: float
+
+    class RecycleBean(BaseStruct):
+        basicSpeedBuff: float
+        phases: list["BuildingData.RecyclePhase"]
+
+    class RecycleRoomOutputPoolData(BaseStruct):
+        itemPoolId: str
+        itemPoolStartTime: int
+        itemPoolEndTime: int
+        extraPoolId: str
+        extraPoolRequirement: int
+
+    class RecycleRoomOutputPoolItemData(BaseStruct):
+        itemId: str
+        targetTags: list[str]
+        weight: int
+        count: int
+        extraPoolValueChange: int
+        isNew: bool
+
+    class RecycleRoomOutputPoolContentData(BaseStruct):
+        items: list["BuildingData.RecycleRoomOutputPoolItemData"]
+
+    class RecycleRoomInputItemData(BaseStruct):
+        itemId: str
+        addedTime: int
+
+    class RecycleRoomConsts(BaseStruct):
+        recycleTimeRequirement: int
+        recycleBaseCapacity: int
+        recycleBoostSpeed: float
+        recycleBoostLimit: int
+        recycleBoostLimitProtect: int
+        recycleSpeedUpUnlockLevel: int
+        recycleTwoPersonUnlockLevel: int

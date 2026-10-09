@@ -4,6 +4,7 @@ from .building_data import BuildingData
 from .item_classify_type import ItemClassifyType
 from .item_drop_shop_type import ItemDropShopType
 from .item_rarity import ItemRarity
+from .item_reslock_status import ItemReslockStatus
 from .item_type import ItemType
 from .occ_per import OccPer
 from ..common import BaseStruct
@@ -20,6 +21,8 @@ class ItemData(BaseStruct):
     sortId: int
     usage: str | None
     obtainApproach: str | None
+    reslockStatus: ItemReslockStatus
+    canReslock: bool
     classifyType: ItemClassifyType
     itemType: ItemType
     stageDropList: list["ItemData.StageDropInfo"]

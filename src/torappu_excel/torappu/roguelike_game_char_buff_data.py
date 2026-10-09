@@ -7,6 +7,7 @@ class RoguelikeGameCharBuffData(BaseStruct):
     id: str
     buffType: RoguelikeGameCharBuffType
     iconId: str
+    relatedItemId: str | None
     outerName: str
     innerName: str
     functionDesc: str

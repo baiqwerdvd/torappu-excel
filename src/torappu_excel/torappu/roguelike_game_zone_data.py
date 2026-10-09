@@ -15,4 +15,5 @@ class RoguelikeGameZoneData(BaseStruct):
     isHiddenZone: bool
     bgmSignal: str
     bgmSignalWithLowSan: str | None
+    transitionEffectId: str | None
     buffDescription: str | None = field(default=None)

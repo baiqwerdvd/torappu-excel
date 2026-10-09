@@ -1,0 +1,10 @@
+from ..common import CustomIntEnum
+
+
+class ArkDexNpcTileStrategy(CustomIntEnum):
+    RANDOM = "RANDOM", 0
+    PREFER_NEAR_SELF = "PREFER_NEAR_SELF", 1
+    PREFER_FAR_SELF = "PREFER_FAR_SELF", 2
+    RANGED_NEAR_MELEE_FAR = "RANGED_NEAR_MELEE_FAR", 3
+    PREFER_MIDDLE = "PREFER_MIDDLE", 4
+    RANDOM_FROM_ALL = "RANDOM_FROM_ALL", 5

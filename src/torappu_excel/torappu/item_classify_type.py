@@ -6,3 +6,4 @@ class ItemClassifyType(StrEnum):
     CONSUME = "CONSUME"
     NORMAL = "NORMAL"
     MATERIAL = "MATERIAL"
+    MEMENTO = "MEMENTO"

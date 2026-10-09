@@ -5,3 +5,4 @@ class NameCardV2SkinType(StrEnum):
     NONE = "NONE"
     BASE = "BASE"
     SPECIAL = "SPECIAL"
+    DYNAMIC = "DYNAMIC"

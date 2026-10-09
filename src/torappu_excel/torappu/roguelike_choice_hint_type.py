@@ -18,3 +18,7 @@ class RoguelikeChoiceHintType(StrEnum):
     FRAGMENT = "FRAGMENT"
     SP_ZONE_AP = "SP_ZONE_AP"
     COPPER_LUCK = "COPPER_LUCK"
+    SACRIFICE_SCRAP = "SACRIFICE_SCRAP"
+    SEED_COST = "SEED_COST"
+    ITEM_COST = "ITEM_COST"
+    AP_LEFT = "AP_LEFT"

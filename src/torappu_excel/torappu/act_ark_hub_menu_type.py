@@ -1,0 +1,13 @@
+from ..common import CustomIntEnum
+
+
+class ActArkHubMenuType(CustomIntEnum):
+    NONE = "NONE", 0
+    INVITE_FRIEND = "INVITE_FRIEND", 1
+    MESSAGE = "MESSAGE", 2
+    SETTING = "SETTING", 3
+    ARKDEX_CREATURE = "ARKDEX_CREATURE", 4
+    ARKDEX_ITEM = "ARKDEX_ITEM", 5
+    ARKDEX_ALBUM = "ARKDEX_ALBUM", 6
+    ARKPIXEL = "ARKPIXEL", 7
+    ARKDEX_TRADE = "ARKDEX_TRADE", 8

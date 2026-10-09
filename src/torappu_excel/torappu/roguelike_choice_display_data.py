@@ -10,6 +10,7 @@ class RoguelikeChoiceDisplayData(BaseStruct):
     funcIconId: str | None
     itemId: str | None
     taskId: str | None
+    instId: str | None
     costHintType: RoguelikeChoiceHintType | None = field(default=None)
     effectHintType: RoguelikeChoiceHintType | None = field(default=None)
     difficultyUpgradeRelicGroupId: str | None = field(default=None)

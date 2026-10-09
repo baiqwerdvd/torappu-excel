@@ -15,3 +15,6 @@ class RoguelikeModuleType(StrEnum):
     WRATH = "WRATH"
     CANDLE = "CANDLE"
     SKY = "SKY"
+    GRID_ZONE = "GRID_ZONE"
+    WEATHER = "WEATHER"
+    SCRAP = "SCRAP"

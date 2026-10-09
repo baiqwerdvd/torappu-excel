@@ -11,7 +11,7 @@ class KeySettingGroupData(BaseStruct):
     funcType: KeySettingGroup
     keyEffectGroup: KeyEffectGroup
     isHidden: bool
-    relatedActType: ActivityType
+    relatedActTypes: list[ActivityType]
     gameModeTag: str | None
     sortId: int
     startTs: int

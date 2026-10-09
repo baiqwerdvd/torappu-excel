@@ -6,12 +6,15 @@ from .roguelike_copper_module_data import RoguelikeCopperModuleData
 from .roguelike_dice_module_data import RoguelikeDiceModuleData
 from .roguelike_disaster_module_data import RoguelikeDisasterModuleData
 from .roguelike_fragment_module_data import RoguelikeFragmentModuleData
+from .roguelike_grid_zone_module_data import RoguelikeGridZoneModuleData
 from .roguelike_module_type import RoguelikeModuleType
 from .roguelike_node_upgrade_module_data import RoguelikeNodeUpgradeModuleData
 from .roguelike_san_check_module_data import RoguelikeSanCheckModuleData
+from .roguelike_scrap_module_data import RoguelikeScrapModuleData
 from .roguelike_sky_module_data import RoguelikeSkyModuleData
 from .roguelike_totem_buff_module_data import RoguelikeTotemBuffModuleData
 from .roguelike_vision_module_data import RoguelikeVisionModuleData
+from .roguelike_weather_module_data import RoguelikeWeatherModuleData
 from .roguelike_wrath_module_data import RoguelikeWrathModuleData
 from ..common import BaseStruct
 
@@ -27,6 +30,9 @@ class RoguelikeModule(BaseStruct):
     wrath: RoguelikeWrathModuleData | None
     candle: RoguelikeCandleModuleData | None
     sky: RoguelikeSkyModuleData | None
+    weather: RoguelikeWeatherModuleData | None
+    gridZone: RoguelikeGridZoneModuleData | None
+    scrap: RoguelikeScrapModuleData | None
     fragment: RoguelikeFragmentModuleData | None = field(default=None)
     disaster: RoguelikeDisasterModuleData | None = field(default=None)
     nodeUpgrade: RoguelikeNodeUpgradeModuleData | None = field(default=None)

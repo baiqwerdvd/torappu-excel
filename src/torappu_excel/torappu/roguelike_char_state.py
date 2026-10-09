@@ -11,3 +11,4 @@ class RoguelikeCharState(StrEnum):
     THIRD = "THIRD"
     MONTHLY = "MONTHLY"
     THIRD_LOW = "THIRD_LOW"
+    MERCENARY = "MERCENARY"

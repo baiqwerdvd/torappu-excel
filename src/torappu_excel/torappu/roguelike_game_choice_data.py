@@ -15,3 +15,5 @@ class RoguelikeGameChoiceData(BaseStruct):
     icon: str | None
     displayData: RoguelikeChoiceDisplayData
     forceShowWhenOnlyLeave: bool
+    isHiddenChoice: bool
+    sortId: int

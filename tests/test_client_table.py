@@ -3,6 +3,7 @@ from pathlib import Path
 
 from src.torappu_excel.models import (
     ActivityTable,
+    ArkventTable,
     AudioTable,
     BattleEquipTable,
     BuildingTable,
@@ -59,6 +60,7 @@ async def test_client_table():
     base_path = Path("src/torappu_excel/json")
 
     activity_table(base_path)
+    arkvent_table(base_path)
     audio_table(base_path)
     battle_equip_table(base_path)
     building_table(base_path)
@@ -114,6 +116,12 @@ def activity_table(path: Path):
     with open(path / "activity_table.json", encoding="utf8") as f:
         data = json.load(f)
     _ = ActivityTable.convert(data)
+
+
+def arkvent_table(path: Path):
+    with open(path / "arkvent_table.json", encoding="utf8") as f:
+        data = json.load(f)
+    _ = ArkventTable.convert(data)
 
 
 def audio_table(path: Path):

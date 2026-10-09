@@ -25,6 +25,8 @@ class Act24SideData(BaseStruct):
         HUNTING_TASK = "HUNTING_TASK", 1
         COLLECTION_TASK = "COLLECTION_TASK", 2
         EXPLORATION_TASK = "EXPLORATION_TASK", 3
+        MONSTER_TASK = "MONSTER_TASK", 4
+        INVATION_TASK = "INVATION_TASK", 5
 
     class MeldingItemRarityType(CustomIntEnum):
         NONE = "NONE", 0
@@ -36,11 +38,11 @@ class Act24SideData(BaseStruct):
         RARITY_6 = "RARITY_6", 6
 
     toolDataList: dict[str, "Act24SideData.ToolData"]
-    mealDataList: dict[str, "Act24SideData.MealData"]
+    mealDataList: dict[str, "Act24SideData.MealData"] | None
     meldingDict: dict[str, "Act24SideData.MeldingItemData"]
     meldingGachaBoxDataList: dict[str, "Act24SideData.MeldingGachaBoxData"]
     meldingGachaBoxGoodDataMap: dict[str, list["Act24SideData.MeldingGachaBoxGoodData"]]
-    mealWelcomeTxtDataMap: dict[str, str]
+    mealWelcomeTxtDataMap: dict[str, str] | None
     zoneAdditionDataMap: dict[str, "Act24SideData.ZoneAdditionData"]
     questStageList: list[QuestStageData]
     missionDataList: dict[str, "Act24SideData.MissionExtraData"]
@@ -124,12 +126,12 @@ class Act24SideData(BaseStruct):
         sortId: int
         level: int
         isBoss: bool
-        bossPicId: str
+        bossPicId: str | None
         iconSmallId: str
         iconLargeId: str
         basicDesc: str
-        rideIcon: str
-        rideDesc: str
+        rideIcon: str | None
+        rideDesc: str | None
         secretTaskId: str
         secretTaskItemId: str
         secretTaskDesc: str

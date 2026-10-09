@@ -26,7 +26,7 @@ class GachaData(BaseStruct):
     carousel: list["GachaData.CarouselData"]
     freeGacha: list["GachaData.FreeLimitGachaData"]
     limitTenGachaItem: list["GachaData.LimitTenGachaTkt"]
-    linkageTenGachaItem: list["GachaData.LinkageTenGachaTkt"]
+    linkageGachaItem: list["GachaData.LinkageGachaTkt"]
     normalGachaItem: list["GachaData.NormalGachaTkt"]
     fesGachaPoolRelateItem: dict[str, "GachaData.FesGachaPoolRelateItem"] | None
     dicRecruit6StarHint: dict[str, str] | None
@@ -56,10 +56,11 @@ class GachaData(BaseStruct):
         itemId: str
         endTime: int
 
-    class LinkageTenGachaTkt(BaseStruct):
+    class LinkageGachaTkt(BaseStruct):
         itemId: str
         endTime: int
         gachaPoolId: str
+        isTen: bool
 
     class NormalGachaTkt(BaseStruct):
         itemId: str

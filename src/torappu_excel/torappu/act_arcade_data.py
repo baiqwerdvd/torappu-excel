@@ -21,7 +21,8 @@ class ActArcadeData(BaseStruct):
         DRAW = "DRAW", 1
         LINE = "LINE", 2
         CAR = "CAR", 3
-        E_NUM = "E_NUM", 4
+        FISH = "FISH", 4
+        E_NUM = "E_NUM", 5
         IGNORE = "IGNORE", -1
 
     stageAdditionDataDict: dict[str, "ActArcadeData.ArcadeStageAdditionalData"]
@@ -54,8 +55,6 @@ class ActArcadeData(BaseStruct):
         zoneId: str
         sortId: int
         zoneName: str
-        zoneEntryPicId: str
-        stageInfoPrefabId: str
         startTs: int
         endTs: int
         stages: list[str]
@@ -104,6 +103,8 @@ class ActArcadeData(BaseStruct):
         rewardHomeThemeText: str
         rewardAvatarId: str
         rewardAvatarText: str
+        rewardBackgroundId: str | None
+        rewardBackgroundText: str | None
         badgeCollectionName: str
         collectionEntryRelatedBadge: str
         zoneEntryUnlockToast: str

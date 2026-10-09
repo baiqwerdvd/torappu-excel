@@ -36,6 +36,7 @@ from .roguelike_game_treasure_data import RoguelikeGameTreasureData
 from .roguelike_game_upgrade_ticket_data import RoguelikeGameUpgradeTicketData
 from .roguelike_game_variation_data import RoguelikeGameVariationData
 from .roguelike_game_zone_data import RoguelikeGameZoneData
+from .roguelike_legacy_item_data import RoguelikeLegacyItemData
 from .roguelike_predefined_const_style_data import RoguelikePredefinedConstStyleData
 from .roguelike_predefined_style_data import RoguelikePredefinedStyleData
 from .roguelike_relic_tips_data import RoguelikeRelicTipsData
@@ -108,6 +109,7 @@ class RoguelikeTopicDetail(BaseStruct):
     styleConfig: RoguelikePredefinedConstStyleData
     activity: RoguelikeActivityData
     relicTipsData: dict[str, RoguelikeRelicTipsData]
+    legacyItems: dict[str, RoguelikeLegacyItemData]
     endingRelicDetailList: list[RoguelikeEndingRelicDetailText] | None = field(default=None)
     shopDialogData: RoguelikeGameShopDialogData | None = field(default=None)
     shopDialogs: dict[RoguelikeGameShopDialogType, list[str]] | None = field(default=None)

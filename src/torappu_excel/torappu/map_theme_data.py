@@ -8,3 +8,5 @@ class MapThemeData(BaseStruct):
     themeType: str | None
     trapTintColor: str | None
     emissionColor: str | None
+    highlandBuildableColor: str | None
+    highlandEmissionColor: str | None

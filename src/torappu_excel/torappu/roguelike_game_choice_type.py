@@ -26,3 +26,7 @@ class RoguelikeGameChoiceType(StrEnum):
     GILD_COPPER_ALL = "GILD_COPPER_ALL"
     JUMP_PROB = "JUMP_PROB"
     JUMP = "JUMP"
+    ZONE_END = "ZONE_END"
+    MOVE = "MOVE"
+    VISION = "VISION"
+    SCRAP_PAY_SHOW = "SCRAP_PAY_SHOW"

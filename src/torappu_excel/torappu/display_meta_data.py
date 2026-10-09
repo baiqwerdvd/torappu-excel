@@ -8,6 +8,7 @@ from .mail_archive_data import MailArchiveData
 from .mail_sender_data import MailSenderData
 from .name_card_v2_data import NameCardV2Data
 from .pckey_data import PCKeyData
+from .pixel_map_data import PixelMapData
 from .player_avatar_data import PlayerAvatarData
 from .resolution_setting_item_data import ResolutionSettingItemData
 from .sticker_data import StickerData
@@ -30,3 +31,4 @@ class DisplayMetaData(BaseStruct):
     magazineLeafData: MagazineLeafData
     stickerData: StickerData
     avgDialogSettingData: AVGDialogSettingData
+    pixelMapData: PixelMapData

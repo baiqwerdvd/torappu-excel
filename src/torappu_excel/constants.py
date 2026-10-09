@@ -2,6 +2,7 @@ import asyncio
 
 from .models import (
     ActivityTable,
+    ArkventTable,
     AudioData,
     BattleEquipTable,
     BuildingData,
@@ -57,6 +58,7 @@ from .utils import is_valid_async_func, read_json
 
 class ExcelTableManager:
     activity_table_: ActivityTable | None = None
+    arkvent_table_: ArkventTable | None = None
     audio_data_: AudioData | None = None
     battle_equip_table_: BattleEquipTable | None = None
     building_data_: BuildingData | None = None
@@ -115,6 +117,15 @@ class ExcelTableManager:
         if self.activity_table_ is None:
             raise ValueError("activity_table is not loaded")
         return self.activity_table_
+
+    async def arkvent_table(self) -> None:
+        self.arkvent_table_ = ArkventTable.convert(read_json("arkvent_table.json"))
+
+    @property
+    def ARKVENT_TABLE(self) -> ArkventTable:
+        if self.arkvent_table_ is None:
+            raise ValueError("arkvent_table is not loaded")
+        return self.arkvent_table_
 
     async def audio_data(self) -> None:
         self.audio_data_ = AudioData.convert(read_json("audio_data.json"))

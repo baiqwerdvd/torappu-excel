@@ -6,6 +6,8 @@ from .act1_vhalf_idle_data import Act1VHalfIdleData
 from .act42_side_data import Act42SideData
 from .act44_side_data import Act44SideData
 from .act45_side_data import Act45SideData
+from .act53_side_data import Act53SideData
+from .act54_side_data import Act54SideData
 from .act_3d0_data import Act3D0Data
 from .act_4d0_data import Act4D0Data
 from .act_5d0_data import Act5D0Data
@@ -27,12 +29,15 @@ from .act_38d1_data import Act38D1Data
 from .act_42d0_data import Act42D0Data
 from .act_46_side_data import Act46SideData
 from .act_arcade_data import ActArcadeData
+from .act_ark_hub_data import ActArkHubData
 from .act_auto_chess_data import ActAutoChessData
+from .act_football_data import ActFootballData
 from .act_main_ssdata import ActMainSSData
 from .act_mainline_bp_extra_data import ActMainlineBpExtraData
 from .act_multi_v3_data import ActMultiV3Data
 from .act_recruit_only_data import ActRecruitOnlyData
 from .act_sandbox_data import ActSandboxData
+from .act_vasebreaker_data import ActVasebreakerData
 from .act_vec_break_data import ActVecBreakData
 from .act_vec_break_v2_data import ActVecBreakV2Data
 from .activity_auto_chess_verify1_data import ActivityAutoChessVerify1Data
@@ -60,6 +65,7 @@ from .activity_year5_general_data import ActivityYear5GeneralData
 from .all_player_checkin_data import AllPlayerCheckinData
 from .anniv7th_mainline_data import Anniv7thMainlineData
 from .april_fool_table import AprilFoolTable
+from .arkhub_data import ArkhubData
 from .auto_chess_data import AutoChessData
 from .cart_data import CartData
 from .cross_day_track_type_data import CrossDayTrackTypeData
@@ -112,6 +118,7 @@ class ActivityTable(BaseStruct):
     fifthAnnivExploreData: FifthAnnivExploreData
     anniv7thData: Anniv7thMainlineData
     autoChessData: AutoChessData
+    arkhubData: ArkhubData
     activityTemplateMissionStyles: dict[str, ActivityTemplateMissionStyles]
     activityCrossDayTrackTypeDataDict: dict[str, CrossDayTrackTypeData]
     activityCrossDayTrackTypeMap: dict[str, list[str]]
@@ -197,6 +204,11 @@ class ActivityTable(BaseStruct):
         RECRUIT_ONLY: dict[str, "ActRecruitOnlyData"] = field(default_factory=dict)
         TYPE_ACT46SIDE: dict[str, "Act46SideData"] = field(default_factory=dict)
         AUTOCHESS_SEASON: dict[str, "ActAutoChessData"] = field(default_factory=dict)
+        ACT_FOOTBALL: dict[str, "ActFootballData"] = field(default_factory=dict)
+        ARK_HUB: dict[str, "ActArkHubData"] = field(default_factory=dict)
+        TYPE_ACT53SIDE: dict[str, "Act53SideData"] = field(default_factory=dict)
+        TYPE_ACT54SIDE: dict[str, "Act54SideData"] = field(default_factory=dict)
+        ACT_DP: dict[str, "ActVasebreakerData"] = field(default_factory=dict)
 
     class ActivityExtraData(BaseStruct):
         MAINLINE_BP: dict[str, "ActMainlineBpExtraData"]
@@ -232,6 +244,8 @@ class ActivityTable(BaseStruct):
         trapName: str
         trapDesc: str
         trapText: str
+        trapIcon1: str
+        trapIcon2: str
         trapTaskId: str
         trapUnlockDesc: str
         trapBuffId: str
@@ -246,6 +260,7 @@ class ActivityTable(BaseStruct):
         squadSaveSuccessToast: str
         lockedToast: str | None
         showBtnBack: bool
+        useSpecialToast: bool
 
     class ActivityTrapsData(BaseStruct):
         templateTraps: dict[str, "ActivityTable.TemplateTrapData"]

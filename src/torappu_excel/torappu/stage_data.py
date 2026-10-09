@@ -40,6 +40,7 @@ class StageData(BaseStruct):
     dangerLevel: str | None
     dangerPoint: int | float
     loadingPicId: str | None
+    battleFinishLoadingPicId: str | None
     canPractice: bool
     canBattleReplay: bool
     apCost: int

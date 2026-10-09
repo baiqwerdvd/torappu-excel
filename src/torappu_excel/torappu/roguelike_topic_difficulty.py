@@ -30,6 +30,7 @@ class RoguelikeTopicDifficulty(BaseStruct):
     unlockText: str | None
     displayIconId: str | None
     hideEndingStory: bool
+    haveLegacy: bool
     isHard: bool | None = field(default=None)
     ruleDescReplacements: list["RoguelikeTopicDifficulty.RuleDescReplacement"] | None = field(default=None)
 

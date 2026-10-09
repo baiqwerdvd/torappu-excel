@@ -10,8 +10,10 @@ from .act_archive_disaster_data import ActArchiveDisasterData
 from .act_archive_endbook_data import ActArchiveEndbookData
 from .act_archive_fragment_data import ActArchiveFragmentData
 from .act_archive_relic_data import ActArchiveRelicData
+from .act_archive_scrap_data import ActArchiveScrapData
 from .act_archive_totem_data import ActArchiveTotemData
 from .act_archive_trap_data import ActArchiveTrapData
+from .act_archive_weather_data import ActArchiveWeatherData
 from .act_archive_wrath_data import ActArchiveWrathData
 from ..common import BaseStruct
 
@@ -27,6 +29,8 @@ class RoguelikeArchiveComponentData(BaseStruct):
     chaos: ActArchiveChaosData | None
     wrath: ActArchiveWrathData | None
     copper: ActArchiveCopperData | None
+    scrap: ActArchiveScrapData | None
+    weather: ActArchiveWeatherData | None
     fragment: ActArchiveFragmentData | None = field(default=None)
     disaster: ActArchiveDisasterData | None = field(default=None)
     challengeBook: ActArchiveChallengeBookData | None = field(default=None)
