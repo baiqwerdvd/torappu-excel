@@ -36,7 +36,7 @@ class PlayerGacha(BaseStruct):
         must6: bool
         must6Char: str
         must6Count: int
-        must6Level: int
+        must6Level: int | None = None
 
     class PlayerAttainGacha(BaseStruct):
         attain6Count: int

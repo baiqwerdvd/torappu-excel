@@ -1,4 +1,7 @@
+from msgspec import field
+
 from .item_bundle import ItemBundle
+from .player_mainline_clue import PlayerMainlineClue
 from .player_mainline_explore import PlayerMainlineExplore
 from .player_mission_archive import PlayerMissionArchive
 from .player_zone_record_mission_data import PlayerZoneRecordMissionData
@@ -12,3 +15,4 @@ class PlayerMainlineRecord(BaseStruct):
     additionalMission: dict[str, PlayerZoneRecordMissionData]
     charVoiceRecord: dict[str, PlayerMissionArchive]
     explore: PlayerMainlineExplore
+    clue: PlayerMainlineClue | None = field(default=None)

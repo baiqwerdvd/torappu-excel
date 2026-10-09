@@ -9,6 +9,7 @@ from .player_building_manufacture import PlayerBuildingManufacture
 from .player_building_meeting import PlayerBuildingMeeting
 from .player_building_power import PlayerBuildingPower
 from .player_building_private import PlayerBuildingPrivate
+from .player_building_recycle import PlayerBuildingRecycle
 from .player_building_shop import PlayerBuildingShop
 from .player_building_trading import PlayerBuildingTrading
 from .player_building_training import PlayerBuildingTraining
@@ -30,3 +31,4 @@ class PlayerBuildingRoom(BaseStruct):
     CORRIDOR: dict[str, dict[str, Any]] = field(default_factory=dict)
     ELEVATOR: dict[str, dict[str, Any]] = field(default_factory=dict)
     SHOP: dict[str, PlayerBuildingShop] | None = None
+    RECYCLE: dict[str, PlayerBuildingRecycle] | None = None

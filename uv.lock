@@ -623,7 +623,7 @@ wheels = [
 
 [[package]]
 name = "torappu-excel"
-version = "2.7.81"
+version = "2.7.82"
 source = { editable = "." }
 dependencies = [
     { name = "msgspec" },

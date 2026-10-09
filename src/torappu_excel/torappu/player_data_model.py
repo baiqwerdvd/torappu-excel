@@ -2,6 +2,7 @@ from .charm_status import CharmStatus
 from .mission_player_data import MissionPlayerData
 from .player_activity import PlayerActivity
 from .player_april_fool import PlayerAprilFool
+from .player_ark_odc import PlayerArkOdc
 from .player_auto_chess_perm import PlayerAutoChessPerm
 from .player_avatar import PlayerAvatar
 from .player_building import PlayerBuilding
@@ -39,6 +40,7 @@ from .player_performance_story import PlayerPerformanceStory
 from .player_push_flags import PlayerPushFlags
 from .player_recal_rune import PlayerRecalRune
 from .player_recruit import PlayerRecruit
+from .player_res_lock import PlayerResLock
 from .player_retro import PlayerRetro
 from .player_return_data import PlayerReturnData
 from .player_roguelike import PlayerRoguelike
@@ -121,3 +123,5 @@ class PlayerDataModel(BaseStruct):
     performanceStory: PlayerPerformanceStory
     checkMeta: PlayerMeta
     monthlySub: dict[str, PlayerMonthlySubPer] | None = None
+    reslock: PlayerResLock | None = None
+    arkodc: PlayerArkOdc | None = None

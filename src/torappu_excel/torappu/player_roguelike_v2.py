@@ -25,7 +25,7 @@ from ..common import BaseStruct
 class PlayerRoguelikeV2(BaseStruct):
     current: "PlayerRoguelikeV2.CurrentData"
     outer: dict[str, "PlayerRoguelikeV2.OuterData"]
-    pinned: str
+    pinned: str | None
 
     class CurrentData(BaseStruct):
         player: "PlayerRoguelikeV2.CurrentData.PlayerStatus"
@@ -242,6 +242,7 @@ class PlayerRoguelikeV2(BaseStruct):
 
             class Outer(BaseStruct):
                 support: bool
+                legacy: list[str] | None = field(default=None)
 
         class Record(BaseStruct):
             brief: "PlayerRoguelikeV2.CurrentData.Record.EndingBrief | None"
@@ -411,6 +412,7 @@ class PlayerRoguelikeV2(BaseStruct):
             endingCnt: dict[RoguelikeTopicMode, dict[str, int]]
             bandGrade: dict[str, dict[str, int]] | None = None
             history: list["PlayerRoguelikeV2.OuterData.Record.History"] | None = None
+            legacy: list[str] | None = field(default=None)
 
             class History(BaseStruct):
                 seed: str
@@ -451,6 +453,10 @@ class PlayerRoguelikeV2(BaseStruct):
                     PassNodeSkyType = "PassNodeSkyType"
                     KillEnemy = "KillEnemy"
                     PassNode = "PassNode"
+                    SaveGold = "SaveGold"
+                    GrowSeed = "GrowSeed"
+                    MoveByScrap = "MoveByScrap"
+                    UseGold = "UseGold"
 
         class TotemCollection(BaseStruct):
             totem: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
@@ -479,6 +485,8 @@ class PlayerRoguelikeV2(BaseStruct):
             copper: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"] | None = None
             wrath: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"] | None = None
             chat: dict[str, int] | None = None
+            scrap: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"] | None = None
+            weather: "PlayerRoguelikeV2.OuterData.Collection.WeatherCollection | None" = None
 
             class ItemUnlockInfo(BaseStruct):
                 state: RoguelikeArchiveItemUnlockStatus
@@ -487,6 +495,10 @@ class PlayerRoguelikeV2(BaseStruct):
             class DifficultyUnlockInfo(BaseStruct):
                 state: PlayerRoguelikeDifficultyStatus
                 progress: list[int] | None
+
+            class WeatherCollection(BaseStruct):
+                main: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
+                sub: dict[str, "PlayerRoguelikeV2.OuterData.Collection.ItemUnlockInfo"]
 
         class Bank(BaseStruct):
             show: bool

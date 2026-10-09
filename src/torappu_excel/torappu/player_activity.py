@@ -85,6 +85,11 @@ class PlayerActivity(BaseStruct, forbid_unknown_fields=True, kw_only=True):
     VEC_BREAK: dict[str, Any] | None = None
     TEAM_QUEST: dict[str, Any] | None = None
     RECRUIT_ONLY: dict[str, "PlayerActivity.PlayerRecruitOnlyAct"] | None = None
+    ARK_HUB: dict[str, Any] = field(default_factory=dict)
+    ACT_FOOTBALL: dict[str, Any] = field(default_factory=dict)
+    TYPE_ACT53SIDE: dict[str, Any] = field(default_factory=dict)
+    TYPE_ACT54SIDE: dict[str, Any] = field(default_factory=dict)
+    ACT_DP: dict[str, Any] = field(default_factory=dict)
 
     class PlayerDefaultActivity(BaseStruct):
         coin: int

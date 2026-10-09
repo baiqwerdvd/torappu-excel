@@ -4,7 +4,7 @@ from ..common import BaseStruct
 
 
 class PlayerCartInfo(BaseStruct):
-    battleCar: dict["PlayerCartInfo.CartAccessoryPos", str]
+    battleCar: dict["PlayerCartInfo.CartAccessoryPos", str | None]
     exhibitionCar: dict["PlayerCartInfo.CartAccessoryPos", str | None]
     accessories: dict[str, "PlayerCartInfo.CompInfo"]
 
