@@ -1,8 +1,8 @@
-__version__ = "2.7.82"
+__version__ = "2.7.83"
 
 client_version = "2.7.81"
-data_version = "26-10-08-04-51-28-56071834"
-major_version = 453
+data_version = "26-10-14-13-45-10-99469376"
+major_version = 454
 network_version = "5"
 
 from .constants import ExcelTableManager as ExcelTableManager  # noqa: E402

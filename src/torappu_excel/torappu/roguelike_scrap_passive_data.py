@@ -3,7 +3,7 @@ from ..common import BaseStruct
 
 
 class RoguelikeScrapPassiveData(BaseStruct):
-    node: RoguelikeEventType
+    node: RoguelikeEventType | int
     buffStack: int
     scrapId: str
     scrapDesc: str
