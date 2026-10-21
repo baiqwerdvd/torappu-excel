@@ -74,10 +74,7 @@ async def download_torappu_excel() -> None:
                 download_url = base_download_url + filename
                 local_file = local_dir / filename
 
-                if local_file.is_file() and local_file.stat().st_size == file_info.size:
-                    logger.info(f"跳过: {filename}")
-                    continue
-
+                # 不能按大小跳过, 等长改动 (如 78.0.0 -> 78.2.0) 会漏掉, 变没变交给 git 判断
                 task = asyncio.create_task(download_file(session, download_url, local_file))
                 tasks.append(task)
 
