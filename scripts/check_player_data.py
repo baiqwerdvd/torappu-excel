@@ -1,4 +1,3 @@
-import asyncio
 from collections.abc import Awaitable, Callable
 import json
 import logging
@@ -34,7 +33,7 @@ async def measure_async(func: Callable[[], Awaitable[None]], repeat: int = 5, la
     logger.info(f"{label} {repeat} 次平均耗时: {avg_ms:.2f} ms, 波动: ±{stdev(durations):.2f} ms")
 
 
-async def main() -> None:
+def main() -> None:
     player_data_path = Path("PlayerData.json")
     json_text = player_data_path.read_text(encoding="utf-8")
     data = json.loads(json_text)
@@ -53,4 +52,4 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
