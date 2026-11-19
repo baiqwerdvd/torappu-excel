@@ -2,6 +2,6 @@ from ..common import BaseStruct
 
 
 class StorylineConstData(BaseStruct):
-    recommendHideGuideGroupId: str
+    recommendHideGuideGroupId: list[str]
     tutorialSelectStorylineId: str
     mainlineStorylineId: str

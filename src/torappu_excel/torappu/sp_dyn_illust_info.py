@@ -8,3 +8,4 @@ class SpDynIllustInfo(BaseStruct):
     spIllustId: str
     spPortraitId: str
     spAvatarId: str
+    spDynEntranceId: str | None

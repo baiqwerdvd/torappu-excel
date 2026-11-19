@@ -8,6 +8,7 @@ from .act44_side_data import Act44SideData
 from .act45_side_data import Act45SideData
 from .act53_side_data import Act53SideData
 from .act54_side_data import Act54SideData
+from .act55_side_data import Act55SideData
 from .act_3d0_data import Act3D0Data
 from .act_4d0_data import Act4D0Data
 from .act_5d0_data import Act5D0Data
@@ -65,6 +66,7 @@ from .activity_year5_general_data import ActivityYear5GeneralData
 from .all_player_checkin_data import AllPlayerCheckinData
 from .anniv7th_mainline_data import Anniv7thMainlineData
 from .april_fool_table import AprilFoolTable
+from .ark_news_data import ArkNewsData
 from .arkhub_data import ArkhubData
 from .auto_chess_data import AutoChessData
 from .cart_data import CartData
@@ -107,6 +109,7 @@ class ActivityTable(BaseStruct):
     siracusaData: SiracusaData
     fireworkData: FireworkData
     halfIdleData: HalfIdleData
+    arkNewsData: ArkNewsData
     kvSwitchData: dict[str, ActivityKVSwitchData]
     dynEntrySwitchData: dict[str, ActivityDynEntrySwitchData]
     hiddenStageData: list["ActivityTable.ActivityHiddenStageData"]
@@ -123,6 +126,7 @@ class ActivityTable(BaseStruct):
     activityCrossDayTrackTypeDataDict: dict[str, CrossDayTrackTypeData]
     activityCrossDayTrackTypeMap: dict[str, list[str]]
     activityStoryReadTipsDatas: dict[str, StoryReadTipsData]
+    stagesForcePlayActEntryOnFirstRead: dict[str, list[str]]
 
     class BasicData(BaseStruct):
         id: str
@@ -203,12 +207,13 @@ class ActivityTable(BaseStruct):
         TYPE_ACT45SIDE: dict[str, "Act45SideData"] = field(default_factory=dict)
         RECRUIT_ONLY: dict[str, "ActRecruitOnlyData"] = field(default_factory=dict)
         TYPE_ACT46SIDE: dict[str, "Act46SideData"] = field(default_factory=dict)
-        AUTOCHESS_SEASON: dict[str, "ActAutoChessData"] = field(default_factory=dict)
+        AUTOCHESS: dict[str, dict[str, "ActAutoChessData"]] = field(default_factory=dict)
         ACT_FOOTBALL: dict[str, "ActFootballData"] = field(default_factory=dict)
         ARK_HUB: dict[str, "ActArkHubData"] = field(default_factory=dict)
         TYPE_ACT53SIDE: dict[str, "Act53SideData"] = field(default_factory=dict)
         TYPE_ACT54SIDE: dict[str, "Act54SideData"] = field(default_factory=dict)
         ACT_DP: dict[str, "ActVasebreakerData"] = field(default_factory=dict)
+        TYPE_ACT55SIDE: dict[str, "Act55SideData"] = field(default_factory=dict)
 
     class ActivityExtraData(BaseStruct):
         MAINLINE_BP: dict[str, "ActMainlineBpExtraData"]
@@ -241,13 +246,13 @@ class ActivityTable(BaseStruct):
     class TemplateTrapData(BaseStruct):
         trapId: str
         sortId: int
-        trapName: str
-        trapDesc: str
-        trapText: str
-        trapIcon1: str
-        trapIcon2: str
+        trapName: str | None
+        trapDesc: str | None
+        trapText: str | None
+        trapIcon1: str | None
+        trapIcon2: str | None
         trapTaskId: str
-        trapUnlockDesc: str
+        trapUnlockDesc: str | None
         trapBuffId: str
         availableCount: int
 
@@ -257,7 +262,7 @@ class ActivityTable(BaseStruct):
         stageCanNotUseTrap: list[str]
         mustSelectTrap: bool
         systemUnlockToast: str | None
-        squadSaveSuccessToast: str
+        squadSaveSuccessToast: str | None
         lockedToast: str | None
         showBtnBack: bool
         useSpecialToast: bool

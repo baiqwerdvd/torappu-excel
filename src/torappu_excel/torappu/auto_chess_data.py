@@ -1,13 +1,20 @@
-from msgspec import field
-
 from .auto_chess_bond_type import AutoChessBondType
 from .auto_chess_broadcast_type import AutoChessBroadcastType
+from .auto_chess_content_type import AutoChessContentType
+from .auto_chess_period_type import AutoChessPeriodType
 from .auto_chess_prepare_step_type import AutoChessPrepareStepType
 from .auto_chess_shop_token_display_type import AutoChessShopTokenDisplayType
 from .auto_chess_skill_trigger_type import AutoChessSkillTriggerType
+from .auto_chess_skin_color_data import AutoChessSkinColorData
+from .auto_chess_skin_consts import AutoChessSkinConsts
+from .auto_chess_skin_data import AutoChessSkinData
+from .auto_chess_skin_effect_preview_data import AutoChessSkinEffectPreviewData
+from .auto_chess_skin_sound_preview_data import AutoChessSkinSoundPreviewData
+from .auto_chess_skin_voice_trigger_data import AutoChessSkinVoiceTriggerData
 from .blackboard import Blackboard
 from .common_report_player_data import CommonReportPlayerData
 from .evolve_phase import EvolvePhase
+from .offseason_data import OffseasonData
 from .ping_cond import PingCond
 from .profession_category import ProfessionCategory
 from ..common import BaseStruct
@@ -15,6 +22,8 @@ from ..common import BaseStruct
 
 class AutoChessData(BaseStruct):
     versionInfoDict: dict[str, "AutoChessData.AutoChessVersionInfoData"]
+    warmupScheduleDict: dict[str, "AutoChessData.AutoChessWarmupScheduleData"]
+    stagePageDisplayDict: dict[str, "AutoChessData.AutoChessStagePageDisplayData"]
     bandDataDict: dict[str, "AutoChessData.AutoChessBandData"]
     cultivateEffectList: "list[AutoChessData.AutoChessCultivateRelationData]"
     effectTypeDataDict: dict[str, "AutoChessData.AutoChessEffectTypeData"]
@@ -29,21 +38,41 @@ class AutoChessData(BaseStruct):
     randomEnemyAttributeDict: dict[str, "AutoChessData.AutoChessRandomEnemyAttributeData"]
     enabledEmoticonThemeIdList: list[str]
     gameTipsList: "list[AutoChessData.AutoChessGameTipData]"
+    prizeShopRelationDict: dict[str, str]
     medalDataList: "list[AutoChessData.AutoChessMedalData]"
     turnInfoDataDict: dict[str, dict[str, "AutoChessData.AutoChessTurnInfoData"]]
     roundScoreDataList: "list[AutoChessData.AutoChessRoundScoreData]"
     reportPlayerDataList: list[CommonReportPlayerData]
     broadcastList: "list[AutoChessData.AutoChessBroadcastData]"
+    bossDamageStatsStyleList: "list[AutoChessData.AutoChessBossDamageStatsStyleData]"
     constData: "AutoChessData.AutoChessConstData"
+    skinDataDict: dict[str, AutoChessSkinData]
+    skinColorDataDict: dict[str, AutoChessSkinColorData]
+    skinVoiceTriggerDataDict: dict[str, AutoChessSkinVoiceTriggerData]
+    skinEffectPreviewDict: dict[str, list[AutoChessSkinEffectPreviewData]]
+    skinSoundPreviewDict: dict[str, list[AutoChessSkinSoundPreviewData]]
+    skinVoiceAnimDict: dict[str, dict[str, str]]
+    skinConsts: AutoChessSkinConsts
+    offseasonDataDict: dict[str, dict[str, OffseasonData]]
+    permShopId: str
 
     class AutoChessVersionInfoData(BaseStruct):
         versionId: str | None
         activityId: str
+        enrollId: str | None
+        periodType: AutoChessPeriodType
+        contentType: AutoChessContentType
+        isContentUpdated: bool
+        isShopUpdated: bool
         seasonName: str
+        seasonYear: str
+        isActivityItemMax: bool
+        isActivityTaskMax: bool
+        isOffseason: bool
+        sortId: int
+        expireVersion: int
         startTime: int
-        updateTime: int | None = field(default=None)
-        appearTimeOnMainScreen: int | None = field(default=None)
-        disappearTimeOnMainScreen: int | None = field(default=None)
+        endTime: int
 
     class AutoChessBandData(BaseStruct):
         bandId: str
@@ -53,8 +82,10 @@ class AutoChessData(BaseStruct):
 
     class AutoChessBroadcastData(BaseStruct):
         id: str
+        idCode: int
         desc: str
         priority: int
+        commentIcon: str | None
         type: AutoChessBroadcastType
         paramList: list[str]
 
@@ -111,7 +142,7 @@ class AutoChessData(BaseStruct):
         subProfessionId: str | None
         charId: str | None
         skillIndex: int
-        skillTriggerType: AutoChessSkillTriggerType
+        skillTriggerTypes: list[AutoChessSkillTriggerType]
 
     class AutoChessPrepareStateData(BaseStruct):
         effectId: str
@@ -141,17 +172,16 @@ class AutoChessData(BaseStruct):
         templateEnemyTokenFly: str
         maxLevelCnt: int
         specialEnemyNum: int
+        specialEnemyNumSingle: int
         enemyTypeIdentifierToFillRandom: int
         enemyMaxHpFactor: float
         enemyAtkFactor: float
         enemyDefFactor: float
         enemyMagicResistanceFactor: float
-        singleReconnectTime: int
         specialPhaseStayTime: int
         hintTimeSpecialPhase: int
         hintTimeNormalPhase: int
         hintTimeFightPhase: int
-        hintTimeDotPhase: int
         invitationSendCd: int
         discountColor: str
         premiumColor: str
@@ -161,10 +191,14 @@ class AutoChessData(BaseStruct):
         chatTime: float
         broadcastBeginDelay: float
         noMoneyTipsBand: list[str]
+        noSkillTipsBand: list[str]
         bossTrailerStartRound: int
         singleClosureStayTime: float
         matchTimeMax: float
         enemyDataLevelId: str
+        playerAvatarWinStreakThresholds: list[int]
+        playerAvatarBossDamageThresholds: list[float]
+        bossDamageStatsShowDelayTime: float
 
     class AutoChessTurnInfoData(BaseStruct):
         round: int
@@ -183,3 +217,20 @@ class AutoChessData(BaseStruct):
     class AutoChessRoundScoreData(BaseStruct):
         round: int
         score: int
+
+    class AutoChessBossDamageStatsStyleData(BaseStruct):
+        damageThreshold: int
+        styleStatusId: str
+
+    class AutoChessStagePageDisplayData(BaseStruct):
+        displayId: str
+        versionId: str
+        mainDisappearTime: int
+        stagePageDisappearTime: int
+
+    class AutoChessWarmupScheduleData(BaseStruct):
+        warmupId: str
+        versionId: str
+        startTime: int
+        endTime: int
+        isMainPageUsed: bool

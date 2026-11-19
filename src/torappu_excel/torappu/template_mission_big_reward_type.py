@@ -7,3 +7,4 @@ class TemplateMissionBigRewardType(StrEnum):
     CUSTOM = "CUSTOM"
     PIC_REWARD = "PIC_REWARD"
     SKIN_REWARD = "SKIN_REWARD"
+    POINT_REWARD_LIST = "POINT_REWARD_LIST"

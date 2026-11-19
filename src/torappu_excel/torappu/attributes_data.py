@@ -21,6 +21,7 @@ class AttributesData(BaseStruct):
     tauntLevel: int
     massLevel: int
     baseForceLevel: int
+    blockVolume: int
     stunImmune: bool
     silenceImmune: bool
     sleepImmune: bool

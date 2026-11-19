@@ -99,10 +99,10 @@ class ActArcadeData(BaseStruct):
         milestoneName: str
         milestoneNameEN: str
         milestoneItemId: str
-        rewardHomeThemeId: str
-        rewardHomeThemeText: str
-        rewardAvatarId: str
-        rewardAvatarText: str
+        rewardHomeThemeId: str | None
+        rewardHomeThemeText: str | None
+        rewardAvatarId: str | None
+        rewardAvatarText: str | None
         rewardBackgroundId: str | None
         rewardBackgroundText: str | None
         badgeCollectionName: str

@@ -1,53 +1,68 @@
-from msgspec import field
-
 from .act_auto_chess_bond_active_condition_type import ActAutoChessBondActiveConditionType
 from .act_auto_chess_bond_active_type import ActAutoChessBondActiveType
+from .act_auto_chess_bond_phase_type import ActAutoChessBondPhaseType
 from .act_auto_chess_mode_difficulty_type import ActAutoChessModeDifficultyType
+from .act_auto_chess_mode_group_type import ActAutoChessModeGroupType
 from .act_auto_chess_mode_type import ActAutoChessModeType
+from .act_auto_chess_multi_mode_sub_type import ActAutoChessMultiModeSubType
 from .activity_common_milestone_data import ActivityCommonMilestoneData
+from .activity_periodical_reward_conf import ActivityPeriodicalRewardConf
+from .auto_chess_band_type import AutoChessBandType
 from .auto_chess_chess_type import AutoChessChessType
-from .auto_chess_count_type import AutoChessCountType
+from .auto_chess_data import AutoChessData
 from .auto_chess_effect_choice_type import AutoChessEffectChoiceType
 from .auto_chess_effect_counter_type import AutoChessEffectCounterType
 from .auto_chess_effect_type import AutoChessEffectType
 from .auto_chess_item_type import AutoChessItemType
+from .auto_chess_selection_type import AutoChessSelectionType
+from .auto_chess_skill_avail_type import AutoChessSkillAvailType
+from .auto_chess_skill_type import AutoChessSkillType
 from .blackboard import Blackboard
 from .evolve_phase import EvolvePhase
-from .item_bundle import ItemBundle
 from .rarity_rank import RarityRank
+from .template_shop_data import TemplateShopData
+from .vector2 import Vector2
 from ..common import BaseStruct
 
 
 class ActAutoChessData(BaseStruct):
     modeDataDict: dict[str, "ActAutoChessData.ActAutoChessModeData"]
-    baseRewardDataList: "list[ActAutoChessData.ActAutoChessBaseRewardData]"
-    bandDataListDict: dict[str, "ActAutoChessData.ActAutoChessBandData"]
-    charChessDataDict: dict[str, "ActAutoChessData.ActAutoChessCharChessData"]
+    modeGroupDataDict: dict[str, "ActAutoChessData.ActAutoChessModeGroupData"]
+    chessNormalIdLookupDict: dict[str, str]
     diyChessDict: dict[str, RarityRank]
-    shopLevelDataDict: dict[str, dict[str, "ActAutoChessData.ActAutoChessShopLevelData"]]
+    diyChessInfoDict: dict[str, list[str]]
     shopLevelDisplayDataDict: dict[str, "ActAutoChessData.ActAutoChessShopLevelDisplayData"]
-    charShopChessDatas: dict[str, "ActAutoChessData.ActAutoChessCharShopChessData"]
-    trapChessDataDict: dict[str, "ActAutoChessData.ActAutoChessTrapChessData"]
-    trapShopChessDatas: dict[str, "ActAutoChessData.ActAutoChessTrapShopChessData"]
     stageDatasDict: dict[str, "ActAutoChessData.ActAutoChessStageData"]
-    battleDataDict: dict[str, dict[str, "list[ActAutoChessData.ActAutoChessBattleData]"]]
-    bondInfoDict: dict[str, "ActAutoChessData.ActAutoChessBondInfo"]
-    garrisonDataDict: dict[str, "ActAutoChessData.ActAutoChessGarrisonData"]
-    effectInfoDataDict: dict[str, "ActAutoChessData.ActAutoChessEffectInfoData"]
-    effectBuffInfoDataDict: dict[str, "list[ActAutoChessData.ActAutoChessBuffInfoData]"]
-    effectChoiceInfoDict: dict[str, "ActAutoChessData.ActAutoChessEffectChoiceInfoData"]
-    bossInfoDict: dict[str, "ActAutoChessData.ActAutochessBossEntry"]
-    specialEnemyInfoDict: dict[str, "ActAutoChessData.ActAutochessSpecialEnemyEntry"]
     enemyInfoDict: dict[str, list[str]]
     specialEnemyRandomTypeDict: dict[str, "ActAutoChessData.ActAutochessSpecialEnemyTypeEntry"]
-    trainingNpcList: "list[ActAutoChessData.ActAutoChessTrainingNpcData]"
+    enemyRewardTypeDict: dict[str, str]
+    enemyRewardTextFormatDict: dict[str, str]
     milestoneList: list[ActivityCommonMilestoneData]
+    periodicalRewards: dict[str, ActivityPeriodicalRewardConf]
     modeFactorInfo: dict[str, float]
     difficultyFactorInfo: dict[str, float]
     playerTitleDataDict: dict[str, "ActAutoChessData.ActAutoChessPlayerTitleData"]
     shopCharChessInfoData: dict[str, "list[ActAutoChessData.ActAutoChessShopCharChessInfoData]"]
     constData: "ActAutoChessData.ActAutoChessConstData"
-    chessNormalIdLookupDict: dict[str, str] | None = field(default=None)
+    seasonShop: TemplateShopData
+    bandDataListDict: dict[str, "ActAutoChessData.ActAutoChessBandData"]
+    bondInfoDict: dict[str, "ActAutoChessData.ActAutoChessBondInfo"]
+    garrisonDataDict: dict[str, "ActAutoChessData.ActAutoChessGarrisonData"]
+    effectDescParamDataDict: dict[str, "ActAutoChessData.ActAutoChessEffectDescParamData"]
+    effectInfoDataDict: dict[str, "ActAutoChessData.ActAutoChessEffectInfoData"]
+    skillInfoDataDict: dict[str, "ActAutoChessData.ActAutoChessSkillInfoData"]
+    effectBuffInfoDataDict: dict[str, "list[ActAutoChessData.ActAutoChessBuffInfoData]"]
+    shopLevelDataDict: dict[str, dict[str, "ActAutoChessData.ActAutoChessShopLevelData"]]
+    charChessDataDict: dict[str, "ActAutoChessData.ActAutoChessCharChessData"]
+    charShopChessDatas: dict[str, "ActAutoChessData.ActAutoChessCharShopChessData"]
+    trapChessDataDict: dict[str, "ActAutoChessData.ActAutoChessTrapChessData"]
+    trapShopChessDatas: dict[str, "ActAutoChessData.ActAutoChessTrapShopChessData"]
+    effectChoiceInfoDict: dict[str, "ActAutoChessData.ActAutoChessEffectChoiceInfoData"]
+    battleDataDict: dict[str, dict[str, "list[ActAutoChessData.ActAutoChessBattleData]"]]
+    bossInfoDict: dict[str, "ActAutoChessData.ActAutochessBossEntry"]
+    specialEnemyInfoDict: dict[str, "ActAutoChessData.ActAutochessSpecialEnemyEntry"]
+    trainingNpcList: "list[ActAutoChessData.ActAutoChessTrainingNpcData]"
+    trainingData: "ActAutoChessTrainingData"
 
     class ActAutoChessModeData(BaseStruct):
         modeId: str
@@ -55,9 +70,12 @@ class ActAutoChessData(BaseStruct):
         code: str
         sortId: int
         backgroundId: str
-        desc: str
-        effectDescList: list[str]
-        preposedMode: str | None
+        desc: str | None
+        difficulty: int
+        factor: float
+        difficultyDesc: str
+        trophyDesc: str | None
+        eventIds: list[str]
         unlockText: str | None
         loadingPicId: str
         modeType: ActAutoChessModeType
@@ -69,6 +87,8 @@ class ActAutoChessData(BaseStruct):
         inactiveBondIdList: list[str]
         inactiveEnemyKey: list[str]
         startTime: int
+        unlockDiffierentModeId: str | None
+        groupList: list[ActAutoChessModeGroupType]
 
     class ActAutoChessBondInfo(BaseStruct):
         bondId: str
@@ -85,33 +105,36 @@ class ActAutoChessData(BaseStruct):
         weight: int
         isActiveInDeck: bool
         maxInactiveBondCount: int
-        descParamBaseList: list[str]
-        descParamPerStackList: list[str]
         noStack: bool
+        noSelect: bool
         chessIdList: list[str]
 
     class ActAutoChessGarrisonData(BaseStruct):
-        garrisonDesc: str
+        garrisonDesc: str | None
         eventType: str
         eventTypeDesc: str
         eventTypeIcon: str
         eventTypeSmallIcon: str
+        eventEffect: str | None
         effectType: str
         charLevel: int
         battleRuneKey: str | None
         blackboard: "list[Blackboard]"
-        description: str
+        description: str | None
 
     class ActAutoChessBandData(BaseStruct):
         bandId: str
         sortId: int
-        modeTypeList: list[str]
+        bandType: AutoChessBandType
+        inactiveModeIdList: list[str]
         bandDesc: str
         totalHp: int
         effectId: str
         victorCount: int
+        masterVictorCount: int
         bandRewardModulus: float
-        updateTime: int
+        offseasonPriority: int
+        relateBondList: list[str] | None
 
     class ActAutoChessCharChessStatusData(BaseStruct):
         evolvePhase: EvolvePhase
@@ -127,8 +150,11 @@ class ActAutoChessData(BaseStruct):
         status: "ActAutoChessData.ActAutoChessCharChessStatusData"
         upgradeChessId: str | None
         upgradeNum: int
+        equipSlotNum: int
+        showTag: str | None
         bondIds: list[str]
         garrisonIds: list[str] | None
+        desc: str | None
 
     class ActAutoChessShopLevelData(BaseStruct):
         shopLevel: int
@@ -191,8 +217,10 @@ class ActAutoChessData(BaseStruct):
         trapDuration: int
         effectId: str
         giveBondId: str | None
-        givePowerId: str | None
         canGiveBond: bool
+        canFuse: bool
+        fuseWith: str | None
+        fuseResult: str | None
         itemType: AutoChessItemType
 
     class ActAutoChessTrapShopChessData(BaseStruct):
@@ -224,22 +252,26 @@ class ActAutoChessData(BaseStruct):
         effectDesc: str
         effectDecoIconId: str | None
         enemyPrice: int
+        showTag: str | None
+        displayInHUD: bool
 
     class ActAutoChessBuffInfoData(BaseStruct):
         key: str
         blackboard: "list[Blackboard]"
-        countType: AutoChessCountType
 
     class ActAutoChessEffectChoiceInfoData(BaseStruct):
         choiceEventId: str
         choiceType: AutoChessEffectChoiceType
         effectType: AutoChessEffectType
+        selectionType: AutoChessSelectionType
         name: str
         desc: str
-        typeTxtColor: str
 
     class ActAutoChessPlayerTitleData(BaseStruct):
         id: str
+        type: str
+        point: int
+        rank: int
         picId: str
         txt: str
 
@@ -247,10 +279,7 @@ class ActAutoChessData(BaseStruct):
         bossId: str
         sortId: int
         weight: int
-        bloodPoint: int
-        bloodPointNormal: int
-        bloodPointHard: int
-        bloodPointAbyss: int
+        bloodDataDict: dict[str, int]
         isHidingBoss: bool
 
     class ActAutochessSpecialEnemyEntry(BaseStruct):
@@ -263,12 +292,9 @@ class ActAutoChessData(BaseStruct):
 
     class ActAutochessSpecialEnemyTypeEntry(BaseStruct):
         count: int
+        countSingle: int
         weight: int
-
-    class ActAutoChessBaseRewardData(BaseStruct):
-        round: int
-        item: ItemBundle
-        dailyMissionPoint: int
+        showEnemyId: str
 
     class ActAutoChessTrainingNpcData(BaseStruct):
         npcId: str
@@ -280,15 +306,103 @@ class ActAutoChessData(BaseStruct):
     class ActAutoChessConstData(BaseStruct):
         shopRefreshPrice: int
         maxDeckChessCnt: int
+        maxDeckEquipmentChessCnt: int
         maxBattleChessCnt: int
-        fallbackBondId: str
+        fallbackBondId: str | None
         storeCntMax: int
         costPlayerHpLimit: int
-        milestoneId: str
         borrowCount: int
+        milestoneId: str | None
         dailyMissionParam: int
-        dailyMissionName: str
-        dailyMissionRule: str
+        dailyMissionName: str | None
+        dailyMissionRule: str | None
+        milestoneTrackId: str | None
+        escapedBattleTemplateMapSinglePlayer: str | None
+        escapedBattleTemplateMapMultiPlayer: str | None
+        webBusType: str | None
+        webUpdateLogBusType: str | None
+        itemMaxCount: int
+        diyCharLimitForLevels: dict[str, int] | None
+        permShopLogoId: str | None
+        contentUpdateTime: int
+        systemCustomChar: list[str] | None
+        bossIconId: str | None
+        modeWarningDiff: int
+        perfectBattleVoiceRound: int
+        loseHpVoiceRound: int
+        bondVoiceLayers: list[int]
+        shopTagWarmUpId: str | None
+
+    class ActAutoChessEffectDescParamData(BaseStruct):
+        descParamInfos: "list[ActAutoChessData.ActAutoChessEffectDescParamInfo]"
+        phaseType: ActAutoChessBondPhaseType
+        bondPhaseCountList: list[int]
+
+    class ActAutoChessEffectDescParamInfo(BaseStruct):
+        descParamBase: str
+        descParamPerStack: str
+        descParamMax: float
+
+    class ActAutoChessModeGroupData(BaseStruct):
+        groupType: ActAutoChessModeGroupType
+        modeType: ActAutoChessMultiModeSubType
+        willExpand: bool
+        modeIds: list[str]
+
+    class ActAutoChessSkillInfoData(BaseStruct):
+        effectId: str
+        skillDesc: str
+        skillType: AutoChessSkillType
+        skillCost: int
+        skillAvailType: AutoChessSkillAvailType
+        skillAvailCount: int
+        unlockType: str
+        unlockParam: list[str]
+        minorUnlock: bool
+        unlockEffectId: str | None
+        targetType: str | None
+        targetFilterType: str | None
+        targetTip: str | None
+        isUnusableAtSpecialRecruit: bool
+        bandId: str
+
+
+class ActAutoChessTrainingData(BaseStruct):
+    overrideAutoChessData: "ActAutoChessTrainingData.AutoChessTrainingData"
+    bandDataListDict: dict[str, ActAutoChessData.ActAutoChessBandData]
+    bondInfoDict: dict[str, ActAutoChessData.ActAutoChessBondInfo]
+    garrisonDataDict: dict[str, ActAutoChessData.ActAutoChessGarrisonData]
+    effectInfoDataDict: dict[str, ActAutoChessData.ActAutoChessEffectInfoData]
+    effectDescParamDataDict: dict[str, ActAutoChessData.ActAutoChessEffectDescParamData]
+    skillInfoDataDict: dict[str, ActAutoChessData.ActAutoChessSkillInfoData]
+    effectBuffInfoDataDict: dict[str, list[ActAutoChessData.ActAutoChessBuffInfoData]]
+    shopLevelDataDict: dict[str, dict[str, ActAutoChessData.ActAutoChessShopLevelData]]
+    charChessDataDict: dict[str, ActAutoChessData.ActAutoChessCharChessData]
+    charShopChessDatas: dict[str, ActAutoChessData.ActAutoChessCharShopChessData]
+    trapChessDataDict: dict[str, ActAutoChessData.ActAutoChessTrapChessData]
+    trapShopChessDatas: dict[str, ActAutoChessData.ActAutoChessTrapShopChessData]
+    chessNormalIdLookupDict: dict[str, str]
+    effectChoiceInfoDict: dict[str, ActAutoChessData.ActAutoChessEffectChoiceInfoData]
+    battleDataDict: dict[str, dict[str, list[ActAutoChessData.ActAutoChessBattleData]]]
+    bossInfoDict: dict[str, ActAutoChessData.ActAutochessBossEntry]
+    specialEnemyInfoDict: dict[str, ActAutoChessData.ActAutochessSpecialEnemyEntry]
+    trainingNpcList: list[ActAutoChessData.ActAutoChessTrainingNpcData]
+    constData: ActAutoChessData.ActAutoChessConstData
+    trainingConstData: "ActAutoChessTrainingData.TrainingConstData"
+    trainingShopDict: dict[str, "list[ActAutoChessTrainingData.TrainingShopSlotData]"]
+    trainingRoundInfoDict: dict[str, "ActAutoChessTrainingData.TrainingRoundInfoData"]
+    trainingSpecialChoiceDict: dict[str, "list[ActAutoChessTrainingData.TrainingSpecialChoiceData]"]
+    trainingNpcDeployDict: dict[str, "list[ActAutoChessTrainingData.TrainingNpcDeployData]"]
+    trainingDiyChessDict: dict[str, "ActAutoChessTrainingData.TrainingDiyChessData"]
+    specialEnemyRandomTypeDict: dict[str, ActAutoChessData.ActAutochessSpecialEnemyTypeEntry]
+
+    class AutoChessTrainingData(BaseStruct):
+        bandDataDict: dict[str, AutoChessData.AutoChessBandData]
+        bondDataDict: dict[str, AutoChessData.AutoChessBondInfoData]
+        bossInfoDict: dict[str, AutoChessData.AutoChessBossInfoData]
+        randomEnemyAttributeDict: dict[str, AutoChessData.AutoChessRandomEnemyAttributeData]
+
+    class TrainingConstData(BaseStruct):
         trstageBandId: str
         trstageBossId: str
         trStageId: str
@@ -296,8 +410,40 @@ class ActAutoChessData(BaseStruct):
         trSpecialEnemyTypes: list[str]
         trBondIds: list[str]
         trBannedBondIds: list[str]
-        milestoneTrackId: str
-        escapedBattleTemplateMapSinglePlayer: str
-        escapedBattleTemplateMapMultiPlayer: str
-        webBusType: str
-        bandNextUpdateTs: int | None = field(default=None)
+        trStageBossHP: int
+        trInGameDiyChessId: str
+        trInGameBanDiyChessId: str
+
+    class TrainingDiyChessData(BaseStruct):
+        chessId: str
+        charId: str
+        tmplId: str | None
+        skinId: str
+        skillIndex: int
+        uniEquipId: str | None
+        potentialRank: int
+
+    class TrainingNpcDeployData(BaseStruct):
+        round: int
+        trainingNpcId: str
+        chessId: str
+        position: Vector2
+        direction: int
+        equipChessIds: list[str] | None
+        garrisonLayer: int
+
+    class TrainingRoundInfoData(BaseStruct):
+        round: int
+        isBossTurn: bool
+        baseGoldCnt: int
+
+    class TrainingShopSlotData(BaseStruct):
+        slot: int
+        chessIds: list[str]
+
+    class TrainingSpecialChoiceData(BaseStruct):
+        choiceEventId: str
+        round: int
+        slot: int
+        equipId: str
+        trainingNpcId: str | None

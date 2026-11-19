@@ -10,3 +10,4 @@ class OpenServerConst(BaseStruct):
     resFullOpenDesc: str
     resFullOpenGuideGroupThreshold: str
     resFullOpenStartTime: int
+    openServerV2EndTime: int

@@ -3,6 +3,7 @@ from msgspec import field
 from .blackboard import Blackboard
 from .buildable_type import BuildableType, BuildableTypeStr
 from .height_type_mask import HeightTypeMask
+from .map_layer_mask import MapLayerMask
 from .profession_category import ProfessionCategory
 from .side_type import SideType
 from ..common import BaseStruct
@@ -19,6 +20,7 @@ class RuneData(BaseStruct):
         heightTypeMask: HeightTypeMask | int | None = field(default=None)
         sideType: SideType | None = field(default=None)
         playerSideMask: BuildableTypeStr | BuildableType | None = field(default=None)
+        mapLayerMask: MapLayerMask | int | None = field(default=None)
         charIdFilter: list[str] | None = field(default=None)
         charIdExcludeFilter: list[str] | None = field(default=None)
         enemyIdFilter: list[str] | None = field(default=None)

@@ -70,6 +70,7 @@ class StageData(BaseStruct):
     isStoryOnly: bool
     appearanceStyle: AppearanceStyle
     stageDropInfo: "StageData.StageDropInfo"
+    levelMapId: str | None
     startButtonOverrideId: str | None
     isStagePatch: bool
     mainStageId: str | None

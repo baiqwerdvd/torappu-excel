@@ -14,3 +14,4 @@ class AutoChessEffectType(StrEnum):
     ENEMY_GAIN = "ENEMY_GAIN"
     BUFF_GAIN = "BUFF_GAIN"
     GARRISON = "GARRISON"
+    BAND_SKILL = "BAND_SKILL"
